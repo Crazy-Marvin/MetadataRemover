@@ -1,4 +1,4 @@
-# MetadataRemover
+# Metadata Remover App For Android
 
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)]()
 [![Build Status](https://travis-ci.org/Crazy-Marvin/MetadataRemover.svg?branch=master)](https://travis-ci.org/Crazy-Marvin/MetadataRemover)
@@ -9,6 +9,8 @@ Bitrise tbd
 Snyk tbd
 [![codebeat badge](https://codebeat.co/badges/8eceddc4-d4bd-49b9-9eb6-66b78049f771)](https://codebeat.co/projects/github-com-crazy-marvin-metadataremover-master)
 [![Code Intelligence Status](https://scrutinizer-ci.com/g/Crazy-Marvin/MetadataRemover/badges/code-intelligence.svg?b=master)](https://scrutinizer-ci.com/code-intelligence)
+[![GitHub last commit](https://img.shields.io/github/last-commit/Crazy-Marvin/MetadataRemover.svg)](https://github.com/Crazy-Marvin/MetadataRemover/)
+[![Github All Releases](https://img.shields.io/github/downloads/Crazy-Marvin/MetadataRemover/total.svg)](https://github.com/Crazy-Marvin/MetadataRemover/releases)
 
 
 
