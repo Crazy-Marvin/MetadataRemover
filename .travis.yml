@@ -36,16 +36,13 @@ android:
     # Accept all licenses per default
     - android-sdk-preview-license-.+
     - android-sdk-license-.+
+    - intel-android-extra-license-.+
     - google-gdk-license-.+
 
 # Installation routine
 # Scripts to run before installation
 before_install:
   #- android list sdk --no-ui --all --extended
-  - mkdir "${ANDROID_HOME}/licenses" || true
-  - echo -e "\n8933bad161af4178b1185d1a37fbf41ea5269c55" > "${ANDROID_HOME}/licenses/android-sdk-license"
-  - echo -e "\n84831b9409646a918e30573bab4c9c91346d8abd" > "${ANDROID_HOME}/licenses/android-sdk-preview-license"
-  - sleep 10
   - chmod +x gradlew
 # Scripts to run before test
 before_script:
