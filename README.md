@@ -1,4 +1,4 @@
-[![Icon](art/icons/ic_launcher/square/xxxhdpi/ic_launcher.png)](art/icons/ic_launcher/)
+[![Icon](art/icons/ic_launcher/circle/xxxhdpi/ic_launcher.png)](art/icons/ic_launcher/)
 
 # Metadata Remover App For Android
 
