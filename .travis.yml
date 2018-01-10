@@ -32,12 +32,6 @@ android:
     # Emulators to run during tests
     - sys-img-${ANDROID_EMULATOR_ABI}-android-$EMULATOR_ANDROID_SDK
     - sys-img-${ANDROID_EMULATOR_ABI}-google_apis-$EMULATOR_ANDROID_SDK
-  licenses:
-    # Accept all licenses per default
-    - android-sdk-preview-license-.+
-    - android-sdk-license-.+
-    - intel-android-extra-license-.+
-    - google-gdk-license-.+
 
 # Installation routine
 # Scripts to run before installation
