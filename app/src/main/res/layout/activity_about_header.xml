@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ MIT License
+  ~
+  ~ Copyright (c) 2018 Jan Heinrich Reimer
+  ~
+  ~ Permission is hereby granted, free of charge, to any person obtaining a copy
+  ~ of this software and associated documentation files (the "Software"), to deal
+  ~ in the Software without restriction, including without limitation the rights
+  ~ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  ~ copies of the Software, and to permit persons to whom the Software is
+  ~ furnished to do so, subject to the following conditions:
+  ~
+  ~ The above copyright notice and this permission notice shall be included in all
+  ~ copies or substantial portions of the Software.
+  ~
+  ~ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  ~ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  ~ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  ~ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  ~ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  ~ SOFTWARE.
+  -->
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        tools:context=".AboutActivity">
+
+    <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <android.support.constraint.Guideline
+                android:id="@+id/baseline_start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="@dimen/baseline"/>
+
+        <android.support.constraint.Guideline
+                android:id="@+id/baseline_end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="@dimen/baseline"/>
+
+        <android.support.constraint.Guideline
+                android:id="@+id/baseline_bottom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_end="@dimen/baseline"/>
+
+        <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?actionBarSize"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:title="@string/title_activity_about"
+                app:contentInsetStart="@dimen/baseline_content"
+                app:navigationIcon="@drawable/ic_arrow_back_ltr"
+                app:navigationContentDescription="@string/image_content_description_navigate_up"/>
+
+        <ImageView
+                android:id="@+id/app_icon"
+                android:layout_width="@dimen/size_about_app_icon"
+                android:layout_height="@dimen/size_about_app_icon"
+                android:src="@drawable/art_app_icon"
+                android:layout_margin="@dimen/baseline"
+                app:layout_constraintStart_toStartOf="@id/baseline_start"
+                app:layout_constraintEnd_toEndOf="@id/baseline_end"
+                app:layout_constraintTop_toBottomOf="@id/toolbar"
+                app:layout_constraintBottom_toTopOf="@id/barrier_buttons_top"
+                android:contentDescription="@string/image_content_description_app_icon"/>
+
+        <android.support.constraint.Barrier
+                android:id="@+id/barrier_buttons_top"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:constraint_referenced_ids="button_source,button_contact,button_support"
+                app:barrierDirection="top"/>
+
+        <Button
+                android:id="@+id/button_source"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minHeight="0dp"
+                app:layout_constraintTop_toBottomOf="@id/barrier_buttons_top"
+                app:layout_constraintBottom_toBottomOf="@id/baseline_bottom"
+                app:layout_constraintStart_toStartOf="@id/baseline_start"
+                app:layout_constraintEnd_toStartOf="@id/button_contact"
+                app:layout_constraintHorizontal_chainStyle="spread"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:text="@string/title_button_about_source"/>
+
+        <Button
+                android:id="@+id/button_contact"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minHeight="0dp"
+                app:layout_constraintTop_toBottomOf="@id/barrier_buttons_top"
+                app:layout_constraintBottom_toBottomOf="@id/baseline_bottom"
+                app:layout_constraintStart_toEndOf="@id/button_source"
+                app:layout_constraintEnd_toStartOf="@id/button_support"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:text="@string/title_button_about_contact"/>
+
+        <Button
+                android:id="@+id/button_support"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minHeight="0dp"
+                app:layout_constraintTop_toBottomOf="@id/barrier_buttons_top"
+                app:layout_constraintBottom_toBottomOf="@id/baseline_bottom"
+                app:layout_constraintStart_toEndOf="@id/button_contact"
+                app:layout_constraintEnd_toEndOf="@id/baseline_end"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:text="@string/title_button_about_support"/>
+
+    </android.support.constraint.ConstraintLayout>
+
+</layout>

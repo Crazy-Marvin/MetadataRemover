@@ -21,22 +21,48 @@
   ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
   ~ SOFTWARE.
   -->
-
-<android.support.constraint.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         tools:context=".MainActivity">
 
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Hello World!"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+    <data>
 
-</android.support.constraint.ConstraintLayout>
+        <!-- TODO Add data binding vars. -->
+
+    </data>
+
+    <android.support.design.widget.CoordinatorLayout
+            android:id="@+id/coordinator"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <include
+                android:id="@+id/image_preview"
+                layout="@layout/activity_main_preview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+        <include
+                android:id="@+id/bottom_sheet"
+                layout="@layout/activity_main_bottom_sheet"
+                android:elevation="@dimen/elevation_bottom_sheet"
+                app:layout_behavior="android.support.design.widget.BottomSheetBehavior"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:layout_height="400dp"
+                tools:visibility="visible" />
+
+        <!-- TODO Replace this with a gradient. -->
+        <View
+                android:id="@+id/navigation_bar_shadow"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/height_navigation_bar_shadow"
+                android:layout_gravity="bottom"
+                android:elevation="@dimen/elevation_bottom_sheet"
+                android:background="#f00"
+                android:alpha="0.75"/>
+
+    </android.support.design.widget.CoordinatorLayout>
+
+</layout>

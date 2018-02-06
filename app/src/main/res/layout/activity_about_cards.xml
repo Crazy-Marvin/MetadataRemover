@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ MIT License
+  ~
+  ~ Copyright (c) 2018 Jan Heinrich Reimer
+  ~
+  ~ Permission is hereby granted, free of charge, to any person obtaining a copy
+  ~ of this software and associated documentation files (the "Software"), to deal
+  ~ in the Software without restriction, including without limitation the rights
+  ~ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  ~ copies of the Software, and to permit persons to whom the Software is
+  ~ furnished to do so, subject to the following conditions:
+  ~
+  ~ The above copyright notice and this permission notice shall be included in all
+  ~ copies or substantial portions of the Software.
+  ~
+  ~ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  ~ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  ~ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  ~ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  ~ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  ~ SOFTWARE.
+  -->
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        tools:context=".AboutActivity">
+
+    <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <android.support.constraint.Guideline
+                android:id="@+id/baseline_card_start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="@dimen/baseline_card"/>
+
+        <android.support.constraint.Guideline
+                android:id="@+id/baseline_card_end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="@dimen/baseline_card"/>
+
+        <android.support.constraint.Guideline
+                android:id="@+id/baseline_card_top"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_begin="@dimen/baseline_card"/>
+
+        <android.support.constraint.Guideline
+                android:id="@+id/baseline_card_bottom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_end="@dimen/baseline_card"/>
+
+        <include
+                android:id="@+id/developer_info"
+                layout="@layout/item_card_author"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/baseline_card_top"
+                app:layout_constraintStart_toStartOf="@id/baseline_card_start"
+                app:layout_constraintEnd_toEndOf="@id/baseline_card_end"/>
+
+        <include
+                android:id="@+id/open_source_license"
+                layout="@layout/item_card_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/baseline_card"
+                android:background="#f00"
+                app:layout_constraintTop_toBottomOf="@id/developer_info"
+                app:layout_constraintStart_toStartOf="@id/baseline_card_start"
+                app:layout_constraintEnd_toEndOf="@id/baseline_card_end"/>
+
+        <include
+                android:id="@+id/open_source_libraries"
+                layout="@layout/item_card_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/baseline_card"
+                android:background="#f00"
+                app:layout_constraintTop_toBottomOf="@id/open_source_license"
+                app:layout_constraintBottom_toTopOf="@id/baseline_card_bottom"
+                app:layout_constraintStart_toStartOf="@id/baseline_card_start"
+                app:layout_constraintEnd_toEndOf="@id/baseline_card_end"/>
+
+    </android.support.constraint.ConstraintLayout>
+
+</layout>

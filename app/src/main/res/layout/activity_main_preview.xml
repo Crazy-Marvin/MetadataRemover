@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ MIT License
+  ~
+  ~ Copyright (c) 2018 Jan Heinrich Reimer
+  ~
+  ~ Permission is hereby granted, free of charge, to any person obtaining a copy
+  ~ of this software and associated documentation files (the "Software"), to deal
+  ~ in the Software without restriction, including without limitation the rights
+  ~ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  ~ copies of the Software, and to permit persons to whom the Software is
+  ~ furnished to do so, subject to the following conditions:
+  ~
+  ~ The above copyright notice and this permission notice shall be included in all
+  ~ copies or substantial portions of the Software.
+  ~
+  ~ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  ~ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  ~ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  ~ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  ~ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  ~ SOFTWARE.
+  -->
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        tools:context=".MainActivity">
+
+    <data>
+
+        <!-- TODO Add data binding vars. -->
+
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?actionBarSize"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:title="@string/title_activity_main"
+                app:titleTextColor="?android:textColorSecondary"/>
+
+        <ImageView
+                android:id="@+id/image_preview"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="@dimen/baseline"
+                app:layout_constraintTop_toBottomOf="@id/toolbar"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:scaleType="centerInside"
+                tools:src="@tools:sample/backgrounds/scenic"
+                android:contentDescription="@string/image_content_description_preview"/>
+
+        <ImageView
+                android:id="@+id/banner_image_open_image"
+                android:layout_width="@dimen/size_banner"
+                android:layout_height="@dimen/size_banner"
+                app:layout_constraintTop_toTopOf="@id/banner_open_image"
+                app:layout_constraintBottom_toTopOf="@id/banner_text_open_image"
+                app:layout_constraintStart_toStartOf="@id/banner_open_image"
+                app:layout_constraintEnd_toEndOf="@id/banner_open_image"
+                app:layout_constraintVertical_chainStyle="packed"
+                android:src="@drawable/art_open_image"
+                android:contentDescription="@string/image_content_description_banner_open_picture"/>
+
+        <TextView
+                android:id="@+id/banner_text_open_image"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                app:layout_constraintWidth_max="@dimen/max_short_text_width"
+                android:text="@string/description_banner_open_picture"
+                app:layout_constraintTop_toBottomOf="@id/banner_image_open_image"
+                app:layout_constraintBottom_toBottomOf="@id/banner_open_image"
+                app:layout_constraintStart_toStartOf="@id/banner_open_image"
+                app:layout_constraintEnd_toEndOf="@id/banner_open_image"/>
+
+        <android.support.constraint.Group
+                android:id="@+id/banner_open_image"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="@dimen/baseline"
+                app:layout_constraintTop_toBottomOf="@id/toolbar"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:constraint_referenced_ids="banner_image_open_image,banner_text_open_image"
+                tools:visibility="gone"/>
+
+    </android.support.constraint.ConstraintLayout>
+
+</layout>

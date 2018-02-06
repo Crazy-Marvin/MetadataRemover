@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ MIT License
+  ~
+  ~ Copyright (c) 2018 Jan Heinrich Reimer
+  ~
+  ~ Permission is hereby granted, free of charge, to any person obtaining a copy
+  ~ of this software and associated documentation files (the "Software"), to deal
+  ~ in the Software without restriction, including without limitation the rights
+  ~ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  ~ copies of the Software, and to permit persons to whom the Software is
+  ~ furnished to do so, subject to the following conditions:
+  ~
+  ~ The above copyright notice and this permission notice shall be included in all
+  ~ copies or substantial portions of the Software.
+  ~
+  ~ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  ~ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  ~ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  ~ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  ~ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  ~ SOFTWARE.
+  -->
+<resources>
+
+    <dimen name="baseline">16dp</dimen>
+    <dimen name="baseline_card">8dp</dimen>
+    <dimen name="baseline_typo">8dp</dimen>
+    <dimen name="baseline_content">72dp</dimen>
+
+    <dimen name="elevation_toolbar">4dp</dimen>
+    <dimen name="elevation_bottom_sheet">16dp</dimen>
+
+    <!-- Should always be the button height plus twice the baseline (48dp + 2*16dp). -->
+    <dimen name="paddiing_bottom_metadata_list">80dp</dimen>
+
+    <dimen name="size_system_icon">24dp</dimen>
+    <dimen name="size_avatar">56dp</dimen>
+    <dimen name="size_banner">192dp</dimen>
+    <dimen name="size_about_app_icon">144dp</dimen>
+
+    <dimen name="max_body_text_width">544dp</dimen>
+    <dimen name="max_short_text_width">272dp</dimen>
+
+    <dimen name="height_navigation_bar_shadow">@dimen/baseline</dimen>
+
+</resources>

@@ -21,15 +21,30 @@
   ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
   ~ SOFTWARE.
   -->
-
 <resources>
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+    <!-- Application-specific adjustments. -->
+    <style name="Theme.App" parent="Theme.App.Platform" />
+
+    <!-- Specific adjustments for each platform. -->
+    <style name="Theme.App.Platform" parent="Theme.App.Base" />
+
+    <!-- Base styles all platforms have common. -->
+    <style name="Theme.App.Base" parent="Theme.AppCompat.Light.NoActionBar">
+
+        <item name="colorPrimary">@color/color_primary</item>
+        <item name="colorPrimaryDark">@color/color_primary_dark</item>
+        <item name="colorAccent">@color/color_accent</item>
+
+        <item name="android:windowBackground">@color/background_app</item>
+
+        <item name="android:textColorPrimary">@color/text_color_primary</item>
+        <item name="android:textColorSecondary">@color/text_color_secondary</item>
+        <item name="android:textColorHint">@color/text_color_hint</item>
+        <item name="android:textColorPrimaryInverse">@color/text_color_primary_inverse</item>
+        <item name="android:textColorSecondaryInverse">@color/text_color_secondary_inverse</item>
+        <item name="android:textColorHintInverse">@color/text_color_hint_inverse</item>
+
     </style>
 
 </resources>

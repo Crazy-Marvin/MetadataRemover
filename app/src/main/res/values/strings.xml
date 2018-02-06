@@ -23,5 +23,7 @@
   -->
 
 <resources>
+
     <string name="app_name">Metadata Remover</string>
+
 </resources>

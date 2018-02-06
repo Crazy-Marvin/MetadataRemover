@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ MIT License
+  ~
+  ~ Copyright (c) 2018 Jan Heinrich Reimer
+  ~
+  ~ Permission is hereby granted, free of charge, to any person obtaining a copy
+  ~ of this software and associated documentation files (the "Software"), to deal
+  ~ in the Software without restriction, including without limitation the rights
+  ~ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  ~ copies of the Software, and to permit persons to whom the Software is
+  ~ furnished to do so, subject to the following conditions:
+  ~
+  ~ The above copyright notice and this permission notice shall be included in all
+  ~ copies or substantial portions of the Software.
+  ~
+  ~ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  ~ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  ~ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  ~ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  ~ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  ~ SOFTWARE.
+  -->
+
+<resources>
+
+    <string name="title_activity_about">About</string>
+
+    <string name="image_content_description_navigate_up">Navigate up</string>
+
+
+    <!-- App info -->
+    <string name="image_content_description_app_icon">App icon</string>
+    <string name="title_button_about_source">Source</string>
+    <string name="url_button_about_source" translatable="false">https://github.com/Crazy-Marvin/MetadataRemover/</string>
+    <string name="title_button_about_contact">Contact</string>
+    <string name="email_about_button_contact" translatable="false">marvin@poopjournal.rocks</string>
+    <string name="title_button_about_support">Support</string>
+    <string name="url_about_button_support" translatable="false">https://poopjournal.rocks/MetadataRemover/support/</string>
+
+
+    <!-- Developer info -->
+
+    <string name="title_about_developer_name">Crazy Marvin &amp; Contributors</string>
+    <string name="description_about_developer_role">Development</string>
+    <string name="title_button_about_developer_github">GitHub</string>
+    <string name="url_button_about_developer_github" translatable="false">https://github.com/Crazy-Marvin/</string>
+    <string name="title_button_about_developer_website">Website</string>
+    <string name="url_button_about_developer_website" translatable="false">https://poopjournal.rocks/MetadataRemover/</string>
+
+
+    <!-- License info -->
+    <string name="title_dialog_about_license">MIT License</string>
+    <string name="description_dialog_about_license" translatable="false">
+MIT License
+
+Copyright © 2018 Crazy Marvin
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+    </string>
+    <string name="title_positive_action_dialog_about_license">Close</string>
+
+</resources>
