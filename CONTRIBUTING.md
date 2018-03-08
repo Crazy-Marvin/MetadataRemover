@@ -28,6 +28,10 @@ This section guides you through submitting a bug report for [Metadata Remover](h
 
 Before creating bug reports, please check this list as you might find out that you don't need to create one. When you are creating a bug report, please include as many details as possible.
 
+### Translating Strings
+
+You can help to translate the app and marketing texts (e.g. Google Play description) via [Crowdin](https://crowdin.com/project/metadata-remover).
+
 ### Suggesting Enhancements
 
 This section guides you through submitting an enhancement suggestion for [Metadata Remover](https://poopjournal.rocks/MetadataRemover/), including completely new features and minor improvements to existing functionality. Following these guidelines helps maintainers and the community understand your suggestion 📝 and find related suggestions 🔎.
