@@ -33,8 +33,8 @@ buildscript {
         /**
          * Gradle plugin versions
          */
-        gradlePluginVersion = "3.2.0-alpha01"
-        kotlinPluginVersion = "1.1.51"
+        gradlePluginVersion = "3.2.0-beta04"
+        kotlinPluginVersion = "1.2.60"
 
         /**
          * App version
@@ -51,8 +51,9 @@ buildscript {
          * SDK/tools versions
          */
         minSdkVersion = 19
-        targetSdkVersion = 27
-        compileSdkVersion = 27
+        targetSdkVersion = 28
+        compileSdkVersion = 28
+        buildToolsVersion = "28.0.2"
     }
 
     /**
@@ -94,6 +95,8 @@ allprojects {
         // JitPack repository
         // TODO Do we need this? If not then remove before release.
         maven { url "https://jitpack.io" }
+        // Adobe repository
+        maven { url "https://repo.adobe.com/nexus/content/repositories/public/" }
     }
 }
 

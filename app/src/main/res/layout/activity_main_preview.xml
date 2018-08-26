@@ -22,79 +22,107 @@
   ~ SOFTWARE.
   -->
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        tools:context=".MainActivity">
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.MainActivity">
 
-    <data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <!-- TODO Add data binding vars. -->
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/baseline_start"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="@dimen/baseline" />
 
-    </data>
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/baseline_end"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="@dimen/baseline" />
 
-    <android.support.constraint.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/baseline_top"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="@dimen/baseline" />
 
-        <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?actionBarSize"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:title="@string/title_activity_main"
-                app:titleTextColor="?android:textColorSecondary"/>
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/baseline_bottom"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_end="@dimen/baseline" />
+
+        <Space
+            android:id="@+id/space_toolbar_bottom"
+            android:layout_width="0dp"
+            android:layout_height="?actionBarSize"
+            app:layout_constraintBottom_toTopOf="@id/baseline_bottom" />
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="0dp"
+            android:layout_height="?actionBarSize"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:title="@string/title_activity_main"
+            app:titleTextColor="?android:textColorSecondary" />
 
         <ImageView
-                android:id="@+id/image_preview"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_margin="@dimen/baseline"
-                app:layout_constraintTop_toBottomOf="@id/toolbar"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:scaleType="centerInside"
-                tools:src="@tools:sample/backgrounds/scenic"
-                android:contentDescription="@string/image_content_description_preview"/>
+            android:id="@+id/thumbnail"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toBottomOf="@id/toolbar"
+            app:layout_constraintStart_toStartOf="@id/baseline_start"
+            app:layout_constraintEnd_toEndOf="@id/baseline_end"
+            app:layout_constraintBottom_toTopOf="@id/space_toolbar_bottom"
+            android:scaleType="centerInside"
+            tools:src="@tools:sample/backgrounds/scenic"
+            android:contentDescription="@string/image_content_description_preview" />
 
         <ImageView
-                android:id="@+id/banner_image_open_image"
-                android:layout_width="@dimen/size_banner"
-                android:layout_height="@dimen/size_banner"
-                app:layout_constraintTop_toTopOf="@id/banner_open_image"
-                app:layout_constraintBottom_toTopOf="@id/banner_text_open_image"
-                app:layout_constraintStart_toStartOf="@id/banner_open_image"
-                app:layout_constraintEnd_toEndOf="@id/banner_open_image"
-                app:layout_constraintVertical_chainStyle="packed"
-                android:src="@drawable/art_open_image"
-                android:contentDescription="@string/image_content_description_banner_open_picture"/>
+            android:id="@+id/banner_image_open_image"
+            android:layout_width="@dimen/size_banner"
+            android:layout_height="@dimen/size_banner"
+            app:layout_constraintTop_toTopOf="@id/banner_open_image"
+            app:layout_constraintBottom_toTopOf="@id/banner_text_open_image"
+            app:layout_constraintStart_toStartOf="@id/banner_open_image"
+            app:layout_constraintEnd_toEndOf="@id/banner_open_image"
+            app:layout_constraintVertical_chainStyle="packed"
+            android:src="@drawable/art_open_image"
+            android:contentDescription="@string/image_content_description_banner_open_file" />
 
         <TextView
-                android:id="@+id/banner_text_open_image"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                app:layout_constraintWidth_max="@dimen/max_short_text_width"
-                android:text="@string/description_banner_open_picture"
-                app:layout_constraintTop_toBottomOf="@id/banner_image_open_image"
-                app:layout_constraintBottom_toBottomOf="@id/banner_open_image"
-                app:layout_constraintStart_toStartOf="@id/banner_open_image"
-                app:layout_constraintEnd_toEndOf="@id/banner_open_image"/>
+            android:id="@+id/banner_text_open_image"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            app:layout_constraintWidth_max="@dimen/max_short_text_width"
+            android:text="@string/description_banner_open_file"
+            app:layout_constraintTop_toBottomOf="@id/banner_image_open_image"
+            app:layout_constraintBottom_toBottomOf="@id/banner_open_image"
+            app:layout_constraintStart_toStartOf="@id/banner_open_image"
+            app:layout_constraintEnd_toEndOf="@id/banner_open_image" />
 
-        <android.support.constraint.Group
-                android:id="@+id/banner_open_image"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_margin="@dimen/baseline"
-                app:layout_constraintTop_toBottomOf="@id/toolbar"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:constraint_referenced_ids="banner_image_open_image,banner_text_open_image"
-                tools:visibility="gone"/>
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/banner_open_image"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/baseline"
+            android:background="?selectableItemBackgroundBorderless"
+            app:layout_constraintTop_toBottomOf="@id/toolbar"
+            app:layout_constraintBottom_toTopOf="@id/space_toolbar_bottom"
+            app:layout_constraintStart_toStartOf="@id/baseline_start"
+            app:layout_constraintEnd_toEndOf="@id/baseline_end"
+            app:constraint_referenced_ids="banner_image_open_image,banner_text_open_image"
+            tools:visibility="gone" />
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

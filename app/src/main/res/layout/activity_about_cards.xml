@@ -22,74 +22,63 @@
   ~ SOFTWARE.
   -->
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        tools:context=".AboutActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.AboutActivity">
 
-    <android.support.constraint.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-        <android.support.constraint.Guideline
-                android:id="@+id/baseline_card_start"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_begin="@dimen/baseline_card"/>
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/baseline_card_start"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="@dimen/baseline_card" />
 
-        <android.support.constraint.Guideline
-                android:id="@+id/baseline_card_end"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_end="@dimen/baseline_card"/>
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/baseline_card_end"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="@dimen/baseline_card" />
 
-        <android.support.constraint.Guideline
-                android:id="@+id/baseline_card_top"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintGuide_begin="@dimen/baseline_card"/>
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/baseline_card_top"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="@dimen/baseline_card" />
 
-        <android.support.constraint.Guideline
-                android:id="@+id/baseline_card_bottom"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintGuide_end="@dimen/baseline_card"/>
-
-        <include
-                android:id="@+id/developer_info"
-                layout="@layout/item_card_author"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="@id/baseline_card_top"
-                app:layout_constraintStart_toStartOf="@id/baseline_card_start"
-                app:layout_constraintEnd_toEndOf="@id/baseline_card_end"/>
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/baseline_card_bottom"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_end="@dimen/baseline_card" />
 
         <include
-                android:id="@+id/open_source_license"
-                layout="@layout/item_card_text"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/baseline_card"
-                android:background="#f00"
-                app:layout_constraintTop_toBottomOf="@id/developer_info"
-                app:layout_constraintStart_toStartOf="@id/baseline_card_start"
-                app:layout_constraintEnd_toEndOf="@id/baseline_card_end"/>
+            android:id="@+id/card_developer"
+            layout="@layout/activity_about_card_developer"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/baseline_card_top"
+            app:layout_constraintBottom_toTopOf="@id/card_source"
+            app:layout_constraintStart_toStartOf="@id/baseline_card_start"
+            app:layout_constraintEnd_toEndOf="@id/baseline_card_end" />
 
         <include
-                android:id="@+id/open_source_libraries"
-                layout="@layout/item_card_text"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/baseline_card"
-                android:background="#f00"
-                app:layout_constraintTop_toBottomOf="@id/open_source_license"
-                app:layout_constraintBottom_toTopOf="@id/baseline_card_bottom"
-                app:layout_constraintStart_toStartOf="@id/baseline_card_start"
-                app:layout_constraintEnd_toEndOf="@id/baseline_card_end"/>
+            android:id="@+id/card_source"
+            layout="@layout/activity_about_card_source"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/baseline_card"
+            app:layout_constraintTop_toBottomOf="@id/card_developer"
+            app:layout_constraintBottom_toBottomOf="@id/baseline_card_bottom"
+            app:layout_constraintStart_toStartOf="@id/baseline_card_start"
+            app:layout_constraintEnd_toEndOf="@id/baseline_card_end" />
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

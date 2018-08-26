@@ -24,24 +24,38 @@
 <resources>
 
     <dimen name="baseline">16dp</dimen>
+    <dimen name="baseline_half">8dp</dimen>
     <dimen name="baseline_card">8dp</dimen>
+    <dimen name="baseline_card_half">4dp</dimen>
+    <dimen name="baseline_card_inner">@dimen/baseline</dimen>
     <dimen name="baseline_typo">8dp</dimen>
     <dimen name="baseline_content">72dp</dimen>
 
+    <dimen name="baseline_card_inner_button_vertical">1dp</dimen>
+    <dimen name="baseline_card_inner_button_horizontal">5dp</dimen>
+
     <dimen name="elevation_toolbar">4dp</dimen>
-    <dimen name="elevation_bottom_sheet">16dp</dimen>
+    <dimen name="elevation_bottom_sheet">8dp</dimen>
+    <dimen name="elevation_navigation_bar">12dp</dimen>
 
     <!-- Should always be the button height plus twice the baseline (48dp + 2*16dp). -->
-    <dimen name="paddiing_bottom_metadata_list">80dp</dimen>
+    <dimen name="padding_bottom_metadata_list">80dp</dimen>
 
     <dimen name="size_system_icon">24dp</dimen>
+    <dimen name="expand_collapse_icon_padding">14dp</dimen>
+    <dimen name="size_expand_collapse_icon_including_padding">48dp</dimen>
     <dimen name="size_avatar">56dp</dimen>
-    <dimen name="size_banner">192dp</dimen>
+    <dimen name="size_banner">256dp</dimen>
     <dimen name="size_about_app_icon">144dp</dimen>
 
     <dimen name="max_body_text_width">544dp</dimen>
     <dimen name="max_short_text_width">272dp</dimen>
 
-    <dimen name="height_navigation_bar_shadow">@dimen/baseline</dimen>
+    <dimen name="height_navigation_bar_shadow">@dimen/elevation_navigation_bar</dimen>
+
+
+    <!-- Libraries list margin -->
+    <dimen name="activity_horizontal_margin">@dimen/baseline_card</dimen>
+    <dimen name="activity_vertical_margin">@dimen/baseline_card_half</dimen>
 
 </resources>

@@ -39,12 +39,15 @@
     <color name="text_color_secondary_inverse">#B3FFFFFF</color>
     <color name="text_color_hint_inverse">#80FFFFFF</color>
 
-    <color name="background_tap_target">#64FFDA</color>
-    <color name="background_tap_target_dark">#1DE9B6</color>
+    <!--<color name="background_tap_target">#64FFDA</color>-->
+    <!--<color name="background_tap_target_dark">#1DE9B6</color>-->
 
-    <color name="background_splash">#FAFAFA</color>
+    <!--<color name="background_splash">#FAFAFA</color>-->
+
+    <color name="background_scrim">#00000000</color>
+
+    <color name="background_shadow_navigation_bar">#1f000000</color>
 
     <color name="background_divider">#1F000000</color>
-    <color name="background_divider_inverse">#1FFFFFFF</color>
 
 </resources>

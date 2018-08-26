@@ -23,6 +23,15 @@
   -->
 <resources>
 
+    <style name="Theme.App.License" parent="Theme.App">
+        <item name="windowActionBar">true</item>
+        <item name="windowNoTitle">false</item>
+    </style>
+
+    <style name="Theme.App.Libraries" parent="Theme.App">
+        <item name="windowNoTitle">false</item>
+    </style>
+
     <!-- Application-specific adjustments. -->
     <style name="Theme.App" parent="Theme.App.Platform" />
 

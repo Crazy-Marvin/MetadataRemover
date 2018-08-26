@@ -22,47 +22,59 @@
   ~ SOFTWARE.
   -->
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        tools:context=".MainActivity">
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.MainActivity">
 
-    <data>
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/coordinator"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="0dp">
 
-        <!-- TODO Add data binding vars. -->
-
-    </data>
-
-    <android.support.design.widget.CoordinatorLayout
-            android:id="@+id/coordinator"
+        <com.sothree.slidinguppanel.SlidingUpPanelLayout
+            android:id="@+id/sliding_layout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:gravity="bottom"
+            app:umanoPanelHeight="?actionBarSize"
+            app:umanoShadowHeight="@dimen/elevation_bottom_sheet"
+            app:umanoScrollableView="@id/list_metadata"
+            app:umanoOverlay="true"
+            app:umanoAnchorPoint="0.75"
+            app:umanoFadeColor="@color/background_scrim"
+            app:umanoInitialState="collapsed">
+            <!-- TODO set the shadow depending on the API version -->
 
-        <include
-                android:id="@+id/image_preview"
+            <include
+                android:id="@+id/preview"
                 layout="@layout/activity_main_preview"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent"
+                android:paddingBottom="?actionBarSize" />
 
-        <include
+            <include
                 android:id="@+id/bottom_sheet"
                 layout="@layout/activity_main_bottom_sheet"
                 android:elevation="@dimen/elevation_bottom_sheet"
-                app:layout_behavior="android.support.design.widget.BottomSheetBehavior"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:layout_height="400dp"
-                tools:visibility="visible" />
+                tools:visibility="visible"
+                tools:ignore="UnusedAttribute" />
 
-        <!-- TODO Replace this with a gradient. -->
+        </com.sothree.slidinguppanel.SlidingUpPanelLayout>
+
         <View
-                android:id="@+id/navigation_bar_shadow"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/height_navigation_bar_shadow"
-                android:layout_gravity="bottom"
-                android:elevation="@dimen/elevation_bottom_sheet"
-                android:background="#f00"
-                android:alpha="0.75"/>
+            android:id="@+id/navigation_bar_shadow"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_navigation_bar_shadow"
+            android:layout_gravity="bottom"
+            android:elevation="@dimen/elevation_bottom_sheet"
+            android:background="@drawable/shadow_navigation_bar"
+            tools:ignore="UnusedAttribute"
+            android:focusable="false"
+            android:clickable="false" />
 
-    </android.support.design.widget.CoordinatorLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 </layout>

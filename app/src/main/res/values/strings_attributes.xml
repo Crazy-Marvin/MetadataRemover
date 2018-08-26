@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ MIT License
+  ~
+  ~ Copyright (c) 2018 Jan Heinrich Reimer
+  ~
+  ~ Permission is hereby granted, free of charge, to any person obtaining a copy
+  ~ of this software and associated documentation files (the "Software"), to deal
+  ~ in the Software without restriction, including without limitation the rights
+  ~ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  ~ copies of the Software, and to permit persons to whom the Software is
+  ~ furnished to do so, subject to the following conditions:
+  ~
+  ~ The above copyright notice and this permission notice shall be included in all
+  ~ copies or substantial portions of the Software.
+  ~
+  ~ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  ~ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  ~ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  ~ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  ~ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  ~ SOFTWARE.
+  -->
+<resources>
+
+    <string name="label_attribute_file_size">Size</string>
+    <string name="label_attribute_file_last_modification_date_time">Last modification date &amp; time</string>
+    <string name="label_attribute_file_creation_date_time">Creation date &amp; time</string>
+    <string name="label_attribute_file_creation_camera">Camera</string>
+    <string name="label_attribute_file_creation_location">Location</string>
+    <string name="description_attribute_file_creation_location_coordinates">%2$02i&#176; %3$02i′ %4$02i″ %1$s %6$02i&#176; %7$02i′ %8$02i″ %5$s</string>
+    <string name="description_attribute_file_creation_location_direction_east">East</string>
+    <string name="description_attribute_file_creation_location_direction_west">West</string>
+    <string name="description_attribute_file_creation_location_direction_north">North</string>
+    <string name="description_attribute_file_creation_location_direction_south">South</string>
+
+</resources>

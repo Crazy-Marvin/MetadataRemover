@@ -21,25 +21,32 @@
   ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
   ~ SOFTWARE.
   -->
-
 <resources>
 
     <string name="title_activity_main" translatable="false">@string/app_name</string>
 
     <string name="title_menu_item_about">About</string>
+    <string name="title_menu_item_open_file">Open picture</string>
     <string name="title_menu_item_expand">Expand</string>
     <string name="title_menu_item_collapse">Collapse</string>
 
     <string name="image_content_description_preview">Image preview</string>
 
-    <string name="title_bottom_sheet_open_picture">Open a picture</string>
+    <string name="title_bottom_sheet_open_file">Open a picture</string>
     <string name="title_bottom_sheet_remove_metadata">Remove metadata</string>
 
-    <string name="description_banner_open_picture">First open a picture to remove its metadata.</string>
-    <string name="image_content_description_banner_open_picture">Open a picture</string>
+    <string name="description_banner_open_file">First open a picture to remove its metadata.</string>
+    <string name="image_content_description_banner_open_file">Open a picture</string>
 
-    <!-- TODO Discuss if we should replace this with "This image doesn't contain any metadata"  -->
+    <string name="description_snackbar_wrong_mime_type">Files of type "%1$s" are not yet supported.</string>
+    <string name="title_action_snackbar_wrong_mime_type">Open another file</string>
+
+    <!-- TODO Discuss if we should replace this with "This image doesn't contain metadata"  -->
     <string name="description_banner_no_metadata">Couldn\'t find any Metadata.</string>
     <string name="image_content_description_banner_no_metadata">Couldn\'t find any Metadata.</string>
+
+    <string name="search_text_file_explorer">file explorer</string>
+
+    <string name="title_intent_chooser_share_without_metadata">Share "%1$s" without metadata&#8230;</string>
 
 </resources>
