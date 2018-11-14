@@ -3,7 +3,7 @@
 
 ## Empty state screen
 
-The User hjas opened the app and no image is loaded yet.
+The User has opened the app and no image is loaded yet.
 
 **Screenshot portrait**:  
 ![Empty state](1_empty_state.png)
@@ -47,7 +47,7 @@ The user has pressed the delete button and a brief warning appears.
 ## Deletion confirmation
 
 The user has accepted the deletion of the image's metadata
-and a confirmation is hsown on screen with the possibility
+and a confirmation is shown on screen with the possibility
 to undo the process.
 
 **Screenshot portrait**:  

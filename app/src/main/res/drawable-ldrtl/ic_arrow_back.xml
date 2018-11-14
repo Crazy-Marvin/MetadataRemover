@@ -21,14 +21,5 @@
   ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
   ~ SOFTWARE.
   -->
-<vector xmlns:android="http://schemas.android.com/apk/res/android"
-    android:width="24dp"
-    android:height="24dp"
-    android:viewportWidth="24.0"
-    android:viewportHeight="24.0">
-
-    <path
-        android:fillColor="#FF000000"
-        android:pathData="M14,6l-3.75,5 2.85,3.8 -1.6,1.2C9.81,13.75 7,10 7,10l-6,8h22L14,6z" />
-
-</vector>
+<inset xmlns:android="http://schemas.android.com/apk/res/android"
+        android:drawable="@drawable/ic_arrow_back_rtl"/>

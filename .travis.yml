@@ -59,7 +59,7 @@ before_script:
 # Scripts to run for test
 script:
   # Generate code coverage tests ("travis_wait 20 <command>" is needed because Travis kills the build
-  # after 10mins without log output. More info:
+  # after 10 minutes without log output. More info:
   # https://docs.travis-ci.com/user/common-build-problems/#Build-times-out-because-no-output-was-received )
   - adb shell setprop dalvik.vm.dexopt-flags v=n,o=v
   - travis_wait 20 ./gradlew connectedCheck --stacktrace
@@ -69,7 +69,7 @@ after_success:
   # Upload code coverage report
   - bash <(curl -s https://codecov.io/bash)
   
-# Use Tracis CI's cache management
+# Use Travis CI's cache management
 before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
   - rm -fr $HOME/.gradle/caches/*/plugin-resolution/

@@ -24,9 +24,6 @@
 
 package rocks.poopjournal.metadataremover.model.coordinates
 
-import androidx.annotation.StringRes
-import rocks.poopjournal.metadataremover.R
-import rocks.poopjournal.metadataremover.model.resources.Text
 import kotlin.math.absoluteValue
 
 sealed class Coordinate(value: Double) {
@@ -36,11 +33,7 @@ sealed class Coordinate(value: Double) {
     private val min: Double get() = range.start
     private val max: Double get() = range.endInclusive
     private val interval: Double get() = max - min
-    @StringRes
-    private val directionRes =
-            if (value < 0) R.string.description_attribute_file_creation_location_direction_west
-            else R.string.description_attribute_file_creation_location_direction_east
-    val direction = Text(directionRes)
+    abstract val direction: String
     val hours: Int = (value % 1).toInt().absoluteValue
     val minutes: Int = ((value - hours) / 60 % 1).toInt()
     val seconds: Double = ((value - hours) / 60 - minutes)
@@ -52,36 +45,19 @@ sealed class Coordinate(value: Double) {
             else -> this
         }
     }
+
+    override fun toString() = "${hours.absoluteValue}  $minutes' $seconds\" $direction"
 }
 
 class Latitude(value: Double) : Coordinate(value) {
 
-    constructor(
-            hours: Int,
-            minutes: Int,
-            seconds: Double
-    ) : this((seconds / 60 + minutes) / 60 + hours)
-
     override val range = -180.0..180.0
-
-    override fun toString(): String {
-        val direction = if (value < 0) "West" else "East"
-        return "${hours.absoluteValue}  $minutes' $seconds\" $direction"
-    }
+    override val direction = if (value < 0) "West" else "East"
 }
 
 class Longitude(value: Double) : Coordinate(value) {
 
-    constructor(
-            hours: Int,
-            minutes: Int,
-            seconds: Double
-    ) : this((seconds / 60 + minutes) / 60 + hours)
-
     override val range = -90.0..90.0
-
-    override fun toString(): String {
-        val direction = if (value < 0) "South" else "North"
-        return "${hours.absoluteValue}  $minutes' $seconds\" $direction"
-    }
+    override val direction = if (value < 0) "South" else "North"
 }
+

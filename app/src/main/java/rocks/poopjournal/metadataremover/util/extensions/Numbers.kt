@@ -24,26 +24,79 @@
 
 package rocks.poopjournal.metadataremover.util.extensions
 
-import java.math.BigDecimal
+import rocks.poopjournal.metadataremover.util.extensions.ScalePrefixes.SI_DOWNSCALE_PREFIXES
+import rocks.poopjournal.metadataremover.util.extensions.ScalePrefixes.SI_SCALE_FACTOR
+import rocks.poopjournal.metadataremover.util.extensions.ScalePrefixes.SI_UPSCALE_PREFIXES
+import java.math.RoundingMode
 import java.text.DecimalFormat
-import java.text.NumberFormat
-import java.text.ParseException
-import java.util.*
+import kotlin.math.absoluteValue
+import kotlin.math.sign
 
-fun Number.format(digits: Int) = "%.${digits}f".format(this)
+private object ScalePrefixes {
+    const val SI_SCALE_FACTOR = 1_000.0
+    val SI_UPSCALE_PREFIXES = arrayOf("k", "M", "G", "T", "G", "P", "E", "Z", "Y")
+    val SI_DOWNSCALE_PREFIXES = arrayOf("m", "µ", "n", "p", "f", "a", "z", "y")
+}
 
-fun BigDecimal.format(format: DecimalFormat): String = format.format(this)
-
-fun DecimalFormat.parseBigDecimal(source: String): BigDecimal? {
-    isParseBigDecimal = true
-    return try {
-        parseObject(source) as? BigDecimal
-    } catch (ignore: ParseException) {
-        null
+/**
+ * Format a number scaled down in [steps][scaleFactor] on a linear scale
+ * with a label consisting of a [scale prefix][upscalePrefixes] and optional [unit].
+ */
+fun Double.formatScaled(
+        digits: Int,
+        unit: String = "",
+        scaleFactor: Double = SI_SCALE_FACTOR,
+        upscalePrefixes: Array<String> = SI_UPSCALE_PREFIXES,
+        downscalePrefixes: Array<String> = SI_DOWNSCALE_PREFIXES
+): String {
+    return when {
+        absoluteValue >= scaleFactor -> {
+            var scaled = absoluteValue
+            var prefixIndex = -1
+            while (scaled >= scaleFactor && prefixIndex + 1 < upscalePrefixes.size) {
+                scaled /= scaleFactor
+                prefixIndex++
+            }
+            scaled *= sign
+            "${scaled.format(digits)} ${upscalePrefixes[prefixIndex]}$unit"
+        }
+        absoluteValue < 1 / scaleFactor -> {
+            var scaled = absoluteValue
+            var prefixIndex = -1
+            while (scaled < 1 / scaleFactor && prefixIndex + 1 < downscalePrefixes.size) {
+                scaled *= scaleFactor
+                prefixIndex++
+            }
+            scaled *= sign
+            "${scaled.format(digits)}\u200A${downscalePrefixes[prefixIndex]}$unit"
+        }
+        else -> {
+            "${format(digits)} $unit"
+        }
     }
 }
 
-val Locale.numberFormat: NumberFormat
-    get() = NumberFormat.getInstance(this)
-val Locale.decimalFormat: DecimalFormat
-    get() = numberFormat as DecimalFormat
+/**
+ * Format a number scaled down in [steps][scaleFactor] on a linear scale
+ * with a label consisting of a [scale prefix][upscalePrefixes] and optional [unit].
+ */
+fun Number.formatScaled(
+        digits: Int,
+        unit: String = "",
+        scaleFactor: Number = SI_SCALE_FACTOR,
+        upscalePrefixes: Array<String> = SI_UPSCALE_PREFIXES,
+        downscalePrefixes: Array<String> = SI_DOWNSCALE_PREFIXES
+) = toDouble()
+        .formatScaled(
+                digits,
+                unit,
+                scaleFactor.toDouble(),
+                upscalePrefixes,
+                downscalePrefixes
+        )
+
+fun Number.format(digits: Int): String =
+        DecimalFormat("#.${"#".repeat(digits)}")
+                .apply { roundingMode = RoundingMode.HALF_UP }
+                .format(this)
+

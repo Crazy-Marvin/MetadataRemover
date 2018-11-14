@@ -21,20 +21,20 @@
   ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
   ~ SOFTWARE.
   -->
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <dimen name="baseline">16dp</dimen>
     <dimen name="baseline_half">8dp</dimen>
     <dimen name="baseline_card">8dp</dimen>
-    <dimen name="baseline_card_half">4dp</dimen>
+    <dimen name="baseline_card_half" tools:keep="@dimen/baseline_card_half">4dp
+    </dimen><!-- Keep this dimension as it's used in @layout/listitem_opensource.xml -->
     <dimen name="baseline_card_inner">@dimen/baseline</dimen>
     <dimen name="baseline_typo">8dp</dimen>
     <dimen name="baseline_content">72dp</dimen>
 
-    <dimen name="baseline_card_inner_button_vertical">1dp</dimen>
-    <dimen name="baseline_card_inner_button_horizontal">5dp</dimen>
+    <dimen name="baseline_card_inner_button_vertical">0dp</dimen>
+    <dimen name="baseline_card_inner_button_horizontal">0dp</dimen>
 
-    <dimen name="elevation_toolbar">4dp</dimen>
     <dimen name="elevation_bottom_sheet">8dp</dimen>
     <dimen name="elevation_navigation_bar">12dp</dimen>
 
@@ -42,8 +42,8 @@
     <dimen name="padding_bottom_metadata_list">80dp</dimen>
 
     <dimen name="size_system_icon">24dp</dimen>
-    <dimen name="expand_collapse_icon_padding">14dp</dimen>
-    <dimen name="size_expand_collapse_icon_including_padding">48dp</dimen>
+    <dimen name="expand_collapse_icon_padding">15dp</dimen>
+    <dimen name="size_icon_button">48dp</dimen>
     <dimen name="size_avatar">56dp</dimen>
     <dimen name="size_banner">256dp</dimen>
     <dimen name="size_about_app_icon">144dp</dimen>

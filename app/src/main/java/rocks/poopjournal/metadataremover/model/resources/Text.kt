@@ -28,8 +28,11 @@ import android.content.Context
 import android.text.SpannableStringBuilder
 import androidx.annotation.IntRange
 import androidx.annotation.StringRes
-import rocks.poopjournal.metadataremover.model.resources.Text.Type.*
-import java.util.*
+import rocks.poopjournal.metadataremover.model.resources.Text.Type.CHARACTERS
+import rocks.poopjournal.metadataremover.model.resources.Text.Type.GLUE
+import rocks.poopjournal.metadataremover.model.resources.Text.Type.RESOURCE
+import rocks.poopjournal.metadataremover.model.resources.Text.Type.SEQUENCE
+import java.util.Locale
 
 /**
  * An umbrella container for several text representations, including [CharSequence]s,
@@ -264,10 +267,11 @@ class Text private constructor(
                                 ?.load(context)
                                 ?: it
                     }
+                    .toTypedArray()
             return String.format(
                     Locale.getDefault(),
                     sequence.toString(),
-                    resolvedArguments
+                    *resolvedArguments
             )
         }
 
@@ -298,6 +302,16 @@ class Text private constructor(
      * @see join
      */
     operator fun plus(characters: CharSequence) = join(characters)
+
+    /**
+     * Join this text with a [StringRes].
+     */
+    fun join(@StringRes resId: Int) = Text(this, resId.toText())
+
+    /**
+     * @see join
+     */
+    operator fun plus(@StringRes resId: Int) = join(resId)
 
     /**
      * Join this text with a [CharArray].

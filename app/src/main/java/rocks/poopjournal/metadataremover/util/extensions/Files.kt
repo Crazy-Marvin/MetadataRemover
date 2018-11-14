@@ -24,89 +24,77 @@
 
 package rocks.poopjournal.metadataremover.util.extensions
 
-import android.content.Intent
 import android.net.Uri
 import android.webkit.MimeTypeMap
 import rocks.poopjournal.metadataremover.R
 import rocks.poopjournal.metadataremover.model.metadata.Metadata
 import rocks.poopjournal.metadataremover.model.resources.Image
+import rocks.poopjournal.metadataremover.model.resources.MediaType
 import rocks.poopjournal.metadataremover.model.resources.Text
-import rocks.poopjournal.metadataremover.util.extensions.Constants.dateFormat
-import rocks.poopjournal.metadataremover.util.extensions.Constants.sizeLabels
-import rocks.poopjournal.metadataremover.util.extensions.Constants.timeFormat
 import java.io.File
-import java.math.RoundingMode
-import java.text.DateFormat
-import java.text.DecimalFormat
-import java.util.*
+import java.util.Date
+
+/**
+ * Delete this file if it exists.
+ *
+ * @return  `true` if and only if the file or directory exists and is
+ *          successfully deleted, `false` otherwise.
+ */
+fun File.deleteIfExists() = exists() && delete()
 
 /**
  * Get the [Uri] corresponding to a file.
  */
 fun File.toUri(): Uri = Uri.fromFile(this)
 
-val File.mimeType: MimeType?
+val File.mediaType: MediaType?
     get() {
-        return path
-                .let(MimeTypeMap::getFileExtensionFromUrl)
+        return extension
                 .let(MimeTypeMap.getSingleton()::getMimeTypeFromExtension)
-                ?.takeIf(String::isNotBlank)
+                ?.let(MediaType.Companion::parse)
     }
 
 val File.size: Long
     get() = length()
 
+
+val File.nameAttribute: Metadata.Attribute
+    get() = Metadata.Attribute(
+            label = Text(R.string.label_attribute_file_name),
+            icon = Image(R.drawable.ic_title),
+            primaryValue = Text(name)
+    )
+
 val File.lastModified: Long
     get() = lastModified()
+val File.lastModifiedDate: Date
+    get() = Date(lastModified)
+val File.lastModifiedAttribute: Metadata.Attribute
+    get() = Metadata.Attribute(
+            label = Text(R.string.label_attribute_file_last_modification_date_time),
+            icon = Image(R.drawable.ic_history),
+            primaryValue = Text(attributeDateFormat.format(lastModifiedDate)),
+            secondaryValue = Text(attributeTimeFormat.format(lastModifiedDate))
+    )
 
-internal object Constants {
-    val dateFormat: DateFormat = DateFormat.getDateInstance(DateFormat.LONG)
-    val timeFormat: DateFormat = DateFormat.getTimeInstance(DateFormat.SHORT)
-    val sizeLabels = arrayOf("Bytes", "KB", "MB", "GB", "TB", "GB")
-}
-
+val File.sizeLabel: String
+    get() = size.formatScaled(
+            digits = 2,
+            unit = "B",
+            scaleFactor = 1024,
+            upscalePrefixes = arrayOf("K", "M", "G", "T", "G"),
+            downscalePrefixes = emptyArray()
+    )
 val File.sizeAttribute: Metadata.Attribute
     get() = Metadata.Attribute(
             label = Text(R.string.label_attribute_file_size),
-            icon = Image(R.drawable.ic_landscape),
-            primaryValue = Text(name),
-            secondaryValue = Text("$sizeLabel ($size Bytes)")
+            icon = Image(R.drawable.ic_storage),
+            primaryValue = Text(sizeLabel),
+            secondaryValue = Text(R.string.description_attribute_file_size_bytes, size)
     )
-
-val File.lastModifiedAttribute: Metadata.Attribute
-    get() = Metadata.Attribute(
-            label = Text(R.string.label_attribute_file_creation_date_time),
-            icon = Image(R.drawable.ic_event),
-            primaryValue = Text(dateFormat.format(lastModifiedDate)),
-            secondaryValue = Text(timeFormat.format(lastModifiedDate))
-    )
-
-val File.lastModifiedDate: Date
-    get() = Date(lastModified)
-
-val File.sizeLabel: String
-    get() {
-        var scaledByteSize = size.toDouble()
-        var sizeLabelIndex = 0
-        while (scaledByteSize >= 1024 && sizeLabelIndex + 1 < sizeLabels.size) {
-            scaledByteSize /= 1024
-            sizeLabelIndex++
-        }
-        return "${round(scaledByteSize, 2)} ${sizeLabels[sizeLabelIndex]}"
-    }
-
-private fun round(number: Double, digits: Int): String {
-    return DecimalFormat("#.${"#".repeat(digits)}")
-            .apply { roundingMode = RoundingMode.HALF_UP }
-            .format(number)
-}
 
 val File.inputStream
     get() = inputStream()
 
 val File.outputStream
     get() = outputStream()
-
-typealias MimeType = String
-
-fun MimeType.normalize(): MimeType = Intent.normalizeMimeType(this)!!

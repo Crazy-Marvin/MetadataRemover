@@ -26,7 +26,8 @@ package rocks.poopjournal.metadataremover.viewmodel
 
 import androidx.lifecycle.LiveData
 import rocks.poopjournal.metadataremover.model.metadata.Metadata
+import rocks.poopjournal.metadataremover.model.resources.Resource
 
 interface MetadataViewModel {
-    val metadata: LiveData<Metadata?>
+    val metadata: LiveData<Resource<Metadata>>
 }

@@ -24,29 +24,10 @@
 
 package rocks.poopjournal.metadataremover.util.extensions.android
 
-import android.content.res.ColorStateList
-import android.graphics.Color
 import android.graphics.drawable.Drawable
-import android.view.MenuItem
-import android.view.View
 import android.widget.ImageView
 import androidx.annotation.ColorInt
 import androidx.core.graphics.drawable.DrawableCompat
-import androidx.core.view.ViewCompat
-import java.lang.IllegalArgumentException
-
-/**
- * Try to parse a [toColorOrNull][ColorInt] from this [String] or
- * return `null` if no toColorOrNull could be parsed.
- */
-@ColorInt
-internal fun String.toColorOrNull(): Int? {
-    return try {
-        Color.parseColor(this)
-    } catch (exception: IllegalArgumentException) {
-        null
-    }
-}
 
 /**
  * Specifies a tint for this [Drawable] after mutating it to not affect in-memory copies
@@ -68,19 +49,4 @@ fun Drawable.tint(@ColorInt color: Int): Drawable =
 fun ImageView.tint(@ColorInt color: Int) {
     drawable?.tint(color)
             ?.let { setImageDrawable(it) }
-}
-
-/**
- * Specifies a tint for this [MenuItem]'s icon [Drawable].
- */
-fun MenuItem.tintIcon(@ColorInt color: Int) {
-    icon?.tint(color)
-            ?.let { icon = it }
-}
-
-/**
- * Specifies a tint for this [View]'s background.
- */
-fun View.tintBackground(@ColorInt color: Int) {
-    ViewCompat.setBackgroundTintList(this, ColorStateList.valueOf(color))
 }

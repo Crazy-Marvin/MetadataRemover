@@ -41,25 +41,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:title="@string/title_bottom_sheet_open_file" />
 
-        <com.github.zagum.expandicon.ExpandIconView
-            android:id="@+id/expand_collapse"
-            android:layout_width="@dimen/size_expand_collapse_icon_including_padding"
-            android:layout_height="@dimen/size_expand_collapse_icon_including_padding"
-            app:layout_constraintTop_toTopOf="@id/toolbar"
-            app:layout_constraintBottom_toBottomOf="@id/toolbar"
-            app:layout_constraintEnd_toEndOf="@id/toolbar"
-            app:eiv_animationDuration="300"
-            app:eiv_color="?android:textColorPrimary"
-            app:eiv_roundedCorners="false"
-            app:eiv_padding="@dimen/expand_collapse_icon_padding"
-            android:contentDescription="@string/title_menu_item_expand"
-            android:padding="2dp"
-            android:visibility="gone"
-            tools:visibility="visible"
-            android:clickable="true"
-            android:focusable="true"
-            android:background="?selectableItemBackgroundBorderless" />
-
         <View
             android:id="@+id/divider_toolbar"
             android:layout_width="0dp"
@@ -78,6 +59,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:paddingBottom="@dimen/padding_bottom_metadata_list"
+                android:clipToPadding="false"
             tools:listitem="@layout/listitem_meta_data"
             tools:visibility="visible" />
 
@@ -122,7 +104,7 @@
             app:constraint_referenced_ids="banner_image_no_metadata,banner_text_no_metadata"
             tools:visibility="gone" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/button_remove_metadata"
             android:layout_width="0dp"
             android:layout_marginStart="@dimen/baseline"

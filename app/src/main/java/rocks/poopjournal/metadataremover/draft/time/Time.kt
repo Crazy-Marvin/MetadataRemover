@@ -22,31 +22,34 @@
  * SOFTWARE.
  */
 
-package rocks.poopjournal.metadataremover.viewmodel
+package rocks.poopjournal.metadataremover.draft.time
 
-import android.view.View
-import androidx.lifecycle.LiveData
-import com.google.android.material.snackbar.Snackbar
-import rocks.poopjournal.metadataremover.model.resources.Text
+import java.util.concurrent.TimeUnit
 
-interface SnackbarViewModel {
-    val snackbarMessage: LiveData<SnackbarMessage>
+data class Time(
+        val time: Long,
+        val unit: TimeUnit
+) : Comparable<Time> {
 
-    data class SnackbarMessage(
-            val message: Text,
-            val action: Pair<Text, (() -> Unit)>? = null
-    ) {
-        fun make(view: View): Snackbar {
-            val snackbar = Snackbar.make(
-                    view,
-                    message.load(view.context),
-                    Snackbar.LENGTH_LONG)
-            if (action != null) {
-                snackbar.setAction(action.first.load(view.context)) {
-                    action.second()
-                }
-            }
-            return snackbar
-        }
+    /**
+     * Compare the mapped times in descending magnitudes.
+     * This prevents overflow issues when comparing very large times with very small ones.
+     */
+    override fun compareTo(other: Time) =
+            MOST_PRECISE_UNIT.convert(this).compareTo(MOST_PRECISE_UNIT.convert(other))
+
+    operator fun plus(other: Time) =
+            Time(MOST_PRECISE_UNIT.convert(this) + MOST_PRECISE_UNIT.convert(other),
+                    MOST_PRECISE_UNIT)
+
+    operator fun minus(other: Time) =
+            Time(MOST_PRECISE_UNIT.convert(this) - MOST_PRECISE_UNIT.convert(other),
+                    MOST_PRECISE_UNIT)
+
+    private fun TimeUnit.convert(time: Time) = convert(time.time, time.unit)
+
+    companion object {
+        val now get() = Time(System.nanoTime(), TimeUnit.NANOSECONDS)
+        private val MOST_PRECISE_UNIT = TimeUnit.NANOSECONDS
     }
 }

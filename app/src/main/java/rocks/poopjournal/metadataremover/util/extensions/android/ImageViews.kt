@@ -25,15 +25,17 @@
 package rocks.poopjournal.metadataremover.util.extensions.android
 
 import android.widget.ImageView
-import kotlinx.coroutines.experimental.android.UI
-import kotlinx.coroutines.experimental.launch
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.android.Main
+import kotlinx.coroutines.launch
 import rocks.poopjournal.metadataremover.model.resources.Image
 
 /**
  * Sets an [image] as the content of this [ImageView].
  */
 fun ImageView.setImage(image: Image) {
-    launch(UI) {
-        setImageDrawable(image.load(this@setImage.context))
+    GlobalScope.launch(Dispatchers.Main) {
+        setImageDrawable(image.load(context))
     }
 }

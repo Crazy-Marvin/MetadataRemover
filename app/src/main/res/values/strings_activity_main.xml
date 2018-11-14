@@ -42,8 +42,8 @@
     <string name="title_action_snackbar_wrong_mime_type">Open another file</string>
 
     <!-- TODO Discuss if we should replace this with "This image doesn't contain metadata"  -->
-    <string name="description_banner_no_metadata">Couldn\'t find any Metadata.</string>
-    <string name="image_content_description_banner_no_metadata">Couldn\'t find any Metadata.</string>
+    <string name="description_banner_no_metadata">"Couldn't find any Metadata."</string>
+    <string name="image_content_description_banner_no_metadata">"Couldn't find any Metadata."</string>
 
     <string name="search_text_file_explorer">file explorer</string>
 

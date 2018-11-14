@@ -27,29 +27,7 @@ package rocks.poopjournal.metadataremover.util.extensions.android
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewTreeObserver
 import rocks.poopjournal.metadataremover.model.resources.Text
-
-/**
- * Execute some [code][body], when the layout gets updated the first time.
- */
-inline fun View.onGlobalLayout(crossinline body: View.() -> Unit) {
-    viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
-        override fun onGlobalLayout() {
-            body()
-            viewTreeObserver.removeOnGlobalLayoutListener(this)
-        }
-    })
-}
-
-/**
- * The visibility state of this view, either `true` for [View.VISIBLE] or `false` for [View.GONE].
- */
-var View.isVisible
-    get() = visibility == View.VISIBLE
-    set(value) {
-        visibility = if (value) View.VISIBLE else View.GONE
-    }
 
 /**
  * Obtains the [LayoutInflater] from this [View]'s [Context].
@@ -72,7 +50,7 @@ fun View.setContentDescription(contentDescription: Text) {
  *
  * @see View.setClickable
  */
-fun View.onClick(listener: () -> Unit): View {
+inline fun View.onClick(crossinline listener: () -> Unit): View {
     setOnClickListener {
         listener()
     }

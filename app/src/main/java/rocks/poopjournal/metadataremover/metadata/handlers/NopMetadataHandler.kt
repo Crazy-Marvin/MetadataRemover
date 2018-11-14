@@ -27,7 +27,8 @@ package rocks.poopjournal.metadataremover.metadata.handlers
 import rocks.poopjournal.metadataremover.model.metadata.Metadata
 import rocks.poopjournal.metadataremover.model.metadata.MetadataHandler
 import rocks.poopjournal.metadataremover.model.resources.Image.Companion.emptyImage
-import rocks.poopjournal.metadataremover.util.extensions.MimeType
+import rocks.poopjournal.metadataremover.model.resources.MediaType
+import rocks.poopjournal.metadataremover.model.resources.MediaTypes
 import java.io.File
 
 class NopMetadataHandler : MetadataHandler {
@@ -40,13 +41,13 @@ class NopMetadataHandler : MetadataHandler {
         )
     }
 
-    override val readableMimeTypes = setOf("*/*")
-    override val writableMimeTypes = setOf("*/*")
+    override val readableMimeTypes = MediaTypes[MediaTypes.ANY]
+    override val writableMimeTypes = MediaTypes[MediaTypes.ANY]
 
-    override suspend fun loadMetadata(mimeType: MimeType, inputFile: File) = EMPTY_METADATA
+    override suspend fun loadMetadata(mediaType: MediaType, inputFile: File) = EMPTY_METADATA
 
     override suspend fun removeMetadata(
-            mimeType: MimeType,
+            mediaType: MediaType,
             inputFile: File,
             outputFile: File
     ) = false

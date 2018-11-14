@@ -114,7 +114,7 @@
                 app:layout_constraintStart_toStartOf="@id/baseline_start"
                 app:layout_constraintTop_toTopOf="@id/barrier_above_information"
                 app:roundImage="@{true}"
-                app:srcUrl="@{@string/url_about_developer_profile_image}"
+                    app:srcUrl="@{@string/url_about_developer_profile_image}"
                 tools:ignore="ContentDescription" />
 
             <TextView
@@ -165,9 +165,9 @@
                 android:layout_marginTop="@dimen/baseline_card_inner_button_vertical"
                 app:layout_constraintTop_toBottomOf="@id/barrier_below_information" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_github"
-                style="@style/Widget.AppCompat.Button.Borderless"
+                    style="@style/Widget.App.Button.Borderless"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:minWidth="0dp"
@@ -179,9 +179,9 @@
                 app:layout_constraintTop_toBottomOf="@id/baseline_buttons_top"
                 tools:text="@tools:sample/lorem" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_website"
-                style="@style/Widget.AppCompat.Button.Borderless"
+                    style="@style/Widget.App.Button.Borderless"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:minWidth="0dp"

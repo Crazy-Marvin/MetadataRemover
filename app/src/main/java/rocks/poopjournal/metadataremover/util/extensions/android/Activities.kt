@@ -24,69 +24,8 @@
 
 package rocks.poopjournal.metadataremover.util.extensions.android
 
-import android.annotation.TargetApi
 import android.app.Activity
 import android.content.Context
-import android.graphics.Color
-import android.os.Build
-import android.view.View
-import androidx.annotation.ColorInt
-import androidx.annotation.RequiresApi
-
-/**
- * Whether or not the system status bar should use a light background.
- */
-var Activity.isLightStatusBar: Boolean
-    get() = Build.VERSION.SDK_INT >= Build.VERSION_CODES.M &&
-            (window.decorView.systemUiVisibility and View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR) == View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-    set(value) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            var systemUi = window.decorView.systemUiVisibility
-            systemUi = if (value) {
-                systemUi or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-            } else {
-                systemUi and View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR.inv()
-            }
-            window.decorView.systemUiVisibility = systemUi
-        }
-    }
-
-/**
- * Whether or not the system status bar should use a light background.
- */
-var Activity.statusBarColor: Int
-    @ColorInt
-    get() =
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            window.statusBarColor
-        } else {
-            Color.BLACK
-        }
-    set(@ColorInt value) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            window.statusBarColor = value
-        }
-    }
-
-/**
- * Whether or not the system navigation bar should use a light background.
- */
-var Activity.isLightNavigationBar: Boolean
-    @TargetApi(Build.VERSION_CODES.O)
-    @RequiresApi(Build.VERSION_CODES.O)
-    get() = (window.decorView.systemUiVisibility and View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR) ==
-            View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
-    @TargetApi(Build.VERSION_CODES.O)
-    @RequiresApi(Build.VERSION_CODES.O)
-    set(value) {
-        var systemUi = window.decorView.systemUiVisibility
-        systemUi = if (value) {
-            systemUi or View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
-        } else {
-            systemUi and View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR.inv()
-        }
-        window.decorView.systemUiVisibility = systemUi
-    }
 
 val Activity.activity: Activity
     get() = this

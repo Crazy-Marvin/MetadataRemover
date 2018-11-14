@@ -24,7 +24,9 @@
 
 package rocks.poopjournal.metadataremover.util.extensions
 
-import java.util.*
+import java.util.Deque
+import java.util.LinkedList
+
 
 /**
  * Produces the [cartesian product](http://en.wikipedia.org/wiki/Cartesian_product#n-ary_product)
@@ -67,9 +69,6 @@ operator fun <A : Any, B : Any> Iterable<A>.times(other: Iterable<B>): Iterable<
         }
     }
 }
-
-/** Returns an empty new [Deque]. */
-fun <T> dequeOf(): Deque<T> = LinkedList()
 
 /**
  * Returns a new [Deque] with the given elements.

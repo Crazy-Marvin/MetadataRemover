@@ -26,18 +26,19 @@ package rocks.poopjournal.metadataremover.util
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.content.ContentResolver
 import android.content.Context
 import android.content.Intent
-import kotlinx.coroutines.experimental.android.UI
-import kotlinx.coroutines.experimental.launch
-import rocks.poopjournal.metadataremover.util.extensions.MimeType
+import android.content.res.AssetFileDescriptor
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.IO
+import kotlinx.coroutines.launch
+import rocks.poopjournal.metadataremover.model.resources.MediaType
 import rocks.poopjournal.metadataremover.util.extensions.android.architecture.getFileName
-import rocks.poopjournal.metadataremover.util.extensions.android.architecture.getMimeType
-import rocks.poopjournal.metadataremover.util.extensions.okio.buffer
-import rocks.poopjournal.metadataremover.util.extensions.okio.sink
-import rocks.poopjournal.metadataremover.util.extensions.okio.source
+import rocks.poopjournal.metadataremover.util.extensions.android.architecture.getMediaType
+import rocks.poopjournal.metadataremover.util.extensions.android.openAssetFileDescriptor
 import rocks.poopjournal.metadataremover.util.extensions.startActivityForResult
-import java.io.File
 
 
 /**
@@ -46,38 +47,42 @@ import java.io.File
  * Modified version of [PicPicker](https://github.com/brunodles/PicPicker)
  * which is licensed under Apache License 2.0
  */
-class FilePicker(
+class FileOpener(
         private val context: Context,
         private val activityLauncher: ActivityResultLauncher,
-        private val onResult: (file: File, mimeType: MimeType) -> Unit,
+        private val onResult: suspend (file: AssetFileDescriptor, displayName: String, mediaType: MediaType) -> Unit,
         private val onNoFileChooserInstalled: () -> Unit,
-        private val onWrongMimeTypeFileSelected: (mimeType: MimeType, allowedMimeTypes: Set<MimeType>) -> Unit) {
+        private val onWrongMediaTypeFileSelected: (mediaType: MediaType, allowedMediaTypes: Set<MediaType>) -> Unit,
+        val mode: String = "r"
+) {
 
-    private val requests: MutableMap<Int, Set<MimeType>> = mutableMapOf()
+    private val requests: MutableMap<Int, Set<MediaType>> = mutableMapOf()
 
-    fun pickFile(allowedMimeTypes: Set<MimeType>) {
-        if (allowedMimeTypes.isEmpty()) {
+    fun openFile(allowedMediaTypes: Set<MediaType>) {
+        if (allowedMediaTypes.isEmpty()) {
             Logger.i("No MIME type seems to bee allowed. Skipping file picker...")
             return
         }
         Logger.i("Opening a file using the system picker...")
-        val intent = Intent(Intent.ACTION_GET_CONTENT)
-                .addCategory(Intent.CATEGORY_OPENABLE)
-                .putExtra(
-                        Intent.EXTRA_MIME_TYPES,
-                        allowedMimeTypes
-                                .map(Intent::normalizeMimeType)
-                                .toTypedArray())
-                .putExtra(Intent.EXTRA_ALLOW_MULTIPLE, false)
+        val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
+                .apply {
+                    addCategory(Intent.CATEGORY_OPENABLE)
+                    putExtra(
+                            Intent.EXTRA_MIME_TYPES,
+                            allowedMediaTypes
+                                    .map(MediaType::toString)
+                                    .toTypedArray())
+                    putExtra(Intent.EXTRA_ALLOW_MULTIPLE, false)
+                }
 
-        val requestCode = clipRequestCode(REQUEST_CODE_ATTACH_FILE + allowedMimeTypes.hashCode())
-        requests[requestCode] = allowedMimeTypes
+        val requestCode = clipRequestCode(REQUEST_CODE_ATTACH_FILE + allowedMediaTypes.hashCode())
+        requests[requestCode] = allowedMediaTypes
 
         if (intent.resolveActivity(context.packageManager) != null) {
             activityLauncher.startActivityForResult(intent, requestCode)
         } else {
             Logger.w("No Activity found that can select our specific MIME types " +
-                    "(${allowedMimeTypes.joinToString(
+                    "(${allowedMediaTypes.joinToString(
                             separator = "', '",
                             prefix = "'",
                             postfix = "'")}).\n" +
@@ -111,38 +116,33 @@ class FilePicker(
         if (resultCode != Activity.RESULT_OK) return false
         if (requestCode !in requests.keys) return false
 
-        val uri = data?.data ?: return false
+        GlobalScope.launch(Dispatchers.IO) {
+            val uri = data?.data ?: return@launch
+            // `ACTION_OPEN_DOCUMENT` should always return `content:` URIs
+            if (uri.scheme != ContentResolver.SCHEME_CONTENT) return@launch
 
-        val mimeType = uri.getMimeType(context)
-        if (mimeType == null) {
-            Logger.w("Could not guess MIME type from file '$uri'.")
-            return false
-        }
 
-        val allowedMimeTypes = requests[requestCode] ?: return false
+            val mediaType = uri.getMediaType(context)
+            if (mediaType == null) {
+                Logger.w("Could not guess MIME type from file '${uri.path}'.")
+                return@launch
+            }
 
-        if (mimeType !in allowedMimeTypes) {
-            onWrongMimeTypeFileSelected(mimeType, allowedMimeTypes)
-            return false
-        }
+            val allowedMediaTypes = requests[requestCode] ?: return@launch
+            if (allowedMediaTypes.none { mediaType in it }) {
+                onWrongMediaTypeFileSelected(mediaType, allowedMediaTypes)
+                return@launch
+            }
 
-        val fileName = uri.getFileName(context)
+            val fileName = uri.getFileName(context)
+            if (fileName == null) {
+                Logger.w("Could not get name from file '$uri'.")
+                return@launch
+            }
 
-        launch(UI) {
-            val copy = File(this@FilePicker.context.filesDir, fileName)
-
-            // Copy the file contents to a new created internal file,
-            // because we might loose access to the original file at any moment.
-            this@FilePicker.context.contentResolver
-                    .openInputStream(uri)
-                    ?.source
-                    ?.use { source ->
-                        copy.sink.buffer().use { sink ->
-                            sink.writeAll(source)
-                        }
-                    }
-
-            onResult(copy, mimeType)
+            val descriptor: AssetFileDescriptor = uri.openAssetFileDescriptor(context, mode)
+                    ?: return@launch
+            onResult(descriptor, fileName, mediaType)
         }
         return true
     }
