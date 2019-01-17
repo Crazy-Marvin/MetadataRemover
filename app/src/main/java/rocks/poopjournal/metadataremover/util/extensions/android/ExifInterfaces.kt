@@ -9,6 +9,7 @@ import rocks.poopjournal.metadataremover.model.coordinates.Longitude
 import rocks.poopjournal.metadataremover.model.metadata.Metadata
 import rocks.poopjournal.metadataremover.model.resources.Image
 import rocks.poopjournal.metadataremover.model.resources.Text
+import rocks.poopjournal.metadataremover.util.extensions.format
 import java.text.DateFormat
 import java.text.ParseException
 import java.text.SimpleDateFormat
