@@ -63,5 +63,8 @@ val Configuration.defaultLocale: Locale?
     get() {
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             locales.takeUnless(LocaleList::isEmpty)?.get(0)
-        } else locale
+        } else {
+            @Suppress("DEPRECATION")
+            locale
+        }
     }
