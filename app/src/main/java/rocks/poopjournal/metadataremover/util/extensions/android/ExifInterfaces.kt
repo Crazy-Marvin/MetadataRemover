@@ -13,6 +13,8 @@ import java.text.DateFormat
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.experimental.and
+import kotlin.math.roundToInt
 
 object ExifTags {
 
@@ -280,11 +282,11 @@ fun ExifInterface.getLocationAttribute(geocoder: Geocoder? = null): Metadata.Att
             latitude.direction,
             latitude.hours,
             latitude.minutes,
-            latitude.seconds,
+            latitude.seconds.roundToInt(),
             longitude.direction,
             longitude.hours,
             longitude.minutes,
-            longitude.seconds
+            longitude.seconds.roundToInt()
     )
 
     val address: Address? = geocoder
