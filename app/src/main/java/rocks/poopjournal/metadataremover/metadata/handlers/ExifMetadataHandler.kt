@@ -47,16 +47,21 @@ class ExifMetadataHandler(context: Context? = null) : MetadataHandler {
 
     override val writableMimeTypes = MediaTypes[MediaTypes.JPEG]
     override val readableMimeTypes = MediaTypes[MediaTypes.JPEG] +
-            MediaTypes[MediaTypes.DNG] + MediaTypes[MediaTypes.CR2] + MediaTypes[MediaTypes.NEF] +
-            MediaTypes[MediaTypes.NRW] + MediaTypes[MediaTypes.ARW] + MediaTypes[MediaTypes.RW2] +
-            MediaTypes[MediaTypes.ORF] + MediaTypes[MediaTypes.PEF] + MediaTypes[MediaTypes.SRW] +
-            MediaTypes[MediaTypes.RAF]
+            MediaTypes[MediaTypes.DNG] + MediaTypes[MediaTypes.CR2] +
+            MediaTypes[MediaTypes.NEF] + MediaTypes[MediaTypes.NRW] +
+            MediaTypes[MediaTypes.ARW] + MediaTypes[MediaTypes.RW2] +
+            MediaTypes[MediaTypes.ORF] + MediaTypes[MediaTypes.PEF] +
+            MediaTypes[MediaTypes.SRW] + MediaTypes[MediaTypes.RAF]
 
-    override suspend fun loadMetadata(mediaType: MediaType, inputFile: File): Metadata {
+    override suspend fun loadMetadata(mediaType: MediaType, inputFile: File): Metadata? {
         val exif = ExifInterface(inputFile.inputStream)
         val thumbnail =
-                null // exif.thumbnailBitmap?.let { Image(it) }
-                // TODO Check whether the thumbnail is large enough.
+                exif.thumbnailBitmap
+                        ?.takeIf {
+                            // Only use the contained thumbnail if it is larger than 1MP.
+                            it.width * it.height > 1_000_000
+                        }
+                        ?.let { Image(it) }
                         ?: Image(inputFile)
 
         val imageFile = ImageFile(inputFile)
