@@ -39,8 +39,9 @@ import com.google.android.material.snackbar.Snackbar
 import com.sothree.slidinguppanel.SlidingUpPanelLayout
 import com.sothree.slidinguppanel.SlidingUpPanelLayout.PanelSlideListener
 import com.sothree.slidinguppanel.SlidingUpPanelLayout.PanelState.*
-import kotlinx.coroutines.experimental.android.UI
-import kotlinx.coroutines.experimental.launch
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import rocks.poopjournal.metadataremover.R
 import rocks.poopjournal.metadataremover.databinding.ActivityMainBinding
 import rocks.poopjournal.metadataremover.model.metadata.Metadata
@@ -229,7 +230,7 @@ class MainActivity : AppCompatActivity(), ActivityResultLauncher {
 
                 if (preview != null) {
 
-                    launch(UI) {
+                    GlobalScope.launch(Dispatchers.Main) {
                         Logger.d("${preview.attributes.size} metadata attributes")
                         preview.attributes.forEach {
                             Logger.d("${it.label.load(this@MainActivity.context)}: " +

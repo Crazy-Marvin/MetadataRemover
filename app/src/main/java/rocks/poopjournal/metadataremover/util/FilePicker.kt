@@ -28,14 +28,15 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import kotlinx.coroutines.experimental.android.UI
-import kotlinx.coroutines.experimental.launch
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import okio.buffer
+import okio.sink
+import okio.source
 import rocks.poopjournal.metadataremover.util.extensions.MimeType
 import rocks.poopjournal.metadataremover.util.extensions.android.architecture.getFileName
 import rocks.poopjournal.metadataremover.util.extensions.android.architecture.getMimeType
-import rocks.poopjournal.metadataremover.util.extensions.okio.buffer
-import rocks.poopjournal.metadataremover.util.extensions.okio.sink
-import rocks.poopjournal.metadataremover.util.extensions.okio.source
 import rocks.poopjournal.metadataremover.util.extensions.startActivityForResult
 import java.io.File
 
@@ -128,16 +129,16 @@ class FilePicker(
 
         val fileName = uri.getFileName(context)
 
-        launch(UI) {
+        GlobalScope.launch(Dispatchers.Main) {
             val copy = File(this@FilePicker.context.filesDir, fileName)
 
             // Copy the file contents to a new created internal file,
             // because we might loose access to the original file at any moment.
             this@FilePicker.context.contentResolver
                     .openInputStream(uri)
-                    ?.source
+                    ?.source()
                     ?.use { source ->
-                        copy.sink.buffer().use { sink ->
+                        copy.sink().buffer().use { sink ->
                             sink.writeAll(source)
                         }
                     }

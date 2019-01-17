@@ -28,11 +28,14 @@ import android.app.Application
 import android.content.Intent
 import androidx.core.content.FileProvider
 import androidx.lifecycle.AndroidViewModel
-import kotlinx.coroutines.experimental.android.UI
-import kotlinx.coroutines.experimental.launch
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import rocks.poopjournal.metadataremover.BuildConfig
 import rocks.poopjournal.metadataremover.R
 import rocks.poopjournal.metadataremover.metadata.handlers.CombiningMetadataHandler
+import rocks.poopjournal.metadataremover.metadata.handlers.DummyMetadataHandler
+import rocks.poopjournal.metadataremover.metadata.handlers.ExifMetadataHandler
 import rocks.poopjournal.metadataremover.metadata.handlers.NopMetadataHandler
 import rocks.poopjournal.metadataremover.model.metadata.Metadata
 import rocks.poopjournal.metadataremover.model.resources.Text
@@ -135,7 +138,7 @@ class MainViewModel(application: Application) :
         val inputFile = inputFile ?: return
         val inputMimeType = inputMimeType ?: return
 
-        launch(UI) {
+        GlobalScope.launch(Dispatchers.Main) {
             val inputMetadata = metadataHandler.loadMetadata(inputMimeType, inputFile)
             if (inputMetadata == null) {
                 Logger.d("Couldn't load metadata for file '${inputFile.name}'. " +
@@ -182,7 +185,7 @@ class MainViewModel(application: Application) :
                 }
         this.outputFile = outputFile
 
-        launch(UI) {
+        GlobalScope.launch(Dispatchers.Main) {
             metadataHandler.removeMetadata(inputMimeType, inputFile, outputFile)
             shareOutputFile()
         }
