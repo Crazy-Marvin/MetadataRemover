@@ -45,23 +45,17 @@ import rocks.poopjournal.metadataremover.R
 import rocks.poopjournal.metadataremover.databinding.ActivityMainBinding
 import rocks.poopjournal.metadataremover.model.metadata.Metadata
 import rocks.poopjournal.metadataremover.model.resources.Resource
-import rocks.poopjournal.metadataremover.model.resources.Resource.Empty
-import rocks.poopjournal.metadataremover.model.resources.Resource.Loading
-import rocks.poopjournal.metadataremover.model.resources.Resource.Success
+import rocks.poopjournal.metadataremover.model.resources.Resource.*
 import rocks.poopjournal.metadataremover.util.ActivityLauncher
 import rocks.poopjournal.metadataremover.util.ActivityResultLauncher
+import rocks.poopjournal.metadataremover.util.AndroidViewDslScope
 import rocks.poopjournal.metadataremover.util.Logger
+import rocks.poopjournal.metadataremover.util.extensions.android.*
 import rocks.poopjournal.metadataremover.util.extensions.android.architecture.get
 import rocks.poopjournal.metadataremover.util.extensions.android.architecture.observeNotNull
-import rocks.poopjournal.metadataremover.util.extensions.android.getThemeColor
-import rocks.poopjournal.metadataremover.util.extensions.android.onClick
-import rocks.poopjournal.metadataremover.util.extensions.android.onMenuItemClick
-import rocks.poopjournal.metadataremover.util.extensions.android.setImage
-import rocks.poopjournal.metadataremover.util.extensions.android.setTitle
-import rocks.poopjournal.metadataremover.util.extensions.android.tint
 import rocks.poopjournal.metadataremover.viewmodel.MainViewModel
 
-class MainActivity : AppCompatActivity(), ActivityResultLauncher {
+class MainActivity : AppCompatActivity(), ActivityResultLauncher, AndroidViewDslScope {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var viewModel: MainViewModel
@@ -117,15 +111,14 @@ class MainActivity : AppCompatActivity(), ActivityResultLauncher {
             startActivityForResult(launchInfo.intent, launchInfo.requestCode, launchInfo.options)
 
     private fun initializeViews() {
-        binding.apply {
-            preview.apply {
-                toolbar.apply {
+        binding {
+            preview {
+                toolbar {
                     inflateMenu(R.menu.menu_main)
-                    menu.findItem(R.id.menu_item_about)
-                            .apply {
-                                val tintColor = getThemeColor(android.R.attr.textColorSecondary)
-                                icon = icon.tint(tintColor)
-                            }
+                    menu.findItem(R.id.menu_item_about) {
+                        val tintColor = getThemeColor(android.R.attr.textColorSecondary)
+                        icon = icon.tint(tintColor)
+                    }
                             .onMenuItemClick(viewModel::openAboutScreen)
                 }
 
@@ -134,8 +127,8 @@ class MainActivity : AppCompatActivity(), ActivityResultLauncher {
 
             slidingLayout.isTouchEnabled = false
 
-            bottomSheet.apply {
-                toolbar.apply {
+            bottomSheet {
+                toolbar {
                     setOnClickListener { viewModel.openFile() }
                     inflateMenu(R.menu.menu_main_bottom_sheet)
                     menu.findItem(R.id.menu_item_open_file)
@@ -143,7 +136,7 @@ class MainActivity : AppCompatActivity(), ActivityResultLauncher {
                     menu.findItem(R.id.menu_item_expand_collapse)
                             .actionView
                             .onClick {
-                                slidingLayout.apply {
+                                slidingLayout {
                                     panelState = when (panelState) {
                                         PanelState.EXPANDED, PanelState.ANCHORED -> PanelState.COLLAPSED
                                         else -> PanelState.ANCHORED
@@ -153,7 +146,7 @@ class MainActivity : AppCompatActivity(), ActivityResultLauncher {
                     setNavigationOnClickListener { viewModel.closeFile() }
                 }
 
-                listMetadata.apply {
+                listMetadata {
                     adapter = MetaAttributeAdapter()
                     layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
                 }
@@ -181,11 +174,11 @@ class MainActivity : AppCompatActivity(), ActivityResultLauncher {
     }
 
     private fun onPreviewClear() {
-        binding.apply {
-            preview.apply {
+        binding {
+            preview {
                 progress.isVisible = false
 
-                thumbnail.apply {
+                thumbnail {
                     setImageDrawable(null)
                     isVisible = false
                 }
@@ -193,29 +186,26 @@ class MainActivity : AppCompatActivity(), ActivityResultLauncher {
                 bannerOpenImage.isVisible = true
             }
 
-            slidingLayout.apply {
+            slidingLayout {
                 panelState = PanelState.COLLAPSED
                 isTouchEnabled = false
             }
 
-            bottomSheet.apply {
-                toolbar.apply {
+            bottomSheet {
+                toolbar {
                     setTitle(R.string.title_bottom_sheet_open_file)
                     navigationIcon = null
                     setOnClickListener { viewModel.openFile() }
 
-                    menu.apply {
+                    menu {
                         findItem(R.id.menu_item_open_file)
                                 .isVisible = true
-                        findItem(R.id.menu_item_expand_collapse)
-                                .apply {
-                                    isVisible = false
-                                    actionView
-                                            .let { it as ExpandIconView }
-                                            .apply {
-                                                setState(ExpandIconView.LESS, false)
-                                            }
-                                }
+                        findItem(R.id.menu_item_expand_collapse) {
+                            isVisible = false
+                            (actionView as ExpandIconView) {
+                                setState(ExpandIconView.LESS, false)
+                            }
+                        }
                     }
                 }
 
@@ -227,11 +217,11 @@ class MainActivity : AppCompatActivity(), ActivityResultLauncher {
     }
 
     private fun onPreviewLoading() {
-        binding.apply {
-            preview.apply {
+        binding {
+            preview {
                 progress.isVisible = true
 
-                thumbnail.apply {
+                thumbnail {
                     setImageDrawable(null)
                     isVisible = false
                 }
@@ -239,29 +229,26 @@ class MainActivity : AppCompatActivity(), ActivityResultLauncher {
                 bannerOpenImage.isVisible = false
             }
 
-            slidingLayout.apply {
+            slidingLayout {
                 panelState = PanelState.COLLAPSED
                 isTouchEnabled = false
             }
 
-            bottomSheet.apply {
-                toolbar.apply {
+            bottomSheet {
+                toolbar {
                     setTitle(R.string.title_bottom_sheet_open_file)
                     navigationIcon = null
                     setOnClickListener { viewModel.openFile() }
 
-                    menu.apply {
+                    menu {
                         findItem(R.id.menu_item_open_file)
                                 .isVisible = true
-                        findItem(R.id.menu_item_expand_collapse)
-                                .apply {
-                                    isVisible = false
-                                    actionView
-                                            .let { it as ExpandIconView }
-                                            .apply {
-                                                setState(ExpandIconView.LESS, false)
-                                            }
-                                }
+                        findItem(R.id.menu_item_expand_collapse) {
+                            isVisible = false
+                            (actionView as ExpandIconView) {
+                                setState(ExpandIconView.LESS, false)
+                            }
+                        }
                     }
                 }
 
@@ -273,11 +260,11 @@ class MainActivity : AppCompatActivity(), ActivityResultLauncher {
     }
 
     private fun updatePreviewSuccess(metadata: Metadata) {
-        binding.apply {
-            preview.apply {
+        binding {
+            preview {
                 progress.isVisible = false
 
-                thumbnail.apply {
+                thumbnail {
                     setImage(metadata.thumbnail)
                     isVisible = true
                 }
@@ -287,19 +274,19 @@ class MainActivity : AppCompatActivity(), ActivityResultLauncher {
 
             slidingLayout.isTouchEnabled = true
 
-            bottomSheet.apply {
-                toolbar.apply {
+            bottomSheet {
+                toolbar {
                     setTitle(metadata.title!!)
                     setNavigationIcon(R.drawable.ic_close)
                     isClickable = false
 
-                    menu.apply {
+                    menu {
                         findItem(R.id.menu_item_open_file).isVisible = false
                         findItem(R.id.menu_item_expand_collapse).isVisible = true
                     }
                 }
 
-                listMetadata.apply {
+                listMetadata {
                     isVisible = true
 
                     Logger.d("${metadata.attributes.size} metadata attributes")
@@ -310,7 +297,7 @@ class MainActivity : AppCompatActivity(), ActivityResultLauncher {
                 }
 
                 bannerNoMetadata.isVisible = false
-                buttonRemoveMetadata.apply {
+                buttonRemoveMetadata {
                     isEnabled = true
                     setOnClickListener { viewModel.removeMetadata() }
                 }
@@ -336,7 +323,7 @@ class MainActivity : AppCompatActivity(), ActivityResultLauncher {
                 val limitedReverseAbsoluteOffset = reverseAbsoluteOffset
                         .coerceAtMost(panelHeight * (1 - slidingLayout.anchorPoint))
 
-                navigationBarShadow.apply {
+                navigationBarShadow {
                     val relativeOffset = absoluteOffset / height
                     alpha = (relativeOffset - 1).coerceAtMost(1f)
                 }
@@ -360,11 +347,11 @@ class MainActivity : AppCompatActivity(), ActivityResultLauncher {
                     .findItem(R.id.menu_item_expand_collapse)
                     .actionView
                     .let { it as ExpandIconView }
-            expandCollapse.apply {
+            expandCollapse {
                 val state = when (newState) {
                     PanelState.COLLAPSED -> ExpandIconView.LESS to R.string.title_menu_item_collapse
                     PanelState.EXPANDED, PanelState.ANCHORED -> ExpandIconView.MORE to R.string.title_menu_item_expand
-                    PanelState.HIDDEN, PanelState.DRAGGING -> return
+                    PanelState.HIDDEN, PanelState.DRAGGING -> return@expandCollapse
                 }
                 setState(state.first, true)
                 contentDescription = getText(state.second)

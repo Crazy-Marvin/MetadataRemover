@@ -34,6 +34,7 @@ import rocks.poopjournal.metadataremover.R
 
 import rocks.poopjournal.metadataremover.databinding.ActivityAboutBinding
 import rocks.poopjournal.metadataremover.util.ActivityLauncher
+import rocks.poopjournal.metadataremover.util.AndroidViewDslScope
 import rocks.poopjournal.metadataremover.util.extensions.android.activity
 import rocks.poopjournal.metadataremover.util.extensions.android.architecture.get
 import rocks.poopjournal.metadataremover.util.extensions.android.architecture.observeNotNull
@@ -41,7 +42,7 @@ import rocks.poopjournal.metadataremover.util.extensions.android.onClick
 import rocks.poopjournal
         .metadataremover.viewmodel.AboutViewModel
 
-class AboutActivity : AppCompatActivity(), ActivityLauncher {
+class AboutActivity : AppCompatActivity(), ActivityLauncher, AndroidViewDslScope {
 
     private lateinit var binding: ActivityAboutBinding
     private lateinit var viewModel: AboutViewModel
@@ -52,7 +53,7 @@ class AboutActivity : AppCompatActivity(), ActivityLauncher {
         viewModel = ViewModelProviders.of(this).get()
         binding = DataBindingUtil.setContentView(this, R.layout.activity_about)!!
 
-        binding.header.apply {
+        binding.header {
             toolbar.setNavigationOnClickListener {
                 NavUtils.navigateUpFromSameTask(activity)
             }
@@ -60,12 +61,12 @@ class AboutActivity : AppCompatActivity(), ActivityLauncher {
             buttonSupport.onClick(viewModel::openSupport)
         }
 
-        binding.cards.apply {
-            cardDeveloper.apply {
+        binding.cards {
+            cardDeveloper {
                 buttonGithub.onClick(viewModel::openDeveloperGithub)
                 buttonWebsite.onClick(viewModel::openDeveloperWebsite)
             }
-            cardSource.apply {
+            cardSource {
                 buttonCode.onClick(viewModel::openSourceCode)
                 buttonLicense.onClick(viewModel::openSourceCodeLicense)
                 buttonLibraries.onClick(viewModel::openSourceCodeLibraries)
