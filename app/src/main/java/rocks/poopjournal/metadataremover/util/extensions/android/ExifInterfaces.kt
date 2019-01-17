@@ -318,13 +318,6 @@ val ExifInterface.cameraAttribute: Metadata.Attribute?
     get() {
         val model: String = getAttribute(ExifInterface.TAG_MODEL) ?: return null
         val manufacturer: String? = getAttribute(ExifInterface.TAG_MAKE)
-        return Metadata.Attribute(
-                Text(R.string.label_attribute_file_creation_camera),
-                Image(R.drawable.ic_camera),
-                Text(model),
-                manufacturer?.let { Text(it) }
-        )
-    }
         val serialNumber: String? = getAttribute(ExifInterface.TAG_BODY_SERIAL_NUMBER)
         return Metadata.Attribute(
                 Text(R.string.label_attribute_image_creation_camera),
