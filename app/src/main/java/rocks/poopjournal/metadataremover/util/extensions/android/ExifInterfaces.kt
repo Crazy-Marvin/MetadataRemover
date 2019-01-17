@@ -251,7 +251,7 @@ private val dateFormat: DateFormat = DateFormat.getDateInstance(DateFormat.LONG)
 private val timeFormat: DateFormat = DateFormat.getTimeInstance(DateFormat.SHORT)
 val ExifInterface.creationAttribute: Metadata.Attribute?
     get() {
-        val creationDate = creationDate
+        val creationDate = creationDate ?: return null
         return Metadata.Attribute(
                 label = Text(R.string.label_attribute_file_creation_date_time),
                 icon = Image(R.drawable.ic_event),
