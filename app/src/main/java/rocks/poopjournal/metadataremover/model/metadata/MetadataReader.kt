@@ -24,4 +24,18 @@
 
 package rocks.poopjournal.metadataremover.model.metadata
 
-interface MetadataHandler : MetadataReader, MetadataWriter
+import rocks.poopjournal.metadataremover.model.resources.MediaType
+import java.io.File
+
+interface MetadataReader {
+    val readableMimeTypes: Set<MediaType>
+
+    /**
+     * Load the metadata from the [input file][inputFile].
+     *
+     * Note: The metadata's attributes should explicitly not contain any attribute
+     * that is obvious to the file system, e.g. the file name, last modified date, or file size.
+     * Instead a [MetadataHandler] should be as specific to it's [readableMimeTypes] as it can.
+     */
+    suspend fun loadMetadata(mediaType: MediaType, inputFile: File): Metadata?
+}

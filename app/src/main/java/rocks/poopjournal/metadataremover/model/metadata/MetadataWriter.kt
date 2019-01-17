@@ -24,4 +24,19 @@
 
 package rocks.poopjournal.metadataremover.model.metadata
 
-interface MetadataHandler : MetadataReader, MetadataWriter
+import rocks.poopjournal.metadataremover.model.resources.MediaType
+import java.io.File
+
+interface MetadataWriter {
+    val writableMimeTypes: Set<MediaType>
+
+    /**
+     * Remove the metadata from the [input file][inputFile] and save a copy
+     * without any contained metadata to the [output file][outputFile].
+     *
+     * Note: Depending on the file type this process might cause quality loss (e.g. for JPEG's).
+     *
+     * @return `true` if the removal was successful, `false` otherwise.
+     */
+    suspend fun removeMetadata(mediaType: MediaType, inputFile: File, outputFile: File): Boolean
+}
