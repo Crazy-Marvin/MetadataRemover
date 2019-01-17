@@ -85,3 +85,8 @@ class Longitude(value: Double) : Coordinate(value) {
         return "${hours.absoluteValue}  $minutes' $seconds\" $direction"
     }
 }
+
+data class Coordinates(
+        val latitude: Latitude,
+        val longitude: Longitude
+)
