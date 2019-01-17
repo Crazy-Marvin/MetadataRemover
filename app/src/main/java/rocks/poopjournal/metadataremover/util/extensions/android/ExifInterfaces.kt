@@ -354,6 +354,7 @@ val ExifInterface.exposureAttribute: Metadata.Attribute?
         val isoSpeed = getAttribute(ExifInterface.TAG_PHOTOGRAPHIC_SENSITIVITY)
                 ?.let { Text(R.string.description_attribute_image_exposure_iso_speed, it) }
         val items = listOfNotNull(fStop, exposureTime, focalLengthMm, isoSpeed)
+        if (items.isEmpty()) return null
         return Metadata.Attribute(
                 Text(R.string.label_attribute_image_exposure),
                 Image(R.drawable.ic_exposure),
