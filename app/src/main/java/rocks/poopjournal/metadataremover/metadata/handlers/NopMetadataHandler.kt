@@ -26,25 +26,16 @@ package rocks.poopjournal.metadataremover.metadata.handlers
 
 import rocks.poopjournal.metadataremover.model.metadata.Metadata
 import rocks.poopjournal.metadataremover.model.metadata.MetadataHandler
-import rocks.poopjournal.metadataremover.model.resources.Image.Companion.emptyImage
 import rocks.poopjournal.metadataremover.model.resources.MediaType
 import rocks.poopjournal.metadataremover.model.resources.MediaTypes
 import java.io.File
 
-class NopMetadataHandler : MetadataHandler {
-
-    companion object {
-        @JvmField
-        val EMPTY_METADATA = Metadata(
-                thumbnail = emptyImage(),
-                attributes = emptySet()
-        )
-    }
+object NopMetadataHandler : MetadataHandler {
 
     override val readableMimeTypes = MediaTypes[MediaTypes.ANY]
     override val writableMimeTypes = MediaTypes[MediaTypes.ANY]
 
-    override suspend fun loadMetadata(mediaType: MediaType, inputFile: File) = EMPTY_METADATA
+    override suspend fun loadMetadata(mediaType: MediaType, inputFile: File): Metadata? = null
 
     override suspend fun removeMetadata(
             mediaType: MediaType,

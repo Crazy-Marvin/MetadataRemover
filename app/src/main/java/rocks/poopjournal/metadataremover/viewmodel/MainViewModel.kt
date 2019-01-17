@@ -67,7 +67,7 @@ class MainViewModel(application: Application) :
 
     private val metadataHandler = FirstMatchMetadataHandler(
             ExifMetadataHandler(applicationContext),
-            NopMetadataHandler() // For testing purposes only. TODO Remove after testing.
+            NopMetadataHandler // For testing purposes only. TODO Remove after testing.
     )
 
     // For now we'll restrict file opening to mime types we can write to.
