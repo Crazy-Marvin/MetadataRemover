@@ -55,20 +55,20 @@ class ApplyAllMetadataHandler(
 
     override suspend fun loadMetadata(mediaType: MediaType, inputFile: File): Metadata? {
         return filterMetadataHandlers(mediaType)
-                .map {
-                    it.loadMetadata(mediaType, inputFile)
-                }
-                .reduce { acc, next ->
-                    when {
-                        acc == null -> next
-                        next == null -> acc
-                        else -> Metadata(
-                                title = acc.title ?: next.title,
-                                thumbnail = acc.thumbnail,
-                                attributes = acc.attributes + next.attributes
-                        )
-                    }
-                }
+                .map { it.loadMetadata(mediaType, inputFile) }
+                .reduce(::mergeMetadata)
+    }
+
+    private fun mergeMetadata(acc: Metadata?, next: Metadata?): Metadata? {
+        return when {
+            acc == null -> next
+            next == null -> acc
+            else -> Metadata(
+                    title = acc.title ?: next.title,
+                    thumbnail = acc.thumbnail,
+                    attributes = acc.attributes + next.attributes
+            )
+        }
     }
 
     override suspend fun removeMetadata(
@@ -76,8 +76,6 @@ class ApplyAllMetadataHandler(
             inputFile: File,
             outputFile: File): Boolean {
         return filterMetadataHandlers(mediaType)
-                .any {
-                    it.removeMetadata(mediaType, inputFile, outputFile)
-                }
+                .any { it.removeMetadata(mediaType, inputFile, outputFile) }
     }
 }
