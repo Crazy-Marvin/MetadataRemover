@@ -31,7 +31,6 @@ import androidx.core.content.FileProvider
 import androidx.lifecycle.AndroidViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.android.Main
 import kotlinx.coroutines.launch
 import rocks.poopjournal.metadataremover.BuildConfig
 import rocks.poopjournal.metadataremover.R
@@ -47,17 +46,11 @@ import rocks.poopjournal.metadataremover.util.ActivityLauncher
 import rocks.poopjournal.metadataremover.util.ActivityResultLauncher
 import rocks.poopjournal.metadataremover.util.FileOpener
 import rocks.poopjournal.metadataremover.util.Logger
+import rocks.poopjournal.metadataremover.util.extensions.*
 import rocks.poopjournal.metadataremover.util.extensions.android.architecture.applicationContext
 import rocks.poopjournal.metadataremover.util.extensions.android.architecture.mutableLiveDataOf
 import rocks.poopjournal.metadataremover.util.extensions.android.architecture.singleLiveEventOf
 import rocks.poopjournal.metadataremover.util.extensions.android.copyFrom
-import rocks.poopjournal.metadataremover.util.extensions.dequeOf
-import rocks.poopjournal.metadataremover.util.extensions.lastModifiedAttribute
-import rocks.poopjournal.metadataremover.util.extensions.nameAttribute
-import rocks.poopjournal.metadataremover.util.extensions.parseUri
-import rocks.poopjournal.metadataremover.util.extensions.size
-import rocks.poopjournal.metadataremover.util.extensions.sizeAttribute
-import rocks.poopjournal.metadataremover.util.extensions.startActivity
 import java.io.Closeable
 
 class MainViewModel(application: Application) :

@@ -32,7 +32,6 @@ import android.content.Intent
 import android.content.res.AssetFileDescriptor
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.IO
 import kotlinx.coroutines.launch
 import rocks.poopjournal.metadataremover.model.resources.MediaType
 import rocks.poopjournal.metadataremover.util.extensions.android.architecture.getFileName
