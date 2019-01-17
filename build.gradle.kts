@@ -26,65 +26,27 @@
 
 buildscript {
 
-    /**
-     * External properties that should be exposed to sub-projects.
-     */
-    ext {
-        /**
-         * Gradle plugin versions
-         */
-        gradlePluginVersion = "3.2.0-beta04"
-        kotlinPluginVersion = "1.2.60"
-
-        /**
-         * App version
-         *
-         * Note: The app version should always be determined based on semantic versioning rules
-         * which can be found at http://semver.org/
-         */
-        appVersionMajor = 0
-        appVersionMinor = 1
-        appVersionPatch = 0
-        appVersionBuild = 0 // Bump for dogfood builds, public betas etc.
-
-        /**
-         * SDK/tools versions
-         */
-        minSdkVersion = 19
-        targetSdkVersion = 28
-        compileSdkVersion = 28
-        buildToolsVersion = "28.0.2"
-    }
-
-    /**
-     * Build script repositories being used by the dependencies (defined
-     * in `buildscript.dependencies`).
-     */
+    // Build script repositories being used by the dependencies (defined in `buildscript.dependencies`).
     repositories {
         // Default jCenter repository
         jcenter()
         // Gradle plugin repository
-        maven { url "https://plugins.gradle.org/m2/" }
+        maven("https://plugins.gradle.org/m2/")
         // Google Maven repository
         google()
     }
 
-    /**
-     * Build script dependencies.
-     *
-     * Note: Do NOT place your application dependencies here.
-     * They belong in the individual module `build.gradle` files.
-     */
+    // Build script dependencies.
+    // Note: Do NOT place your application dependencies here.
+    // They belong in the individual module `build.gradle.kts` files.
     dependencies {
-        classpath "com.android.tools.build:gradle:$gradlePluginVersion"
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinPluginVersion"
+        classpath("com.android.tools.build:gradle:${Versions.gradlePluginVersion}")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlinPluginVersion}")
     }
 }
 
 allprojects {
-    /**
-     * Repositories for all projects' app dependencies.
-     */
+    // Repositories for all projects' app dependencies.
     repositories {
         // Default jCenter repository
         jcenter()
@@ -94,18 +56,21 @@ allprojects {
         google()
         // JitPack repository
         // TODO Do we need this? If not then remove before release.
-        maven { url "https://jitpack.io" }
+        maven("https://jitpack.io")
         // Adobe repository
-        maven { url "https://repo.adobe.com/nexus/content/repositories/public/" }
+        maven("https://repo.adobe.com/nexus/content/repositories/public/")
     }
 }
 
-/**
- * Task to clean the build directory.
- *
- * This might be useful when a build fails and one doesn't want the next build to depend
- * on possibly broken cached build files.
- */
-task clean(type: Delete) {
-    delete rootProject.buildDir
+tasks {
+    /**
+     * Task to clean the build directory.
+     *
+     * This might be useful when a build fails and one doesn't want the next build to depend
+     * on possibly broken cached build files.
+     */
+
+    create("clean", Delete::class) {
+        delete(rootProject.buildDir)
+    }
 }

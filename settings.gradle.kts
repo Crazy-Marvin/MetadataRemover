@@ -22,4 +22,4 @@
  * SOFTWARE.
  */
 
-include ':app'
+include(":app")
