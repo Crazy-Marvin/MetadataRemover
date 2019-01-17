@@ -28,33 +28,36 @@ import androidx.annotation.StringRes
 import rocks.poopjournal.metadataremover.R
 import rocks.poopjournal.metadataremover.model.resources.Text
 import kotlin.math.absoluteValue
+import kotlin.math.max
+import kotlin.math.min
 
-sealed class Coordinate(value: Double) {
+sealed class Coordinate(value: Double, range: ClosedRange<Double>) {
+
+    private val min: Double = min(range.start, range.endInclusive)
+    private val max: Double = max(range.start, range.endInclusive)
+    private val interval: Double = (max - min).absoluteValue
 
     val value: Double = value.normalize()
-    abstract val range: ClosedRange<Double>
-    private val min: Double get() = range.start
-    private val max: Double get() = range.endInclusive
-    private val interval: Double get() = max - min
-    @StringRes
-    private val directionRes =
-            if (value < 0) R.string.description_attribute_file_creation_location_direction_west
-            else R.string.description_attribute_file_creation_location_direction_east
-    val direction = Text(directionRes)
-    val hours: Int = (value % 1).toInt().absoluteValue
-    val minutes: Int = ((value - hours) / 60 % 1).toInt()
-    val seconds: Double = ((value - hours) / 60 - minutes)
+    private val absoluteValue: Double = this.value.absoluteValue
+
+    @get:StringRes
+    protected abstract val directionRes: Int
+    val direction get() = Text(directionRes)
+
+    val hours: Long = absoluteValue.toLong()
+    val minutes: Long = ((absoluteValue - hours) * 60).toLong()
+    val seconds: Double = ((absoluteValue - hours) * 60 - minutes) * 60
 
     private fun Double.normalize(): Double {
         return when {
-            this < min -> (this - min) % interval
-            this > max -> (this - max) % interval
+            this < min -> (this + interval).normalize()
+            this > max -> (this - interval).normalize()
             else -> this
         }
     }
 }
 
-class Latitude(value: Double) : Coordinate(value) {
+class Latitude(value: Double) : Coordinate(value, -180.0..180.0) {
 
     constructor(
             hours: Int,
@@ -62,7 +65,10 @@ class Latitude(value: Double) : Coordinate(value) {
             seconds: Double
     ) : this((seconds / 60 + minutes) / 60 + hours)
 
-    override val range = -180.0..180.0
+    @StringRes
+    override val directionRes =
+            if (this.value < 0) R.string.description_attribute_file_creation_location_direction_west
+            else R.string.description_attribute_file_creation_location_direction_east
 
     override fun toString(): String {
         val direction = if (value < 0) "West" else "East"
@@ -70,7 +76,7 @@ class Latitude(value: Double) : Coordinate(value) {
     }
 }
 
-class Longitude(value: Double) : Coordinate(value) {
+class Longitude(value: Double) : Coordinate(value, -90.0..90.0) {
 
     constructor(
             hours: Int,
@@ -78,7 +84,10 @@ class Longitude(value: Double) : Coordinate(value) {
             seconds: Double
     ) : this((seconds / 60 + minutes) / 60 + hours)
 
-    override val range = -90.0..90.0
+    @StringRes
+    override val directionRes =
+            if (this.value < 0) R.string.description_attribute_file_creation_location_direction_south
+            else R.string.description_attribute_file_creation_location_direction_north
 
     override fun toString(): String {
         val direction = if (value < 0) "South" else "North"
