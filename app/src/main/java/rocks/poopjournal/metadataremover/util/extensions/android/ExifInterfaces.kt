@@ -325,3 +325,119 @@ val ExifInterface.cameraAttribute: Metadata.Attribute?
                 manufacturer?.let { Text(it) }
         )
     }
+        val serialNumber: String? = getAttribute(ExifInterface.TAG_BODY_SERIAL_NUMBER)
+        return Metadata.Attribute(
+                Text(R.string.label_attribute_image_creation_camera),
+                Image(R.drawable.ic_camera),
+                if (serialNumber == null) {
+                    Text(model)
+                } else {
+                    Text(R.string.description_attribute_image_creation_model_serial_number, model,
+                            serialNumber)
+                },
+                manufacturer?.let { Text(it) }
+        )
+    }
+
+val ExifInterface.exposureAttribute: Metadata.Attribute?
+    get() {
+        val fStop = getAttribute(ExifInterface.TAG_F_NUMBER)
+                ?.let { Text(R.string.description_attribute_image_exposure_f_stop, it) }
+        val exposureTime = getAttribute(ExifInterface.TAG_EXPOSURE_TIME)
+                ?.let { Text(R.string.description_attribute_image_exposure_exposure_time_s, it) }
+        val focalLengthMm = getAttribute(ExifInterface.TAG_FOCAL_LENGTH)
+                ?.split('/')
+                ?.map(String::toInt)
+                ?.let { (dividend, divisor) -> dividend / divisor.toDouble() }
+                ?.let { it.format(2) }
+                ?.let { Text(R.string.description_attribute_image_exposure_focal_length_mm, it) }
+        val isoSpeed = getAttribute(ExifInterface.TAG_PHOTOGRAPHIC_SENSITIVITY)
+                ?.let { Text(R.string.description_attribute_image_exposure_iso_speed, it) }
+        val items = listOfNotNull(fStop, exposureTime, focalLengthMm, isoSpeed)
+        return Metadata.Attribute(
+                Text(R.string.label_attribute_image_exposure),
+                Image(R.drawable.ic_exposure),
+                Text(
+                        when (items.size) {
+                            1 -> R.string.description_attribute_image_exposure_1_value
+                            2 -> R.string.description_attribute_image_exposure_2_value
+                            3 -> R.string.description_attribute_image_exposure_3_value
+                            else -> R.string.description_attribute_image_exposure_4_value
+                        },
+                        *items.toTypedArray()
+                )
+        )
+    }
+
+val ExifInterface.lightAttribute: Metadata.Attribute?
+    get() {
+        val flashStatus: Short = getAttributeInt(ExifInterface.TAG_FLASH, -1)
+                .takeIf { it >= 0 }
+                ?.toShort()
+                ?.takeIf { it and ExifInterface.FLAG_FLASH_NO_FLASH_FUNCTION != ExifInterface.FLAG_FLASH_NO_FLASH_FUNCTION }
+                ?: return null
+        val flashFired = flashStatus and ExifInterface.FLAG_FLASH_FIRED == ExifInterface.FLAG_FLASH_FIRED
+        val lightSource = getAttributeInt(ExifInterface.TAG_LIGHT_SOURCE,
+                ExifInterface.LIGHT_SOURCE_UNKNOWN.toInt()).toShort()
+                .let {
+                    when (it) {
+                        ExifInterface.LIGHT_SOURCE_DAYLIGHT -> R.string.description_attribute_image_light_source_daylight
+                        ExifInterface.LIGHT_SOURCE_FLUORESCENT -> R.string.description_attribute_image_light_source_fluorescent
+                        ExifInterface.LIGHT_SOURCE_TUNGSTEN -> R.string.description_attribute_image_light_source_tungsten
+                        ExifInterface.LIGHT_SOURCE_FLASH -> R.string.description_attribute_image_light_source_flash
+                        ExifInterface.LIGHT_SOURCE_FINE_WEATHER -> R.string.description_attribute_image_light_source_fine_weather
+                        ExifInterface.LIGHT_SOURCE_CLOUDY_WEATHER -> R.string.description_attribute_image_light_source_cloudy_weather
+                        ExifInterface.LIGHT_SOURCE_SHADE -> R.string.description_attribute_image_light_source_shade
+                        ExifInterface.LIGHT_SOURCE_DAYLIGHT_FLUORESCENT -> R.string.description_attribute_image_light_source_daylight_fluorescent
+                        ExifInterface.LIGHT_SOURCE_DAY_WHITE_FLUORESCENT -> R.string.description_attribute_image_light_source_day_white_fluorescent
+                        ExifInterface.LIGHT_SOURCE_COOL_WHITE_FLUORESCENT -> R.string.description_attribute_image_light_source_cool_white_fluorescent
+                        ExifInterface.LIGHT_SOURCE_WHITE_FLUORESCENT -> R.string.description_attribute_image_light_source_white_fluorescent
+                        ExifInterface.LIGHT_SOURCE_WARM_WHITE_FLUORESCENT -> R.string.description_attribute_image_light_source_warm_white_fluorescent
+                        ExifInterface.LIGHT_SOURCE_STANDARD_LIGHT_A,
+                        ExifInterface.LIGHT_SOURCE_STANDARD_LIGHT_B,
+                        ExifInterface.LIGHT_SOURCE_STANDARD_LIGHT_C,
+                        ExifInterface.LIGHT_SOURCE_D55,
+                        ExifInterface.LIGHT_SOURCE_D65,
+                        ExifInterface.LIGHT_SOURCE_D75,
+                        ExifInterface.LIGHT_SOURCE_D50,
+                        ExifInterface.LIGHT_SOURCE_ISO_STUDIO_TUNGSTEN,
+                        ExifInterface.LIGHT_SOURCE_OTHER,
+                        ExifInterface.LIGHT_SOURCE_UNKNOWN -> null
+                        else -> null
+                    }
+                }
+        return Metadata.Attribute(
+                Text(R.string.label_attribute_image_flash_light_source),
+                Image(R.drawable.ic_light),
+                Text(if (flashFired) R.string.description_attribute_image_flash_on else R.string.description_attribute_image_flash_off),
+                lightSource?.let { Text(it) }
+        )
+    }
+
+val ExifInterface.ownerAttribute: Metadata.Attribute?
+    get() {
+        val owner: String = getAttribute(ExifInterface.TAG_CAMARA_OWNER_NAME) ?: return null
+        return Metadata.Attribute(
+                Text(R.string.label_attribute_file_identity),
+                Image(R.drawable.ic_person),
+                Text(owner)
+        )
+    }
+
+val ExifInterface.lensAttribute: Metadata.Attribute?
+    get() {
+        val model: String = getAttribute(ExifInterface.TAG_LENS_MODEL) ?: return null
+        val manufacturer: String? = getAttribute(ExifInterface.TAG_LENS_MAKE)
+        val serialNumber: String? = getAttribute(ExifInterface.TAG_LENS_SERIAL_NUMBER)
+        return Metadata.Attribute(
+                Text(R.string.label_attribute_image_creation_lens),
+                Image(R.drawable.ic_lens),
+                if (serialNumber == null) {
+                    Text(model)
+                } else {
+                    Text(R.string.description_attribute_image_creation_model_serial_number, model,
+                            serialNumber)
+                },
+                manufacturer?.let { Text(it) }
+        )
+    }

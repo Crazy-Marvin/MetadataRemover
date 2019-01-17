@@ -28,28 +28,6 @@ import android.view.View
 import android.view.ViewGroup
 
 /**
- * Performs the given [action] on each child [View].
- */
-inline fun ViewGroup.forEach(action: (View) -> Unit) {
-    for (index in 0 until childCount) {
-        action(getChildAt(index))
-    }
-}
-
-/**
- * Performs the given [action] on each  child [View], providing sequential index with the element.
- *
- * @param [action] Function that takes the index of an element and the element itself
- *  and performs the desired action on the element.
- */
-inline fun ViewGroup.forEachIndexed(action: (Int, View) -> Unit) {
-    for (index in 0 until childCount) {
-        action(index, getChildAt(index))
-    }
-}
-
-
-/**
  * Returns the [View] at the specified position in the group.
  *
  * @param index The position at which to get the view from.
@@ -94,15 +72,3 @@ operator fun ViewGroup.contains(child: View) = indexOfChild(child) != -1
  */
 val ViewGroup.size: Int
     get() = childCount
-
-/**
- * Returns this [ViewGroup]'s children as an [Iterable].
- */
-val ViewGroup.children
-    get() = object : Iterable<View> {
-        override fun iterator() = object : Iterator<View> {
-            var index = 0
-            override fun hasNext() = index < childCount
-            override fun next() = getChildAt(index++)
-        }
-    }

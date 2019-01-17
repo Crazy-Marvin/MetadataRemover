@@ -28,12 +28,12 @@ import android.util.Log
 import rocks.poopjournal.metadataremover.BuildConfig
 import timber.log.Timber
 
+@Suppress("UNUSED")
 object Logger {
-    private var tag = "MetadataRemover"
     private const val USE_TIMBER = false
     private val SHOULD_LOG = BuildConfig.DEBUG
 
-    //private const val tag = "MetadataRemover"
+    private const val tag = "MetadataRemover"
 
     @JvmStatic
     fun v(t: Throwable) {

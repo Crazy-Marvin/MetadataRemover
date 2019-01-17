@@ -24,18 +24,22 @@
 
 package rocks.poopjournal.metadataremover.model.metadata
 
-import rocks.poopjournal.metadataremover.util.extensions.MimeType
+import rocks.poopjournal.metadataremover.model.resources.MediaType
 import java.io.File
 
 // TODO Maybe split into readers and writers.
 interface MetadataHandler {
-    val readableMimeTypes: Set<MimeType>
-    val writableMimeTypes: Set<MimeType>
+    val readableMimeTypes: Set<MediaType>
+    val writableMimeTypes: Set<MediaType>
 
     /**
      * Load the metadata from the [input file][inputFile].
+     *
+     * Note: The metadata's attributes should explicitly not contain any attribute
+     * that is obvious to the file system, e.g. the file name, last modified date, or file size.
+     * Instead a [MetadataHandler] should be as specific to it's [readableMimeTypes] as it can.
      */
-    suspend fun loadMetadata(mimeType: MimeType, inputFile: File): Metadata?
+    suspend fun loadMetadata(mediaType: MediaType, inputFile: File): Metadata?
 
     /**
      * Remove the metadata from the [input file][inputFile] and save a copy
@@ -45,5 +49,5 @@ interface MetadataHandler {
      *
      * @return `true` if the removal was successful, `false` otherwise.
      */
-    suspend fun removeMetadata(mimeType: MimeType, inputFile: File, outputFile: File): Boolean
+    suspend fun removeMetadata(mediaType: MediaType, inputFile: File, outputFile: File): Boolean
 }

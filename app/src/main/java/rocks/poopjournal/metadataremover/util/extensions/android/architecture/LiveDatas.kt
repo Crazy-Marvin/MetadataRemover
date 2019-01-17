@@ -25,7 +25,10 @@
 package rocks.poopjournal.metadataremover.util.extensions.android.architecture
 
 import androidx.annotation.MainThread
-import androidx.lifecycle.*
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 import rocks.poopjournal.metadataremover.util.SingleLiveEvent
 
 /**
@@ -104,61 +107,13 @@ inline fun <DataType> LiveData<DataType>.observeNotNull(
     }
 }
 
-/**
- * Adds the given observer to the observers list. This call is similar to
- * [LiveData.observe] with a [LifecycleOwner], which
- * is always active. This means that the given observer will receive all events and will never
- * be automatically removed. You should manually call [LiveData.removeObserver] to stop
- * observing this [LiveData].
- * While [LiveData] has one of such observers, it will be considered
- * as active.
- *
- * If the observer was already added with an owner to this [LiveData], [LiveData] throws an
- * [IllegalArgumentException].
- *
- * @param observer The observer that will receive the events.
- */
 @MainThread
-inline fun <DataType> LiveData<DataType>.observeForeverNotNull(
-        crossinline observer: (data: DataType) -> Unit) {
-    observeForever { data ->
-        if (data != null) {
-            observer(data)
-        }
-    }
-}
-
-/**
- * Map [LiveData]s.
- */
-inline fun <FromType, ToType> LiveData<FromType>.map(
-        crossinline transform: (FromType) -> ToType): LiveData<ToType> {
-    return Transformations.map(this) { input -> transform(input) }
-}
+fun <ValueType> mutableLiveDataOf() = MutableLiveData<ValueType>()
 
 @MainThread
-fun <ValueType> liveDataOf(value: ValueType): LiveData<ValueType> {
-    return object : LiveData<ValueType>() {
-        init {
-            this.value = value
-        }
-    }
-}
+fun <ValueType> mutableLiveDataOf(initialValue: ValueType) =
+        mutableLiveDataOf<ValueType>().apply { if (initialValue != null) value = initialValue }
 
 @MainThread
-fun <ValueType> mutableLiveDataOf(initialValue: ValueType? = null): MutableLiveData<ValueType> {
-    val liveData = MutableLiveData<ValueType>()
-    if (initialValue != null) {
-        liveData.value = initialValue
-    }
-    return liveData
-}
+fun <ValueType> singleLiveEventOf() = SingleLiveEvent<ValueType>()
 
-@MainThread
-fun <ValueType> singleLiveEventOf(initialValue: ValueType? = null): SingleLiveEvent<ValueType> {
-    val liveData = SingleLiveEvent<ValueType>()
-    if (initialValue != null) {
-        liveData.value = initialValue
-    }
-    return liveData
-}

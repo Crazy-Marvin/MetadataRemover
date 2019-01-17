@@ -35,6 +35,6 @@ import rocks.poopjournal.metadataremover.model.resources.Image
  */
 fun ImageView.setImage(image: Image) {
     GlobalScope.launch(Dispatchers.Main) {
-        setImageDrawable(image.load(this@setImage.context))
+        setImageDrawable(image.load(context))
     }
 }

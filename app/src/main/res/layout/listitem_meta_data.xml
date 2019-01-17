@@ -32,6 +32,10 @@
             name="attribute"
             type="rocks.poopjournal.metadataremover.model.metadata.Metadata.Attribute" />
 
+        <import
+                type="android.view.View"
+                alias="View"/>
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -81,11 +85,12 @@
             app:layout_constraintTop_toTopOf="@id/baseline_top"
             app:layout_constraintBottom_toBottomOf="@id/baseline_bottom"
             app:layout_constraintLeft_toLeftOf="@id/baseline_start"
-            tools:src="@drawable/ic_landscape"
+                tools:src="@drawable/ic_event"
             android:src="@{attribute.icon}"
             android:tint="?android:textColorSecondary"
             android:tintMode="src_in"
-            android:contentDescription="@{attribute.label}" />
+                android:contentDescription="@{attribute.label}"
+                tools:ignore="UnusedAttribute"/>
 
         <TextView
             android:id="@+id/title"
@@ -111,6 +116,8 @@
             style="@style/Base.TextAppearance.AppCompat.Body1"
             android:textColor="?android:textColorSecondary"
             tools:text="12 MP\n4032x3024px\n4.22 MB"
+                tools:visibility="visible"
+                android:visibility="@{attribute.secondaryValue != null ? View.VISIBLE : View.GONE}"
             android:text="@{attribute.secondaryValue}" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

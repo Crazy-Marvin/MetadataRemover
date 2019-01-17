@@ -25,10 +25,15 @@
 package rocks.poopjournal.metadataremover.util.extensions.glide
 
 import com.bumptech.glide.RequestBuilder
+import kotlinx.coroutines.CoroutineStart
 import kotlinx.coroutines.Deferred
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
+import kotlin.coroutines.CoroutineContext
+import kotlin.coroutines.EmptyCoroutineContext
 
-fun <T> RequestBuilder<T>.async(): Deferred<T> =
-        GlobalScope.async(Dispatchers.IO) { submit().get() }
+fun <TranscodeType> RequestBuilder<TranscodeType>.async(
+        context: CoroutineContext = EmptyCoroutineContext,
+        start: CoroutineStart = CoroutineStart.DEFAULT
+): Deferred<TranscodeType> =
+        GlobalScope.async(context, start) { submit().get() }

@@ -24,37 +24,29 @@
 
 package rocks.poopjournal.metadataremover.util.extensions.android.architecture
 
-import android.annotation.SuppressLint
 import android.content.ContentResolver
 import android.content.Context
 import android.net.Uri
 import android.provider.OpenableColumns
-import android.webkit.MimeTypeMap
-import rocks.poopjournal.metadataremover.util.extensions.MimeType
+import androidx.core.net.toFile
+import rocks.poopjournal.metadataremover.model.resources.MediaType
 import rocks.poopjournal.metadataremover.util.extensions.android.getString
-import rocks.poopjournal.metadataremover.util.extensions.mimeType
-import java.io.File
-import java.text.SimpleDateFormat
-import java.util.*
+import rocks.poopjournal.metadataremover.util.extensions.mediaType
+import java.net.URLEncoder
 
-fun Uri.getMimeType(context: Context): MimeType? {
+fun Uri.getMediaType(context: Context): MediaType? {
     return when (scheme) {
-        ContentResolver.SCHEME_CONTENT -> context.contentResolver.getType(this)
-        else -> File(path).mimeType
+        ContentResolver.SCHEME_CONTENT -> context.contentResolver
+                .getType(this)
+                ?.let(MediaType.Companion::parse)
+        ContentResolver.SCHEME_FILE -> toFile().mediaType
+        else -> null
     }
 }
 
-@SuppressLint("SimpleDateFormat")
-fun Uri.getFileName(context: Context): String {
-    val mimeType = getMimeType(context)
-    val extension = MimeTypeMap.getSingleton()
-            .getExtensionFromMimeType(mimeType)
-            ?.let { ".$it" }
-            ?: ""
-    val defaultFileName = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date()) + extension
-
-    return if (scheme == ContentResolver.SCHEME_CONTENT) {
-        context.contentResolver
+fun Uri.getFileName(context: Context): String? {
+    return when (scheme) {
+        ContentResolver.SCHEME_CONTENT -> context.contentResolver
                 .query(
                         this,
                         arrayOf(OpenableColumns.DISPLAY_NAME),
@@ -64,7 +56,10 @@ fun Uri.getFileName(context: Context): String {
                 ?.use { cursor ->
                     cursor.takeIf { it.moveToFirst() }
                             ?.getString(OpenableColumns.DISPLAY_NAME)
+                            ?.let { URLEncoder.encode(it, Charsets.UTF_8.name()) }
+                            ?.takeUnless { it == "." || it == ".." }
                 }
-                ?: defaultFileName
-    } else defaultFileName
+        ContentResolver.SCHEME_FILE -> toFile().name
+        else -> null
+    }
 }

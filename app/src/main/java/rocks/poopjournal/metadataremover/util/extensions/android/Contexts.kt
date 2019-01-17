@@ -25,63 +25,11 @@
 package rocks.poopjournal.metadataremover.util.extensions.android
 
 import android.content.Context
-import android.content.pm.PackageManager
 import android.content.res.Resources
 import android.util.TypedValue
 import android.view.LayoutInflater
 import androidx.annotation.AttrRes
 import androidx.annotation.ColorInt
-import androidx.core.content.ContextCompat
-
-private object PreferenceKeys {
-    internal const val FIRST_START = "com.heinrichreimer.meinemensa.FIRST_START"
-}
-
-/**
- * Determine whether this [android.app.Application] is running the first time after installation.
- */
-val Context.isFirstStart: Boolean
-    get() = getPreferences()
-            .let { preferences ->
-                if (!preferences[PreferenceKeys.FIRST_START, true]) {
-                    // Not the first start
-                    false
-                } else {
-                    // First start
-                    preferences.edit {
-                        set(PreferenceKeys.FIRST_START, false)
-                    }
-                    true
-                }
-            }
-
-/**
- * Determine whether the given permission is allowed for this process/user running in the system.
- *
- * @param permission The uri of the permission being checked.
- *
- * @return [PackageManager.PERMISSION_GRANTED] if this process/user is allowed that permission,
- *  or [PackageManager.PERMISSION_DENIED] if it is not.
- *
- * @see PackageManager.checkPermission
- * @see Context.checkCallingPermission
- */
-fun Context.checkPermission(permission: String): Int {
-    return ContextCompat.checkSelfPermission(this, permission)
-}
-
-/**
- * Determine whether the given permission is allowed for this process/user running in the system.
- *
- * @param permission The uri of the permission being checked.
- *
- * @return `true` if this process/user is allowed that permission, or `false` if it is not.
- *
- * @see checkPermission
- */
-fun Context.hasPermission(permission: String): Boolean {
-    return checkPermission(permission) == PackageManager.PERMISSION_GRANTED
-}
 
 /**
  * Obtains the [LayoutInflater] from this [Context].

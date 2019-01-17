@@ -60,7 +60,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:title="@string/title_activity_about"
             app:contentInsetStart="@dimen/baseline_content"
-            app:navigationIcon="@drawable/ic_arow_back"
+                app:navigationIcon="@drawable/ic_arrow_back"
             app:navigationContentDescription="@string/image_content_description_navigate_up" />
 
         <ImageView
@@ -82,7 +82,7 @@
             app:constraint_referenced_ids="button_contact,button_support"
             app:barrierDirection="top" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/button_contact"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -91,10 +91,10 @@
             app:layout_constraintStart_toStartOf="@id/baseline_start"
             app:layout_constraintEnd_toStartOf="@id/button_support"
             app:layout_constraintHorizontal_chainStyle="spread"
-            style="@style/Widget.AppCompat.Button.Borderless"
+                style="@style/Widget.App.Button.Outlined"
             android:text="@string/title_button_about_contact" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/button_support"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -102,7 +102,7 @@
             app:layout_constraintBottom_toBottomOf="@id/baseline_bottom"
             app:layout_constraintStart_toEndOf="@id/button_contact"
             app:layout_constraintEnd_toEndOf="@id/baseline_end"
-            style="@style/Widget.AppCompat.Button.Borderless"
+                style="@style/Widget.App.Button.Outlined"
             android:text="@string/title_button_about_support" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

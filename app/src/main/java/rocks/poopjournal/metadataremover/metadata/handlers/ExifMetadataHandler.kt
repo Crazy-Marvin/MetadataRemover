@@ -25,51 +25,57 @@
 package rocks.poopjournal.metadataremover.metadata.handlers
 
 import android.content.Context
-import android.graphics.BitmapFactory
 import android.location.Geocoder
 import androidx.exifinterface.media.ExifInterface
-import rocks.poopjournal.metadataremover.R
 import rocks.poopjournal.metadataremover.model.metadata.Metadata
-import rocks.poopjournal.metadataremover.model.metadata.Metadata.Attribute
 import rocks.poopjournal.metadataremover.model.metadata.MetadataHandler
 import rocks.poopjournal.metadataremover.model.resources.Image
-import rocks.poopjournal.metadataremover.model.resources.Text
-import rocks.poopjournal.metadataremover.util.MimeTypes
-import rocks.poopjournal.metadataremover.util.extensions.MimeType
+import rocks.poopjournal.metadataremover.model.resources.MediaType
+import rocks.poopjournal.metadataremover.model.resources.MediaTypes
+import rocks.poopjournal.metadataremover.util.ImageFile
 import rocks.poopjournal.metadataremover.util.extensions.android.cameraAttribute
 import rocks.poopjournal.metadataremover.util.extensions.android.clearAllAttributes
+import rocks.poopjournal.metadataremover.util.extensions.android.creationAttribute
+import rocks.poopjournal.metadataremover.util.extensions.android.exposureAttribute
 import rocks.poopjournal.metadataremover.util.extensions.android.getLocationAttribute
-import rocks.poopjournal.metadataremover.util.extensions.format
-import rocks.poopjournal.metadataremover.util.extensions.lastModifiedAttribute
-import rocks.poopjournal.metadataremover.util.extensions.sizeAttribute
+import rocks.poopjournal.metadataremover.util.extensions.android.lensAttribute
+import rocks.poopjournal.metadataremover.util.extensions.android.lightAttribute
+import rocks.poopjournal.metadataremover.util.extensions.android.ownerAttribute
+import rocks.poopjournal.metadataremover.util.extensions.deleteIfExists
+import rocks.poopjournal.metadataremover.util.extensions.inputStream
 import java.io.File
-import java.util.*
+import java.util.Locale
 
 class ExifMetadataHandler(context: Context) : MetadataHandler {
 
     private val geocoder = Geocoder(context, Locale.getDefault())
 
-    override val writableMimeTypes = MimeTypes.JPEG
-    override val readableMimeTypes = MimeTypes.JPEG + MimeTypes.DNG + MimeTypes.CR2 +
-            MimeTypes.NEF + MimeTypes.NRW + MimeTypes.ARW +
-            MimeTypes.RW2 + MimeTypes.ORF + MimeTypes.PEF +
-            MimeTypes.SRW + MimeTypes.RAF
+    override val writableMimeTypes = MediaTypes[MediaTypes.JPEG]
+    override val readableMimeTypes = MediaTypes[MediaTypes.JPEG] +
+            MediaTypes[MediaTypes.DNG] + MediaTypes[MediaTypes.CR2] + MediaTypes[MediaTypes.NEF] +
+            MediaTypes[MediaTypes.NRW] + MediaTypes[MediaTypes.ARW] + MediaTypes[MediaTypes.RW2] +
+            MediaTypes[MediaTypes.ORF] + MediaTypes[MediaTypes.PEF] + MediaTypes[MediaTypes.SRW] +
+            MediaTypes[MediaTypes.RAF]
 
-    override suspend fun loadMetadata(mimeType: MimeType, inputFile: File): Metadata {
-        val exif = ExifInterface(inputFile.inputStream())
-        val thumbnail = exif.thumbnailBitmap
-                ?.let { Image(it) }
-                ?: Image(inputFile)
+    override suspend fun loadMetadata(mediaType: MediaType, inputFile: File): Metadata {
+        val exif = ExifInterface(inputFile.inputStream)
+        val thumbnail =
+                null // exif.thumbnailBitmap?.let { Image(it) }
+                // TODO Check whether the thumbnail is large enough.
+                        ?: Image(inputFile)
 
-        val imageFile = ImageResolution(inputFile)
+        val imageFile = ImageFile(inputFile)
 
-        val attributes = setOf(
-                inputFile.lastModifiedAttribute,
-                inputFile.sizeAttribute,
-                imageFile.attributes.resolution,
+        val attributes = listOfNotNull(
+                exif.creationAttribute,
+                imageFile.resolutionAttribute,
+                exif.exposureAttribute,
                 exif.getLocationAttribute(geocoder),
-                exif.cameraAttribute
-        ).filterNotNull()
+                exif.cameraAttribute,
+                exif.lensAttribute,
+                exif.lightAttribute,
+                exif.ownerAttribute
+        )
 
         return Metadata(
                 thumbnail = thumbnail,
@@ -78,12 +84,15 @@ class ExifMetadataHandler(context: Context) : MetadataHandler {
     }
 
     override suspend fun removeMetadata(
-            mimeType: MimeType,
+            mediaType: MediaType,
             inputFile: File,
             outputFile: File): Boolean {
-        if (mimeType !in writableMimeTypes) {
+        if (mediaType !in writableMimeTypes) {
             return false
         }
+
+        // Delete old output files.
+        outputFile.deleteIfExists()
 
         // Copy input file to output directory,
         // then edit that output file.
@@ -95,32 +104,5 @@ class ExifMetadataHandler(context: Context) : MetadataHandler {
                 .saveAttributes()
 
         return true
-    }
-
-    class ImageResolution(val file: File) : File(file.path) {
-        private val bitmapOptions =
-                BitmapFactory.Options()
-                        .apply { inJustDecodeBounds = true }
-                        .also { BitmapFactory.decodeFile(path, it) }
-        val x: Long = bitmapOptions.outWidth.toLong()
-        val y: Long = bitmapOptions.outHeight.toLong()
-        val pixels: Long = x * y
-
-        val attributes = Attributes()
-
-        inner class Attributes {
-            private val label: Text = pixels.let { pixels ->
-                if (pixels > 1_000_000) Text(R.string.description_attribute_image_resolution_mega_pixels, (pixels / 1_000_000).format(2))
-                else Text(R.string.description_attribute_image_resolution_pixels, pixels)
-            }
-            private val xyLabel: Text = Text(R.string.description_attribute_image_resolution_xy, x, y)
-
-            val resolution = Attribute(
-                    Text(R.string.label_attribute_file_size),
-                    Image(R.drawable.ic_landscape),
-                    label,
-                    xyLabel
-            )
-        }
     }
 }

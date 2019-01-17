@@ -26,40 +26,39 @@ package rocks.poopjournal.metadataremover.metadata.handlers
 
 import rocks.poopjournal.metadataremover.model.metadata.Metadata
 import rocks.poopjournal.metadataremover.model.metadata.MetadataHandler
-import rocks.poopjournal.metadataremover.util.extensions.MimeType
+import rocks.poopjournal.metadataremover.model.resources.MediaType
 import java.io.File
-import java.util.*
+import java.util.Queue
 
 class CombiningMetadataHandler(private val handlers: Queue<MetadataHandler>) : MetadataHandler {
 
     override val readableMimeTypes = handlers
-            .flatMap { handler ->
+            .flatMapTo(mutableSetOf()) { handler ->
                 handler.readableMimeTypes
             }
-            .toSet()
     override val writableMimeTypes = handlers
-            .flatMap { handler ->
+            .flatMapTo(mutableSetOf()) { handler ->
                 handler.writableMimeTypes
             }
-            .toSet()
 
-    override suspend fun loadMetadata(mimeType: MimeType, inputFile: File): Metadata? {
+    private fun findMetadataHandler(mediaType: MediaType): MetadataHandler? {
         return handlers
                 .find { fileHandler ->
-                    mimeType in fileHandler.readableMimeTypes
+                    mediaType in fileHandler.readableMimeTypes
                 }
-                ?.loadMetadata(mimeType, inputFile)
+    }
+
+    override suspend fun loadMetadata(mediaType: MediaType, inputFile: File): Metadata? {
+        return findMetadataHandler(mediaType)
+                ?.loadMetadata(mediaType, inputFile)
     }
 
     override suspend fun removeMetadata(
-            mimeType: MimeType,
+            mediaType: MediaType,
             inputFile: File,
             outputFile: File): Boolean {
-        return handlers
-                .find { fileHandler ->
-                    mimeType in fileHandler.writableMimeTypes
-                }
-                ?.removeMetadata(mimeType, inputFile, outputFile)
+        return findMetadataHandler(mediaType)
+                ?.removeMetadata(mediaType, inputFile, outputFile)
                 ?: false
     }
 }

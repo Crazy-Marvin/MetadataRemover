@@ -24,65 +24,9 @@
 
 package rocks.poopjournal.metadataremover.util.extensions
 
-/**
- * This number of seconds as milliseconds.
- */
-inline val Number.secondsToMilliseconds
-    inline get() = toLong() * 1000
+import java.text.DateFormat
+
+val attributeDateFormat: DateFormat = DateFormat.getDateInstance(DateFormat.LONG)
+val attributeTimeFormat: DateFormat = DateFormat.getTimeInstance(DateFormat.SHORT)
 
 
-/**
- * This number of minutes as seconds.
- */
-inline val Number.minutesToSeconds
-    inline get() = toLong() * 60
-
-/**
- * This number of minutes as milliseconds.
- */
-inline val Number.minutesToMilliseconds
-    inline get() = minutesToSeconds.secondsToMilliseconds
-
-
-/**
- * This number of hours as minutes.
- */
-inline val Number.hoursToMinutes
-    inline get() = toLong() * 60
-
-/**
- * This number of hours as seconds.
- */
-inline val Number.hoursToSeconds
-    inline get() = hoursToMinutes.minutesToSeconds
-
-/**
- * This number of hours as milliseconds.
- */
-inline val Number.hoursToMilliseconds
-    inline get() = hoursToMinutes.minutesToMilliseconds
-
-
-/**
- * This number of dateRange as hours.
- */
-inline val Number.daysToHours
-    inline get() = toLong() * 24
-
-/**
- * This number of dateRange as minutes.
- */
-inline val Number.daysToMinutes
-    inline get() = daysToHours.hoursToMinutes
-
-/**
- * This number of dateRange as seconds.
- */
-inline val Number.daysToSeconds
-    inline get() = daysToHours.hoursToSeconds
-
-/**
- * This number of dateRange as milliseconds.
- */
-inline val Number.daysToMilliseconds
-    inline get() = daysToHours.hoursToMilliseconds

@@ -27,12 +27,8 @@ package rocks.poopjournal.metadataremover.util.extensions
 import rocks.poopjournal.metadataremover.util.extensions.ScalePrefixes.SI_DOWNSCALE_PREFIXES
 import rocks.poopjournal.metadataremover.util.extensions.ScalePrefixes.SI_SCALE_FACTOR
 import rocks.poopjournal.metadataremover.util.extensions.ScalePrefixes.SI_UPSCALE_PREFIXES
-import java.math.BigDecimal
 import java.math.RoundingMode
 import java.text.DecimalFormat
-import java.text.NumberFormat
-import java.text.ParseException
-import java.util.*
 import kotlin.math.absoluteValue
 import kotlin.math.sign
 
@@ -72,7 +68,7 @@ fun Double.formatScaled(
                 prefixIndex++
             }
             scaled *= sign
-            "${scaled.format(digits)} ${downscalePrefixes[prefixIndex]}$unit"
+            "${scaled.format(digits)}\u200A${downscalePrefixes[prefixIndex]}$unit"
         }
         else -> {
             "${format(digits)} $unit"
@@ -104,18 +100,3 @@ fun Number.format(digits: Int): String =
                 .apply { roundingMode = RoundingMode.HALF_UP }
                 .format(this)
 
-fun BigDecimal.format(format: DecimalFormat): String = format.format(this)
-
-fun DecimalFormat.parseBigDecimal(source: String): BigDecimal? {
-    isParseBigDecimal = true
-    return try {
-        parseObject(source) as? BigDecimal
-    } catch (ignore: ParseException) {
-        null
-    }
-}
-
-val Locale.numberFormat: NumberFormat
-    get() = NumberFormat.getInstance(this)
-val Locale.decimalFormat: DecimalFormat
-    get() = numberFormat as DecimalFormat

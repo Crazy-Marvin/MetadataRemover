@@ -105,9 +105,9 @@
                 android:layout_marginTop="@dimen/baseline_card_inner_button_vertical"
                 app:layout_constraintTop_toBottomOf="@id/title" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_code"
-                style="@style/Widget.AppCompat.Button.Borderless"
+                    style="@style/Widget.App.Button.Borderless"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:minWidth="0dp"
@@ -118,24 +118,24 @@
                 app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintStart_toStartOf="@id/baseline_start_button" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_license"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:minWidth="0dp"
-                style="@style/Widget.AppCompat.Button.Borderless"
+                    style="@style/Widget.App.Button.Borderless"
                 android:text="@string/title_button_about_source_license"
                 app:layout_constraintTop_toBottomOf="@id/baseline_buttons_top"
                 app:layout_constraintBottom_toBottomOf="@id/baseline_bottom_button"
                 app:layout_constraintStart_toEndOf="@id/button_code"
                 app:layout_constraintEnd_toStartOf="@id/button_libraries" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_libraries"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:minWidth="0dp"
-                style="@style/Widget.AppCompat.Button.Borderless"
+                    style="@style/Widget.App.Button.Borderless"
                 android:text="@string/title_button_about_source_libraries"
                 app:layout_constraintTop_toBottomOf="@id/baseline_buttons_top"
                 app:layout_constraintBottom_toBottomOf="@id/baseline_bottom_button"

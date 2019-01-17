@@ -26,48 +26,54 @@ package rocks.poopjournal.metadataremover.viewmodel
 
 import android.app.Application
 import android.content.Intent
+import android.content.res.AssetFileDescriptor
 import androidx.core.content.FileProvider
 import androidx.lifecycle.AndroidViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.android.Main
 import kotlinx.coroutines.launch
 import rocks.poopjournal.metadataremover.BuildConfig
 import rocks.poopjournal.metadataremover.R
 import rocks.poopjournal.metadataremover.metadata.handlers.CombiningMetadataHandler
-import rocks.poopjournal.metadataremover.metadata.handlers.DummyMetadataHandler
 import rocks.poopjournal.metadataremover.metadata.handlers.ExifMetadataHandler
 import rocks.poopjournal.metadataremover.metadata.handlers.NopMetadataHandler
 import rocks.poopjournal.metadataremover.model.metadata.Metadata
+import rocks.poopjournal.metadataremover.model.resources.MediaType
+import rocks.poopjournal.metadataremover.model.resources.Resource
 import rocks.poopjournal.metadataremover.model.resources.Text
 import rocks.poopjournal.metadataremover.ui.AboutActivity
 import rocks.poopjournal.metadataremover.util.ActivityLauncher
 import rocks.poopjournal.metadataremover.util.ActivityResultLauncher
-import rocks.poopjournal.metadataremover.util.FilePicker
+import rocks.poopjournal.metadataremover.util.FileOpener
 import rocks.poopjournal.metadataremover.util.Logger
-import rocks.poopjournal.metadataremover.util.extensions.MimeType
 import rocks.poopjournal.metadataremover.util.extensions.android.architecture.applicationContext
 import rocks.poopjournal.metadataremover.util.extensions.android.architecture.mutableLiveDataOf
 import rocks.poopjournal.metadataremover.util.extensions.android.architecture.singleLiveEventOf
+import rocks.poopjournal.metadataremover.util.extensions.android.copyFrom
 import rocks.poopjournal.metadataremover.util.extensions.dequeOf
+import rocks.poopjournal.metadataremover.util.extensions.lastModifiedAttribute
+import rocks.poopjournal.metadataremover.util.extensions.nameAttribute
 import rocks.poopjournal.metadataremover.util.extensions.parseUri
+import rocks.poopjournal.metadataremover.util.extensions.size
+import rocks.poopjournal.metadataremover.util.extensions.sizeAttribute
 import rocks.poopjournal.metadataremover.util.extensions.startActivity
-import java.io.File
+import java.io.Closeable
 
 class MainViewModel(application: Application) :
         AndroidViewModel(application), MetadataViewModel, ActivityLauncherViewModel,
-        SnackbarViewModel, ActivityResultLauncherViewModel, ActivityResultLauncher {
+        ActivityResultLauncherViewModel, ActivityResultLauncher {
 
-    data class WrongMimeTypeFileSelectedHint(val mimeType: MimeType, val allowedMimeTypes: Set<MimeType>)
+    data class WrongMimeTypeFileSelectedHint(val mediaType: MediaType,
+            val allowedMediaTypes: Set<MediaType>)
 
-    override val metadata = mutableLiveDataOf<Metadata?>(null)
+    override val metadata = mutableLiveDataOf<Resource<Metadata>>(Resource.Empty())
     val wrongMimeTypeFileSelectedHint = singleLiveEventOf<WrongMimeTypeFileSelectedHint>()
     override val activityLaunchInfo = singleLiveEventOf<ActivityLauncher.LaunchInfo>()
     override val activityResultLaunchInfo = singleLiveEventOf<ActivityResultLauncher.LaunchInfo>()
-    override val snackbarMessage = singleLiveEventOf<SnackbarViewModel.SnackbarMessage>()
 
     private val metadataHandler = CombiningMetadataHandler(dequeOf(
             ExifMetadataHandler(applicationContext),
-            DummyMetadataHandler(),
             NopMetadataHandler() // For testing purposes only. TODO Remove after testing.
     ))
 
@@ -77,16 +83,14 @@ class MainViewModel(application: Application) :
     private val allowedMimeTypes
         get() = metadataHandler.writableMimeTypes
 
-    private var filePicker = FilePicker(
+    private var filePicker = FileOpener(
             applicationContext,
             this,
             ::openFile,
             ::onNoFileChooserInstalled,
             ::onWrongMimeTypeFileSelected)
 
-    private var inputFile: File? = null
-    private var inputMimeType: MimeType? = null
-    private var outputFile: File? = null
+    private var fileView: FileView? = null
 
     private fun onNoFileChooserInstalled() {
         // Search the Play store for a file explorer.
@@ -104,21 +108,30 @@ class MainViewModel(application: Application) :
         startActivity(searchIntent)
     }
 
-    private fun onWrongMimeTypeFileSelected(mimeType: MimeType, allowedMimeTypes: Set<MimeType>) {
-        wrongMimeTypeFileSelectedHint.value =
-                WrongMimeTypeFileSelectedHint(mimeType, allowedMimeTypes)
+    private fun onWrongMimeTypeFileSelected(mediaType: MediaType,
+            allowedMediaTypes: Set<MediaType>) {
+        GlobalScope.launch(Dispatchers.Main) {
+            wrongMimeTypeFileSelectedHint.value =
+                    WrongMimeTypeFileSelectedHint(mediaType, allowedMediaTypes)
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        filePicker.onActivityResult(requestCode, resultCode, data)
+        GlobalScope.launch(Dispatchers.Main) {
+            filePicker.onActivityResult(requestCode, resultCode, data)
+        }
     }
 
     override fun startActivityForResult(launchInfo: ActivityResultLauncher.LaunchInfo) {
-        activityResultLaunchInfo.value = launchInfo
+        GlobalScope.launch(Dispatchers.Main) {
+            activityResultLaunchInfo.value = launchInfo
+        }
     }
 
     override fun startActivity(launchInfo: ActivityLauncher.LaunchInfo) {
-        activityLaunchInfo.value = launchInfo
+        GlobalScope.launch(Dispatchers.Main) {
+            activityLaunchInfo.value = launchInfo
+        }
     }
 
     fun openAboutScreen() {
@@ -127,88 +140,134 @@ class MainViewModel(application: Application) :
     }
 
     fun openFile() {
-        filePicker.pickFile(allowedMimeTypes)
+        GlobalScope.launch(Dispatchers.Main) {
+            metadata.value = Resource.Loading()
+        }
+        filePicker.openFile(allowedMimeTypes)
     }
 
-    private fun openFile(inputFile: File, inputMimeType: MimeType) {
-        Logger.d("Opening file '${inputFile.name}' to display metadata...")
+    private inner class FileView(
+            val descriptor: AssetFileDescriptor,
+            val name: String,
+            val mediaType: MediaType
+    ) : Closeable {
+        override fun close() {
+            // Copy file output to descriptor, then close it.
+            if ('w' in filePicker.mode) {
+                descriptor.copyFrom(output)
+            }
+            descriptor.close()
 
-        this.inputFile = inputFile
-        this.inputMimeType = inputMimeType
+            // Delete temp files.
+            original.delete()
+            output.delete()
+        }
 
+        val nameWithoutExtension = name.substringBeforeLast(".")
+
+        private val sharedImagesDirectory = applicationContext.filesDir
+                .resolve("images")
+                .apply { mkdirs() }
+
+        val original = sharedImagesDirectory
+                .resolve(name)
+                .apply {
+                    createNewFile()
+                    copyFrom(descriptor)
+                }
+
+        val output = sharedImagesDirectory
+                .resolve("${original.nameWithoutExtension}_no_metadata" +
+                        if (original.extension.isNotEmpty()) ".${original.extension}" else "")
+                .apply {
+                    createNewFile()
+                }
+
+        val isMetadataRemoved
+            get() = output.size != 0L
+    }
+
+    private suspend fun openFile(descriptor: AssetFileDescriptor, name: String,
+            mediaType: MediaType) {
+        Logger.d("Opening file '$name' to display metadata...")
+
+        fileView = FileView(descriptor, name, mediaType)
         loadMetadata()
     }
 
-    private fun loadMetadata() {
-        val inputFile = inputFile ?: return
-        val inputMimeType = inputMimeType ?: return
+    private suspend fun loadMetadata() {
+        val fileView = fileView ?: return
+
+        val inputMetadata = metadataHandler.loadMetadata(fileView.mediaType, fileView.original)
+        if (inputMetadata == null) {
+            Logger.d("Couldn't load metadata for file '${fileView.name}'. " +
+                    "Maybe the file extension '${fileView.original.extension}' is not supported.")
+            // If the file couldn't be read, immediately close it.
+            closeFile()
+
+            GlobalScope.launch(Dispatchers.Main) {
+                metadata.value = Resource.Empty() // TODO Show a message that no metadata could be found.
+            }
+
+            return
+        }
+
+        val fileSystemAttributes = listOf(
+                fileView.original.nameAttribute,
+                fileView.original.lastModifiedAttribute, // TODO Remove this.
+                fileView.original.sizeAttribute
+        )
+        val outputMetadata = inputMetadata.copy(
+                title = inputMetadata.title ?: Text(fileView.nameWithoutExtension),
+                attributes = inputMetadata.attributes + fileSystemAttributes
+        )
 
         GlobalScope.launch(Dispatchers.Main) {
-            val inputMetadata = metadataHandler.loadMetadata(inputMimeType, inputFile)
-            if (inputMetadata == null) {
-                Logger.d("Couldn't load metadata for file '${inputFile.name}'. " +
-                        "Maybe the file extension '${inputFile.extension}' is not supported.")
-                // If the file couldn't be read, immediately close it.
-                closeFile()
-                // TODO("Show a message that no metadata could be found.")
-                return@launch
-            }
-            metadata.value = inputMetadata
-                    .copy(title = inputMetadata.title ?: Text(inputFile.nameWithoutExtension))
+            metadata.value = Resource.Success(outputMetadata)
         }
     }
 
     fun closeFile() {
-        metadata.value = null
+        GlobalScope.launch(Dispatchers.Main) {
+            metadata.value = Resource.Empty()
+        }
 
-        inputFile = null
-        inputMimeType = null
-
-        // Delete temp file.
-        outputFile?.delete()
-        outputFile = null
+        fileView?.close()
+        fileView = null
     }
 
     fun removeMetadata() {
-        if (outputFile != null) {
+        val fileView = fileView ?: return
+
+        if (fileView.isMetadataRemoved) {
             shareOutputFile()
             return
         }
 
-        val inputFile = inputFile ?: return
-        val inputMimeType = inputMimeType ?: return
-
-
-        val sharedImagesDir = applicationContext.filesDir
-                .resolve("images")
-                .apply { mkdirs() }
-        val outputFile = sharedImagesDir.resolve(
-                "${inputFile.nameWithoutExtension}_no_metadata.${inputFile.extension}")
-                .apply {
-                    createNewFile()
-                    deleteOnExit()
-                }
-        this.outputFile = outputFile
-
         GlobalScope.launch(Dispatchers.Main) {
-            metadataHandler.removeMetadata(inputMimeType, inputFile, outputFile)
+            metadataHandler.removeMetadata(
+                    fileView.mediaType,
+                    fileView.original,
+                    fileView.output
+            )
             shareOutputFile()
         }
     }
 
+    // TODO replace by just exiting with positive response.
     private fun shareOutputFile() {
-        val inputFile = inputFile ?: return
-        val outputFile = outputFile ?: return
+        val fileView = fileView ?: return
+        if (!fileView.isMetadataRemoved) return
 
         val fileUri =
                 try {
-                    Logger.d("Sharing '${outputFile.absolutePath}'.")
+                    Logger.d("Sharing '${fileView.output.absolutePath}'.")
                     FileProvider.getUriForFile(
                             applicationContext,
                             "${BuildConfig.APPLICATION_ID}.files",
-                            outputFile)
+                            fileView.output)
                 } catch (e: IllegalArgumentException) {
-                    Logger.e(e, "The selected file can't be shared: ${outputFile.name}")
+                    Logger.e(e, "The file can't be shared: ${fileView.output.name}")
                     null
                 }
 
@@ -223,7 +282,7 @@ class MainViewModel(application: Application) :
                     sendIntent,
                     applicationContext.getString(
                             R.string.title_intent_chooser_share_without_metadata,
-                            inputFile.name))
+                            fileView.name))
 
             startActivity(chooserIntent)
         }
