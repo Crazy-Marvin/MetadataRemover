@@ -27,16 +27,21 @@ package rocks.poopjournal.metadataremover.metadata.handlers
 import rocks.poopjournal.metadataremover.model.metadata.Metadata
 import rocks.poopjournal.metadataremover.model.metadata.MetadataHandler
 import rocks.poopjournal.metadataremover.model.resources.MediaType
+import rocks.poopjournal.metadataremover.util.extensions.dequeOf
 import java.io.File
-import java.util.Queue
+import java.util.*
 
-class CombiningMetadataHandler(private val handlers: Queue<MetadataHandler>) : MetadataHandler {
+class FirstMatchMetadataHandler(
+        private val handlers: Queue<MetadataHandler>
+) : MetadataHandler {
 
-    override val readableMimeTypes = handlers
+    constructor(vararg handlers: MetadataHandler) : this(dequeOf(*handlers))
+
+    override val readableMimeTypes: Set<MediaType> = handlers
             .flatMapTo(mutableSetOf()) { handler ->
                 handler.readableMimeTypes
             }
-    override val writableMimeTypes = handlers
+    override val writableMimeTypes: Set<MediaType> = handlers
             .flatMapTo(mutableSetOf()) { handler ->
                 handler.writableMimeTypes
             }

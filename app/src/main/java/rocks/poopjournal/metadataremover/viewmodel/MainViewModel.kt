@@ -34,8 +34,8 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import rocks.poopjournal.metadataremover.BuildConfig
 import rocks.poopjournal.metadataremover.R
-import rocks.poopjournal.metadataremover.metadata.handlers.CombiningMetadataHandler
 import rocks.poopjournal.metadataremover.metadata.handlers.ExifMetadataHandler
+import rocks.poopjournal.metadataremover.metadata.handlers.FirstMatchMetadataHandler
 import rocks.poopjournal.metadataremover.metadata.handlers.NopMetadataHandler
 import rocks.poopjournal.metadataremover.model.metadata.Metadata
 import rocks.poopjournal.metadataremover.model.resources.MediaType
@@ -65,10 +65,10 @@ class MainViewModel(application: Application) :
     override val activityLaunchInfo = singleLiveEventOf<ActivityLauncher.LaunchInfo>()
     override val activityResultLaunchInfo = singleLiveEventOf<ActivityResultLauncher.LaunchInfo>()
 
-    private val metadataHandler = CombiningMetadataHandler(dequeOf(
+    private val metadataHandler = FirstMatchMetadataHandler(
             ExifMetadataHandler(applicationContext),
             NopMetadataHandler() // For testing purposes only. TODO Remove after testing.
-    ))
+    )
 
     // For now we'll restrict file opening to mime types we can write to.
     // Later we might add support for just reading metadata for formats
