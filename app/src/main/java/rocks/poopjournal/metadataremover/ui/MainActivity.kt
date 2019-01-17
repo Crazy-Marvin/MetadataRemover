@@ -33,6 +33,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.github.zagum.expandicon.ExpandIconView.LESS
 import com.github.zagum.expandicon.ExpandIconView.MORE
 import com.google.android.material.snackbar.Snackbar
@@ -57,15 +58,27 @@ import rocks.poopjournal.metadataremover.viewmodel.MainViewModel
 
 class MainActivity : AppCompatActivity(), ActivityResultLauncher {
 
+    companion object {
+        private const val KEY_SLIDING_OFFSET = "SLIDING_OFFSET"
+    }
+
     private lateinit var binding: ActivityMainBinding
     private lateinit var viewModel: MainViewModel
 
+    @FloatRange(from = 0.0, to = 1.0)
+    private var slidingOffset: Float = 0f
+
     private val panelSlideListener: PanelSlideListener = object : PanelSlideListener {
         override fun onPanelSlide(panel: View, slideOffset: Float) {
-            onPanelSlide(slideOffset)
+            slidingOffset = slideOffset
+            onPanelSlide()
         }
 
-        override fun onPanelStateChanged(panel: View, previousState: SlidingUpPanelLayout.PanelState, newState: SlidingUpPanelLayout.PanelState) {
+        override fun onPanelStateChanged(
+                panel: View,
+                previousState: SlidingUpPanelLayout.PanelState,
+                newState: SlidingUpPanelLayout.PanelState
+        ) {
             binding.bottomSheet.expandCollapse.apply {
                 val state = when (newState) {
                     COLLAPSED -> LESS to R.string.title_menu_item_collapse
@@ -80,6 +93,10 @@ class MainActivity : AppCompatActivity(), ActivityResultLauncher {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        slidingOffset = savedInstanceState
+                ?.getFloat(KEY_SLIDING_OFFSET, slidingOffset)
+                ?: slidingOffset
 
         viewModel = ViewModelProviders.of(this).get()
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)!!
@@ -114,6 +131,11 @@ class MainActivity : AppCompatActivity(), ActivityResultLauncher {
     override fun onPause() {
         binding.slidingLayout.removePanelSlideListener(panelSlideListener)
         super.onPause()
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState[KEY_SLIDING_OFFSET] = slidingOffset
     }
 
     override fun startActivity(launchInfo: ActivityLauncher.LaunchInfo) =
@@ -161,14 +183,15 @@ class MainActivity : AppCompatActivity(), ActivityResultLauncher {
 
             listMetadata.apply {
                 adapter = MetaAttributeAdapter()
-                layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+                layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
             }
         }
 
-        onPanelSlide(slideOffset = 1.0f)
+        onPanelSlide()
     }
 
-    private fun onPanelSlide(@FloatRange(from = 0.0, to = 1.0) slideOffset: Float) {
+    private fun onPanelSlide() {
+        val slideOffset: Float = slidingOffset
         val panelHeight = binding.slidingLayout.height - binding.slidingLayout.panelHeight
         val absoluteOffset = panelHeight * slideOffset
         val reverseAbsoluteOffset = panelHeight * (1 - slideOffset)
@@ -183,7 +206,6 @@ class MainActivity : AppCompatActivity(), ActivityResultLauncher {
         binding.bottomSheet.buttonRemoveMetadata.translationY = -limitedReverseAbsoluteOffset
 
         if (binding.slidingLayout.panelState == DRAGGING) {
-            //val fraction = .5f + speedApproximation * .5f
             val fraction = 1 - (slideOffset
                     .coerceAtMost(binding.slidingLayout.anchorPoint) /
                     binding.slidingLayout.anchorPoint)
