@@ -75,11 +75,10 @@ class MainViewModel(application: Application) :
             NopMetadataHandler // For testing purposes only. TODO Remove after testing.
     )
 
-    // For now we'll restrict file opening to mime types we can write to.
-    // Later we might add support for just reading metadata for formats
-    // we can't write to.
+    // For now we'll restrict file opening to mime types we can read AND write to.
+    // Later we might add support for just reading metadata for formats we can't write to.
     private val allowedMimeTypes
-        get() = metadataHandler.writableMimeTypes
+        get() = metadataHandler.writableMimeTypes intersect metadataHandler.readableMimeTypes
 
     private var filePicker = FileOpener(
             applicationContext,

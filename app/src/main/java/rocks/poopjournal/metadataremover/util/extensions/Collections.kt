@@ -24,8 +24,7 @@
 
 package rocks.poopjournal.metadataremover.util.extensions
 
-import java.util.Deque
-import java.util.LinkedList
+import java.util.*
 
 
 /**
@@ -69,6 +68,15 @@ operator fun <A : Any, B : Any> Iterable<A>.times(other: Iterable<B>): Iterable<
         }
     }
 }
+
+infix fun <T> Set<T>.intersect(other: Set<T>): Set<T> =
+        filterTo(mutableSetOf()) { it in other }
+
+infix fun <T> List<T>.intersect(other: List<T>): List<T> =
+        filterTo(mutableListOf()) { it in other }
+
+infix fun <K, V> Map<K, V>.intersect(other: Map<K, V>): Map<K, V> =
+        filterTo(mutableMapOf()) { it in other.entries }
 
 /**
  * Returns a new [Deque] with the given elements.
