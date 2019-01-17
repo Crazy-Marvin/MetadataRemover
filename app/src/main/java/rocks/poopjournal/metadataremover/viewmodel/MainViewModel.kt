@@ -65,8 +65,13 @@ class MainViewModel(application: Application) :
     override val activityResultLaunchInfo = singleLiveEventOf<ActivityResultLauncher.LaunchInfo>()
     override val snackbarMessage = singleLiveEventOf<SnackbarViewModel.SnackbarMessage>()
 
-    private val metadataHandler = ROOT_METADATA_HANDLER
-    // For now w'll restrict file opening to mime types we can write to.
+    private val metadataHandler = CombiningMetadataHandler(dequeOf(
+            ExifMetadataHandler(applicationContext),
+            DummyMetadataHandler(),
+            NopMetadataHandler() // For testing purposes only. TODO Remove after testing.
+    ))
+
+    // For now we'll restrict file opening to mime types we can write to.
     // Later we might add support for just reading metadata for formats
     // we can't write to.
     private val allowedMimeTypes
@@ -222,11 +227,5 @@ class MainViewModel(application: Application) :
 
             startActivity(chooserIntent)
         }
-    }
-
-    companion object {
-        val ROOT_METADATA_HANDLER = CombiningMetadataHandler(dequeOf(
-                NopMetadataHandler() // For testing purposes only. TODO Remove after testing.
-        ))
     }
 }
