@@ -34,13 +34,12 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import rocks.poopjournal.metadataremover.BuildConfig
 import rocks.poopjournal.metadataremover.R
-import rocks.poopjournal.metadataremover.metadata.handlers.ExifMetadataHandler
-import rocks.poopjournal.metadataremover.metadata.handlers.FirstMatchMetadataHandler
-import rocks.poopjournal.metadataremover.metadata.handlers.NopMetadataHandler
+import rocks.poopjournal.metadataremover.metadata.handlers.*
 import rocks.poopjournal.metadataremover.model.metadata.Metadata
 import rocks.poopjournal.metadataremover.model.resources.MediaType
 import rocks.poopjournal.metadataremover.model.resources.Resource
 import rocks.poopjournal.metadataremover.model.resources.Text
+import rocks.poopjournal.metadataremover.model.util.toMetadataHandler
 import rocks.poopjournal.metadataremover.ui.AboutActivity
 import rocks.poopjournal.metadataremover.util.ActivityLauncher
 import rocks.poopjournal.metadataremover.util.ActivityResultLauncher
@@ -57,8 +56,10 @@ class MainViewModel(application: Application) :
         AndroidViewModel(application), MetadataViewModel, ActivityLauncherViewModel,
         ActivityResultLauncherViewModel, ActivityResultLauncher {
 
-    data class WrongMimeTypeFileSelectedHint(val mediaType: MediaType,
-            val allowedMediaTypes: Set<MediaType>)
+    data class WrongMimeTypeFileSelectedHint(
+            val mediaType: MediaType,
+            val allowedMediaTypes: Set<MediaType>
+    )
 
     override val metadata = mutableLiveDataOf<Resource<Metadata>>(Resource.Empty())
     val wrongMimeTypeFileSelectedHint = singleLiveEventOf<WrongMimeTypeFileSelectedHint>()
@@ -66,7 +67,11 @@ class MainViewModel(application: Application) :
     override val activityResultLaunchInfo = singleLiveEventOf<ActivityResultLauncher.LaunchInfo>()
 
     private val metadataHandler = FirstMatchMetadataHandler(
-            ExifMetadataHandler(applicationContext),
+            ApplyAllMetadataHandler(
+                    ExifMetadataHandler(applicationContext),
+                    DrewMetadataReader.toMetadataHandler(),
+                    PngMetadataWriter.toMetadataHandler()
+            ),
             NopMetadataHandler // For testing purposes only. TODO Remove after testing.
     )
 
