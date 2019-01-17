@@ -22,8 +22,6 @@
  * SOFTWARE.
  */
 
-@file:Suppress("SpellCheckingInspection", "SpellCheckingInspection")
-
 package rocks.poopjournal.metadataremover.draft
 
 /*
