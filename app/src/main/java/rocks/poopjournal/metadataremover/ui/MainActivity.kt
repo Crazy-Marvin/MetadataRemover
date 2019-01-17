@@ -60,18 +60,29 @@ class MainActivity : AppCompatActivity(), ActivityResultLauncher, AndroidViewDsl
     private lateinit var binding: ActivityMainBinding
     private lateinit var viewModel: MainViewModel
 
+    companion object {
+        private const val KEY_SLIDING_OFFSET = "SLIDING_OFFSET"
+    }
+
+    @FloatRange(from = 0.0, to = 1.0)
+    private var slidingOffset: Float = 0f
+
     private val panelSlideListener: PanelSlideListener = InnerPanelSlideListener()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_AUTO)
 
+        slidingOffset = savedInstanceState
+                ?.getFloat(KEY_SLIDING_OFFSET, slidingOffset)
+                ?: slidingOffset
+
         viewModel = ViewModelProviders.of(this).get()
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)!!
 
         initializeViews()
+        panelSlideListener.onPanelSlide(binding.slidingLayout, slidingOffset)
 
-        panelSlideListener.onPanelSlide(binding.slidingLayout, 1.0f)
         onPreviewUpdate(Resource.Empty())
 
         viewModel.wrongMimeTypeFileSelectedHint.observeNotNull(this) { event ->
@@ -101,6 +112,11 @@ class MainActivity : AppCompatActivity(), ActivityResultLauncher, AndroidViewDsl
     override fun onPause() {
         binding.slidingLayout.removePanelSlideListener(panelSlideListener)
         super.onPause()
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState[KEY_SLIDING_OFFSET] = slidingOffset
     }
 
     override fun startActivity(launchInfo: ActivityLauncher.LaunchInfo) =
@@ -307,9 +323,13 @@ class MainActivity : AppCompatActivity(), ActivityResultLauncher, AndroidViewDsl
 
     inner class InnerPanelSlideListener : PanelSlideListener {
 
-        override fun onPanelSlide(panel: View, @FloatRange(from = 0.0,
-                to = 1.0) slideOffset: Float) {
-            binding.apply {
+        override fun onPanelSlide(
+                panel: View,
+                @FloatRange(from = 0.0, to = 1.0) slideOffset: Float
+        ) {
+            slidingOffset = slideOffset
+
+            binding {
                 val expandCollapse = bottomSheet
                         .toolbar
                         .menu
@@ -338,9 +358,11 @@ class MainActivity : AppCompatActivity(), ActivityResultLauncher, AndroidViewDsl
             }
         }
 
-        override fun onPanelStateChanged(panel: View,
+        override fun onPanelStateChanged(
+                panel: View,
                 previousState: SlidingUpPanelLayout.PanelState,
-                newState: SlidingUpPanelLayout.PanelState) {
+                newState: SlidingUpPanelLayout.PanelState
+        ) {
             val expandCollapse = binding.bottomSheet
                     .toolbar
                     .menu
