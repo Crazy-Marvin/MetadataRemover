@@ -24,6 +24,10 @@
 <resources>
 
     <string name="label_attribute_file_size">Size</string>
+    <string name="label_attribute_image_resolution">Resolution</string>
+    <string name="description_attribute_image_resolution_xy">%1$i × %2$i</string>
+    <string name="description_attribute_image_resolution_pixels">%1$i Pixels</string>
+    <string name="description_attribute_image_resolution_mega_pixels">%1$s MP</string>
     <string name="label_attribute_file_last_modification_date_time">Last modification date &amp; time</string>
     <string name="label_attribute_file_creation_date_time">Creation date &amp; time</string>
     <string name="label_attribute_file_creation_camera">Camera</string>

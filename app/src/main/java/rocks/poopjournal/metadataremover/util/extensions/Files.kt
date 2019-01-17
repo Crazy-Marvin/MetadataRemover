@@ -31,13 +31,8 @@ import rocks.poopjournal.metadataremover.R
 import rocks.poopjournal.metadataremover.model.metadata.Metadata
 import rocks.poopjournal.metadataremover.model.resources.Image
 import rocks.poopjournal.metadataremover.model.resources.Text
-import rocks.poopjournal.metadataremover.util.extensions.Constants.dateFormat
-import rocks.poopjournal.metadataremover.util.extensions.Constants.sizeLabels
-import rocks.poopjournal.metadataremover.util.extensions.Constants.timeFormat
 import java.io.File
-import java.math.RoundingMode
 import java.text.DateFormat
-import java.text.DecimalFormat
 import java.util.*
 
 /**
@@ -59,11 +54,6 @@ val File.size: Long
 val File.lastModified: Long
     get() = lastModified()
 
-internal object Constants {
-    val dateFormat: DateFormat = DateFormat.getDateInstance(DateFormat.LONG)
-    val timeFormat: DateFormat = DateFormat.getTimeInstance(DateFormat.SHORT)
-    val sizeLabels = arrayOf("Bytes", "KB", "MB", "GB", "TB", "GB")
-}
 
 val File.sizeAttribute: Metadata.Attribute
     get() = Metadata.Attribute(
@@ -73,9 +63,11 @@ val File.sizeAttribute: Metadata.Attribute
             secondaryValue = Text("$sizeLabel ($size Bytes)")
     )
 
+private val dateFormat: DateFormat = DateFormat.getDateInstance(DateFormat.LONG)
+private val timeFormat: DateFormat = DateFormat.getTimeInstance(DateFormat.SHORT)
 val File.lastModifiedAttribute: Metadata.Attribute
     get() = Metadata.Attribute(
-            label = Text(R.string.label_attribute_file_creation_date_time),
+            label = Text(R.string.label_attribute_file_last_modification_date_time),
             icon = Image(R.drawable.ic_event),
             primaryValue = Text(dateFormat.format(lastModifiedDate)),
             secondaryValue = Text(timeFormat.format(lastModifiedDate))
@@ -85,21 +77,13 @@ val File.lastModifiedDate: Date
     get() = Date(lastModified)
 
 val File.sizeLabel: String
-    get() {
-        var scaledByteSize = size.toDouble()
-        var sizeLabelIndex = 0
-        while (scaledByteSize >= 1024 && sizeLabelIndex + 1 < sizeLabels.size) {
-            scaledByteSize /= 1024
-            sizeLabelIndex++
-        }
-        return "${round(scaledByteSize, 2)} ${sizeLabels[sizeLabelIndex]}"
-    }
-
-private fun round(number: Double, digits: Int): String {
-    return DecimalFormat("#.${"#".repeat(digits)}")
-            .apply { roundingMode = RoundingMode.HALF_UP }
-            .format(number)
-}
+    get() = size.formatScaled(
+            digits = 2,
+            unit = "B",
+            scaleFactor = 1024,
+            upscalePrefixes = arrayOf("K", "M", "G", "T", "G"),
+            downscalePrefixes = emptyArray()
+    )
 
 val File.inputStream
     get() = inputStream()
