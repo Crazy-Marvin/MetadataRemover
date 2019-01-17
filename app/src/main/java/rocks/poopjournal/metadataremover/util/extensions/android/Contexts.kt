@@ -25,11 +25,15 @@
 package rocks.poopjournal.metadataremover.util.extensions.android
 
 import android.content.Context
+import android.content.res.Configuration
 import android.content.res.Resources
+import android.os.Build
+import android.os.LocaleList
 import android.util.TypedValue
 import android.view.LayoutInflater
 import androidx.annotation.AttrRes
 import androidx.annotation.ColorInt
+import java.util.*
 
 /**
  * Obtains the [LayoutInflater] from this [Context].
@@ -48,3 +52,16 @@ fun Resources.Theme.getColor(@AttrRes attribute: Int): Int {
             .also { resolveAttribute(attribute, it, true) }
             .data
 }
+
+val Context.defaultLocale: Locale?
+    get() = resources.defaultLocale
+
+val Resources.defaultLocale: Locale?
+    get() = configuration.defaultLocale
+
+val Configuration.defaultLocale: Locale?
+    get() {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            locales.takeUnless(LocaleList::isEmpty)?.get(0)
+        } else locale
+    }

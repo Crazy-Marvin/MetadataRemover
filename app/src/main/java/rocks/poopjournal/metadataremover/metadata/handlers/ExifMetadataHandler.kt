@@ -33,22 +33,15 @@ import rocks.poopjournal.metadataremover.model.resources.Image
 import rocks.poopjournal.metadataremover.model.resources.MediaType
 import rocks.poopjournal.metadataremover.model.resources.MediaTypes
 import rocks.poopjournal.metadataremover.util.ImageFile
-import rocks.poopjournal.metadataremover.util.extensions.android.cameraAttribute
-import rocks.poopjournal.metadataremover.util.extensions.android.clearAllAttributes
-import rocks.poopjournal.metadataremover.util.extensions.android.creationAttribute
-import rocks.poopjournal.metadataremover.util.extensions.android.exposureAttribute
-import rocks.poopjournal.metadataremover.util.extensions.android.getLocationAttribute
-import rocks.poopjournal.metadataremover.util.extensions.android.lensAttribute
-import rocks.poopjournal.metadataremover.util.extensions.android.lightAttribute
-import rocks.poopjournal.metadataremover.util.extensions.android.ownerAttribute
+import rocks.poopjournal.metadataremover.util.extensions.android.*
 import rocks.poopjournal.metadataremover.util.extensions.deleteIfExists
 import rocks.poopjournal.metadataremover.util.extensions.inputStream
 import java.io.File
-import java.util.Locale
+import java.util.*
 
 class ExifMetadataHandler(context: Context) : MetadataHandler {
 
-    private val geocoder = Geocoder(context, Locale.getDefault())
+    private val geocoder = Geocoder(context, context.defaultLocale ?: Locale.getDefault())
 
     override val writableMimeTypes = MediaTypes[MediaTypes.JPEG]
     override val readableMimeTypes = MediaTypes[MediaTypes.JPEG] +
