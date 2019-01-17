@@ -39,9 +39,11 @@ import rocks.poopjournal.metadataremover.util.extensions.inputStream
 import java.io.File
 import java.util.*
 
-class ExifMetadataHandler(context: Context) : MetadataHandler {
+class ExifMetadataHandler(context: Context? = null) : MetadataHandler {
 
-    private val geocoder = Geocoder(context, context.defaultLocale ?: Locale.getDefault())
+    private val geocoder = context?.let {
+        Geocoder(context, context.defaultLocale ?: Locale.getDefault())
+    }
 
     override val writableMimeTypes = MediaTypes[MediaTypes.JPEG]
     override val readableMimeTypes = MediaTypes[MediaTypes.JPEG] +
