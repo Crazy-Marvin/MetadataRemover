@@ -260,7 +260,7 @@ val ExifInterface.creationAttribute: Metadata.Attribute?
         )
     }
 
-val exifDateFormat = SimpleDateFormat("YYYY:MM:DD HH:MM:SS", Locale.getDefault())
+val exifDateFormat = SimpleDateFormat("YYYY:MM:DD HH:MM:SS", Locale.US)
 val ExifInterface.creationDate: Date?
     get() {
         val dateTimeString = getAttribute(ExifInterface.TAG_DATETIME_ORIGINAL)
