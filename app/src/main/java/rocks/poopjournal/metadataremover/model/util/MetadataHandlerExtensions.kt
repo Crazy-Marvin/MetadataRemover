@@ -9,20 +9,22 @@ import rocks.poopjournal.metadataremover.model.metadata.MetadataWriter
  * Construct a [MetadataHandler] using this [MetadataReader] for reading
  * and a [NopMetadataHandler] for writing.
  */
-fun MetadataReader.toMetadataHandler(): MetadataHandler {
-    return object : MetadataHandler,
-            MetadataReader by this,
-            MetadataWriter by NopMetadataHandler {
-    }
-}
+fun MetadataReader.toMetadataHandler(): MetadataHandler =
+        MetadataReaderDelegateHandler(this)
+
+private class MetadataReaderDelegateHandler(val delegate: MetadataReader) :
+        MetadataHandler,
+        MetadataReader by delegate,
+        MetadataWriter by NopMetadataHandler
 
 /**
  * Construct a [MetadataHandler] using this [MetadataWriter] for writing
  * and a [NopMetadataHandler] for reading.
  */
-fun MetadataWriter.toMetadataHandler(): MetadataHandler {
-    return object : MetadataHandler,
-            MetadataWriter by this,
-            MetadataReader by NopMetadataHandler {
-    }
-}
+fun MetadataWriter.toMetadataHandler(): MetadataHandler =
+        MetadataWriterDelegateHandler(this)
+
+private class MetadataWriterDelegateHandler(val delegate: MetadataWriter) :
+        MetadataHandler,
+        MetadataWriter by delegate,
+        MetadataReader by NopMetadataHandler
