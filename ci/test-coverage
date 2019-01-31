@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Set up code coverage report
-../gradlew --console=plain jacocoTestReport
+./gradlew --console=plain jacocoTestReport
 
 # Upload code coverage report
 bash <(curl -s https://codecov.io/bash)

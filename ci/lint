@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-../gradlew --console=plain -Pci lint
+./gradlew --console=plain -Pci lint

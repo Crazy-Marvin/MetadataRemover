@@ -6,7 +6,6 @@ env:
     - ANDROID_SDK=28
     - GOOGLE_APIS=24
     - ADB_INSTALL_TIMEOUT=5 # Emulator install timeout in minutes
-    - EMULATOR_ABI=armeabi-v7a
 
 # Android build system
 android:
@@ -31,7 +30,7 @@ android:
 stages:
 - "Build"
 - "Lint"
-- "Tests"
+- "Test"
 - "Test Coverage"
 
 jobs:
@@ -41,17 +40,17 @@ jobs:
     script: ./ci/assemble
   - name: "Lint"
     script: ./ci/lint
-  - stage: "Tests"
-    name: "Unit Tests"
+  - stage: "Test"
+    name: "Unit Test"
     script: ./ci/unit-tests
-  - name: "Integration Tests"
+  - name: "Integration Test"
     script: ./ci/integration-tests
     env:
     # Emulator configurations
     # (ensure that the configuration is available using
     # "android list sdk --no-ui --all" and "android list targets")
-    - EMULATOR_ANDROID_SDK=21
-    - EMULATOR_ANDROID_SDK=19
+    - EMULATOR_ANDROID_SDK=21 EMULATOR_ABI=armeabi-v7a
+    - EMULATOR_ANDROID_SDK=19 EMULATOR_ABI=armeabi-v7a
   - stage: coverage
     name: "Test Coverage"
     script: ./ci/test-coverage
