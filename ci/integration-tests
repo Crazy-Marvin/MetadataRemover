@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+# Emulator management:
+
+# List available devices.
+android list targets
+# Create AVD.
+echo no | android create avd --force -n test -t android-${EMULATOR_ANDROID_SDK} --abi ${EMULATOR_ABI}
+# Start AVD.
+emulator -avd test -no-audio -no-window &
+# Wait for AVD to start.
+android-wait-for-emulator
+# Press "menu" key.
+adb shell input keyevent 82 &
+
+
+ # Generate code coverage tests ("travis_wait 20 <command>" is needed because Travis kills the build
+  # after 10 minutes without log output. More info:
+  # https://docs.travis-ci.com/user/common-build-problems/#Build-times-out-because-no-output-was-received )
+adb shell setprop dalvik.vm.dexopt-flags v=n,o=v
+travis_wait 20 ./gradlew --console=plain connectedCheck

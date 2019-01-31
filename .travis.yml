@@ -1,7 +1,5 @@
 language: android
 
-#sudo: false # Use container based build mechanism
-
 env:
   global:
     - BUILD_TOOLS=28.0.3
@@ -33,35 +31,23 @@ android:
     - sys-img-${ANDROID_EMULATOR_ABI}-android-$EMULATOR_ANDROID_SDK
     - sys-img-${ANDROID_EMULATOR_ABI}-google_apis-$EMULATOR_ANDROID_SDK
 
-# Installation routine
-# Scripts to run before installation
-before_install:
-  - android list sdk --no-ui --all
-  - sleep 10
-  - chmod +x gradlew
-# Scripts to run before test
-before_script:
-  # Set up code coverage report
-  - ./gradlew build jacocoTestReport assembleAndroidTest --stacktrace
-  # Emulator management: create, start and wait
-  #- android list targets
-  - echo no | android create avd --force -n test -t android-$EMULATOR_ANDROID_SDK --abi $EMULATOR_ABI
-  - emulator -avd test -no-audio -no-window &
-  - android-wait-for-emulator
-  - adb shell input keyevent 82 &
-# Scripts to run for test
-script:
-  # Generate code coverage tests ("travis_wait 20 <command>" is needed because Travis kills the build
-  # after 10 minutes without log output. More info:
-  # https://docs.travis-ci.com/user/common-build-problems/#Build-times-out-because-no-output-was-received )
-  - adb shell setprop dalvik.vm.dexopt-flags v=n,o=v
-  - travis_wait 20 ./gradlew connectedCheck --stacktrace
-  # Run android tests
-  - travis_wait 20 ./gradlew connectedAndroidTest --stacktrace
-after_success:
-  # Upload code coverage report
-  - bash <(curl -s https://codecov.io/bash)
-  
+
+jobs:
+  include:
+  - stage: "Build"
+    name: "Assemble"
+    script: ./ci/assemble
+  - name: "Lint"
+    script: ./ci/lint
+  - stage: "Tests"
+    name: "Unit Tests"
+    script: ./ci/unit-tests
+  - name: "Integration Tests"
+    script: ./ci/integration-tests
+  - stage: coverage
+    name: "Test Coverage"
+    script: ./ci/test-coverage
+
 # Use Travis CI's cache management
 before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
