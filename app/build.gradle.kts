@@ -99,6 +99,12 @@ junitJacoco {
     includeInstrumentationCoverageInMergedReport = true
 }
 
+val jacocoTestReport by tasks.creating {
+    group = "reporting"
+    dependsOn("jacocoTestReportDebug", "jacocoTestReportRelease")
+}
+
+
 //play {
 //    val credentialsFile = project
 //            .ext
