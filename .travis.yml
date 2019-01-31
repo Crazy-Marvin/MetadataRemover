@@ -7,9 +7,12 @@ env:
     - GOOGLE_APIS=24
     - ADB_INSTALL_TIMEOUT=5 # Emulator install timeout in minutes
   matrix:
-    # Emulator configurations (ensure that the configuration is available using "android list sdk --no-ui --all" and "android list targets")
-    - EMULATOR_ANDROID_SDK=21 EMULATOR_ABI=armeabi-v7a
-    - EMULATOR_ANDROID_SDK=19 EMULATOR_ABI=armeabi-v7a
+  # Emulator configurations
+  # (ensure that the configuration is available using
+  # "android list sdk --no-ui --all" and "android list targets")
+  - EMULATOR_ABI=armeabi-v7a
+  - EMULATOR_ANDROID_SDK=21
+  - EMULATOR_ANDROID_SDK=19
 
 # Android build system
 android:
