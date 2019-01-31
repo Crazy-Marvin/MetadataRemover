@@ -48,6 +48,7 @@ jobs:
     name: "Test Coverage"
     script: ./ci/test-coverage
 
+
 # Use Travis CI's cache management
 before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
