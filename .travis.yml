@@ -4,14 +4,14 @@ language: android
 
 env:
   global:
-    - BUILD_TOOLS=26.0.2
-    - ANDROID_SDK=27
+    - BUILD_TOOLS=28.0.3
+    - ANDROID_SDK=28
     - GOOGLE_APIS=24
     - ADB_INSTALL_TIMEOUT=5 # Emulator install timeout in minutes
   matrix:
-    # Emulator configurations (ensure that the configuration is available using "android list sdk --no-ui --all --extended" and "android list targets")
+    # Emulator configurations (ensure that the configuration is available using "android list sdk --no-ui --all" and "android list targets")
     - EMULATOR_ANDROID_SDK=21 EMULATOR_ABI=armeabi-v7a
-    # - EMULATOR_ANDROID_SDK=19 EMULATOR_ABI=armeabi-v7a
+    - EMULATOR_ANDROID_SDK=19 EMULATOR_ABI=armeabi-v7a
 
 # Android build system
 android:
@@ -32,11 +32,15 @@ android:
     # Emulators to run during tests
     - sys-img-${ANDROID_EMULATOR_ABI}-android-$EMULATOR_ANDROID_SDK
     - sys-img-${ANDROID_EMULATOR_ABI}-google_apis-$EMULATOR_ANDROID_SDK
+  licenses:
+    - 'android-sdk-preview-license-.+'
+    - 'android-sdk-license-.+'
+    - 'google-gdk-license-.+'
 
 # Installation routine
 # Scripts to run before installation
 before_install:
-  - android list sdk --no-ui --all --extended
+  - android list sdk --no-ui --all
   - sleep 10
   - chmod +x gradlew
 # Scripts to run before test
