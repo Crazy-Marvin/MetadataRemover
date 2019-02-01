@@ -162,7 +162,11 @@ dependencies {
     //implementation("org.apache.tika:tika-parsers:1.17")
     implementation("com.drewnoakes:metadata-extractor:2.11.0")
     // https://mvnrepository.com/artifact/ar.com.hjg/pngj
-    implementation("ar.com.hjg:pngj:2.1.0")
+    implementation("ar.com.hjg:pngj:2.1.0") {
+        // Explicitly exclude the AWT library,
+        // as that is not available on Android.
+        exclude(group = "java.awt.image")
+    }
 
     //implementation("com.getkeepsafe.taptargetview:taptargetview:1.9.1")
     implementation("com.sothree.slidinguppanel:library:3.4.0")

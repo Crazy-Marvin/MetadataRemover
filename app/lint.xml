@@ -6,4 +6,7 @@
         <ignore path="src/main/res/mipmap-xxxhdpi/ic_launcher_background.png"/>
         <ignore path="src/main/res/mipmap-xxxhdpi/ic_launcher_foreground.png"/>
     </issue>
+    <issue id="InvalidPackage">
+        <ignore path="*.pngj.*" />
+    </issue>
 </lint>
