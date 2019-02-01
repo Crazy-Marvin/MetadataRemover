@@ -1,6 +1,11 @@
 language: android
 
 env:
+# Emulator configurations
+# (ensure that the configuration is available using
+# "android list sdk --no-ui --all" and "android list targets")
+- EMULATOR_ANDROID_SDK=21 EMULATOR_ABI=armeabi-v7a
+- EMULATOR_ANDROID_SDK=19 EMULATOR_ABI=armeabi-v7a
   global:
     - BUILD_TOOLS=28.0.3
     - ANDROID_SDK=28
@@ -38,21 +43,15 @@ jobs:
   - stage: "Build"
     name: "Assemble"
     script: ./ci/assemble
-  - name: "Lint"
-    script: ./ci/lint
   - stage: "Test"
-    name: "Unit Test"
+    name: "Lint"
+    script: ./ci/lint
+  - name: "Unit test"
     script: ./ci/unit-tests
-  - name: "Integration Test"
+  - name: "Integration test"
     script: ./ci/integration-tests
-    env:
-    # Emulator configurations
-    # (ensure that the configuration is available using
-    # "android list sdk --no-ui --all" and "android list targets")
-    - EMULATOR_ANDROID_SDK=21 EMULATOR_ABI=armeabi-v7a
-    - EMULATOR_ANDROID_SDK=19 EMULATOR_ABI=armeabi-v7a
-  - stage: coverage
-    name: "Test Coverage"
+  - stage: "Coverage"
+    name: "Test coverage"
     script: ./ci/test-coverage
 
 
