@@ -6,12 +6,6 @@ env:
   - ANDROID_SDK=28
   - GOOGLE_APIS=24
   - ADB_INSTALL_TIMEOUT=5 # Emulator install timeout in minutes
-  matrix:
-  # Emulator configurations
-  # (ensure that the configuration is available using
-  # "android list sdk --no-ui --all --extended" and "android list targets")
-  - EMULATOR_ANDROID_SDK=21 EMULATOR_ABI=armeabi-v7a
-  - EMULATOR_ANDROID_SDK=19 EMULATOR_ABI=armeabi-v7a
 
 # Android build system
 android:
@@ -20,8 +14,6 @@ android:
   # Platform tools
   - tools
   - platform-tools
-  # Required to get the newest Android SDK tools (see https://docs.travis-ci.com/user/languages/android/#Installing-a-newer-SDK-Platform-Tools-revision)
-  - tools
   # Gradle build tools version
   - build-tools-$BUILD_TOOLS
   # Target SDK version
@@ -29,9 +21,6 @@ android:
   # Support libraries
   - extra-google-m2repository
   - extra-android-m2repository
-  # Emulators to run during tests
-  - sys-img-${ANDROID_EMULATOR_ABI}-android-$EMULATOR_ANDROID_SDK
-  - sys-img-${ANDROID_EMULATOR_ABI}-google_apis-$EMULATOR_ANDROID_SDK
 
 stages:
 - "Build"
@@ -51,6 +40,19 @@ jobs:
     script: ./ci/unit-tests
   - name: "Integration test"
     script: ./ci/integration-tests
+    android:
+      # SDK components to load before test
+      components:
+      # Emulators to run during tests
+      - sys-img-${ANDROID_EMULATOR_ABI}-android-$EMULATOR_ANDROID_SDK
+      - sys-img-${ANDROID_EMULATOR_ABI}-google_apis-$EMULATOR_ANDROID_SDK
+    env:
+      matrix:
+      # Emulator configurations
+      # (ensure that the configuration is available using
+      # "android list sdk --no-ui --all --extended" and "android list targets")
+      - EMULATOR_ANDROID_SDK=21 EMULATOR_ABI=armeabi-v7a
+      - EMULATOR_ANDROID_SDK=19 EMULATOR_ABI=armeabi-v7a
   - stage: "Coverage"
     name: "Test coverage"
     script: ./ci/test-coverage
