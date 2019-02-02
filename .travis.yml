@@ -1,36 +1,37 @@
 language: android
 
 env:
-# Emulator configurations
-# (ensure that the configuration is available using
-# "android list sdk --no-ui --all" and "android list targets")
-- EMULATOR_ANDROID_SDK=21 EMULATOR_ABI=armeabi-v7a
-- EMULATOR_ANDROID_SDK=19 EMULATOR_ABI=armeabi-v7a
   global:
-    - BUILD_TOOLS=28.0.3
-    - ANDROID_SDK=28
-    - GOOGLE_APIS=24
-    - ADB_INSTALL_TIMEOUT=5 # Emulator install timeout in minutes
+  - BUILD_TOOLS=28.0.3
+  - ANDROID_SDK=28
+  - GOOGLE_APIS=24
+  - ADB_INSTALL_TIMEOUT=5 # Emulator install timeout in minutes
+  matrix:
+  # Emulator configurations
+  # (ensure that the configuration is available using
+  # "android list sdk --no-ui --all --extended" and "android list targets")
+  - EMULATOR_ANDROID_SDK=21 EMULATOR_ABI=armeabi-v7a
+  - EMULATOR_ANDROID_SDK=19 EMULATOR_ABI=armeabi-v7a
 
 # Android build system
 android:
   # SDK components to load before test
   components:
-    # Platform tools
-    - tools
-    - platform-tools
-    # Required to get the newest Android SDK tools (see https://docs.travis-ci.com/user/languages/android/#Installing-a-newer-SDK-Platform-Tools-revision)
-    - tools
-    # Gradle build tools version
-    - build-tools-$BUILD_TOOLS
-    # Target SDK version
-    - android-$ANDROID_SDK
-    # Support libraries
-    - extra-google-m2repository
-    - extra-android-m2repository
-    # Emulators to run during tests
-    - sys-img-${ANDROID_EMULATOR_ABI}-android-$EMULATOR_ANDROID_SDK
-    - sys-img-${ANDROID_EMULATOR_ABI}-google_apis-$EMULATOR_ANDROID_SDK
+  # Platform tools
+  - tools
+  - platform-tools
+  # Required to get the newest Android SDK tools (see https://docs.travis-ci.com/user/languages/android/#Installing-a-newer-SDK-Platform-Tools-revision)
+  - tools
+  # Gradle build tools version
+  - build-tools-$BUILD_TOOLS
+  # Target SDK version
+  - android-$ANDROID_SDK
+  # Support libraries
+  - extra-google-m2repository
+  - extra-android-m2repository
+  # Emulators to run during tests
+  - sys-img-${ANDROID_EMULATOR_ABI}-android-$EMULATOR_ANDROID_SDK
+  - sys-img-${ANDROID_EMULATOR_ABI}-google_apis-$EMULATOR_ANDROID_SDK
 
 stages:
 - "Build"
@@ -57,10 +58,10 @@ jobs:
 
 # Use Travis CI's cache management
 before_cache:
-  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
-  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+- rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+- rm -fr $HOME/.gradle/caches/*/plugin-resolution/
 cache:
   directories:
-    - $HOME/.gradle/caches/
-    - $HOME/.gradle/wrapper/
-    - $HOME/.android/build-cache
+  - $HOME/.gradle/caches/
+  - $HOME/.gradle/wrapper/
+  - $HOME/.android/build-cache
