@@ -29,7 +29,7 @@ plugins {
     kotlinAndroid
     kotlinAndroidExtensions
     kotlinKapt
-//    googlePlayPublishing
+    ifNotCi { googlePlayPublishing }
     ifNotCi { fDroidPublishing }
     jacocoAndroid
     spoon
@@ -113,22 +113,23 @@ spoon {
     numShards = 10
 }
 
-//play {
-//    val credentialsFile = project
-//            .ext
-//            .properties["googleplay.credentials"]
-//            ?.let(::file)
-//    if (credentialsFile == null) {
-//        System.err.println("Could not find Google Play credentials.")
-//        commit = false
-//    }
-//    else {
-//        serviceAccountCredentials = credentialsFile
-//    }
-//
-//    track = "internal"
-//    resolutionStrategy = "fail"
-//}
+play {
+    println("local.properties: ${project.localProperties}")
+    val credentialsFile = project
+            .localProperties["googleplay.credentials"]
+            .also { println("googleplay.credentials: $it") }
+            ?.let(::file)
+    if (credentialsFile == null) {
+        System.err.println("Could not find Google Play credentials.")
+        commit = false
+    }
+    else {
+        serviceAccountCredentials = credentialsFile
+    }
+
+    track = "internal"
+    resolutionStrategy = "fail"
+}
 
 repositories(Repositories.app)
 dependencies(Dependencies.app)
