@@ -19,6 +19,8 @@ if test ! -e ${SDK_DOWNLOAD_ZIP}
 then
     echo "Downloading SDK tools from $SDK_DOWNLOAD_URL to $SDK_DOWNLOAD_ZIP."
     curl ${SDK_DOWNLOAD_URL} > ${SDK_DOWNLOAD_ZIP}
+else
+    echo "Skipped download. Archive already exists."
 fi
 echo "Unzipping $SDK_DOWNLOAD_ZIP."
 unzip -qq -n ${SDK_DOWNLOAD_ZIP} -d ${ANDROID_HOME}
@@ -27,8 +29,11 @@ unzip -qq -n ${SDK_DOWNLOAD_ZIP} -d ${ANDROID_HOME}
 # Download SDK tools.
 echo "Installing SDK tools."
 silent-sdkmanager "tools"
+echo "Installing build tools $ANDROID_BUILD_TOOLS."
 silent-sdkmanager "build-tools;$ANDROID_BUILD_TOOLS"
+echo "Installing platform tools."
 silent-sdkmanager "platform-tools"
+echo "Installing Android platform SDK $ANDROID_SDK."
 silent-sdkmanager "platforms;android-$ANDROID_SDK"
 
 update-sdk
