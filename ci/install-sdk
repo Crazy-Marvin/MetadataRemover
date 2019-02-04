@@ -17,7 +17,7 @@ SDK_DOWNLOAD_ZIP="$SDK_DOWNLOAD_DIR/sdk-tools.zip"
 mkdir -p ${SDK_DOWNLOAD_DIR}
 if test ! -e ${SDK_DOWNLOAD_ZIP}
 then
-    echo "Downloading SDK tools from $SDK_DOWNLOAD_URL to $SDK_DOWNLOAD_ZIP."
+    echo "Fetching SDK tools from $SDK_DOWNLOAD_URL."
     curl ${SDK_DOWNLOAD_URL} > ${SDK_DOWNLOAD_ZIP}
 else
     echo "Skipped download. Archive already exists."
