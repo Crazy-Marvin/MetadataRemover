@@ -11,12 +11,10 @@ fi
 unzip -qq -n "$SDK_DOWNLOAD_DIR/sdk-tools.zip" -d ${ANDROID_HOME}
 
 
-CI_SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
-
 # Download SDK tools.
-${CI_SCRIPT_DIR}/silent-sdkmanager "tools"
-${CI_SCRIPT_DIR}/silent-sdkmanager "build-tools;$ANDROID_BUILD_TOOLS"
-${CI_SCRIPT_DIR}/silent-sdkmanager "platform-tools"
-${CI_SCRIPT_DIR}/silent-sdkmanager "platforms;android-$ANDROID_SDK"
+silent-sdkmanager "tools"
+silent-sdkmanager "build-tools;$ANDROID_BUILD_TOOLS"
+silent-sdkmanager "platform-tools"
+silent-sdkmanager "platforms;android-$ANDROID_SDK"
 
-${CI_SCRIPT_DIR}/update-sdk
+update-sdk

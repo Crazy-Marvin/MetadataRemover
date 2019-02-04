@@ -1,10 +1,8 @@
 #!/usr/bin/env bash
 
-CI_SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
-
 # Download emulator.
-${CI_SCRIPT_DIR}/silent-sdkmanager "emulator"
+silent-sdkmanager "emulator"
 # Download system image.
-${CI_SCRIPT_DIR}/silent-sdkmanager "system-images;android-$EMULATOR_ANDROID_SDK;google_apis;$EMULATOR_ABI"
+silent-sdkmanager "system-images;android-$EMULATOR_ANDROID_SDK;google_apis;$EMULATOR_ABI"
 
-${CI_SCRIPT_DIR}/update-sdk
+update-sdk

@@ -14,6 +14,13 @@ env:
   - ANDROID_HOME=$HOME/android-sdk
   - ANDROID_BUILD_TOOLS=28.0.3
   - ANDROID_SDK=28
+  # Add Android SDK tools to path.
+  - PATH=$PATH:$ANDROID_HOME/tools
+  - PATH=$PATH:$ANDROID_HOME/tools/bin
+  - PATH=$PATH:$ANDROID_HOME/platform-tools
+  - PATH=$PATH:$ANDROID_HOME/emulator
+  # Add CI scripts to path.
+  - PATH=$PATH:$PWD/ci
 
 # Reset default Travis commands.
 install: true
@@ -33,14 +40,14 @@ jobs:
     script: ./ci/install-sdk
   - stage: "Build"
     name: "Assemble"
-    script: ./ci/assemble
+    script: assemble
   - stage: "Test"
     name: "Lint"
-    script: ./ci/lint
+    script: lint
   - name: "Unit test"
-    script: ./ci/unit-tests
+    script: unit-tests
   - name: "Integration test"
-    script: ./ci/integration-tests
+    script: integration-tests
     env:
       EMULATOR_ANDROID_SDK=28
       EMULATOR_ABI=armeabi-v7a
