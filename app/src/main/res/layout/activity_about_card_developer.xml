@@ -96,7 +96,8 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 app:layout_constraintTop_toBottomOf="@id/baseline_top"
-                app:layout_constraintBottom_toTopOf="@id/barrier_above_information" />
+                app:layout_constraintBottom_toTopOf="@id/barrier_above_information"
+                app:layout_constraintStart_toStartOf="@id/baseline_top"/>
 
             <androidx.constraintlayout.widget.Barrier
                 android:id="@+id/barrier_above_information"
@@ -163,7 +164,8 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginTop="@dimen/baseline_card_inner_button_vertical"
-                app:layout_constraintTop_toBottomOf="@id/barrier_below_information" />
+                app:layout_constraintTop_toBottomOf="@id/barrier_below_information"
+                app:layout_constraintStart_toStartOf="@id/barrier_below_information"/>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_github"
@@ -196,6 +198,7 @@
                 android:id="@+id/space_button_end"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
+                app:layout_constraintTop_toTopOf="@id/button_website"
                 app:layout_constraintStart_toEndOf="@id/button_website"
                 app:layout_constraintEnd_toEndOf="@id/baseline_end_button" />
 

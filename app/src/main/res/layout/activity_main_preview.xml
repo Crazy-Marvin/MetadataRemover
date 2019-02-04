@@ -62,7 +62,8 @@
             android:id="@+id/space_toolbar_bottom"
             android:layout_width="0dp"
             android:layout_height="?actionBarSize"
-            app:layout_constraintBottom_toTopOf="@id/baseline_bottom" />
+            app:layout_constraintBottom_toTopOf="@id/baseline_bottom"
+            app:layout_constraintStart_toStartOf="@id/baseline_bottom"/>
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"

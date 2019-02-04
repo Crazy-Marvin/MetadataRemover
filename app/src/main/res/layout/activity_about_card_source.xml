@@ -103,7 +103,8 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginTop="@dimen/baseline_card_inner_button_vertical"
-                app:layout_constraintTop_toBottomOf="@id/title" />
+                app:layout_constraintTop_toBottomOf="@id/title"
+                app:layout_constraintStart_toStartOf="@id/title"/>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_code"
@@ -146,6 +147,7 @@
                 android:id="@+id/space_button_end"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
+                app:layout_constraintTop_toTopOf="@id/button_libraries"
                 app:layout_constraintStart_toEndOf="@id/button_libraries"
                 app:layout_constraintEnd_toEndOf="@id/baseline_end_button" />
 
