@@ -15,6 +15,10 @@ env:
   - ANDROID_BUILD_TOOLS=28.0.3
   - ANDROID_SDK=28
 
+# Reset default Travis commands.
+install: true
+build: true
+
 stages:
 - "Install"
 - "Build"
