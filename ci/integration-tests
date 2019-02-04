@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 
-./install-emulator
-./launch-emulator
+CI_SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
+${CI_SCRIPT_DIR}/install-emulator
+${CI_SCRIPT_DIR}/launch-emulator
 
 # Generate code coverage tests.
 # (`travis_wait` is needed because Travis kills the build after 10 minutes without log output:
