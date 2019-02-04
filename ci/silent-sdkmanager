@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+yes | sdkmanager "$@" | grep -v = || true
