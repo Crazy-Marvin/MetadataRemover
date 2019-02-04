@@ -54,14 +54,14 @@ android {
     buildTypes {
 
         // Debug builds
-        getByName("debug") {
+        val debug by existing {
             // Append "DEBUG" to all debug build versions
             versionNameSuffix = " DEBUG"
             isTestCoverageEnabled = true
         }
 
         // Production builds
-        getByName("release") {
+        val release by existing {
             postprocessing {
                 isRemoveUnusedCode = false
                 isRemoveUnusedResources = false
@@ -93,8 +93,8 @@ junitJacoco {
     includeInstrumentationCoverageInMergedReport = true
 }
 
-val jacocoTestReportDebug by tasks.registering
-val jacocoTestReportRelease by tasks.registering
+val jacocoTestReportDebug by tasks.existing
+val jacocoTestReportRelease by tasks.existing
 val jacocoTestReport by tasks.registering {
     group = "reporting"
     dependsOn(jacocoTestReportDebug, jacocoTestReportRelease)
