@@ -11,6 +11,7 @@ branches:
 
 env:
   global:
+  - ANDROID_HOME=$HOME/android-sdk
   - BUILD_TOOLS=28.0.3
   - ANDROID_SDK=28
   - GOOGLE_APIS=24

@@ -1,5 +1,15 @@
 #!/usr/bin/env bash
 
+# Download and unzip Android SDK tools (if not already cached)
+# Latest version available here: https://developer.android.com/studio/#command-tools
+sdk_tools_download_path="$ANDROID_HOME/tmp/dl/sdk-tools.zip"
+if test ! -e ${sdk_tools_download_path}
+then
+    curl "https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip" > ${sdk_tools_download_path}
+fi
+unzip -qq -n ${sdk_tools_download_path} -d ${ANDROID_HOME}
+
+
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
 # Download SDK tools.
