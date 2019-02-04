@@ -30,7 +30,7 @@ plugins {
     kotlinAndroidExtensions
     kotlinKapt
 //    googlePlayPublishing
-//    fDroidPublishing
+    ifNotCi { fDroidPublishing }
     jacocoAndroid
     spoon
 }
