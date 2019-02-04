@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
 
-# Download SDK tools.
-yes | sdkmanager "tools" &>/dev/null
-yes | sdkmanager "build-tools;$BUILD_TOOLS" &>/dev/null
-yes | sdkmanager "platform-tools" &>/dev/null
-yes | sdkmanager "platforms;android-$ANDROID_SDK" &>/dev/null
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
-./update-sdk
+# Download SDK tools.
+yes | sdkmanager "tools"
+yes | sdkmanager "build-tools;$BUILD_TOOLS"
+yes | sdkmanager "platform-tools"
+yes | sdkmanager "platforms;android-$ANDROID_SDK"
+
+${DIR}/update-sdk
