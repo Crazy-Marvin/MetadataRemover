@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# Print executed commands; fail fast when a command returns non-zero exit code.
+set -ev
+
 sdk=${EMULATOR_ANDROID_SDK}
 abi=${EMULATOR_ABI}
 
