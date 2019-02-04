@@ -3,8 +3,8 @@
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
 # Download emulator.
-silent-sdkmanager "emulator"
+./silent-sdkmanager "emulator"
 # Download system image.
-silent-sdkmanager "system-images;android-$EMULATOR_ANDROID_SDK;google_apis;$EMULATOR_ABI"
+./silent-sdkmanager "system-images;android-$EMULATOR_ANDROID_SDK;google_apis;$EMULATOR_ABI"
 
 ${DIR}/update-sdk

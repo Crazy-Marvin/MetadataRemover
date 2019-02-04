@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
 # Update SDK dependencies.
-silent-sdkmanager --update
+./silent-sdkmanager --update
 # Accept licenses.
-silent-sdkmanager --licenses
+./silent-sdkmanager --licenses
