@@ -3,5 +3,5 @@
 # Fail fast when a command returns non-zero exit code.
 set -e
 
-echo "Assembling project with Gradle."
-./gradlew --console=plain assemble
+echo "Running unit tests with Gradle."
+./gradlew --daemon --console=plain test

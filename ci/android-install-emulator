@@ -5,9 +5,9 @@ set -e
 
 # Download emulator.
 echo "Installing Android emulator."
-silent-sdkmanager "emulator"
+android-silent-sdkmanager "emulator"
 # Download system image.
 echo "Installing system image for Android SDK $EMULATOR_ANDROID_SDK (ABI: $EMULATOR_ABI)."
-silent-sdkmanager "system-images;android-$EMULATOR_ANDROID_SDK;google_apis;$EMULATOR_ABI"
+android-silent-sdkmanager "system-images;android-$EMULATOR_ANDROID_SDK;google_apis;$EMULATOR_ABI"
 
-update-sdk
+android-update-sdk

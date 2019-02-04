@@ -23,7 +23,7 @@ env:
   - PATH=$PATH:$PWD/ci
 
 # Install Android SDK before each build (if not already cached).
-install: install-sdk
+install: android-install-sdk
 
 stages:
 - "Install"
@@ -37,28 +37,28 @@ jobs:
   - stage: "Install"
     name: "Install SDK"
     # Only install SDK, don't run any script.
-    script: true
+    script: true  > /dev/null
   - stage: "Build"
     name: "Assemble"
-    script: assemble
+    script: android-assemble
   - stage: "Test"
     name: "Lint"
-    script: lint
+    script: android-lint
   - name: "Unit test"
-    script: unit-tests
+    script: android-unit-tests
   - name: "Integration test"
-    script: integration-tests
+    script: android-integration-tests
     env:
       EMULATOR_ANDROID_SDK=28
       EMULATOR_ABI=armeabi-v7a
   - name: "Integration test"
-    script: ./ci/integration-tests
+    script: android-integration-tests
     env:
       EMULATOR_ANDROID_SDK=21
       EMULATOR_ABI=armeabi-v7a
   - stage: "Coverage"
     name: "Test coverage"
-    script: ./ci/test-coverage
+    script: android-test-coverage
 
 # Use Travis CI's cache management
 before_cache:

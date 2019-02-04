@@ -5,8 +5,8 @@ set -e
 
 # Update SDK dependencies.
 echo "Updating Android SDK components."
-silent-sdkmanager --update
+android-silent-sdkmanager --update
 
 # Accept licenses.
 echo "Accepting all Android SDK licenses."
-silent-sdkmanager --licenses
+android-silent-sdkmanager --licenses

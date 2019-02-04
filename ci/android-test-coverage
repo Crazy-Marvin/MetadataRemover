@@ -5,7 +5,7 @@ set -e
 
 # Set up code coverage report
 echo "Setting up code coverage report with Gradle."
-./gradlew --console=plain jacocoTestReport
+./gradlew --daemon --console=plain jacocoTestReport
 
 # Upload code coverage report
 echo "Uploading report to 'https://codecov.io/'."

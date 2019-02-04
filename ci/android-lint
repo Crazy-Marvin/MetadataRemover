@@ -4,4 +4,4 @@
 set -e
 
 echo "Running LINT checks with Gradle."
-./gradlew --console=plain -Pci lint
+./gradlew --daemon --console=plain -Pci lint

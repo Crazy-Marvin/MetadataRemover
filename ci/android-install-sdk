@@ -28,12 +28,12 @@ unzip -qq -n ${SDK_DOWNLOAD_ZIP} -d ${ANDROID_HOME}
 
 # Download SDK tools.
 echo "Installing SDK tools."
-silent-sdkmanager "tools"
+android-silent-sdkmanager "tools"
 echo "Installing build tools $ANDROID_BUILD_TOOLS."
-silent-sdkmanager "build-tools;$ANDROID_BUILD_TOOLS"
+android-silent-sdkmanager "build-tools;$ANDROID_BUILD_TOOLS"
 echo "Installing platform tools."
-silent-sdkmanager "platform-tools"
+android-silent-sdkmanager "platform-tools"
 echo "Installing Android platform SDK $ANDROID_SDK."
-silent-sdkmanager "platforms;android-$ANDROID_SDK"
+android-silent-sdkmanager "platforms;android-$ANDROID_SDK"
 
-update-sdk
+android-update-sdk
