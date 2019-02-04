@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 
-# Print executed commands; fail fast when a command returns non-zero exit code.
-set -ev
+# Fail fast when a command returns non-zero exit code.
+set -e
+
+SDK_DOWNLOAD_URL="https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip"
+
 
 # Fix missing config file.
 touch ~/.android/repositories.cfg
@@ -10,15 +13,19 @@ touch ~/.android/repositories.cfg
 # Download and unzip Android SDK tools (if not already cached)
 # Latest version available here: https://developer.android.com/studio/#command-tools
 SDK_DOWNLOAD_DIR="$ANDROID_HOME/tmp/dl"
+SDK_DOWNLOAD_ZIP="$SDK_DOWNLOAD_DIR/sdk-tools.zip"
 mkdir -p ${SDK_DOWNLOAD_DIR}
-if test ! -e "$SDK_DOWNLOAD_DIR/sdk-tools.zip"
+if test ! -e ${SDK_DOWNLOAD_ZIP}
 then
-    curl "https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip" > "$SDK_DOWNLOAD_DIR/sdk-tools.zip"
+    echo "Downloading SDK tools from $SDK_DOWNLOAD_URL to $SDK_DOWNLOAD_ZIP."
+    curl ${SDK_DOWNLOAD_URL} > ${SDK_DOWNLOAD_ZIP}
 fi
-unzip -qq -n "$SDK_DOWNLOAD_DIR/sdk-tools.zip" -d ${ANDROID_HOME}
+echo "Unzipping $SDK_DOWNLOAD_ZIP."
+unzip -qq -n ${SDK_DOWNLOAD_ZIP} -d ${ANDROID_HOME}
 
 
 # Download SDK tools.
+echo "Installing SDK tools."
 silent-sdkmanager "tools"
 silent-sdkmanager "build-tools;$ANDROID_BUILD_TOOLS"
 silent-sdkmanager "platform-tools"

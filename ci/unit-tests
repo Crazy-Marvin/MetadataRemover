@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-# Print executed commands; fail fast when a command returns non-zero exit code.
-set -ev
+# Fail fast when a command returns non-zero exit code.
+set -e
 
+echo "Running unit tests with Gradle."
 ./gradlew --console=plain test

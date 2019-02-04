@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
 
-# Print executed commands; fail fast when a command returns non-zero exit code.
-set -ev
+# Fail fast when a command returns non-zero exit code.
+set -e
 
 # Set up code coverage report
+echo "Setting up code coverage report with Gradle."
 ./gradlew --console=plain jacocoTestReport
 
 # Upload code coverage report
+echo "Uploading report to 'https://codecov.io/'."
 curl -s https://codecov.io/bash | bash -

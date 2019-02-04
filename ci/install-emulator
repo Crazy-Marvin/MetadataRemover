@@ -1,11 +1,13 @@
 #!/usr/bin/env bash
 
-# Print executed commands; fail fast when a command returns non-zero exit code.
-set -ev
+# Fail fast when a command returns non-zero exit code.
+set -e
 
 # Download emulator.
+echo "Installing Android emulator."
 silent-sdkmanager "emulator"
 # Download system image.
+echo "Installing system image for Android SDK $EMULATOR_ANDROID_SDK (ABI: $EMULATOR_ABI)."
 silent-sdkmanager "system-images;android-$EMULATOR_ANDROID_SDK;google_apis;$EMULATOR_ABI"
 
 update-sdk

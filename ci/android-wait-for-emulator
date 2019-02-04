@@ -1,8 +1,8 @@
 #!/bin/bash
 # Copied from https://github.com/travis-ci/travis-cookbooks/blob/precise-stable/ci_environment/android-sdk/files/default/android-wait-for-emulator which is released under the MIT license.
 
-# Print executed commands; fail fast when a command returns non-zero exit code.
-set -ev
+# Fail fast when a command returns non-zero exit code.
+set -e
 
 bootanim=""
 failcounter=0
@@ -13,13 +13,13 @@ until [[ "$bootanim" =~ "stopped" ]]; do
   if [[ "$bootanim" =~ "device not found" || "$bootanim" =~ "device offline"
     || "$bootanim" =~ "running" ]]; then
     let "failcounter += 1"
-    echo "Waiting for emulator to start"
+    echo "Waiting for emulator to start."
     if [[ $failcounter -gt timeout_in_sec ]]; then
-      echo "Timeout ($timeout_in_sec seconds) reached; failed to start emulator"
+      echo "Timeout ($timeout_in_sec seconds) reached. Failed to start emulator."
       exit 1
     fi
   fi
   sleep 1
 done
 
-echo "Emulator is ready"
+echo "Emulator is ready."

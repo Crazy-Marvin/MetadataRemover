@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-# Print executed commands; fail fast when a command returns non-zero exit code.
-set -ev
+# Fail fast when a command returns non-zero exit code.
+set -e
 
 install-emulator
 launch-emulator
@@ -9,6 +9,7 @@ launch-emulator
 # Generate code coverage tests.
 # (`travis_wait` is needed because Travis kills the build after 10 minutes without log output:
 # https://docs.travis-ci.com/user/common-build-problems/#Build-times-out-because-no-output-was-received)
+echo "Running connected instrumentation tests with Gradle."
 travis_wait 20 ./gradlew --console=plain connectedCheck
 # TODO Instead of using `connectedCheck`, run integration tests on multiple devices using Spoon:
 #travis_wait 20 ./gradlew --console=plain spoonDebugAndroidTest

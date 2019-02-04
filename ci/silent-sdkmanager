@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Print executed commands; fail fast when a command returns non-zero exit code.
-set -ev
+# Fail fast when a command returns non-zero exit code.
+set -e
 
 yes | sdkmanager "$@" | grep -v = || true

@@ -1,9 +1,12 @@
 #!/usr/bin/env bash
 
-# Print executed commands; fail fast when a command returns non-zero exit code.
-set -ev
+# Fail fast when a command returns non-zero exit code.
+set -e
 
 # Update SDK dependencies.
+echo "Updating Android SDK components."
 silent-sdkmanager --update
+
 # Accept licenses.
+echo "Accepting all Android SDK licenses."
 silent-sdkmanager --licenses
