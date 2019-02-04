@@ -22,9 +22,8 @@ env:
   # Add CI scripts to path.
   - PATH=$PATH:$PWD/ci
 
-# Reset default Travis commands.
-install: true
-build: true
+# Install Android SDK before each build (if not already cached).
+install: install-sdk
 
 stages:
 - "Install"
@@ -37,7 +36,8 @@ jobs:
   include:
   - stage: "Install"
     name: "Install SDK"
-    script: ./ci/install-sdk
+    # Only install SDK, don't run any script.
+    script: true
   - stage: "Build"
     name: "Assemble"
     script: assemble
