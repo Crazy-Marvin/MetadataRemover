@@ -1,6 +1,6 @@
 language: java
 
-jdk: oraclejdk8
+jdk: openjdk8
 
 # Execute build in container-based environment.
 sudo: false
@@ -12,10 +12,8 @@ branches:
 env:
   global:
   - ANDROID_HOME=$HOME/android-sdk
-  - BUILD_TOOLS=28.0.3
+  - ANDROID_BUILD_TOOLS=28.0.3
   - ANDROID_SDK=28
-  - GOOGLE_APIS=24
-  - ADB_INSTALL_TIMEOUT=5 # Emulator install timeout in minutes
 
 stages:
 - "Install"
@@ -45,7 +43,7 @@ jobs:
   - name: "Integration test"
     script: ./ci/integration-tests
     env:
-      EMULATOR_ANDROID_SDK=28
+      EMULATOR_ANDROID_SDK=21
       EMULATOR_ABI=armeabi-v7a
   - stage: "Coverage"
     name: "Test coverage"
@@ -53,7 +51,7 @@ jobs:
 
 # Use Travis CI's cache management
 before_cache:
-- rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+- rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
 - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
 cache:
   directories:

@@ -15,7 +15,7 @@ CI_SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )
 
 # Download SDK tools.
 ${CI_SCRIPT_DIR}/silent-sdkmanager "tools"
-${CI_SCRIPT_DIR}/silent-sdkmanager "build-tools;$BUILD_TOOLS"
+${CI_SCRIPT_DIR}/silent-sdkmanager "build-tools;$ANDROID_BUILD_TOOLS"
 ${CI_SCRIPT_DIR}/silent-sdkmanager "platform-tools"
 ${CI_SCRIPT_DIR}/silent-sdkmanager "platforms;android-$ANDROID_SDK"
 
