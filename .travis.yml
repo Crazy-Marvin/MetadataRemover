@@ -57,6 +57,10 @@ before_cache:
 - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
 cache:
   directories:
+  # Android SDK
   - $ANDROID_HOME
+  # Gradle dependencies
   - $HOME/.gradle/caches/
   - $HOME/.gradle/wrapper/
+  # Android build cache (see http://tools.android.com/tech-docs/build-cache)
+  - $HOME/.android/build-cache
