@@ -24,44 +24,6 @@
 
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
-buildscript {
-
-    // Build script repositories being used by the dependencies (defined in `buildscript.dependencies`).
-    repositories {
-        // Default jCenter repository
-        jcenter()
-        // Gradle plugin repository
-        maven("https://plugins.gradle.org/m2/")
-        // Google Maven repository
-        google()
-    }
-
-    // Build script dependencies.
-    // Note: Do NOT place your application dependencies here.
-    // They belong in the individual module `build.gradle.kts` files.
-    dependencies {
-        classpath("com.android.tools.build:gradle:${Versions.gradlePluginVersion}")
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlinPluginVersion}")
-    }
-}
-
-allprojects {
-    // Repositories for all projects' app dependencies.
-    repositories {
-        // Default jCenter repository
-        jcenter()
-        // Maven Central repository for libraries that aren't on jCenter
-        mavenCentral()
-        // Google Maven repository
-        google()
-        // JitPack repository
-        // TODO Do we need this? If not then remove before release.
-        maven("https://jitpack.io")
-        // Adobe repository
-        maven("https://repo.adobe.com/nexus/content/repositories/public/")
-    }
-}
-
 tasks {
     /**
      * Task to clean the build directory.

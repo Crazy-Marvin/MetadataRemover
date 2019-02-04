@@ -1,8 +1,3 @@
-import rocks.poopjournal.metadataremover.google
-import rocks.poopjournal.metadataremover.gradlePluginPortal
-import rocks.poopjournal.metadataremover.jCenter
-import rocks.poopjournal.metadataremover.sonatypeSnapshots
-
 /*
  * MIT License
  *
@@ -27,27 +22,56 @@ import rocks.poopjournal.metadataremover.sonatypeSnapshots
  * SOFTWARE.
  */
 
-include("app")
+import org.gradle.kotlin.dsl.DependencyHandlerScope
 
-pluginManagement {
-    /**
-     * Repositories for resolving plugins.
-     */
-    repositories {
-        gradlePluginPortal
-        google
-        sonatypeSnapshots
-    }
-    resolutionStrategy {
-        eachPlugin {
-            val module = when(requested.id.id) {
-                "com.android.application" -> "com.android.tools.build:gradle:${requested.version}"
-                else -> null
-            }
-            if (module != null) {
-                println("Use module '$module' for requested plugin '${requested.id}' (version ${requested.version}).")
-                useModule(module)
-            }
-        }
+object Dependencies {
+
+    inline val app: DependencyHandlerScope.() -> Unit get() = {
+        // Kotlin
+        kotlinStandardLibraryJdk8
+        kotlinReflect
+        kotlinxCoroutinesCore
+        kotlinxCoroutinesAndroid
+
+        // Material Design
+        googleAndroidMaterial
+
+        // AppCompat support
+        androidxAppCompat
+        androidxCoreKtx
+        androidxConstraintLayout
+        androidxRecyclerView
+        androidxCardView
+        androidxExifInterface
+
+        // Architecture components
+        androidxLifecycleExtensions
+        androidxLifecycleCompiler
+
+        // Timber logging util
+        timber
+
+        // Local unit test libraries
+        jUnit
+        kotlinTest
+        kotlinTestJUnit
+        androidxTestRunner
+        androidxEspressoCore
+        androidxTestExtJUnit
+
+        // Okio I/O
+        okio
+        glide
+        glideCompiler
+//        commonsImaging
+//        tikaCore
+//        tikaParsers
+        metadataExtractor
+        pngJ
+
+//        tapTargetView
+        slidingUpPanel
+        expandIcon
+        aboutLibraries
     }
 }

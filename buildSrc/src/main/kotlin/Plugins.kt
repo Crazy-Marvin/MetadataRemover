@@ -1,8 +1,3 @@
-import rocks.poopjournal.metadataremover.google
-import rocks.poopjournal.metadataremover.gradlePluginPortal
-import rocks.poopjournal.metadataremover.jCenter
-import rocks.poopjournal.metadataremover.sonatypeSnapshots
-
 /*
  * MIT License
  *
@@ -27,27 +22,18 @@ import rocks.poopjournal.metadataremover.sonatypeSnapshots
  * SOFTWARE.
  */
 
-include("app")
+import org.gradle.plugin.use.PluginDependenciesSpec
 
-pluginManagement {
-    /**
-     * Repositories for resolving plugins.
-     */
-    repositories {
-        gradlePluginPortal
-        google
-        sonatypeSnapshots
-    }
-    resolutionStrategy {
-        eachPlugin {
-            val module = when(requested.id.id) {
-                "com.android.application" -> "com.android.tools.build:gradle:${requested.version}"
-                else -> null
-            }
-            if (module != null) {
-                println("Use module '$module' for requested plugin '${requested.id}' (version ${requested.version}).")
-                useModule(module)
-            }
+object Plugins {
+    inline val app: PluginDependenciesSpec.() -> Unit
+        get() = {
+            androidApplication
+            kotlinAndroid
+            kotlinAndroidExtensions
+            kotlinKapt
+//            googlePlayPublishing
+//            fDroidPublishing
+            jacocoAndroid
+//            spoon
         }
-    }
 }

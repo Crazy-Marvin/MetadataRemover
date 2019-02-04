@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+# Download emulator.
+yes | sdkmanager "emulator" &>/dev/null
+# Download system image.
+yes | sdkmanager "system-images;android-$EMULATOR_ANDROID_SDK;google_apis;$EMULATOR_ABI" &>/dev/null
+
+./update-sdk

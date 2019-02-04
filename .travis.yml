@@ -1,5 +1,14 @@
 language: android
 
+jdk: oraclejdk8
+
+# Execute build in container-based environment.
+sudo: false
+
+branches:
+  except:
+  - gh-pages
+
 env:
   global:
   - BUILD_TOOLS=28.0.3
@@ -7,22 +16,8 @@ env:
   - GOOGLE_APIS=24
   - ADB_INSTALL_TIMEOUT=5 # Emulator install timeout in minutes
 
-# Android build system
-android:
-  # SDK components to load before test
-  components:
-  # Platform tools
-  - tools
-  - platform-tools
-  # Gradle build tools version
-  - build-tools-$BUILD_TOOLS
-  # Target SDK version
-  - android-$ANDROID_SDK
-  # Support libraries
-  - extra-google-m2repository
-  - extra-android-m2repository
-
 stages:
+- "Install"
 - "Build"
 - "Lint"
 - "Test"
@@ -30,6 +25,9 @@ stages:
 
 jobs:
   include:
+  - stage: "Install"
+    name: "Install SDK"
+    script: ./ci/install-sdk
   - stage: "Build"
     name: "Assemble"
     script: ./ci/assemble
@@ -40,23 +38,17 @@ jobs:
     script: ./ci/unit-tests
   - name: "Integration test"
     script: ./ci/integration-tests
-    android:
-      # SDK components to load before test
-      components:
-      # Emulators to run during tests
-      - sys-img-${ANDROID_EMULATOR_ABI}-android-$EMULATOR_ANDROID_SDK
-      - sys-img-${ANDROID_EMULATOR_ABI}-google_apis-$EMULATOR_ANDROID_SDK
     env:
-      matrix:
-      # Emulator configurations
-      # (ensure that the configuration is available using
-      # "android list sdk --no-ui --all --extended" and "android list targets")
-      - EMULATOR_ANDROID_SDK=21 EMULATOR_ABI=armeabi-v7a
-      - EMULATOR_ANDROID_SDK=19 EMULATOR_ABI=armeabi-v7a
+      EMULATOR_ANDROID_SDK=28
+      EMULATOR_ABI=armeabi-v7a
+  - name: "Integration test"
+    script: ./ci/integration-tests
+    env:
+      EMULATOR_ANDROID_SDK=28
+      EMULATOR_ABI=armeabi-v7a
   - stage: "Coverage"
     name: "Test coverage"
     script: ./ci/test-coverage
-
 
 # Use Travis CI's cache management
 before_cache:
@@ -66,4 +58,3 @@ cache:
   directories:
   - $HOME/.gradle/caches/
   - $HOME/.gradle/wrapper/
-  - $HOME/.android/build-cache

@@ -1,8 +1,3 @@
-import rocks.poopjournal.metadataremover.google
-import rocks.poopjournal.metadataremover.gradlePluginPortal
-import rocks.poopjournal.metadataremover.jCenter
-import rocks.poopjournal.metadataremover.sonatypeSnapshots
-
 /*
  * MIT License
  *
@@ -27,27 +22,49 @@ import rocks.poopjournal.metadataremover.sonatypeSnapshots
  * SOFTWARE.
  */
 
-include("app")
+package rocks.poopjournal.metadataremover
 
-pluginManagement {
-    /**
-     * Repositories for resolving plugins.
-     */
-    repositories {
-        gradlePluginPortal
-        google
-        sonatypeSnapshots
-    }
-    resolutionStrategy {
-        eachPlugin {
-            val module = when(requested.id.id) {
-                "com.android.application" -> "com.android.tools.build:gradle:${requested.version}"
-                else -> null
-            }
-            if (module != null) {
-                println("Use module '$module' for requested plugin '${requested.id}' (version ${requested.version}).")
-                useModule(module)
-            }
-        }
-    }
-}
+import org.gradle.api.artifacts.dsl.RepositoryHandler
+import org.gradle.kotlin.dsl.maven
+
+/**
+ * jCenter repository
+ */
+inline val RepositoryHandler.jCenter
+    get() = jcenter()
+
+/**
+ * Gradle plugin repository
+ */
+inline val RepositoryHandler.gradlePluginPortal
+    get() = gradlePluginPortal()
+
+/**
+ * Maven Central repository
+ */
+inline val RepositoryHandler.mavenCentral
+    get() = mavenCentral()
+
+/**
+ * Google Maven repository
+ */
+inline val RepositoryHandler.google
+    get() = google()
+
+/**
+ * JitPack Maven repository
+ */
+inline val RepositoryHandler.jitPack
+    get() = maven("https://jitpack.io")
+
+/**
+ * Adobe Maven repository
+ */
+inline val RepositoryHandler.adobe
+    get() = maven("https://repo.adobe.com/nexus/content/repositories/public/")
+
+/**
+ * Adobe Maven repository
+ */
+inline val RepositoryHandler.sonatypeSnapshots
+    get() = maven("https://oss.sonatype.org/content/repositories/snapshots/")

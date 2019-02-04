@@ -4,4 +4,4 @@
 ./gradlew --console=plain jacocoTestReport
 
 # Upload code coverage report
-bash <(curl -s https://codecov.io/bash)
+curl -s https://codecov.io/bash | bash -

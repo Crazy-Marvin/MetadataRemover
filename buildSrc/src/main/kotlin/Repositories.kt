@@ -1,8 +1,3 @@
-import rocks.poopjournal.metadataremover.google
-import rocks.poopjournal.metadataremover.gradlePluginPortal
-import rocks.poopjournal.metadataremover.jCenter
-import rocks.poopjournal.metadataremover.sonatypeSnapshots
-
 /*
  * MIT License
  *
@@ -27,27 +22,27 @@ import rocks.poopjournal.metadataremover.sonatypeSnapshots
  * SOFTWARE.
  */
 
-include("app")
+import org.gradle.api.artifacts.dsl.RepositoryHandler
+import rocks.poopjournal.metadataremover.*
 
-pluginManagement {
-    /**
-     * Repositories for resolving plugins.
-     */
-    repositories {
+object Repositories {
+
+    inline val plugins: RepositoryHandler.() -> Unit get() = {
+        jCenter
         gradlePluginPortal
         google
         sonatypeSnapshots
     }
-    resolutionStrategy {
-        eachPlugin {
-            val module = when(requested.id.id) {
-                "com.android.application" -> "com.android.tools.build:gradle:${requested.version}"
-                else -> null
-            }
-            if (module != null) {
-                println("Use module '$module' for requested plugin '${requested.id}' (version ${requested.version}).")
-                useModule(module)
-            }
-        }
+
+    /**
+     * Repositories for all projects' app dependencies.
+     */
+    inline val app: RepositoryHandler.() -> Unit get() = {
+        jCenter
+        mavenCentral
+        google
+        jitPack
+        adobe
+        sonatypeSnapshots
     }
 }
