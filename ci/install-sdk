@@ -3,6 +3,10 @@
 # Print executed commands; fail fast when a command returns non-zero exit code.
 set -ev
 
+# Fix missing config file.
+touch ~/.android/repositories.cfg
+
+
 # Download and unzip Android SDK tools (if not already cached)
 # Latest version available here: https://developer.android.com/studio/#command-tools
 SDK_DOWNLOAD_DIR="$ANDROID_HOME/tmp/dl"
