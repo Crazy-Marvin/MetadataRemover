@@ -93,11 +93,9 @@ junitJacoco {
     includeInstrumentationCoverageInMergedReport = true
 }
 
-val jacocoTestReportDebug by tasks.existing
-val jacocoTestReportRelease by tasks.existing
 val jacocoTestReport by tasks.registering {
     group = "reporting"
-    dependsOn(jacocoTestReportDebug, jacocoTestReportRelease)
+    dependsOn("jacocoTestReportDebug", "jacocoTestReportRelease")
 }
 
 spoon {
