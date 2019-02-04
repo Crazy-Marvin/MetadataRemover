@@ -24,15 +24,12 @@
 
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
-tasks {
-    /**
-     * Task to clean the build directory.
-     *
-     * This might be useful when a build fails and one doesn't want the next build to depend
-     * on possibly broken cached build files.
-     */
-
-    create("clean", Delete::class) {
-        delete(rootProject.buildDir)
-    }
+/**
+ * Task to clean the build directory.
+ *
+ * This might be useful when a build fails and one doesn't want the next build to depend
+ * on possibly broken cached build files.
+ */
+val clean by tasks.registering(Delete::class) {
+    delete(rootProject.buildDir)
 }
