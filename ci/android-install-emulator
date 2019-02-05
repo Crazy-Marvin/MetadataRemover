@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Fail fast when a command returns non-zero exit code.
-set -ev
+set -e
 
 echo "Emulator images:"
 android-silent-sdkmanager --list --verbose | grep -iP '^(Available|Installed|---|system-images;).*'

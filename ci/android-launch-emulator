@@ -9,7 +9,7 @@ abi=${EMULATOR_ABI}
 
 # Create and start emulator.
 echo "Creating emulator device running SDK $sdk on $abi."
-echo no | avdmanager create avd --force -c 200M -n "test-$sdk-$abi" -k "system-images;android-$sdk;default;$abi"
+echo no | avdmanager create avd --force -c 200M -n "test-$sdk-$abi" -k "system-images;android-$sdk;google_apis;$abi"
 echo "Starting emulator device."
 emulator -avd "test-$sdk-$abi" -no-audio -no-window &
 
