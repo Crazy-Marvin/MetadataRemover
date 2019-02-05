@@ -37,7 +37,7 @@ jobs:
   - stage: "Install"
     name: "Install SDK"
     # Only install SDK, don't run any script.
-    script: true  > /dev/null
+    script: true
   - stage: "Build"
     name: "Assemble"
     script: android-assemble
