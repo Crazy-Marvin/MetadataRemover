@@ -12,7 +12,7 @@ touch ~/.android/repositories.cfg
 
 # Download and unzip Android SDK tools (if not already cached)
 # Latest version available here: https://developer.android.com/studio/#command-tools
-SDK_DOWNLOAD_DIR="$ANDROID_HOME/tmp/dl"
+SDK_DOWNLOAD_DIR="$ANDROID_HOME/dl"
 SDK_DOWNLOAD_ZIP="$SDK_DOWNLOAD_DIR/sdk-tools.zip"
 mkdir -p ${SDK_DOWNLOAD_DIR}
 if test ! -e ${SDK_DOWNLOAD_ZIP}
