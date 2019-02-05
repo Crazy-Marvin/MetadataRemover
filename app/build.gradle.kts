@@ -133,20 +133,15 @@ kapt {
 }
 
 play {
-    val credentialsFile = project
-            .localProperties["googleplay.credentials"]
-            ?.let(::file)
-
-    if (credentialsFile == null) {
-        System.err.println("Could not find Google Play credentials.")
-        commit = false
-    } else {
-        serviceAccountCredentials = credentialsFile
+    serviceAccountCredentials = File(rootDir, "secret/api-7281121051860956110-977812-57e7308358e6.json")
+    check(serviceAccountCredentials?.exists() ?: false) {
+        "Could not find Google Play credentials."
     }
 
     track = "internal"
     resolutionStrategy = "fail"
 
+    // Don't commit from CI build (yet).
     if (isCiBuild) {
         commit = false
     }
