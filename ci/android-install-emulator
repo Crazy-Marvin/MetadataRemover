@@ -3,6 +3,11 @@
 # Fail fast when a command returns non-zero exit code.
 set -e
 
+echo "Emulator images:"
+android-silent-sdkmanager "emulator"
+./sdkmanager --list --verbose | grep -i '^(Available|Installed|---|system-images;).*'
+
+
 # Download emulator.
 echo "Installing Android emulator."
 android-silent-sdkmanager "emulator"
