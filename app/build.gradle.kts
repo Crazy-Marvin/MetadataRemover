@@ -132,20 +132,23 @@ kapt {
     }
 }
 
-onNonCiBuild {
-    play {
-        val credentialsFile = project
-                .localProperties["googleplay.credentials"]
-                ?.let(::file)
-        if (credentialsFile == null) {
-            System.err.println("Could not find Google Play credentials.")
-            commit = false
-        } else {
-            serviceAccountCredentials = credentialsFile
-        }
+play {
+    val credentialsFile = project
+            .localProperties["googleplay.credentials"]
+            ?.let(::file)
 
-        track = "internal"
-        resolutionStrategy = "fail"
+    if (credentialsFile == null) {
+        System.err.println("Could not find Google Play credentials.")
+        commit = false
+    } else {
+        serviceAccountCredentials = credentialsFile
+    }
+
+    track = "internal"
+    resolutionStrategy = "fail"
+
+    if (isCiBuild) {
+        commit = false
     }
 }
 

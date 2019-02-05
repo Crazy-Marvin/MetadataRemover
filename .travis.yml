@@ -26,34 +26,30 @@ env:
 install: android-install-sdk
 
 stages:
-- "Install"
-- "Build"
-- "Lint"
-- "Test"
-- "Test Coverage"
+- Install
+- Build
+- Lint
+- Test
+- Test Coverage
 
 jobs:
   include:
-  - stage: "Build"
-    name: "Assemble"
+  - stage: Build
+    name: Assemble
     script: android-assemble
-  - stage: "Test"
-    name: "Lint"
+  - stage: Test
+    name: Lint
     script: android-lint
-  - name: "Unit test"
+  - name: Unit test
     script: android-unit-tests
-  - name: "Integration test"
+  - name: Integration test
     script: android-integration-tests
-    env:
-      EMULATOR_ANDROID_SDK=25
-      EMULATOR_ABI=arm64-v8a
-  - name: "Integration test"
+    env: EMULATOR_ANDROID_SDK=25 EMULATOR_ABI=arm64-v8a
+  - name: Integration test
     script: android-integration-tests
-    env:
-      EMULATOR_ANDROID_SDK=21
-      EMULATOR_ABI=armeabi-v7a
-  - stage: "Coverage"
-    name: "Test coverage"
+    env: EMULATOR_ANDROID_SDK=21 EMULATOR_ABI=armeabi-v7a
+  - stage: Coverage
+    name: Test coverage
     script: android-test-coverage
 
 # Use Travis CI's cache management
@@ -63,9 +59,9 @@ before_cache:
 cache:
   directories:
   # Android SDK
-  - $ANDROID_HOME
+  - "$ANDROID_HOME"
   # Gradle dependencies
-  - $HOME/.gradle/caches/
-  - $HOME/.gradle/wrapper/
+  - "$HOME/.gradle/caches/"
+  - "$HOME/.gradle/wrapper/"
   # Android build cache (see http://tools.android.com/tech-docs/build-cache)
-  - $HOME/.android/build-cache
+  - "$HOME/.android/build-cache"
