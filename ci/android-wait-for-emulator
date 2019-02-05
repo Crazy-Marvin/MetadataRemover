@@ -18,7 +18,7 @@ do
     then
         FAIL_COUNTER=$((FAIL_COUNTER + 1))
         echo "Still waiting ($FAIL_COUNTER seconds)..."
-        if [[ ${FAIL_COUNTER} -gt timeout_in_sec ]]
+        if [[ ${FAIL_COUNTER} -gt ${TIMEOUT_IN_SECONDS} ]]
         then
             echo "Timeout ($TIMEOUT_IN_SECONDS seconds) reached. Failed to start emulator."
             exit 1
