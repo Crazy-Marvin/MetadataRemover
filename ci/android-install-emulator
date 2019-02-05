@@ -4,8 +4,7 @@
 set -e
 
 echo "Emulator images:"
-android-silent-sdkmanager "emulator"
-./sdkmanager --list --verbose | grep -i '^(Available|Installed|---|system-images;).*'
+android-silent-sdkmanager --list --verbose | grep -i '^(Available|Installed|---|system-images;).*'
 
 
 # Download emulator.
