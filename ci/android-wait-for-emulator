@@ -8,15 +8,16 @@ BOOT_ANIMATION=""
 FAIL_COUNTER=0
 TIMEOUT_IN_SECONDS=360
 
-echo "Waiting for emulator to start."
+echo "Waiting for emulator to start..."
 until [[ "$BOOT_ANIMATION" =~ "stopped" ]]
 do
     BOOT_ANIMATION=`adb -e shell getprop init.svc.bootanim 2>&1 &`
+    echo ${BOOT_ANIMATION}
     if [[ "$BOOT_ANIMATION" =~ "device not found" || "$BOOT_ANIMATION" =~ "device offline"
         || "$BOOT_ANIMATION" =~ "running" || "$BOOT_ANIMATION" =~ "error: no emulators found" ]]
     then
-        let "failcounter += 1"
-        echo -ne "\rWaiting for emulator to start ($FAIL_COUNTER seconds)."
+        FAIL_COUNTER=$((FAIL_COUNTER + 1))
+        echo "Still waiting ($FAIL_COUNTER seconds)..."
         if [[ ${FAIL_COUNTER} -gt timeout_in_sec ]]
         then
             echo "Timeout ($TIMEOUT_IN_SECONDS seconds) reached. Failed to start emulator."
