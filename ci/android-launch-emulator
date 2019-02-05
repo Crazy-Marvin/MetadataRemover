@@ -11,12 +11,9 @@ abi=${EMULATOR_ABI}
 echo "Creating emulator device running SDK $sdk on $abi."
 echo no | avdmanager create avd --force -c 200M -n "test-$sdk-$abi" -k "system-images;android-$sdk;google_apis;$abi"
 echo "Starting emulator device."
-emulator -no-audio -no-window -avd "test-$sdk-$abi" &
-
-
-# Go to Android platform tools directory to avoid bugs:
-# https://github.com/decosoftware/deco-ide/issues/289
-cd ${ANDROID_HOME}/platform-tools
+# Launch the emulator from the emulator tools directory:
+# See: https://www.bram.us/2017/05/12/launching-the-android-emulator-from-the-command-line/
+cd $(dirname $(which emulator)) && ./emulator -no-audio -no-window -avd "test-$sdk-$abi" &
 
 
 # Wait for AVD to start.
