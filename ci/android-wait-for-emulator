@@ -4,22 +4,29 @@
 # Fail fast when a command returns non-zero exit code.
 set -e
 
-bootanim=""
-failcounter=0
-timeout_in_sec=360
+BOOT_ANIMATION=""
+FAIL_COUNTER=0
+TIMEOUT_IN_SECONDS=360
 
-until [[ "$bootanim" =~ "stopped" ]]; do
-  bootanim=`adb -e shell getprop init.svc.bootanim 2>&1 &`
-  if [[ "$bootanim" =~ "device not found" || "$bootanim" =~ "device offline"
-    || "$bootanim" =~ "running" ]]; then
-    let "failcounter += 1"
-    echo "Waiting for emulator to start."
-    if [[ $failcounter -gt timeout_in_sec ]]; then
-      echo "Timeout ($timeout_in_sec seconds) reached. Failed to start emulator."
-      exit 1
+echo "Waiting for emulator to start."
+until [[ "$BOOT_ANIMATION" =~ "stopped" ]]
+do
+    BOOT_ANIMATION=`adb -e shell getprop init.svc.bootanim 2>&1 &`
+    if [[ "$BOOT_ANIMATION" =~ "device not found" || "$BOOT_ANIMATION" =~ "device offline" || "$BOOT_ANIMATION" =~ "running" ]]
+    then
+        let "failcounter += 1"
+        echo -ne "\rWaiting for emulator to start ($FAIL_COUNTER seconds)."
+        if [[ ${FAIL_COUNTER} -gt timeout_in_sec ]]
+        then
+            echo "Timeout ($TIMEOUT_IN_SECONDS seconds) reached. Failed to start emulator."
+            exit 1
+        fi
+    elif  [[ "$BOOT_ANIMATION" =~ "stopped" ]]
+    then
+        echo "Emulator is ready."
+    else
+        echo "Cannot get device status." 1>&2
+        exit -1
     fi
-  fi
-  sleep 1
+    sleep 1
 done
-
-echo "Emulator is ready."
