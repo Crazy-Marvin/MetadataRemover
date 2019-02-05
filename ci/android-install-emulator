@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
 # Fail fast when a command returns non-zero exit code.
-set -e
+set -ev
 
 echo "Emulator images:"
-android-silent-sdkmanager --list --verbose | grep -i '^(Available|Installed|---|system-images;).*'
+android-silent-sdkmanager --list --verbose | grep -iP '^(Available|Installed|---|system-images;).*'
 
 
 # Download emulator.
