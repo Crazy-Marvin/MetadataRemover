@@ -11,7 +11,12 @@ abi=${EMULATOR_ABI}
 echo "Creating emulator device running SDK $sdk on $abi."
 echo no | avdmanager create avd --force -c 200M -n "test-$sdk-$abi" -k "system-images;android-$sdk;google_apis;$abi"
 echo "Starting emulator device."
-emulator -avd "test-$sdk-$abi" -no-audio -no-window &
+emulator -no-audio -no-window -avd "test-$sdk-$abi" &
+
+
+# Go to Android platform tools directory to avoid bugs:
+# https://github.com/decosoftware/deco-ide/issues/289
+cd ${ANDROID_HOME}/platform-tools
 
 
 # Wait for AVD to start.
@@ -19,12 +24,10 @@ android-wait-for-emulator
 
 
 echo "Transferring emulator configuration."
-
 # Turn off animations.
 adb shell settings put global window_animation_scale 0 &
 adb shell settings put global transition_animation_scale 0 &
 adb shell settings put global animator_duration_scale 0 &
-
 # For multi-dex issue on devices API < 19.
 adb shell setprop dalvik.vm.dexopt-flags v=n,o=v
 adb shell stop installd
