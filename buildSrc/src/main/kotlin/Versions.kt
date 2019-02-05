@@ -23,8 +23,6 @@
  */
 
 import org.gradle.api.JavaVersion
-import org.gradle.kotlin.dsl.exclude
-import rocks.poopjournal.metadataremover.Version
 
 object Versions {
 
@@ -85,6 +83,7 @@ object Versions {
     const val spoon = "2.0.0-SNAPSHOT"
     const val spoonPlugin = "1.5.0"
     const val jacocoAndroidPlugin = "0.13.0"
+    const val kluent = "1.46"
 
     // Data
     const val okio = "2.2.1"
@@ -93,10 +92,6 @@ object Versions {
     const val tika = "1.17"
     const val metadataExtractor = "2.11.0"
     const val pngJ = "2.1.0"
-    const val moshi = "1.8.0"
-    const val retrofit2 = "2.5.0"
-    const val retrofit2KotlinCoroutinesExperimentalAdapter = "1.0.0"
-    const val okHttp3 = "3.12.1"
 
     // User interface
     const val tapTargetView = "1.9.1"

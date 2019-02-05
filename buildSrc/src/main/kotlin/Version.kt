@@ -22,8 +22,6 @@
  * SOFTWARE.
  */
 
-package rocks.poopjournal.metadataremover
-
 /**
  * Semantic version number.
  *

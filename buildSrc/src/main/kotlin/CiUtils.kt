@@ -22,12 +22,13 @@
  * SOFTWARE.
  */
 
-import org.gradle.plugin.use.PluginDependenciesSpec
-import org.gradle.plugin.use.PluginDependencySpec
+val isCiBuild: Boolean
+    get() = arrayOf("CI", "CONTINUOUS_INTEGRATION").any { System.getenv(it) == "true" }
 
-private val isCi: Boolean
-    get() = System.getenv("CONTINUOUS_INTEGRATION") == "true"
+fun <R, T> R.onNonCiBuild(
+        lazyInit: R.() -> T
+) = if (!isCiBuild) lazyInit() else null
 
-fun PluginDependenciesSpec.ifNotCi(
-        lazyPlugin: PluginDependenciesSpec.() -> PluginDependencySpec
-) = if (!isCi) lazyPlugin() else null
+fun <R, T> R.onCiBuild(
+        lazyInit: R.() -> T
+) = if (isCiBuild) lazyInit() else null

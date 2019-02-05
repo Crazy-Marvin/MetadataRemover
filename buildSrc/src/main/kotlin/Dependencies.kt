@@ -58,6 +58,8 @@ object Dependencies {
         androidxTestRunner
         androidxEspressoCore
         androidxTestExtJUnit
+        kluentAndroid
+        spoonClient
 
         // Okio I/O
         okio

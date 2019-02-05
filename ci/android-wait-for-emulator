@@ -4,27 +4,36 @@
 # Fail fast when a command returns non-zero exit code.
 set -e
 
-BOOT_ANIMATION=""
+DEVICE_STATE=""
 FAIL_COUNTER=0
-TIMEOUT_IN_SECONDS=360
+TIMEOUT_IN_MINUTES=10
+TIMEOUT_IN_SECONDS=$((TIMEOUT_IN_MINUTES * 60))
 
-echo "Waiting for emulator to start..."
-until [[ "$BOOT_ANIMATION" =~ "stopped" ]]
+echo "Waiting for emulator '$1' to start..."
+while true
 do
-    BOOT_ANIMATION=`adb -e shell getprop init.svc.bootanim 2>&1 &`
-    echo ${BOOT_ANIMATION}
-    if  [[ "$BOOT_ANIMATION" =~ "stopped" ]]
+    DEVICE_STATE=`adb -s  $1 get-state 2>&1 &`
+    if  [[ "$DEVICE_STATE" = "command not found" ]]
+    then
+        # Could not find `adb` command. Probably it hasn't been installed yet from the SDK manager.
+        echo "ADB not found. Please install using SDK manager."
+        exit -1
+    elif  [[ "$DEVICE_STATE" = "device" ]]
     then
         echo "Emulator is ready."
-    elif [[ "$BOOT_ANIMATION" =~ "device not found" || "$BOOT_ANIMATION" =~ "device offline"
-        || "$BOOT_ANIMATION" =~ "running" || "$BOOT_ANIMATION" =~ "error: no emulators found" ]]
-    then
+        exit 0
+    else
         FAIL_COUNTER=$((FAIL_COUNTER + 1))
-        echo "Still waiting ($FAIL_COUNTER seconds)..."
+
         if [[ ${FAIL_COUNTER} -gt ${TIMEOUT_IN_SECONDS} ]]
         then
-            echo "Timeout ($TIMEOUT_IN_SECONDS seconds) reached. Failed to start emulator."
+            echo "Timeout reached after $TIMEOUT_IN_SECONDS seconds."
+            echo "Failed to start emulator."
             exit 1
+        # Only show notification every 15 seconds.
+        elif (( $FAIL_COUNTER % 15 == 0 ))
+        then
+            echo "Still waiting ($FAIL_COUNTER seconds)..."
         fi
     fi
     sleep 1

@@ -32,29 +32,11 @@ import java.util.*
  * as a [Sequence] of ordered [Pair]s of elements lazily obtained from two [Sequence] instances.
  */
 operator fun <A : Any, B : Any> Sequence<A>.times(other: Sequence<B>): Sequence<Pair<A, B>> {
-    val firstIterator = iterator()
-    var secondIterator = other.iterator()
-    var currentFirstElement: A? = null
-
-    fun nextPair(): Pair<A, B>? {
-        if (currentFirstElement == null && firstIterator.hasNext()) {
-            currentFirstElement = firstIterator.next()
+    return flatMap { thisElement ->
+        other.map { otherElement ->
+            thisElement to otherElement
         }
-
-
-        if (secondIterator.hasNext()) {
-            return currentFirstElement!! to secondIterator.next()
-        }
-        if (firstIterator.hasNext()) {
-            currentFirstElement = firstIterator.next()
-            secondIterator = other.iterator()
-            return currentFirstElement!! to secondIterator.next()
-        }
-
-        return null
     }
-
-    return generateSequence { nextPair() }
 }
 
 /**
@@ -71,12 +53,6 @@ operator fun <A : Any, B : Any> Iterable<A>.times(other: Iterable<B>): Iterable<
 
 infix fun <T> Set<T>.intersect(other: Set<T>): Set<T> =
         filterTo(mutableSetOf()) { it in other }
-
-infix fun <T> List<T>.intersect(other: List<T>): List<T> =
-        filterTo(mutableListOf()) { it in other }
-
-infix fun <K, V> Map<K, V>.intersect(other: Map<K, V>): Map<K, V> =
-        filterTo(mutableMapOf()) { it in other.entries }
 
 /**
  * Returns a new [Deque] with the given elements.

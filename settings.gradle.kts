@@ -1,8 +1,3 @@
-import rocks.poopjournal.metadataremover.google
-import rocks.poopjournal.metadataremover.gradlePluginPortal
-import rocks.poopjournal.metadataremover.jCenter
-import rocks.poopjournal.metadataremover.sonatypeSnapshots
-
 /*
  * MIT License
  *
@@ -34,9 +29,9 @@ pluginManagement {
      * Repositories for resolving plugins.
      */
     repositories {
-        gradlePluginPortal
-        google
-        sonatypeSnapshots
+        gradlePluginPortal()
+        google()
+        maven("https://oss.sonatype.org/content/repositories/snapshots/")
     }
     resolutionStrategy {
         eachPlugin {

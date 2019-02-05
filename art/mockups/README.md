@@ -1,4 +1,4 @@
-# App UI-Design Mockup
+# App UI-Design Mock-up
 
 
 ## Empty state screen

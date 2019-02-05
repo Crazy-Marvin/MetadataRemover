@@ -36,11 +36,11 @@ import android.os.Build.VERSION_CODES
 import androidx.annotation.DrawableRes
 import androidx.annotation.IntRange
 import androidx.core.content.ContextCompat
+import androidx.core.net.toUri
 import com.bumptech.glide.Glide
 import rocks.poopjournal.metadataremover.model.resources.Image.Type.*
 import rocks.poopjournal.metadataremover.util.extensions.glide.async
 import rocks.poopjournal.metadataremover.util.extensions.parseUri
-import rocks.poopjournal.metadataremover.util.extensions.toUri
 import java.io.File
 
 /**

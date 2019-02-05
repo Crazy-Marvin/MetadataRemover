@@ -97,7 +97,7 @@
                 android:layout_height="0dp"
                 app:layout_constraintTop_toBottomOf="@id/baseline_top"
                 app:layout_constraintBottom_toTopOf="@id/barrier_above_information"
-                app:layout_constraintStart_toStartOf="@id/baseline_top"/>
+                app:layout_constraintStart_toStartOf="@id/barrier_above_information"/>
 
             <androidx.constraintlayout.widget.Barrier
                 android:id="@+id/barrier_above_information"
@@ -115,7 +115,7 @@
                 app:layout_constraintStart_toStartOf="@id/baseline_start"
                 app:layout_constraintTop_toTopOf="@id/barrier_above_information"
                 app:roundImage="@{true}"
-                    app:srcUrl="@{@string/url_about_developer_profile_image}"
+                app:srcUrl="@{@string/url_about_developer_profile_image}"
                 tools:ignore="ContentDescription" />
 
             <TextView

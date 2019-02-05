@@ -209,7 +209,7 @@ class MainViewModel(application: Application) :
             return
         }
 
-        val fileSystemAttributes = listOf(
+        val fileSystemAttributes = listOfNotNull(
                 fileView.original.nameAttribute,
                 fileView.original.lastModifiedAttribute, // TODO Remove this.
                 fileView.original.sizeAttribute

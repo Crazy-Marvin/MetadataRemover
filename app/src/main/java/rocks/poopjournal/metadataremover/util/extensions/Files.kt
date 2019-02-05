@@ -42,11 +42,6 @@ import java.util.Date
  */
 fun File.deleteIfExists() = exists() && delete()
 
-/**
- * Get the [Uri] corresponding to a file.
- */
-fun File.toUri(): Uri = Uri.fromFile(this)
-
 val File.mediaType: MediaType?
     get() {
         return extension
@@ -65,17 +60,20 @@ val File.nameAttribute: Metadata.Attribute
             primaryValue = Text(name)
     )
 
-val File.lastModified: Long
-    get() = lastModified()
-val File.lastModifiedDate: Date
-    get() = Date(lastModified)
-val File.lastModifiedAttribute: Metadata.Attribute
-    get() = Metadata.Attribute(
-            label = Text(R.string.label_attribute_file_last_modification_date_time),
-            icon = Image(R.drawable.ic_history),
-            primaryValue = Text(attributeDateFormat.format(lastModifiedDate)),
-            secondaryValue = Text(attributeTimeFormat.format(lastModifiedDate))
-    )
+val File.lastModified: Long?
+    get() = lastModified().takeUnless { it == 0L }
+val File.lastModifiedDate: Date?
+    get() = lastModified?.let { Date(it) }
+val File.lastModifiedAttribute: Metadata.Attribute?
+    get() {
+        val lastModifiedDate = lastModifiedDate ?: return null
+        return Metadata.Attribute(
+                label = Text(R.string.label_attribute_file_last_modification_date_time),
+                icon = Image(R.drawable.ic_history),
+                primaryValue = Text(attributeDateFormat.format(lastModifiedDate)),
+                secondaryValue = Text(attributeTimeFormat.format(lastModifiedDate))
+        )
+    }
 
 val File.sizeLabel: String
     get() = size.formatScaled(
@@ -92,9 +90,3 @@ val File.sizeAttribute: Metadata.Attribute
             primaryValue = Text(sizeLabel),
             secondaryValue = Text(R.string.description_attribute_file_size_bytes, size)
     )
-
-val File.inputStream
-    get() = inputStream()
-
-val File.outputStream
-    get() = outputStream()

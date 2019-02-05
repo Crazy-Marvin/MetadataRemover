@@ -17,7 +17,7 @@ cd $(dirname $(which emulator)) && ./emulator -no-audio -no-window -gpu off -avd
 
 adb devices
 # Wait for AVD to start.
-android-wait-for-emulator
+android-wait-for-emulator "test-$sdk-$abi"
 
 
 echo "Transferring emulator configuration."

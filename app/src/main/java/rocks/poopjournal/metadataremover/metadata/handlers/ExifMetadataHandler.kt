@@ -35,7 +35,6 @@ import rocks.poopjournal.metadataremover.model.resources.MediaTypes
 import rocks.poopjournal.metadataremover.util.ImageFile
 import rocks.poopjournal.metadataremover.util.extensions.android.*
 import rocks.poopjournal.metadataremover.util.extensions.deleteIfExists
-import rocks.poopjournal.metadataremover.util.extensions.inputStream
 import java.io.File
 import java.util.*
 
@@ -54,7 +53,7 @@ class ExifMetadataHandler(context: Context? = null) : MetadataHandler {
             MediaTypes[MediaTypes.SRW] + MediaTypes[MediaTypes.RAF]
 
     override suspend fun loadMetadata(mediaType: MediaType, inputFile: File): Metadata? {
-        val exif = ExifInterface(inputFile.inputStream)
+        val exif = ExifInterface(inputFile.inputStream())
         val thumbnail =
                 exif.thumbnailBitmap
                         ?.takeIf {

@@ -22,6 +22,7 @@
  * SOFTWARE.
  */
 
+import com.android.builder.core.DefaultApiVersion
 import groovy.lang.Closure
 
 plugins {
@@ -29,10 +30,10 @@ plugins {
     kotlinAndroid
     kotlinAndroidExtensions
     kotlinKapt
-//    ifNotCi { googlePlayPublishing }
-    ifNotCi { fDroidPublishing }
+    onNonCiBuild { googlePlayPublishing }
+    onNonCiBuild { fDroidPublishing }
     jacocoAndroid
-    spoon
+//    spoon
 }
 
 android {
@@ -41,14 +42,14 @@ android {
     defaultConfig {
         applicationId = "rocks.poopjournal.metadataremover"
 
-        minSdkVersion(Versions.sdk.min)
-        targetSdkVersion(Versions.sdk.target)
+        minSdkVersion = DefaultApiVersion(Versions.sdk.min)
+        targetSdkVersion = DefaultApiVersion(Versions.sdk.target)
 
         versionCode = Versions.app.code
         versionName = Versions.app.shortName
 
         // The default test runner for Android instrumentation tests.
-        testInstrumentationRunner = "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
@@ -98,38 +99,37 @@ val jacocoTestReport by tasks.registering {
     dependsOn("jacocoTestReportDebug", "jacocoTestReportRelease")
 }
 
-spoon {
-    // Disable animations.
-    noAnimations = true
-
-    // ADB timeout in minutes.
-    adbTimeout = 10
-
-    // Grant all runtime permissions during installation.
-    grantAll = true
-
-    // Execute tests in parallel on 10 shards.
-    shard = true
-    numShards = 10
-}
-
-//play {
-//    println("local.properties: ${project.localProperties}")
-//    val credentialsFile = project
-//            .localProperties["googleplay.credentials"]
-//            .also { println("googleplay.credentials: $it") }
-//            ?.let(::file)
-//    if (credentialsFile == null) {
-//        System.err.println("Could not find Google Play credentials.")
-//        commit = false
-//    }
-//    else {
-//        serviceAccountCredentials = credentialsFile
-//    }
+//spoon {
+//    // Disable animations.
+//    noAnimations = true
 //
-//    track = "internal"
-//    resolutionStrategy = "fail"
+//    // ADB timeout in minutes.
+//    adbTimeout = 10
+//
+//    // Grant all runtime permissions during installation.
+//    grantAll = true
+//
+//    // Execute tests in parallel on 10 shards.
+//    shard = true
+//    numShards = 10
 //}
+
+onNonCiBuild {
+    play {
+        val credentialsFile = project
+                .localProperties["googleplay.credentials"]
+                ?.let(::file)
+        if (credentialsFile == null) {
+            System.err.println("Could not find Google Play credentials.")
+            commit = false
+        } else {
+            serviceAccountCredentials = credentialsFile
+        }
+
+        track = "internal"
+        resolutionStrategy = "fail"
+    }
+}
 
 repositories(Repositories.app)
 dependencies(Dependencies.app)

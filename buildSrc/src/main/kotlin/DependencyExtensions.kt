@@ -160,9 +160,13 @@ inline val DependencyHandlerScope.androidxEspressoCore
         exclude("androidx.annotation", "annotation")
     }
 
+inline val DependencyHandlerScope.kluentAndroid
+    // https://mvnrepository.com/artifact/org.amshove.kluent/kluent-android
+    get() = androidTestImplementation("org.amshove.kluent", "kluent-android", Versions.kluent)
+
 inline val DependencyHandlerScope.spoonClient
     // https://mvnrepository.com/artifact/com.squareup.spoon/spoon-client
-    get() = classpath("com.squareup.spoon", "spoon-client", Versions.spoon)
+    get() = androidTestImplementation("com.squareup.spoon", "spoon-client", Versions.spoon)
 
 
 // Data

@@ -1,9 +1,8 @@
 package rocks.poopjournal.metadataremover
 
-import android.content.Context
-import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import org.junit.Assert.assertEquals
+import androidx.test.platform.app.InstrumentationRegistry
+import org.amshove.kluent.shouldBeEqualTo
 import org.junit.Test
 import org.junit.runner.RunWith
 
@@ -17,7 +16,9 @@ class ExampleInstrumentedTest {
     @Test
     fun useAppContext() {
         // Context of the app under test.
-        val appContext = ApplicationProvider.getApplicationContext<Context>()
-        assertEquals("rocks.poopjournal.metadataremover", appContext.packageName)
+        val appContext = InstrumentationRegistry.getInstrumentation()
+                .targetContext
+
+        appContext.packageName shouldBeEqualTo "rocks.poopjournal.metadataremover"
     }
 }

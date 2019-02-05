@@ -23,7 +23,6 @@
  */
 
 import org.gradle.api.artifacts.dsl.RepositoryHandler
-import rocks.poopjournal.metadataremover.*
 
 object Repositories {
 
