@@ -22,7 +22,10 @@
  * SOFTWARE.
  */
 
+import com.android.build.gradle.BaseExtension
+import com.android.build.gradle.internal.dsl.TestOptions
 import com.android.builder.core.DefaultApiVersion
+import com.android.builder.core.DefaultProductFlavor
 import groovy.lang.Closure
 
 plugins {
@@ -30,20 +33,20 @@ plugins {
     kotlinAndroid
     kotlinAndroidExtensions
     kotlinKapt
-    onNonCiBuild { googlePlayPublishing }
+    googlePlayPublishing
     onNonCiBuild { fDroidPublishing }
     jacocoAndroid
 //    spoon
 }
 
 android {
-    compileSdkVersion(Versions.sdk.compile)
+    compileSdk = Versions.sdk.compile
 
     defaultConfig {
         applicationId = "rocks.poopjournal.metadataremover"
 
-        minSdkVersion = DefaultApiVersion(Versions.sdk.min)
-        targetSdkVersion = DefaultApiVersion(Versions.sdk.target)
+        minSdk = Versions.sdk.min
+        targetSdk = Versions.sdk.target
 
         versionCode = Versions.app.code
         versionName = Versions.app.shortName
@@ -57,7 +60,8 @@ android {
         // Debug builds
         val debug by existing {
             // Append "DEBUG" to all debug build versions
-            versionNameSuffix = " DEBUG"
+            versionNameSuffix = " (debug)"
+            isDebuggable = true
             isTestCoverageEnabled = true
         }
 
@@ -68,7 +72,8 @@ android {
                 isRemoveUnusedResources = false
                 isObfuscate = false
                 isOptimizeCode = false
-                proguardFile("proguard-rules.pro")
+                proguardFiles += getDefaultProguardFile("proguard-android.txt")
+                proguardFiles += file("proguard-rules.pro")
             }
         }
     }
@@ -78,15 +83,16 @@ android {
         isEnabled = true
     }
 
+    compileOptions {
+        sourceCompatibility = Versions.jvm
+        targetCompatibility = Versions.jvm
+    }
+
     // Always show the result of every unit test, even if it passes.
-    testOptions.unitTests.apply {
-        val closure = closureOf<Test> {
-            testLogging {
-                events("passed", "skipped", "failed", "standardOut", "standardError")
-            }
+    testOptions.unitTests.all {
+        testLogging {
+            events("passed", "skipped", "failed", "standardOut", "standardError")
         }
-        @Suppress("unchecked_cast")
-        all(closure as Closure<Test>)
     }
 }
 
@@ -114,6 +120,18 @@ val jacocoTestReport by tasks.registering {
 //    numShards = 10
 //}
 
+kapt {
+    javacOptions {
+        /**
+         * Increase the max error count that is displayed for annotation processors using kapt.
+         * This is needed as errors in Annotation processors
+         * (which will fail Android Data Binding) are not shown.
+         * Refer to: https://github.com/google/dagger/issues/306
+         */
+        option("-Xmaxerrs", 500)
+    }
+}
+
 onNonCiBuild {
     play {
         val credentialsFile = project
@@ -133,3 +151,24 @@ onNonCiBuild {
 
 repositories(Repositories.app)
 dependencies(Dependencies.app)
+
+
+inline var BaseExtension.compileSdk: Int
+    get() = compileSdkVersion.removePrefix("android-").toInt()
+    set(value) = compileSdkVersion(value)
+
+inline var DefaultProductFlavor.minSdk: Int
+    get() = minSdkVersion!!.apiLevel
+    set(value) {
+        minSdkVersion = DefaultApiVersion(value)
+    }
+
+inline var DefaultProductFlavor.targetSdk: Int
+    get() = targetSdkVersion!!.apiLevel
+    set(value) {
+        targetSdkVersion = DefaultApiVersion(value)
+    }
+
+@Suppress("unchecked_cast")
+fun TestOptions.UnitTestOptions.all(action: Test.() -> Unit) =
+        all(closureOf(action) as Closure<Test>)
