@@ -46,7 +46,7 @@ jobs:
     script: android-integration-tests
     env:
       EMULATOR_ANDROID_SDK=28
-      EMULATOR_ABI=armeabi-v7a
+      EMULATOR_ABI=x86_64
   - name: "Integration test"
     script: android-integration-tests
     env:
