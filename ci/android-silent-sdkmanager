@@ -3,4 +3,4 @@
 # Fail fast when a command returns non-zero exit code.
 set -e
 
-yes | sdkmanager "$@" | grep -v = || true
+echo yes | sdkmanager "$@" | grep -v = || true

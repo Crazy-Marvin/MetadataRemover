@@ -13,12 +13,12 @@ echo "Waiting for emulator '$1' to start..."
 while true
 do
     DEVICE_STATE=`adb -s  $1 get-state 2>&1 &`
-    if  [[ "$DEVICE_STATE" = "command not found" ]]
+    if  [[ "$DEVICE_STATE" == *"command not found"* ]]
     then
         # Could not find `adb` command. Probably it hasn't been installed yet from the SDK manager.
         echo "ADB not found. Please install using SDK manager."
         exit -1
-    elif  [[ "$DEVICE_STATE" = "device" ]]
+    elif  [[ "$DEVICE_STATE" == *"device"* ]]
     then
         echo "Emulator is ready."
         exit 0
@@ -31,9 +31,9 @@ do
             echo "Failed to start emulator."
             exit 1
         # Only show notification every 15 seconds.
-        elif (( $FAIL_COUNTER % 15 == 0 ))
+        elif (( $FAIL_COUNTER % 10 == 0 ))
         then
-            echo "Still waiting ($FAIL_COUNTER seconds)..."
+            echo "Current emulator state: '$DEVICE_STATE'. Still waiting for $FAIL_COUNTER seconds..."
         fi
     fi
     sleep 1

@@ -9,7 +9,7 @@ android-silent-sdkmanager "emulator"
 
 # Print available targets.
 echo "Emulator images:"
-android-silent-sdkmanager --list --verbose | grep -iP '^(Available|Installed|---|system-images;).*'
+android-silent-sdkmanager --list | grep -iP '^(Available|Installed|---|system-images;).*'
 
 # Download system image.
 echo "Installing system image for Android SDK $EMULATOR_ANDROID_SDK (ABI: $EMULATOR_ABI)."
