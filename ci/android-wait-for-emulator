@@ -6,7 +6,7 @@ set -e
 
 DEVICE_STATE=""
 FAIL_COUNTER=0
-TIMEOUT_IN_MINUTES=25
+TIMEOUT_IN_MINUTES=5
 TIMEOUT_IN_SECONDS=$((TIMEOUT_IN_MINUTES * 60))
 
 echo "Waiting for emulator to start..."
