@@ -24,9 +24,9 @@ env:
 
 before_install:
   # Decrypt Google Play publishing key.
-  - openssl aes-256-cbc -K $encrypted_ae7a043411a6_key -iv $encrypted_ae7a043411a6_iv \
-    -in api-7281121051860956110-977812-57e7308358e6.json.enc \
-    -out secret/api-7281121051860956110-977812-57e7308358e6.json \
+  - openssl aes-256-cbc -K $encrypted_ae7a043411a6_key -iv $encrypted_ae7a043411a6_iv
+    -in api-7281121051860956110-977812-57e7308358e6.json.enc
+    -out secret/api-7281121051860956110-977812-57e7308358e6.json
     -d
 
 # Install Android SDK before each build (if not already cached).
