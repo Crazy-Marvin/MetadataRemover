@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Fail fast when a command returns non-zero exit code.
-set -ev
+set -e
 
 
 sdk=${EMULATOR_ANDROID_SDK}
@@ -10,10 +10,14 @@ abi=${EMULATOR_ABI}
 # Create and start emulator.
 echo "Creating emulator device running SDK $sdk on $abi."
 echo no | avdmanager create avd --force -c 200M -n "test-$sdk-$abi" -k "system-images;android-$sdk;google_apis;$abi"
+
 echo "Starting emulator device."
-# Launch the emulator from the emulator tools directory:
+# Launch the emulator from the emulator tools directory, in background:
 # See: https://www.bram.us/2017/05/12/launching-the-android-emulator-from-the-command-line/
-cd $(dirname $(which emulator)) && ./emulator -no-audio -no-window -gpu off -avd "test-$sdk-$abi" &
+cd $(dirname $(which emulator)) && ./emulator -no-audio -no-window -gpu off -use-system-libs -avd "test-$sdk-$abi" &
+
+# Wait for the emulator to finish initial logging.
+sleep 10
 
 adb devices
 # Wait for AVD to start.
