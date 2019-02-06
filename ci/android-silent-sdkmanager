@@ -3,4 +3,6 @@
 # Fail fast when a command returns non-zero exit code.
 set -e
 
-echo yes | sdkmanager "$@" | grep -v = || true
+# Pass yes ('y') to all interrupts of the SDK manager command.
+# Also omit lines containing '=' to avoid exceeding log length limits on CIs, e.g. Travis.
+while true; do echo y; done | sdkmanager "$@" | grep -v = || true

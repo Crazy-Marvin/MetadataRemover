@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+# Fail fast when a command returns non-zero exit code.
+set -e
+
+# Download and unzip Android SDK tools (if not already cached)
+# Latest version available here: https://developer.android.com/studio/#command-tools
+SDK_DOWNLOAD_URL="https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip"
+SDK_DOWNLOAD_DIR="$ANDROID_HOME/dl"
+SDK_DOWNLOAD_ZIP="$SDK_DOWNLOAD_DIR/sdk-tools.zip"
+mkdir -p ${SDK_DOWNLOAD_DIR}
+if test ! -e ${SDK_DOWNLOAD_ZIP}
+then
+    echo "Fetching SDK tools from $SDK_DOWNLOAD_URL."
+    curl --create-dirs --progress-bar \
+        --retry 3 --retry-delay 5 \
+        --output ${SDK_DOWNLOAD_ZIP} --url ${SDK_DOWNLOAD_URL}
+else
+    echo "Skipped download. Archive already exists."
+fi
+echo "Unzipping $SDK_DOWNLOAD_ZIP."
+unzip -q -n ${SDK_DOWNLOAD_ZIP} -d ${ANDROID_HOME}
+
+# Accept licenses.
+echo "Accepting all Android SDK licenses."
+android-silent-sdkmanager --licenses

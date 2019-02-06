@@ -3,12 +3,10 @@
 # Fail fast when a command returns non-zero exit code.
 set -e
 
-
 # Copy ADB key.
-dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+CURRENT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 mkdir -p "~/.android"
-cp "$dir/adbkey.pub" "~/.android/adbkey.pub"
-
+cp "$CURRENT_DIR/adbkey.pub" "~/.android/adbkey.pub"
 
 # Download emulator.
 echo "Installing Android emulator runner."
@@ -23,9 +21,9 @@ android-silent-sdkmanager --verbose --list | grep -iP '^(---|system-images).*' \
 echo "Installing system image for Android SDK $EMULATOR_ANDROID_SDK (ABI: $EMULATOR_ABI)."
 android-silent-sdkmanager "system-images;android-$EMULATOR_ANDROID_SDK;google_apis;$EMULATOR_ABI"
 
-android-update-sdk
-
 # Print installed targets.
 echo "Installed emulator images:"
 android-silent-sdkmanager --verbose --list | grep -iP '^(---|system-images).*' \
     | awk '/system-images/{i++}i' | awk '/---/{i--}i+1'
+
+android-update-sdk

@@ -1,5 +1,5 @@
-#!/bin/bash
 # Copied from https://github.com/travis-ci/travis-cookbooks/blob/precise-stable/ci_environment/android-sdk/files/default/android-wait-for-emulator which is released under the MIT license.
+#!/usr/bin/env bash
 
 # Fail fast when a command returns non-zero exit code.
 set -e
@@ -9,10 +9,10 @@ FAIL_COUNTER=0
 TIMEOUT_IN_MINUTES=25
 TIMEOUT_IN_SECONDS=$((TIMEOUT_IN_MINUTES * 60))
 
-echo "Waiting for emulator '$1' to start..."
+echo "Waiting for emulator to start..."
 while true
 do
-    DEVICE_STATE=`adb -s $1 get-state 2>&1 &`
+    DEVICE_STATE=`adb get-state 2>&1 &`
     if  [[ ${DEVICE_STATE} =~ "command not found" ]]
     then
         # Could not find `adb` command. Probably it hasn't been installed yet from the SDK manager.
@@ -31,7 +31,7 @@ do
             echo "Failed to start emulator."
             exit 1
         # Only show notification every 15 seconds.
-        elif (( $FAIL_COUNTER % 10 == 0 ))
+        elif (( $FAIL_COUNTER % 5 == 0 ))
         then
             echo "Current emulator state: '$DEVICE_STATE'. Still waiting for $FAIL_COUNTER seconds..."
         fi
