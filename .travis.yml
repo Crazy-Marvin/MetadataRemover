@@ -51,6 +51,9 @@ jobs:
   - stage: Coverage
     name: Test coverage
     script: android-test-coverage
+  allow_failures:
+  - name: Integration test
+  fast_finish: true
 
 # Use Travis CI's cache management
 before_cache:
