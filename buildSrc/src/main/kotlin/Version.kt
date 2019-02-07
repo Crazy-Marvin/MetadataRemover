@@ -73,10 +73,12 @@ data class Version(
     ): String {
         val showMinor = minorVisibility == Visibility.ALWAYS ||
                 (minorVisibility == Visibility.NON_ZERO && minor > 0)
-        val showPatch = patchVisibility == Visibility.ALWAYS ||
-                (patchVisibility == Visibility.NON_ZERO && patch > 0)
-        val showBuild = buildVisibility == Visibility.ALWAYS ||
-                (buildVisibility == Visibility.NON_ZERO && build > 0)
+        val showPatch = showMinor &&
+                (patchVisibility == Visibility.ALWAYS ||
+                        (patchVisibility == Visibility.NON_ZERO && patch > 0))
+        val showBuild = showPatch &&
+                (buildVisibility == Visibility.ALWAYS ||
+                        (buildVisibility == Visibility.NON_ZERO && build > 0))
 
         return StringBuilder()
                 .apply {
@@ -84,15 +86,15 @@ data class Version(
                     if (showMinor) {
                         append(minorDelimiter)
                         append(minor)
-                        if (showPatch) {
-                            append(patchDelimiter)
-                            append(patch)
-                            if (showBuild) {
-                                append(buildDelimiter)
-                                if (buildType != null) append(buildType)
-                                append(build.toString(buildMinDigits))
-                            }
-                        }
+                    }
+                    if (showPatch) {
+                        append(patchDelimiter)
+                        append(patch)
+                    }
+                    if (showBuild) {
+                        append(buildDelimiter)
+                        buildType?.let(::append)
+                        append(build.toString(buildMinDigits))
                     }
                 }
                 .toString()
