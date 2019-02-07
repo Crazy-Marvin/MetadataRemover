@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Fail fast when a command returns non-zero exit code.
-set -e
+set -ev
 
 # Set up code coverage report
 echo "Setting up code coverage report with Gradle."
