@@ -2,7 +2,8 @@
 
 # Fail fast when a command returns non-zero exit code.
 set -ev
+CURRENT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # Update SDK dependencies.
 echo "Updating Android SDK components."
-android-silent-sdkmanager --update
+${CURRENT_DIR}/android-silent-sdkmanager --update

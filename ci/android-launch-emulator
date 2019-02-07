@@ -2,6 +2,7 @@
 
 # Fail fast when a command returns non-zero exit code.
 set -ev
+CURRENT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 
 sdk=${EMULATOR_ANDROID_SDK}
@@ -21,7 +22,7 @@ sleep 10
 
 adb devices
 # Wait for AVD to start.
-android-wait-for-emulator "test-$sdk-$abi"
+${CURRENT_DIR}/android-wait-for-emulator "test-$sdk-$abi"
 
 
 echo "Transferring emulator configuration."

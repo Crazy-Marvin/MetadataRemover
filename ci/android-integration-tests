@@ -2,9 +2,10 @@
 
 # Fail fast when a command returns non-zero exit code.
 set -ev
+CURRENT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-android-install-emulator
-android-launch-emulator
+${CURRENT_DIR}/android-install-emulator
+${CURRENT_DIR}/android-launch-emulator
 
 # Generate code coverage tests.
 echo "Running connected instrumentation tests with Gradle."

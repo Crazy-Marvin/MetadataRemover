@@ -2,6 +2,7 @@
 
 # Fail fast when a command returns non-zero exit code.
 set -ev
+CURRENT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # Download and unzip Android SDK tools (if not already cached)
 # Latest version available here: https://developer.android.com/studio/#command-tools
@@ -23,4 +24,4 @@ unzip -q -n ${SDK_DOWNLOAD_ZIP} -d ${ANDROID_HOME}
 
 # Accept licenses.
 echo "Accepting all Android SDK licenses."
-android-silent-sdkmanager --licenses
+${CURRENT_DIR}/android-silent-sdkmanager --licenses
