@@ -245,7 +245,10 @@ fun ExifInterface.clearAttributes(vararg tags: String): ExifInterface {
     return this
 }
 
-fun ExifInterface.clearAllAttributes() = ExifTags.TAGS.forEach { clearAttributes(it) }
+fun ExifInterface.clearAllAttributes(): ExifInterface {
+    ExifTags.TAGS.forEach { clearAttributes(it) }
+    return this
+}
 
 private val dateFormat: DateFormat = DateFormat.getDateInstance(DateFormat.LONG)
 private val timeFormat: DateFormat = DateFormat.getTimeInstance(DateFormat.SHORT)
