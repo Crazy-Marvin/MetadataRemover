@@ -4,37 +4,49 @@
 # Fail fast when a command returns non-zero exit code.
 set -e
 
+# Check if ADB is installed.
+if ! hash adb 2>/dev/null;
+then
+    # Could not find `adb` command. Probably it hasn't been installed yet from the SDK manager.
+    echo "ADB not found. Please install using SDK manager."
+    exit -1
+fi
+
 DEVICE_STATE=""
+BOOT_ANIMATION_STATE=""
 FAIL_COUNTER=0
 TIMEOUT_IN_MINUTES=5
 TIMEOUT_IN_SECONDS=$((TIMEOUT_IN_MINUTES * 60))
 
 echo "Waiting for emulator to start..."
-while true
+until [[ ${DEVICE_STATE} == "device" && ${BOOT_ANIMATION_STATE} == "stopped" ]]
 do
     DEVICE_STATE=`adb get-state 2>&1 &`
-    if  [[ ${DEVICE_STATE} =~ "command not found" ]]
-    then
-        # Could not find `adb` command. Probably it hasn't been installed yet from the SDK manager.
-        echo "ADB not found. Please install using SDK manager."
-        exit -1
-    elif  [[ ${DEVICE_STATE} == "device" ]]
-    then
-        echo "Emulator is ready."
-        exit 0
-    else
-        FAIL_COUNTER=$((FAIL_COUNTER + 1))
+    BOOT_ANIMATION_STATE=`adb -e shell getprop init.svc.bootanim 2>&1 &`
 
-        if [[ ${FAIL_COUNTER} -gt ${TIMEOUT_IN_SECONDS} ]]
-        then
-            echo "Timeout reached after $TIMEOUT_IN_SECONDS seconds."
-            echo "Failed to start emulator."
-            exit 1
-        # Only show notification every 15 seconds.
-        elif (( $FAIL_COUNTER % 5 == 0 ))
-        then
-            echo "Current emulator state: '$DEVICE_STATE'. Still waiting for $FAIL_COUNTER seconds..."
-        fi
+#    if [[ "$BOOT_ANIMATION_STATE" =~ "device not found" || "$BOOT_ANIMATION_STATE" =~ "device offline" || "$BOOT_ANIMATION_STATE" =~ "running" ]]; then
+#        let "failcounter += 1"
+#        echo "Waiting for emulator to start"
+#    fi
+
+    FAIL_COUNTER=$((FAIL_COUNTER + 1))
+
+    if [[ ${FAIL_COUNTER} -ge ${TIMEOUT_IN_SECONDS} ]]
+    then
+        echo "Timeout reached after $TIMEOUT_IN_SECONDS seconds."
+        echo "Failed to start emulator."
+        exit 1
     fi
+
+    # Only show notification every 5 seconds.
+    if (( $FAIL_COUNTER % 5 == 0 ))
+    then
+        REMAINING_SECONDS=$((TIMEOUT_IN_SECONDS - FAIL_COUNTER))
+        echo "Current state: emulator='$DEVICE_STATE', boot animation='$BOOT_ANIMATION_STATE'. Still waiting for $REMAINING_SECONDS seconds..."
+    fi
+
     sleep 1
 done
+
+echo "Emulator is ready."
+exit 0
