@@ -68,3 +68,7 @@ cache:
   - "$HOME/.gradle/wrapper/"
   # Android build cache (see http://tools.android.com/tech-docs/build-cache)
   - "$HOME/.android/build-cache"
+  # Android AVDs
+  - $ANDROID_AVD_HOME
+  - $ANDROID_SDK_HOME\avd
+  - $HOME\.android\avd
