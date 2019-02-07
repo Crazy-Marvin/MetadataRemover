@@ -31,19 +31,13 @@ import kotlin.text.Charsets.UTF_8
 object MediaTypes {
 
     private val ALL = mutableMapOf<MediaType, Set<MediaType>>()
-    private fun add(primary: MediaType, vararg secondary: MediaType) {
-        ALL[primary] = get(primary) + secondary
-    }
 
     operator fun get(type: MediaType): Set<MediaType> = ALL.getOrElse(type) { setOf(type) }
 
-    private operator fun MediaType.plus(type: MediaType): MediaType {
-        add(this, type)
-        return this
-    }
+    private operator fun MediaType.plus(type: MediaType) = plus(setOf(type))
 
     private operator fun MediaType.plus(types: Collection<MediaType>): MediaType {
-        add(this, *types.toTypedArray())
+        ALL[this] = get(this) + types
         return this
     }
 

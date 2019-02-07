@@ -59,3 +59,18 @@ infix fun <T> Set<T>.intersect(other: Set<T>): Set<T> =
  * Elements of the set are iterated in the order they were specified.
  */
 fun <T> dequeOf(vararg elements: T): Deque<T> = elements.toCollection(LinkedList())
+
+/**
+ * Returns a new [Deque] with the given elements.
+ * Elements of the set are iterated in the order they were specified.
+ */
+fun <T> Iterable<T>.asDeque(): Deque<T> =
+        if (this is Collection) LinkedList(this)
+        else LinkedList<T>().apply { addAll(this@asDeque) }
+
+/**
+ * Returns a new [Deque] with the given elements.
+ * Elements of the set are iterated in the order they were specified.
+ */
+fun <T> Array<out T>.asDeque(): Deque<T> =
+        LinkedList<T>().apply { addAll(this@asDeque) }

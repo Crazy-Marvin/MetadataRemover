@@ -70,7 +70,7 @@ class Text private constructor(
         /**
          * The resource's format arguments.
          */
-        private vararg val formatArguments: Any
+        private val formatArguments: Array<out Any> = emptyArray()
 ) {
     /**
      * Text source type.
@@ -179,7 +179,7 @@ class Text private constructor(
     ) : this(
             type = Type.SEQUENCE,
             object1 = characters,
-            formatArguments = *formatArguments
+            formatArguments = formatArguments
     )
 
     /**
@@ -196,7 +196,7 @@ class Text private constructor(
     ) : this(
             type = Type.RESOURCE,
             int1 = resId,
-            formatArguments = *formatArguments
+            formatArguments = formatArguments
     )
 
     /**
@@ -221,7 +221,7 @@ class Text private constructor(
             object1 = characters,
             int1 = startOffset,
             int2 = length,
-            formatArguments = *formatArguments
+            formatArguments = formatArguments
     )
 
     /**

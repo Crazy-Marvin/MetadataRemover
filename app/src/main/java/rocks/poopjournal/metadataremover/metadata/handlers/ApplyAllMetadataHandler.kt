@@ -27,6 +27,7 @@ package rocks.poopjournal.metadataremover.metadata.handlers
 import rocks.poopjournal.metadataremover.model.metadata.Metadata
 import rocks.poopjournal.metadataremover.model.metadata.MetadataHandler
 import rocks.poopjournal.metadataremover.model.resources.MediaType
+import rocks.poopjournal.metadataremover.util.extensions.asDeque
 import rocks.poopjournal.metadataremover.util.extensions.dequeOf
 import java.io.File
 import java.util.*
@@ -35,7 +36,7 @@ class ApplyAllMetadataHandler(
         private val handlers: Queue<MetadataHandler>
 ) : MetadataHandler {
 
-    constructor(vararg handlers: MetadataHandler) : this(dequeOf(*handlers))
+    constructor(vararg handlers: MetadataHandler) : this(handlers.asDeque())
 
     override val readableMimeTypes = handlers
             .flatMapTo(mutableSetOf()) { handler ->
