@@ -4,6 +4,10 @@
 set -e
 CURRENT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
+# Fix missing config file.
+mkdir -p ~/.android
+touch ~/.android/repositories.cfg
+
 # Download and unzip Android SDK tools (if not already cached)
 # Latest version available here: https://developer.android.com/studio/#command-tools
 SDK_DOWNLOAD_URL="https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip"
