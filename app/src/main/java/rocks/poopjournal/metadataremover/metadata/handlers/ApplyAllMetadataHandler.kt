@@ -28,10 +28,13 @@ import rocks.poopjournal.metadataremover.model.metadata.Metadata
 import rocks.poopjournal.metadataremover.model.metadata.MetadataHandler
 import rocks.poopjournal.metadataremover.model.resources.MediaType
 import rocks.poopjournal.metadataremover.util.extensions.asDeque
-import rocks.poopjournal.metadataremover.util.extensions.dequeOf
 import java.io.File
 import java.util.*
 
+/**
+ * [MetadataHandler] that combines multiple [handlers] by reading all metadata
+ * and removing metadata by applying all [handlers].
+ */
 class ApplyAllMetadataHandler(
         private val handlers: Queue<MetadataHandler>
 ) : MetadataHandler {
@@ -76,6 +79,7 @@ class ApplyAllMetadataHandler(
             mediaType: MediaType,
             inputFile: File,
             outputFile: File): Boolean {
+        // FIXME instead use temporary files, so that metadata handlers don't overwrite each other.
         return filterMetadataHandlers(mediaType)
                 .any { it.removeMetadata(mediaType, inputFile, outputFile) }
     }
