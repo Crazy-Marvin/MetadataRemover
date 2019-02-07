@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Fail fast when a command returns non-zero exit code.
-set -ev
+set -e
 CURRENT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # Download and unzip Android SDK tools (if not already cached)
