@@ -24,8 +24,6 @@
 
 import org.gradle.kotlin.dsl.DependencyHandlerScope
 import org.gradle.kotlin.dsl.exclude
-import org.gradle.kotlin.dsl.kotlin
-
 
 // Android
 inline val DependencyHandlerScope.androidBuildToolsPlugin
@@ -40,15 +38,15 @@ inline val DependencyHandlerScope.androidJetifierProcessor
 // Kotlin
 inline val DependencyHandlerScope.kotlinPlugin
     // https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-gradle-plugin
-    get() = classpath(kotlin("gradle-plugin", Versions.kotlin) as String)
+    get() = classpath(kotlin("gradle-plugin", Versions.kotlin))
 
 inline val DependencyHandlerScope.kotlinStandardLibraryJdk8
     // https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-stdlib-jdk8
-    get() = implementation(kotlin("stdlib-jdk8", Versions.kotlin) as String)
+    get() = implementation(kotlin("stdlib-jdk8", Versions.kotlin))
 
 inline val DependencyHandlerScope.kotlinReflect
     // https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-stdlib-jdk8
-    get() = implementation(kotlin("reflect", Versions.kotlin) as String)
+    get() = implementation(kotlin("reflect", Versions.kotlin))
 
 
 // Kotlin coroutines

@@ -28,11 +28,8 @@ import android.content.Context
 import android.text.SpannableStringBuilder
 import androidx.annotation.IntRange
 import androidx.annotation.StringRes
-import rocks.poopjournal.metadataremover.model.resources.Text.Type.CHARACTERS
-import rocks.poopjournal.metadataremover.model.resources.Text.Type.GLUE
-import rocks.poopjournal.metadataremover.model.resources.Text.Type.RESOURCE
-import rocks.poopjournal.metadataremover.model.resources.Text.Type.SEQUENCE
-import java.util.Locale
+import rocks.poopjournal.metadataremover.model.resources.Text.Type.*
+import java.util.*
 
 /**
  * An umbrella container for several text representations, including [CharSequence]s,
@@ -100,7 +97,8 @@ class Text private constructor(
     private val sequence: CharSequence
         get() {
             checkType(SEQUENCE)
-            return object1 as CharSequence
+            check(object1 is CharSequence)
+            return object1
         }
 
     /**
@@ -111,7 +109,8 @@ class Text private constructor(
     private val resId: Int
         @StringRes get() {
             checkType(RESOURCE)
-            return int1 as Int
+            check(int1 is Int)
+            return int1
         }
 
     /**
@@ -122,7 +121,8 @@ class Text private constructor(
     private val characters: CharArray
         get() {
             checkType(CHARACTERS)
-            return object1 as CharArray
+            check(object1 is CharArray)
+            return object1
         }
     /**
      * The [characters]'s start offset.
@@ -132,7 +132,8 @@ class Text private constructor(
     private val charactersStartOffset: Int
         @IntRange(from = 0) get() {
             checkType(CHARACTERS)
-            return int1 ?: 0
+            check(int1 is Int)
+            return int1
         }
     /**
      * The [characters]'s length.
@@ -142,7 +143,8 @@ class Text private constructor(
     private val charactersLength: Int
         @IntRange(from = 0) get() {
             checkType(CHARACTERS)
-            return int2 ?: (characters.size - charactersStartOffset)
+            check(int2 is Int)
+            return int2
         }
     /**
      * The prefix [Text] which is glued together with the [suffix].
@@ -152,7 +154,8 @@ class Text private constructor(
     private val prefix: Text
         get() {
             checkType(GLUE)
-            return object1 as Text
+            check(object1 is Text)
+            return object1
         }
     /**
      * The suffix [Text] which is glued together with the [prefix].
@@ -162,7 +165,8 @@ class Text private constructor(
     private val suffix: Text
         get() {
             checkType(GLUE)
-            return object2 as Text
+            check(object2 is Text)
+            return object2
         }
 
     /**
@@ -213,8 +217,8 @@ class Text private constructor(
      */
     constructor(
             characters: CharArray,
-            @IntRange(from = 0) startOffset: Int? = null,
-            @IntRange(from = 0) length: Int? = null,
+            @IntRange(from = 0) startOffset: Int = 0,
+            @IntRange(from = 0) length: Int = characters.size - startOffset,
             vararg formatArguments: Any
     ) : this(
             type = Type.CHARACTERS,
@@ -262,10 +266,10 @@ class Text private constructor(
         if (formatArguments.isNotEmpty() && type != GLUE) {
             // Resolve other Text objects before passing them to String.format().
             val resolvedArguments = formatArguments
-                    .map {
-                        (it as? Text)
-                                ?.load(context)
-                                ?: it
+                    .map { argument ->
+                        if (argument is Text) {
+                            argument.load(context)
+                        } else argument
                     }
                     .toTypedArray()
             return String.format(

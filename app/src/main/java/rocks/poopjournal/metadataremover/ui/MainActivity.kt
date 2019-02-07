@@ -78,7 +78,7 @@ class MainActivity : AppCompatActivity(), ActivityResultLauncher, AndroidViewDsl
                 ?: slidingOffset
 
         viewModel = ViewModelProviders.of(this).get()
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)!!
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
         initializeViews()
         panelSlideListener.onPanelSlide(binding.slidingLayout, slidingOffset)
@@ -218,7 +218,10 @@ class MainActivity : AppCompatActivity(), ActivityResultLauncher, AndroidViewDsl
                                 .isVisible = true
                         findItem(R.id.menu_item_expand_collapse) {
                             isVisible = false
-                            (actionView as ExpandIconView) {
+
+                            val expandIcon = actionView
+                            check(expandIcon is ExpandIconView)
+                            (expandIcon as ExpandIconView) {
                                 setState(ExpandIconView.LESS, false)
                             }
                         }
@@ -261,7 +264,10 @@ class MainActivity : AppCompatActivity(), ActivityResultLauncher, AndroidViewDsl
                                 .isVisible = true
                         findItem(R.id.menu_item_expand_collapse) {
                             isVisible = false
-                            (actionView as ExpandIconView) {
+
+                            val expandIcon = actionView
+                            check(expandIcon is ExpandIconView)
+                            (expandIcon as ExpandIconView) {
                                 setState(ExpandIconView.LESS, false)
                             }
                         }
@@ -307,7 +313,8 @@ class MainActivity : AppCompatActivity(), ActivityResultLauncher, AndroidViewDsl
 
                     Logger.d("${metadata.attributes.size} metadata attributes")
 
-                    val adapter = adapter as MetaAttributeAdapter
+                    val adapter = adapter
+                    check(adapter is MetaAttributeAdapter)
                     adapter.attributes = metadata.attributes
                     Logger.d("${adapter.attributes.size} metadata attributes (adapter)")
                 }
@@ -335,7 +342,7 @@ class MainActivity : AppCompatActivity(), ActivityResultLauncher, AndroidViewDsl
                         .menu
                         .findItem(R.id.menu_item_expand_collapse)
                         .actionView
-                        .let { it as ExpandIconView }
+                check(expandCollapse is ExpandIconView)
 
                 val panelHeight = slidingLayout.height - slidingLayout.panelHeight
                 val absoluteOffset = panelHeight * slideOffset
@@ -368,15 +375,17 @@ class MainActivity : AppCompatActivity(), ActivityResultLauncher, AndroidViewDsl
                     .menu
                     .findItem(R.id.menu_item_expand_collapse)
                     .actionView
-                    .let { it as ExpandIconView }
-            expandCollapse {
-                val state = when (newState) {
+            check(expandCollapse is ExpandIconView)
+
+            (expandCollapse as ExpandIconView) {
+                when (newState) {
                     PanelState.COLLAPSED -> ExpandIconView.LESS to R.string.title_menu_item_collapse
                     PanelState.EXPANDED, PanelState.ANCHORED -> ExpandIconView.MORE to R.string.title_menu_item_expand
-                    PanelState.HIDDEN, PanelState.DRAGGING -> return@expandCollapse
+                    PanelState.HIDDEN, PanelState.DRAGGING -> null
+                }?.let {
+                    setState(it.first, true)
+                    contentDescription = getText(it.second)
                 }
-                setState(state.first, true)
-                contentDescription = getText(state.second)
             }
 
             if (newState == PanelState.COLLAPSED) {

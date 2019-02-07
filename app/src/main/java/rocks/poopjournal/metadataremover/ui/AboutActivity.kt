@@ -51,7 +51,7 @@ class AboutActivity : AppCompatActivity(), ActivityLauncher, AndroidViewDslScope
         super.onCreate(savedInstanceState)
 
         viewModel = ViewModelProviders.of(this).get()
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_about)!!
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_about)
 
         binding.header {
             toolbar.setNavigationOnClickListener {

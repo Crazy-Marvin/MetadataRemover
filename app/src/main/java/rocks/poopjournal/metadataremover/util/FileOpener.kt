@@ -116,34 +116,38 @@ class FileOpener(
         if (requestCode !in requests.keys) return false
 
         GlobalScope.launch(Dispatchers.IO) {
-            val uri = data?.data ?: return@launch
-            // `ACTION_OPEN_DOCUMENT` should always return `content:` URIs
-            if (uri.scheme != ContentResolver.SCHEME_CONTENT) return@launch
-
-
-            val mediaType = uri.getMediaType(context)
-            if (mediaType == null) {
-                Logger.w("Could not guess MIME type from file '${uri.path}'.")
-                return@launch
-            }
-
-            val allowedMediaTypes = requests[requestCode] ?: return@launch
-            if (allowedMediaTypes.none { mediaType in it }) {
-                onWrongMediaTypeFileSelected(mediaType, allowedMediaTypes)
-                return@launch
-            }
-
-            val fileName = uri.getFileName(context)
-            if (fileName == null) {
-                Logger.w("Could not get name from file '$uri'.")
-                return@launch
-            }
-
-            val descriptor: AssetFileDescriptor = uri.openAssetFileDescriptor(context, mode)
-                    ?: return@launch
-            onResult(descriptor, fileName, mediaType)
+            openFile(requestCode, data)
         }
         return true
+    }
+
+    private suspend fun openFile(requestCode: Int, data: Intent?): Unit {
+        val uri = data?.data ?: return
+        // `ACTION_OPEN_DOCUMENT` should always return `content:` URIs
+        if (uri.scheme != ContentResolver.SCHEME_CONTENT) return
+
+
+        val mediaType = uri.getMediaType(context)
+        if (mediaType == null) {
+            Logger.w("Could not guess MIME type from file '${uri.path}'.")
+            return
+        }
+
+        val allowedMediaTypes = requests[requestCode] ?: return
+        if (allowedMediaTypes.none { mediaType in it }) {
+            onWrongMediaTypeFileSelected(mediaType, allowedMediaTypes)
+            return
+        }
+
+        val fileName = uri.getFileName(context)
+        if (fileName == null) {
+            Logger.w("Could not get name from file '$uri'.")
+            return
+        }
+
+        val descriptor: AssetFileDescriptor = uri.openAssetFileDescriptor(context, mode) ?: return
+        onResult(descriptor, fileName, mediaType)
+        return
     }
 
     private companion object {

@@ -165,9 +165,7 @@ class MediaType(
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
-        if (javaClass != other?.javaClass) return false
-
-        other as MediaType
+        if (other !is MediaType) return false
 
         if (type != other.type) return false
         if (subtype != other.subtype) return false
@@ -219,13 +217,12 @@ class MediaType(
                     ?.split(PARAMETER_DELIMITER)
                     ?.filter { it.isNotBlank() }
                     ?.mapNotNull { parameterString ->
-                        val (key, value) = parameterString
+                        parameterString
                                 .split(PARAMETER_VALUE_DELIMITER, limit = 2)
                                 .takeIf { it.size == 2 }
                                 ?.map(String::trim)
-                                ?: return@mapNotNull null
-                        if (key.isEmpty() || value.isEmpty()) return@mapNotNull null
-                        key to value
+                                ?.takeUnless { (key, value) -> key.isEmpty() || value.isEmpty() }
+                                ?.let { (key, value) -> key to value }
                     }
                     ?.takeIf { it.isNotEmpty() }
                     ?.toMap()

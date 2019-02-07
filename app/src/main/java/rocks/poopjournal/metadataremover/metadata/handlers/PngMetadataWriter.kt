@@ -91,9 +91,9 @@ object PngMetadataWriter : MetadataWriter {
         var exception: Throwable? = null
         try {
             return block(reader, writer)
-        } catch (e: Throwable) {
-            exception = e
-            throw e
+        } catch (throwable: Throwable) {
+            exception = throwable
+            throw throwable
         } finally {
             when (exception) {
                 null -> {

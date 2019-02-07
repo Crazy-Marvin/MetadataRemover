@@ -23,8 +23,10 @@
  */
 
 import org.gradle.api.artifacts.ExternalModuleDependency
+import org.gradle.api.artifacts.dsl.DependencyHandler
 import org.gradle.api.initialization.dsl.ScriptHandler
 import org.gradle.kotlin.dsl.DependencyHandlerScope
+import org.gradle.kotlin.dsl.kotlin
 
 const val CLASSPATH_CONFIGURATION = ScriptHandler.CLASSPATH_CONFIGURATION
 const val IMPLEMENTATION_CONFIGURATION = "implementation"
@@ -188,3 +190,9 @@ fun DependencyHandlerScope.annotationProcessor(
         dependencyNotation,
         dependencyConfiguration
 )
+
+fun DependencyHandler.kotlin(module: String, version: String? = null): String {
+    val dependencyNotation: Any = kotlin(module, version)
+    check(dependencyNotation is String)
+    return dependencyNotation as String
+}
