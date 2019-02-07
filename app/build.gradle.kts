@@ -26,7 +26,7 @@ import com.android.build.gradle.BaseExtension
 import com.android.build.gradle.internal.dsl.TestOptions
 import com.android.builder.core.DefaultApiVersion
 import com.android.builder.core.DefaultProductFlavor
-import groovy.lang.Closure
+import org.gradle.internal.Cast.uncheckedCast
 
 plugins {
     androidApplication
@@ -167,6 +167,5 @@ inline var DefaultProductFlavor.targetSdk: Int
         targetSdkVersion = DefaultApiVersion(value)
     }
 
-@Suppress("unchecked_cast")
 fun TestOptions.UnitTestOptions.all(action: Test.() -> Unit) =
-        all(closureOf(action) as Closure<Test>)
+        all(uncheckedCast(closureOf(action)))
