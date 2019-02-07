@@ -15,10 +15,7 @@ env:
   - ANDROID_BUILD_TOOLS=28.0.3
   - ANDROID_SDK=28
   # Add Android SDK tools to path.
-  - PATH=$PATH:$ANDROID_HOME/tools
-  - PATH=$PATH:$ANDROID_HOME/tools/bin
-  - PATH=$PATH:$ANDROID_HOME/platform-tools
-  - PATH=$PATH:$ANDROID_HOME/emulator
+  - PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator
   # Add CI scripts to path.
   - PATH=$PATH:$PWD/ci
 
