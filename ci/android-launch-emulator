@@ -15,12 +15,8 @@ echo no | avdmanager create avd --force --sdcard 200M --name "test-$sdk-$abi" --
 echo "Starting emulator device."
 # Launch the emulator from the emulator tools directory, in background:
 # See: https://www.bram.us/2017/05/12/launching-the-android-emulator-from-the-command-line/
-cd $(dirname $(which emulator)) && ./emulator -no-audio -no-window -gpu off -use-system-libs -avd "test-$sdk-$abi" &
+cd $(dirname $(which emulator)) && ./emulator -no-audio -no-window -no-skin -gpu off -use-system-libs -avd "test-$sdk-$abi" &
 
-# Wait for the emulator to finish initial logging.
-sleep 10
-
-adb devices
 # Wait for AVD to start.
 ${CURRENT_DIR}/android-wait-for-emulator "test-$sdk-$abi"
 

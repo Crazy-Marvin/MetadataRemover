@@ -12,16 +12,17 @@ then
     exit -1
 fi
 
-DEVICE_STATE=""
+# First wait for the device to connect to the ADB.
+adb wait-for-device
+
 BOOT_ANIMATION_STATE=""
 FAIL_COUNTER=0
 TIMEOUT_IN_MINUTES=5
 TIMEOUT_IN_SECONDS=$((TIMEOUT_IN_MINUTES * 60))
 
 echo "Waiting for emulator to start..."
-until [[ ${DEVICE_STATE} == "device" && ${BOOT_ANIMATION_STATE} == "stopped" ]]
+until [[ ${BOOT_ANIMATION_STATE} == "stopped" ]]
 do
-    DEVICE_STATE=`adb get-state 2>&1 &`
     BOOT_ANIMATION_STATE=`adb -e shell getprop init.svc.bootanim 2>&1 &`
 
 #    if [[ "$BOOT_ANIMATION_STATE" =~ "device not found" || "$BOOT_ANIMATION_STATE" =~ "device offline" || "$BOOT_ANIMATION_STATE" =~ "running" ]]; then
@@ -42,7 +43,7 @@ do
     if (( $FAIL_COUNTER % 5 == 0 ))
     then
         REMAINING_SECONDS=$((TIMEOUT_IN_SECONDS - FAIL_COUNTER))
-        echo "Current state: emulator='$DEVICE_STATE', boot animation='$BOOT_ANIMATION_STATE'. Still waiting for $REMAINING_SECONDS seconds..."
+        echo "Current state: boot animation='$BOOT_ANIMATION_STATE'. Still waiting for $REMAINING_SECONDS seconds..."
     fi
 
     sleep 1
