@@ -65,11 +65,13 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    val releaseSigningConfig by signingConfigs.creating {
-        storeFile = rootProject.file(localProperties.getValue("keystore.path"))
-        storePassword = localProperties["keystore.password"] as String
-        keyAlias = localProperties["keystore.alias.googleplay.name"] as String
-        keyPassword = localProperties["keystore.alias.googleplay.password"] as String
+    val releaseSigning by signingConfigs.creating {
+        storeFile = localProperties["keystore.path"]
+                ?.let(rootProject::file)
+                ?.takeIf(File::exists)
+        storePassword = localProperties["keystore.password"] as? String
+        keyAlias = localProperties["keystore.alias.googleplay.name"] as? String
+        keyPassword = localProperties["keystore.alias.googleplay.password"] as? String
     }
 
     buildTypes {
@@ -92,7 +94,7 @@ android {
                 proguardFiles += getDefaultProguardFile("proguard-android.txt")
                 proguardFiles += file("proguard-rules.pro")
             }
-            signingConfig = releaseSigningConfig
+            signingConfig = releaseSigning
         }
     }
 
