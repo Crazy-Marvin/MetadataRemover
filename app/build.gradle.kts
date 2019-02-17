@@ -59,7 +59,7 @@ android {
         targetSdk = Versions.sdk.target
 
         versionCode = Versions.app.code
-        versionName = Versions.app.shortName
+        versionName = Versions.app.fullName
 
         // The default test runner for Android instrumentation tests.
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -67,7 +67,6 @@ android {
 
     val releaseSigningConfig by signingConfigs.creating {
         storeFile = rootProject.file(localProperties.getValue("keystore.path"))
-        println("Keystore file at $storeFile.")
         storePassword = localProperties["keystore.password"] as String
         keyAlias = localProperties["keystore.alias.googleplay.name"] as String
         keyPassword = localProperties["keystore.alias.googleplay.password"] as String
