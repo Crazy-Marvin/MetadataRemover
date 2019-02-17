@@ -27,6 +27,7 @@ import com.android.build.gradle.internal.dsl.TestOptions
 import com.android.builder.core.DefaultApiVersion
 import com.android.builder.core.DefaultProductFlavor
 import org.gradle.internal.Cast.uncheckedCast
+import java.util.*
 
 plugins {
     androidApplication
@@ -38,6 +39,15 @@ plugins {
     jacocoAndroid
 //    spoon
 }
+
+val localProperties: Map<String, Any> = project
+        .rootProject
+        .file("local.properties")
+        .inputStream()
+        .let { stream ->
+            Properties().apply { load(stream) }
+        }
+        .mapKeys { (key, _) -> key.toString() }
 
 android {
     compileSdk = Versions.sdk.compile
@@ -53,6 +63,14 @@ android {
 
         // The default test runner for Android instrumentation tests.
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    val releaseSigningConfig by signingConfigs.creating {
+        storeFile = rootProject.file(localProperties.getValue("keystore.path"))
+        println("Keystore file at $storeFile.")
+        storePassword = localProperties["keystore.password"] as String
+        keyAlias = localProperties["keystore.alias.googleplay.name"] as String
+        keyPassword = localProperties["keystore.alias.googleplay.password"] as String
     }
 
     buildTypes {
@@ -75,6 +93,7 @@ android {
                 proguardFiles += getDefaultProguardFile("proguard-android.txt")
                 proguardFiles += file("proguard-rules.pro")
             }
+            signingConfig = releaseSigningConfig
         }
     }
 
