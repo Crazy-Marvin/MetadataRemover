@@ -35,7 +35,7 @@ plugins {
     kotlinAndroidExtensions
     kotlinKapt
     googlePlayPublishing
-    onNonCiBuild { fDroidPublishing }
+    fDroidPublishing
     jacocoAndroid
 //    spoon
 }
