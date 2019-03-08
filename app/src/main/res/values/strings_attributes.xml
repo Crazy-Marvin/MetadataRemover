@@ -57,6 +57,10 @@
     <string name="label_attribute_file_last_modification_date_time">Last modification date &amp; time</string>
     <string name="label_attribute_file_creation_date_time">Creation date &amp; time</string>
     <string name="label_attribute_file_identity">Identity</string>
+    <string name="label_attribute_image_author">Author</string>
+    <string name="label_attribute_image_source">Source</string>
+    <string name="label_attribute_image_comment">Comment</string>
+    <string name="label_attribute_image_warning">Warning</string>
     <string name="label_attribute_image_creation_camera">Camera</string>
     <string name="label_attribute_image_creation_lens">Lens</string>
     <string name="description_attribute_image_creation_model_serial_number">%1$s (%2$s)</string>

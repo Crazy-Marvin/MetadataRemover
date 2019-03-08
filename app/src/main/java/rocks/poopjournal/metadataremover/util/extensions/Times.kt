@@ -25,8 +25,18 @@
 package rocks.poopjournal.metadataremover.util.extensions
 
 import java.text.DateFormat
+import java.text.ParsePosition
+import java.text.SimpleDateFormat
+import java.util.*
 
-val attributeDateFormat: DateFormat = DateFormat.getDateInstance(DateFormat.LONG)
-val attributeTimeFormat: DateFormat = DateFormat.getTimeInstance(DateFormat.SHORT)
+val ATTRIBUTE_DATE_FORMAT: DateFormat = DateFormat.getDateInstance(DateFormat.LONG)
+val ATTRIBUTE_TIME_FORMAT: DateFormat = DateFormat.getTimeInstance(DateFormat.SHORT)
+val RFC_822_DATE_FORMAT: DateFormat = SimpleDateFormat("E, d MMM yyyy HH:mm:ss Z", Locale.US)
 
+fun String.toRfc822Calendar() = RFC_822_DATE_FORMAT.parse(this).toCalendar()
 
+fun DateFormat.parseOrNull(source: String): Date? = parse(source, ParsePosition(0))
+
+fun String.toRfc822CalendarOrNull() = RFC_822_DATE_FORMAT.parseOrNull(this)?.toCalendar()
+
+fun Date.toCalendar(): Calendar = Calendar.getInstance().also { it.time = this }
