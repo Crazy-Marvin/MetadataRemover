@@ -21,9 +21,9 @@ before_install:
 # Copy fake local.properties
 - cp ci/local.properties ./
 # Decrypt Google Play publishing key.
-- openssl aes-256-cbc -K $encrypted_a426ff20bb84_key -iv $encrypted_a426ff20bb84_iv -in secret/api-7281121051860956110-977812-57e7308358e6.json.enc -out secret/api-7281121051860956110-977812-57e7308358e6.json -d
+- openssl aes-256-cbc -K $encrypted_3bd88bff048e_key -iv $encrypted_3bd88bff048e_iv -in secret/api-7281121051860956110-977812-57e7308358e6.json.enc -out secret/api-7281121051860956110-977812-57e7308358e6.json -d
 # Decrypt keystore.
-- openssl aes-256-cbc -K $encrypted_a426ff20bb84_key -iv $encrypted_a426ff20bb84_iv -in secret/MetadataRemover.jks.enc -out secret/MetadataRemover.jks -d
+- openssl aes-256-cbc -K $encrypted_3bd88bff048e_key -iv $encrypted_3bd88bff048e_iv -in secret/MetadataRemover.jks.enc -out secret/MetadataRemover.jks -d
 
 # Install Android SDK before each build (if not already cached).
 install: ci/android-install-sdk
