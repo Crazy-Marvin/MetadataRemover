@@ -50,8 +50,6 @@ val localProperties: Map<String, String> = project
         .map { (key, value) -> key.toString() to value.toString() }
         .toMap()
 
-fun getLocalPropertyOrEnv(key: String): String? = localProperties[key] ?: System.getenv(key)
-
 android {
     compileSdk = Versions.sdk.compile
 
@@ -71,9 +69,12 @@ android {
     val releaseSigning by signingConfigs.creating {
         storeFile = rootProject.file("secret/MetadataRemover.jks")
                 .takeIf(File::exists)
-        storePassword = getLocalPropertyOrEnv("keystore.password")
-        keyAlias = getLocalPropertyOrEnv("keystore.alias.googleplay.name")
-        keyPassword = getLocalPropertyOrEnv("keystore.alias.googleplay.password")
+        storePassword = localProperties["keystore.password"]
+                ?: System.getenv("keystore_password")
+        keyAlias = localProperties["keystore.alias.googleplay.name"]
+                ?: System.getenv("keystore_alias_googleplay_name")
+        keyPassword = localProperties["keystore.alias.googleplay.password"]
+                ?: System.getenv("keystore_alias_googleplay_password")
     }
 
     buildTypes {
