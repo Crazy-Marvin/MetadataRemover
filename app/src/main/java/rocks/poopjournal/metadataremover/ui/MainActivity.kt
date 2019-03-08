@@ -79,6 +79,7 @@ class MainActivity : AppCompatActivity(), ActivityResultLauncher, AndroidViewDsl
                 ?: slidingOffset
 
         viewModel = ViewModelProviders.of(this).get()
+
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
         initializeViews()
