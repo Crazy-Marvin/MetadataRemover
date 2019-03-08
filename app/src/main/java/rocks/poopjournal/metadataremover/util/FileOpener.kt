@@ -140,6 +140,7 @@ class FileOpener(
         }
 
         val fileName = uri.getFileName(context)
+                ?.takeIf(String::isNotBlank)
         if (fileName == null) {
             Logger.w("Could not get name from file '$uri'.")
             return
