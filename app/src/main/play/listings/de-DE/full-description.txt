@@ -1,0 +1,32 @@
+<i>Schützen Sie Ihre Privatsphäre, indem Sie Metadaten aus Ihren Fotos entfernen, bevor Sie diese im Internet teilen!</i>
+
+<h2><b>Funktionen:</b></h2>
+
+ ✔️ Metadaten anzeigen
+ ✔️ Bildvorschau
+ ✔️ Metadaten entfernen
+ ✔️ Einfache und schnelle Bedienung
+ ✔️ Direkt teilen aus der App
+
+<h2><b>Mehr erfahren:</b></h2>
+
+Jedes Mal, wenn Sie ein Foto aufnehmen, werden zusätzlich verschiedene Metadaten gespeichert.
+Bei den meisten Smartphones werden Sie darüber <i>nicht informiert</i>.
+
+<b>Metadaten können so aussehen:</b>
+ 🕑 An welchem Tag wurde ein Foto aufgenommen und zu welcher Uhrzeit?
+ 🗺️ Und wo genau?
+ 📷 Welche Kamera oder welches Smartphone wurde benutzt?
+ 🔧 Und mit welchen Kamera-Einstellungen?
+ 📝 Notizen des Fotografen oder der Kamera?
+ 📌 Immer öfter werden sogar genaue GPS-Koordinaten mit Ihren Fotos gespeichert.
+
+Die Metadaten sind manchmal sehr nützlich ‒ zum Beispiel beim Sortieren von Urlaubsfotos.
+Sobald Sie aber die Fotos über soziale Netzwerke mit anderen Menschen teilen, sind alle diese Informationen <i>öffentlich</i> einsehbar.
+Datensammler und Stalker können aus den Metadaten vielleicht Ihren <i>Wohnort oder Arbeitsplatz ermitteln</i> oder Rückschlüsse auf Ihren <i>Tagesablauf</i> ziehen.
+Tracking-Dienste können umfangreichere Werbungs-Profile erstellen und Ihre Daten an andere Unternehmen weiterverkaufen.
+
+Mit unserer App können Sie all diese Daten kinderleicht einsehen, <i>vollständig entfernen</i> und dann direkt das anonymisierte Bild weiter teilen!
+So bleiben Sie im Internet <i>anonym</i> und <i>geschützt</i>, während Ihre Freunde auch weiterhin Ihre niedliche Katze bewundern können.
+
+<i>Viel Spaß beim Teilen! 😽</i>
