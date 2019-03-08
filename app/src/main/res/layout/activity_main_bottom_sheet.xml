@@ -39,7 +39,8 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:title="@string/title_bottom_sheet_open_file" />
+            app:title="@string/title_bottom_sheet_open_file"
+            android:elevation="@dimen/elevation_toolbar" />
 
         <View
             android:id="@+id/divider_toolbar"
