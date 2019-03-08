@@ -53,6 +53,8 @@ class ExifMetadataHandler(context: Context? = null) : MetadataHandler {
             MediaTypes[MediaTypes.SRW] + MediaTypes[MediaTypes.RAF]
 
     override suspend fun loadMetadata(mediaType: MediaType, inputFile: File): Metadata? {
+        check(mediaType in readableMimeTypes)
+
         val exif = ExifInterface(inputFile.inputStream())
         val thumbnail =
                 exif.thumbnailBitmap
@@ -86,9 +88,7 @@ class ExifMetadataHandler(context: Context? = null) : MetadataHandler {
             mediaType: MediaType,
             inputFile: File,
             outputFile: File): Boolean {
-        if (mediaType !in writableMimeTypes) {
-            return false
-        }
+        check(mediaType in writableMimeTypes)
 
         // Delete old output files.
         outputFile.deleteIfExists()

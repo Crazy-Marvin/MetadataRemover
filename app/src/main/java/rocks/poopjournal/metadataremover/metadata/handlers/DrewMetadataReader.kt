@@ -75,6 +75,8 @@ object DrewMetadataReader : MetadataReader {
             MediaTypes[MediaTypes.WAV_AUDIO] + MediaTypes[MediaTypes.WEBP]
 
     override suspend fun loadMetadata(mediaType: MediaType, inputFile: File): Metadata? {
+        check(mediaType in readableMimeTypes)
+
         val metadata = DrewImageMetadataReader.readMetadata(inputFile)
 
         val adobeJpegDirectory = metadata.getFirstDirectoryOfType<AdobeJpegDirectory>()
