@@ -117,28 +117,13 @@ android {
 }
 
 junitJacoco {
-    includeInstrumentationCoverageInMergedReport = true
+    includeInstrumentationCoverageInMergedReport = false
 }
 
 val jacocoTestReport by tasks.registering {
     group = "reporting"
     dependsOn("jacocoTestReportDebug", "jacocoTestReportRelease")
 }
-
-//spoon {
-//    // Disable animations.
-//    noAnimations = true
-//
-//    // ADB timeout in minutes.
-//    adbTimeout = 10
-//
-//    // Grant all runtime permissions during installation.
-//    grantAll = true
-//
-//    // Execute tests in parallel on 10 shards.
-//    shard = true
-//    numShards = 10
-//}
 
 kapt {
     javacOptions {
@@ -171,17 +156,17 @@ repositories(Repositories.app)
 dependencies(Dependencies.app)
 
 
-inline var BaseExtension.compileSdk: Int
+var BaseExtension.compileSdk: Int
     get() = compileSdkVersion.removePrefix("android-").toInt()
     set(value) = compileSdkVersion(value)
 
-inline var DefaultProductFlavor.minSdk: Int
+var DefaultProductFlavor.minSdk: Int
     get() = minSdkVersion!!.apiLevel
     set(value) {
         minSdkVersion = DefaultApiVersion(value)
     }
 
-inline var DefaultProductFlavor.targetSdk: Int
+var DefaultProductFlavor.targetSdk: Int
     get() = targetSdkVersion!!.apiLevel
     set(value) {
         targetSdkVersion = DefaultApiVersion(value)
