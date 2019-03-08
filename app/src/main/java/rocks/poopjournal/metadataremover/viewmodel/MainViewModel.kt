@@ -34,12 +34,14 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import rocks.poopjournal.metadataremover.BuildConfig
 import rocks.poopjournal.metadataremover.R
-import rocks.poopjournal.metadataremover.metadata.handlers.*
+import rocks.poopjournal.metadataremover.metadata.handlers.ApplyAllMetadataHandler
+import rocks.poopjournal.metadataremover.metadata.handlers.ExifMetadataHandler
+import rocks.poopjournal.metadataremover.metadata.handlers.FirstMatchMetadataHandler
+import rocks.poopjournal.metadataremover.metadata.handlers.PngMetadataHandler
 import rocks.poopjournal.metadataremover.model.metadata.Metadata
 import rocks.poopjournal.metadataremover.model.resources.MediaType
 import rocks.poopjournal.metadataremover.model.resources.Resource
 import rocks.poopjournal.metadataremover.model.resources.Text
-import rocks.poopjournal.metadataremover.model.util.toMetadataHandler
 import rocks.poopjournal.metadataremover.ui.AboutActivity
 import rocks.poopjournal.metadataremover.util.ActivityLauncher
 import rocks.poopjournal.metadataremover.util.ActivityResultLauncher
@@ -56,6 +58,12 @@ class MainViewModel(application: Application) :
         AndroidViewModel(application), MetadataViewModel, ActivityLauncherViewModel,
         ActivityResultLauncherViewModel, ActivityResultLauncher {
 
+    private val sharedImagesDirectory by lazy {
+        applicationContext.filesDir
+                .resolve("images")
+                .apply { mkdirs() }
+    }
+
     data class WrongMimeTypeFileSelectedHint(
             val mediaType: MediaType,
             val allowedMediaTypes: Set<MediaType>
@@ -69,10 +77,10 @@ class MainViewModel(application: Application) :
     private val metadataHandler = FirstMatchMetadataHandler(
             ApplyAllMetadataHandler(
                     ExifMetadataHandler(applicationContext),
-                    DrewMetadataReader.toMetadataHandler(),
-                    PngMetadataWriter.toMetadataHandler()
-            ),
-            NopMetadataHandler // For testing purposes only. TODO Remove after testing.
+//                    DrewMetadataReader.toMetadataHandler(),
+                    PngMetadataHandler
+            )
+//            , NopMetadataHandler // For testing purposes only. TODO Remove after testing.
     )
 
     // For now we'll restrict file opening to mime types we can read AND write to.
@@ -148,6 +156,26 @@ class MainViewModel(application: Application) :
             val name: String,
             val mediaType: MediaType
     ) : Closeable {
+
+        val original = sharedImagesDirectory
+                .resolve(name)
+                .apply {
+                    createNewFile()
+                    copyFrom(descriptor)
+                }
+
+        val nameWithoutExtension = original.nameWithoutExtension
+
+        val output = sharedImagesDirectory
+                .resolve("${nameWithoutExtension}_no_metadata" +
+                        if (original.extension.isNotEmpty()) ".${original.extension}" else "")
+                .apply {
+                    createNewFile()
+                }
+
+        val isMetadataRemoved
+            get() = output.size != 0L
+
         override fun close() {
             // Copy file output to descriptor, then close it.
             if ('w' in filePicker.mode) {
@@ -159,29 +187,6 @@ class MainViewModel(application: Application) :
             original.delete()
             output.delete()
         }
-
-        val nameWithoutExtension = name.substringBeforeLast(".")
-
-        private val sharedImagesDirectory = applicationContext.filesDir
-                .resolve("images")
-                .apply { mkdirs() }
-
-        val original = sharedImagesDirectory
-                .resolve(name)
-                .apply {
-                    createNewFile()
-                    copyFrom(descriptor)
-                }
-
-        val output = sharedImagesDirectory
-                .resolve("${original.nameWithoutExtension}_no_metadata" +
-                        if (original.extension.isNotEmpty()) ".${original.extension}" else "")
-                .apply {
-                    createNewFile()
-                }
-
-        val isMetadataRemoved
-            get() = output.size != 0L
     }
 
     private suspend fun openFile(descriptor: AssetFileDescriptor, name: String,
@@ -211,7 +216,7 @@ class MainViewModel(application: Application) :
 
         val fileSystemAttributes = listOfNotNull(
                 fileView.original.nameAttribute,
-                fileView.original.lastModifiedAttribute, // TODO Remove this.
+//                fileView.original.lastModifiedAttribute, // TODO Remove this.
                 fileView.original.sizeAttribute
         )
         val outputMetadata = inputMetadata.copy(
