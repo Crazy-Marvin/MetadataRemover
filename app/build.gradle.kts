@@ -37,7 +37,6 @@ plugins {
     googlePlayPublishing
     fDroidPublishing
     jacocoAndroid
-//    spoon
 }
 
 val localProperties: Map<String, String> = project
@@ -152,6 +151,9 @@ play {
     track = "internal"
     resolutionStrategy = "fail"
 }
+
+// Lint F-Droid resources.
+//tasks["lint"].dependsOn("fdroidLint")
 
 repositories(Repositories.app)
 dependencies(Dependencies.app)
