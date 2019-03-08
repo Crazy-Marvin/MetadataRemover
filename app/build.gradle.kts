@@ -40,14 +40,17 @@ plugins {
 //    spoon
 }
 
-val localProperties: Map<String, Any> = project
+val localProperties: Map<String, String> = project
         .rootProject
         .file("local.properties")
         .inputStream()
         .let { stream ->
             Properties().apply { load(stream) }
         }
-        .mapKeys { (key, _) -> key.toString() }
+        .map { (key, value) -> key.toString() to value.toString() }
+        .toMap()
+
+fun getLocalPropertyOrEnv(key: String): String? = localProperties[key] ?: System.getenv(key)
 
 android {
     compileSdk = Versions.sdk.compile
@@ -66,12 +69,11 @@ android {
     }
 
     val releaseSigning by signingConfigs.creating {
-        storeFile = localProperties["keystore.path"]
-                ?.let(rootProject::file)
-                ?.takeIf(File::exists)
-        storePassword = localProperties["keystore.password"] as? String
-        keyAlias = localProperties["keystore.alias.googleplay.name"] as? String
-        keyPassword = localProperties["keystore.alias.googleplay.password"] as? String
+        storeFile = rootProject.file("secret/MetadataRemover.jks")
+                .takeIf(File::exists)
+        storePassword = getLocalPropertyOrEnv("keystore.password")
+        keyAlias = getLocalPropertyOrEnv("keystore.alias.googleplay.name")
+        keyPassword = getLocalPropertyOrEnv("keystore.alias.googleplay.password")
     }
 
     buildTypes {
@@ -138,18 +140,16 @@ kapt {
 }
 
 play {
-    serviceAccountCredentials = File(rootDir, "secret/api-7281121051860956110-977812-57e7308358e6.json")
-    check(serviceAccountCredentials?.exists() ?: false) {
-        "Could not find Google Play credentials."
-    }
+    serviceAccountCredentials = rootProject
+            .file("secret/api-7281121051860956110-977812-57e7308358e6.json")
+            .also { file ->
+                check(file.exists()) {
+                    "Could not find Google Play credentials."
+                }
+            }
 
     track = "internal"
     resolutionStrategy = "fail"
-
-    // Don't commit from CI build (yet).
-    if (isCiBuild) {
-        commit = false
-    }
 }
 
 repositories(Repositories.app)
