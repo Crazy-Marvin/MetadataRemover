@@ -59,7 +59,7 @@ android {
         targetSdk = Versions.sdk.target
 
         versionCode = Versions.app.code
-        versionName = Versions.app.fullName
+        versionName = Versions.app.name
 
         // The default test runner for Android instrumentation tests.
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -143,7 +143,7 @@ play {
     serviceAccountCredentials = rootProject
             .file("secret/api-7281121051860956110-977812-57e7308358e6.json")
             .also { file ->
-                check(file.exists()) {
+                require(file.exists()) {
                     "Could not find Google Play credentials."
                 }
             }
