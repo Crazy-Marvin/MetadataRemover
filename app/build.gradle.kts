@@ -81,7 +81,7 @@ android {
         // Debug builds
         val debug by existing {
             // Append "DEBUG" to all debug build versions
-            versionNameSuffix = " (debug)"
+            versionNameSuffix = "-$latestCommitHash (debug)"
             isDebuggable = true
             isTestCoverageEnabled = true
         }

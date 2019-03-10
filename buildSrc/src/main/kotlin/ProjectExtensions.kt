@@ -1,4 +1,5 @@
 import org.gradle.api.Project
+import java.io.ByteArrayOutputStream
 import java.io.File
 import java.util.*
 
@@ -11,4 +12,23 @@ val Project.localProperties: Properties
                             ?.inputStream()
                             ?.use { load(it) }
                 }
+    }
+
+
+val Project.latestCommitHash: String
+    get() {
+        return ByteArrayOutputStream()
+                .also { stream ->
+                    exec {
+                        commandLine = listOf(
+                                "git",
+                                "rev-parse",
+                                "--short",
+                                "HEAD"
+                        )
+                        standardOutput = stream
+                    }
+                }
+                .toString()
+                .trim()
     }
