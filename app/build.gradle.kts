@@ -161,6 +161,12 @@ play {
 // Lint F-Droid resources.
 //tasks["lint"].dependsOn("fdroidLint")
 
+val printVersionName by tasks.creating {
+    doLast {
+        println(Versions.app.name)
+    }
+}
+
 repositories(Repositories.app)
 dependencies(Dependencies.app)
 
