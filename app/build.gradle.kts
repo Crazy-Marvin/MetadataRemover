@@ -148,14 +148,10 @@ play {
                 }
             }
 
-    track = "alpha"
+    track = "internal"
     releaseStatus = "draft"
     defaultToAppBundles = true
-    resolutionStrategy = "auto"
-    outputProcessor {
-        // TODO Use Git commit hash to resolve conflicts.
-        versionNameOverride = "$versionNameOverride.$versionCode"
-    }
+    resolutionStrategy = "fail"
 }
 
 // Lint F-Droid resources.
