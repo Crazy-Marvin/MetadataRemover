@@ -45,13 +45,7 @@ object PngMetadataHandler : MetadataHandler {
     override suspend fun loadMetadata(mediaType: MediaType, inputFile: File): Metadata? {
         check(mediaType in readableMimeTypes)
 
-        val metadata = PngReader(inputFile)
-                .metadata
-                .apply {
-
-                    // Read metadata
-                }
-
+        val metadata = PngReader(inputFile).metadata
         val imageFile = ImageFile(inputFile)
 
         val attributes = listOfNotNull(
@@ -65,7 +59,10 @@ object PngMetadataHandler : MetadataHandler {
         )
 
         return Metadata(
-                title = metadata.getTxtForKey(PngChunkTextVar.KEY_Title)?.let { Text(it) },
+                title = metadata
+                        .getTxtForKey(PngChunkTextVar.KEY_Title)
+                        ?.takeIf(String::isNotBlank)
+                        ?.let { Text(it) },
                 thumbnail = Image(inputFile),
                 attributes = attributes.toSet()
         )
