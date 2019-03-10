@@ -26,6 +26,7 @@ package rocks.poopjournal.metadataremover.ui
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import androidx.annotation.FloatRange
@@ -78,6 +79,7 @@ class MainActivity : AppCompatActivity(), ActivityResultLauncher, AndroidViewDsl
                 ?: slidingOffset
 
         viewModel = ViewModelProviders.of(this).get()
+
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
         initializeViews()
@@ -274,7 +276,23 @@ class MainActivity : AppCompatActivity(), ActivityResultLauncher, AndroidViewDsl
                     }
                 }
 
-                listMetadata.isVisible = false
+                listMetadata {
+                    isVisible = false
+
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        addOnScrollListener(object : RecyclerView.OnScrollListener() {
+                            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                                if (recyclerView.canScrollVertically(-1)) {
+                                    toolbar.setElevation(resources.getDimension(R.dimen.elevation_toolbar))
+                                    dividerToolbar.setVisibility(View.INVISIBLE)
+                                } else {
+                                    toolbar.setElevation(0f)
+                                    dividerToolbar.setVisibility(View.VISIBLE)
+                                }
+                            }
+                        })
+                    }
+                }
                 bannerNoMetadata.isVisible = true
                 buttonRemoveMetadata.isEnabled = false
             }

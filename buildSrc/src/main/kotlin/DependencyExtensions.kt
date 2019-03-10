@@ -138,11 +138,11 @@ inline val DependencyHandlerScope.jUnit
 
 inline val DependencyHandlerScope.kotlinTest
     // https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-test
-    get() = testImplementation(kotlin("test", Versions.kotlin) as String)
+    get() = testImplementation(kotlin("test", Versions.kotlin))
 
 inline val DependencyHandlerScope.kotlinTestJUnit
     // https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-test
-    get() = testImplementation(kotlin("test-junit", Versions.kotlin) as String)
+    get() = testImplementation(kotlin("test-junit", Versions.kotlin))
 
 inline val DependencyHandlerScope.androidxTestRunner
     // https://mvnrepository.com/artifact/androidx.test/runner

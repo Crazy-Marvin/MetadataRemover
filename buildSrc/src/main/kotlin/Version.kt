@@ -57,8 +57,6 @@ data class Version(
     )
 
     val fullName = toString(
-            minorVisibility = Visibility.ALWAYS,
-            patchVisibility = Visibility.ALWAYS,
             buildVisibility = Visibility.ALWAYS
     )
 

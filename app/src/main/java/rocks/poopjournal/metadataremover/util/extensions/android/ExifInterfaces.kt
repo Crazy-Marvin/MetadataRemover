@@ -9,8 +9,9 @@ import rocks.poopjournal.metadataremover.model.coordinates.Longitude
 import rocks.poopjournal.metadataremover.model.metadata.Metadata
 import rocks.poopjournal.metadataremover.model.resources.Image
 import rocks.poopjournal.metadataremover.model.resources.Text
+import rocks.poopjournal.metadataremover.util.extensions.ATTRIBUTE_DATE_FORMAT
+import rocks.poopjournal.metadataremover.util.extensions.ATTRIBUTE_TIME_FORMAT
 import rocks.poopjournal.metadataremover.util.extensions.format
-import java.text.DateFormat
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
@@ -250,16 +251,14 @@ fun ExifInterface.clearAllAttributes(): ExifInterface {
     return this
 }
 
-private val dateFormat: DateFormat = DateFormat.getDateInstance(DateFormat.LONG)
-private val timeFormat: DateFormat = DateFormat.getTimeInstance(DateFormat.SHORT)
 val ExifInterface.creationAttribute: Metadata.Attribute?
     get() {
         val creationDate = creationDate ?: return null
         return Metadata.Attribute(
                 label = Text(R.string.label_attribute_file_creation_date_time),
                 icon = Image(R.drawable.ic_event),
-                primaryValue = Text(dateFormat.format(creationDate)),
-                secondaryValue = Text(timeFormat.format(creationDate))
+                primaryValue = Text(ATTRIBUTE_DATE_FORMAT.format(creationDate)),
+                secondaryValue = Text(ATTRIBUTE_TIME_FORMAT.format(creationDate))
         )
     }
 

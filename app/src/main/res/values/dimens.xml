@@ -35,6 +35,7 @@
     <dimen name="baseline_card_inner_button_vertical">0dp</dimen>
     <dimen name="baseline_card_inner_button_horizontal">0dp</dimen>
 
+    <dimen name="elevation_toolbar">4dp</dimen>
     <dimen name="elevation_bottom_sheet">8dp</dimen>
     <dimen name="elevation_navigation_bar">12dp</dimen>
 

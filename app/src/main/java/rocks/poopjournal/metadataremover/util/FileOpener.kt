@@ -121,7 +121,7 @@ class FileOpener(
         return true
     }
 
-    private suspend fun openFile(requestCode: Int, data: Intent?): Unit {
+    private suspend fun openFile(requestCode: Int, data: Intent?) {
         val uri = data?.data ?: return
         // `ACTION_OPEN_DOCUMENT` should always return `content:` URIs
         if (uri.scheme != ContentResolver.SCHEME_CONTENT) return
@@ -140,6 +140,7 @@ class FileOpener(
         }
 
         val fileName = uri.getFileName(context)
+                ?.takeIf(String::isNotBlank)
         if (fileName == null) {
             Logger.w("Could not get name from file '$uri'.")
             return

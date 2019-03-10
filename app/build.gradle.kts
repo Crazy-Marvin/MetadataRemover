@@ -35,19 +35,19 @@ plugins {
     kotlinAndroidExtensions
     kotlinKapt
     googlePlayPublishing
-    onNonCiBuild { fDroidPublishing }
+    fDroidPublishing
     jacocoAndroid
-//    spoon
 }
 
-val localProperties: Map<String, Any> = project
+val localProperties: Map<String, String> = project
         .rootProject
         .file("local.properties")
         .inputStream()
         .let { stream ->
             Properties().apply { load(stream) }
         }
-        .mapKeys { (key, _) -> key.toString() }
+        .map { (key, value) -> key.toString() to value.toString() }
+        .toMap()
 
 android {
     compileSdk = Versions.sdk.compile
@@ -59,18 +59,21 @@ android {
         targetSdk = Versions.sdk.target
 
         versionCode = Versions.app.code
-        versionName = Versions.app.shortName
+        versionName = Versions.app.name
 
         // The default test runner for Android instrumentation tests.
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    val releaseSigningConfig by signingConfigs.creating {
-        storeFile = rootProject.file(localProperties.getValue("keystore.path"))
-        println("Keystore file at $storeFile.")
-        storePassword = localProperties["keystore.password"] as String
-        keyAlias = localProperties["keystore.alias.googleplay.name"] as String
-        keyPassword = localProperties["keystore.alias.googleplay.password"] as String
+    val releaseSigning by signingConfigs.creating {
+        storeFile = rootProject.file("secret/MetadataRemover.jks")
+                .takeIf(File::exists)
+        storePassword = localProperties["keystore.password"]
+                ?: System.getenv("keystore_password")
+        keyAlias = localProperties["keystore.alias.googleplay.name"]
+                ?: System.getenv("keystore_alias_googleplay_name")
+        keyPassword = localProperties["keystore.alias.googleplay.password"]
+                ?: System.getenv("keystore_alias_googleplay_password")
     }
 
     buildTypes {
@@ -78,7 +81,7 @@ android {
         // Debug builds
         val debug by existing {
             // Append "DEBUG" to all debug build versions
-            versionNameSuffix = " (debug)"
+            versionNameSuffix = "-$latestCommitHash (debug)"
             isDebuggable = true
             isTestCoverageEnabled = true
         }
@@ -93,7 +96,7 @@ android {
                 proguardFiles += getDefaultProguardFile("proguard-android.txt")
                 proguardFiles += file("proguard-rules.pro")
             }
-            signingConfig = releaseSigningConfig
+            signingConfig = releaseSigning
         }
     }
 
@@ -116,28 +119,13 @@ android {
 }
 
 junitJacoco {
-    includeInstrumentationCoverageInMergedReport = true
+    includeInstrumentationCoverageInMergedReport = false
 }
 
 val jacocoTestReport by tasks.registering {
     group = "reporting"
     dependsOn("jacocoTestReportDebug", "jacocoTestReportRelease")
 }
-
-//spoon {
-//    // Disable animations.
-//    noAnimations = true
-//
-//    // ADB timeout in minutes.
-//    adbTimeout = 10
-//
-//    // Grant all runtime permissions during installation.
-//    grantAll = true
-//
-//    // Execute tests in parallel on 10 shards.
-//    shard = true
-//    numShards = 10
-//}
 
 kapt {
     javacOptions {
@@ -152,17 +140,26 @@ kapt {
 }
 
 play {
-    serviceAccountCredentials = File(rootDir, "secret/api-7281121051860956110-977812-57e7308358e6.json")
-    check(serviceAccountCredentials?.exists() ?: false) {
-        "Could not find Google Play credentials."
-    }
+    serviceAccountCredentials = rootProject
+            .file("secret/api-7281121051860956110-977812-57e7308358e6.json")
+            .also { file ->
+                require(file.exists()) {
+                    "Could not find Google Play credentials."
+                }
+            }
 
     track = "internal"
+    releaseStatus = "draft"
+    defaultToAppBundles = true
     resolutionStrategy = "fail"
+}
 
-    // Don't commit from CI build (yet).
-    if (isCiBuild) {
-        commit = false
+// Lint F-Droid resources.
+//tasks["lint"].dependsOn("fdroidLint")
+
+val printVersionName by tasks.creating {
+    doLast {
+        println(Versions.app.name)
     }
 }
 
@@ -170,17 +167,17 @@ repositories(Repositories.app)
 dependencies(Dependencies.app)
 
 
-inline var BaseExtension.compileSdk: Int
+var BaseExtension.compileSdk: Int
     get() = compileSdkVersion.removePrefix("android-").toInt()
     set(value) = compileSdkVersion(value)
 
-inline var DefaultProductFlavor.minSdk: Int
+var DefaultProductFlavor.minSdk: Int
     get() = minSdkVersion!!.apiLevel
     set(value) {
         minSdkVersion = DefaultApiVersion(value)
     }
 
-inline var DefaultProductFlavor.targetSdk: Int
+var DefaultProductFlavor.targetSdk: Int
     get() = targetSdkVersion!!.apiLevel
     set(value) {
         targetSdkVersion = DefaultApiVersion(value)

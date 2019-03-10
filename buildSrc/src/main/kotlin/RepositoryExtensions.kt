@@ -23,30 +23,32 @@
  */
 
 import org.gradle.api.artifacts.dsl.RepositoryHandler
+import org.gradle.api.artifacts.repositories.ArtifactRepository
+import org.gradle.api.artifacts.repositories.MavenArtifactRepository
 import org.gradle.kotlin.dsl.maven
 
 /**
  * jCenter repository
  */
-inline val RepositoryHandler.jCenter
+inline val RepositoryHandler.jCenter: MavenArtifactRepository
     get() = jcenter()
 
 /**
  * Gradle plugin repository
  */
-inline val RepositoryHandler.gradlePluginPortal
+inline val RepositoryHandler.gradlePluginPortal: ArtifactRepository
     get() = gradlePluginPortal()
 
 /**
  * Maven Central repository
  */
-inline val RepositoryHandler.mavenCentral
+inline val RepositoryHandler.mavenCentral: MavenArtifactRepository
     get() = mavenCentral()
 
 /**
  * Google Maven repository
  */
-inline val RepositoryHandler.google
+inline val RepositoryHandler.google: MavenArtifactRepository
     get() = google()
 
 /**

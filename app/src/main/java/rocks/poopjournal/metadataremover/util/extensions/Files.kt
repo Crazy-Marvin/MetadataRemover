@@ -24,7 +24,6 @@
 
 package rocks.poopjournal.metadataremover.util.extensions
 
-import android.net.Uri
 import android.webkit.MimeTypeMap
 import rocks.poopjournal.metadataremover.R
 import rocks.poopjournal.metadataremover.model.metadata.Metadata
@@ -32,7 +31,8 @@ import rocks.poopjournal.metadataremover.model.resources.Image
 import rocks.poopjournal.metadataremover.model.resources.MediaType
 import rocks.poopjournal.metadataremover.model.resources.Text
 import java.io.File
-import java.util.Date
+import java.util.*
+
 
 /**
  * Delete this file if it exists.
@@ -70,8 +70,8 @@ val File.lastModifiedAttribute: Metadata.Attribute?
         return Metadata.Attribute(
                 label = Text(R.string.label_attribute_file_last_modification_date_time),
                 icon = Image(R.drawable.ic_history),
-                primaryValue = Text(attributeDateFormat.format(lastModifiedDate)),
-                secondaryValue = Text(attributeTimeFormat.format(lastModifiedDate))
+                primaryValue = Text(ATTRIBUTE_DATE_FORMAT.format(lastModifiedDate)),
+                secondaryValue = Text(ATTRIBUTE_TIME_FORMAT.format(lastModifiedDate))
         )
     }
 
