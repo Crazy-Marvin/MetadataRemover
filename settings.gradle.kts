@@ -40,7 +40,7 @@ pluginManagement {
                 else -> null
             }
             if (module != null) {
-                println("Use module '$module' for requested plugin '${requested.id}' (version ${requested.version}).")
+                logger.debug("Use module '$module' for requested plugin '${requested.id}' (version ${requested.version}).")
                 useModule(module)
             }
         }
