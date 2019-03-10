@@ -74,3 +74,25 @@ cache:
 #  - $ANDROID_AVD_HOME
 #  - $ANDROID_SDK_HOME\avd
 #  - $HOME\.android\avd
+
+before_deploy: ci/prepare-deployment
+deploy:
+# Upload App Bundle and APK to GitHub Releases.
+- provider: releases
+  api_key:
+    secure: o0cgA+Z1Skr/TgnWsjQw/z79rlSP0vpXx2deFrUP3maHOAv5cuaqbEVVMr4/5uWYtrGDKsn2YTD+MZlRmwHuhf86i32WhXvESzD+l5cCTLwDqdXC8tpdw3KS2fgX7RhmIFEfuyQEwUzCsDZrGeQcnXXacxIG+qqZaPORkiM8asA15xoAZEVNn3ZubcLs+S0+uf1Y43c32ClzjGo41uHouYUduFv0gMMNxrNEpNM048v5D+omiEyX7LaQtWbNTbSwaW+mDTtvf6dPP2lPelWWfBGwtZM5dW8dOc6VKZuzuFFDkoQBQSNd/hCDuto0tH+H2JMPalYt2H0YXuu2XWA7xXRAwC9KxRNHGZD9PRItjso10k2ETt2mhlyWN4iKU3btqZp2HjFl+QuZv26iZt+fUkzrVMdGKJlLi1/iybsna6QuiNR8xr1C7jQPduAYH35UOqBrIcd5l7O9QemFJHkQNnPqkY3A+VTAM18tz2B9rAjPK2h7dkwla4NfxrGL6o+oMHWNTlZYuYdlfn5ymmsXXjB0Rp4v/7RcrBlcm2W+CMk+pXTwqC4bTL84pn66jcNDIc41VLu2QCUCSHmBMoOl7QpxQyUSOBlJilTXQ1pfhKkf3cj8MMwTVBG+ovPLLl69Rw5bCUjHKiFM+fLRdteED1Yd2cOfEkAt+1HPNaW+c5U=
+  file:
+  - "*/release/*.apk"
+  - "*/release/*.aab"
+  file_glob: true
+  name: "Release $TRAVIS_TAG"
+  draft: true
+  on:
+    repo: Crazy-Marvin/MetadataRemover
+    branch: master
+# Release on Google Play Store.
+- provider: script
+  script: ci/deploy-google-play
+  on:
+    repo: Crazy-Marvin/MetadataRemover
+    branch: master
