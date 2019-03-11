@@ -182,6 +182,7 @@ githubRelease {
             .listFiles { dir ->
                 dir.name == "apk" || dir.name == "bundle"
             }
+            .orEmpty()
             .flatMap { dir ->
                 dir.resolve("release")
                         .listFiles()
