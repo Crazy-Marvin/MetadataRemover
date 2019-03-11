@@ -21,7 +21,7 @@ before_install:
 # Copy fake local.properties.
 - cp ci/local.properties ./
 # Decrypt secret files.
-- ci/decrypt_secrets
+- ci/decrypt-secrets
 
 # Install Android SDK before each build (if not already cached).
 install: ci/android-install-sdk
