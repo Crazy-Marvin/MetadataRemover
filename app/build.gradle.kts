@@ -37,6 +37,7 @@ plugins {
     googlePlayPublishing
     fDroidPublishing
     jacocoAndroid
+    githubRelease
 }
 
 val localProperties: Map<String, String> = project

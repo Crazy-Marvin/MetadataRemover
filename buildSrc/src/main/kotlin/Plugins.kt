@@ -35,5 +35,6 @@ object Plugins {
 //            fDroidPublishing
             jacocoAndroid
 //            spoon
+            githubRelease
         }
 }

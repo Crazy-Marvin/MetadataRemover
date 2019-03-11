@@ -103,5 +103,6 @@ object Versions {
     // Publishing
     const val googlePlayPublishingPlugin = "2.1.0"
     const val fDroidPublishingPlugin = "0.2"
+    const val githubReleasePlugin = "2.2.4"
 
 }

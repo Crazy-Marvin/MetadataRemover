@@ -56,3 +56,7 @@ inline val PluginDependenciesSpec.jacocoAndroid: PluginDependencySpec
 inline val PluginDependenciesSpec.spoon: PluginDependencySpec
     // https://plugins.gradle.org/plugin/com.jaredsburrows.spoon
     get() = id("com.jaredsburrows.spoon").version(Versions.spoonPlugin)
+
+inline val PluginDependenciesSpec.githubRelease: PluginDependencySpec
+    // https://plugins.gradle.org/plugin/com.github.breadmoirai.github-release
+    get() = id("com.github.breadmoirai.github-release").version(Versions.githubReleasePlugin)
