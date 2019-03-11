@@ -27,7 +27,6 @@ import com.android.build.gradle.internal.dsl.TestOptions
 import com.android.builder.core.DefaultApiVersion
 import com.android.builder.core.DefaultProductFlavor
 import org.gradle.internal.Cast.uncheckedCast
-import java.util.*
 
 plugins {
     androidApplication
@@ -40,15 +39,19 @@ plugins {
     githubRelease
 }
 
-val localProperties: Map<String, String> = project
-        .rootProject
-        .file("local.properties")
-        .inputStream()
-        .let { stream ->
-            Properties().apply { load(stream) }
-        }
-        .map { (key, value) -> key.toString() to value.toString() }
-        .toMap()
+val secretProperties: Map<String, String> = rootProject
+        .file("secret/secret.properties")
+        .asProperties()
+        .asStringMap()
+
+
+override var version: Version
+    set(value) {
+        super.setVersion(value)
+        field = value
+    }
+
+version = Versions.app
 
 android {
     compileSdk = Versions.sdk.compile
@@ -59,8 +62,8 @@ android {
         minSdk = Versions.sdk.min
         targetSdk = Versions.sdk.target
 
-        versionCode = Versions.app.code
-        versionName = Versions.app.name
+        versionCode = version.code
+        versionName = version.name
 
         // The default test runner for Android instrumentation tests.
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -69,12 +72,9 @@ android {
     val releaseSigning by signingConfigs.creating {
         storeFile = rootProject.file("secret/MetadataRemover.jks")
                 .takeIf(File::exists)
-        storePassword = localProperties["keystore.password"]
-                ?: System.getenv("keystore_password")
-        keyAlias = localProperties["keystore.alias.googleplay.name"]
-                ?: System.getenv("keystore_alias_googleplay_name")
-        keyPassword = localProperties["keystore.alias.googleplay.password"]
-                ?: System.getenv("keystore_alias_googleplay_password")
+        storePassword = secretProperties["keystore.password"]
+        keyAlias = secretProperties["keystore.alias.googleplay.name"]
+        keyPassword = secretProperties["keystore.alias.googleplay.password"]
     }
 
     buildTypes {
@@ -160,7 +160,7 @@ play {
 
 val printVersionName by tasks.creating {
     doLast {
-        println(Versions.app.name)
+        println(version)
     }
 }
 
