@@ -36,10 +36,10 @@ plugins {
     googlePlayPublishing
     fDroidPublishing
     jacocoAndroid
-    githubRelease
+//    githubRelease
 }
 
-val secretProperties: Map<String, String> = rootProject
+val secretProperties = rootProject
         .file("secret/secret.properties")
         .asProperties()
         .asStringMap()
@@ -155,51 +155,53 @@ play {
     resolutionStrategy = "fail"
 }
 
-githubRelease {
-    setToken(secretProperties["github.credentials.token"])
-    setOwner("Crazy-Marvin")
-    setRepo("MetadataRemover")
-    setTagName("v$version")
-    setTargetCommitish("master")
-    setReleaseName("Release $version")
-    val commitHashLinePrefix = Regex("^(?<hash>[0-9a-f]{1,40}) (?<message>.*)$", RegexOption.IGNORE_CASE)
-    setBody(provider {
-        "## Full changelog\n${
-        provider(changelog())
-                .get()
-                .lines()
-                .joinToString(separator = "\n") { change ->
-                    change.replace(commitHashLinePrefix, "* \${hash} \${message}")
-                }
-        }"
-    })
-    // Don't publish releases directly.
-    // Instead create a draft and let maintainers approve it.
-    setDraft(true)
-    setPrerelease(version.build != 0)
-    val releaseAssets = buildDir
-            .resolve("outputs")
-            .listFiles { dir ->
-                dir.name == "apk" || dir.name == "bundle"
-            }
-            .flatMap { dir ->
-                dir.resolve("release")
-                        .listFiles()
-                        .asIterable()
-            }
-    setReleaseAssets(*releaseAssets.toTypedArray())
-    setOverwrite(true)
-
-    afterEvaluate {
-        val githubRelease by tasks.getting {
-            val bundleRelease by tasks.getting
-            val assembleRelease by tasks.getting {
-                shouldRunAfter(bundleRelease)
-            }
-            dependsOn(bundleRelease, assembleRelease)
-        }
-    }
-}
+//githubRelease {
+//    setToken(secretProperties["github.credentials.token"])
+//    setOwner("Crazy-Marvin")
+//    setRepo("MetadataRemover")
+//    setTagName("v$version")
+//    setTargetCommitish("master")
+//    setReleaseName("Release $version")
+//    val commitHashLinePrefix = Regex("^(?<hash>[0-9a-f]{1,40}) (?<message>.*)$", RegexOption.IGNORE_CASE)
+//    setBody(provider {
+//        "## Full changelog\n${
+//        provider(changelog())
+//                .get()
+//                .lines()
+//                .joinToString(separator = "\n") { change ->
+//                    change.replace(commitHashLinePrefix, "* \${hash} \${message}")
+//                }
+//        }"
+//    })
+//    // Don't publish releases directly.
+//    // Instead create a draft and let maintainers approve it.
+//    setDraft(true)
+//    setPrerelease(version.build != 0)
+//    val releaseAssets = buildDir
+//            .resolve("outputs")
+//            .listFiles { dir ->
+//                dir.name == "apk" || dir.name == "bundle"
+//            }
+//            .orEmpty()
+//            .flatMap { dir ->
+//                dir.resolve("release")
+//                        .listFiles()
+//                        .orEmpty()
+//                        .asIterable()
+//            }
+//    setReleaseAssets(*releaseAssets.toTypedArray())
+//    setOverwrite(true)
+//
+//    afterEvaluate {
+//        val githubRelease by tasks.getting {
+//            val bundleRelease by tasks.getting
+//            val assembleRelease by tasks.getting {
+//                shouldRunAfter(bundleRelease)
+//            }
+//            dependsOn(bundleRelease, assembleRelease)
+//        }
+//    }
+//}
 
 // Lint F-Droid resources.
 //tasks["lint"].dependsOn("fdroidLint")
