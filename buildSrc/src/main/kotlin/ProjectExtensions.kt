@@ -3,16 +3,22 @@ import java.io.ByteArrayOutputStream
 import java.io.File
 import java.util.*
 
+fun File.asProperties(): Properties {
+    return Properties()
+            .apply {
+                this@asProperties.takeIf(File::exists)
+                        ?.inputStream()
+                        ?.use { load(it) }
+            }
+}
+
+fun Project.properties(path: Any): Properties = file(path).asProperties()
+
 val Project.localProperties: Properties
-    get() {
-        return Properties()
-                .apply {
-                    File(rootDir, "local.properties")
-                            .takeIf(File::exists)
-                            ?.inputStream()
-                            ?.use { load(it) }
-                }
-    }
+    get() = properties("local.properties")
+
+fun Properties.asStringMap() =
+        map { (key, value) -> key.toString() to value.toString() }.toMap()
 
 
 val Project.latestCommitHash: String

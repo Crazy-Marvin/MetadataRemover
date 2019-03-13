@@ -27,7 +27,6 @@ import com.android.build.gradle.internal.dsl.TestOptions
 import com.android.builder.core.DefaultApiVersion
 import com.android.builder.core.DefaultProductFlavor
 import org.gradle.internal.Cast.uncheckedCast
-import java.util.*
 
 plugins {
     androidApplication
@@ -37,17 +36,22 @@ plugins {
     googlePlayPublishing
     fDroidPublishing
     jacocoAndroid
+//    githubRelease
 }
 
-val localProperties: Map<String, String> = project
-        .rootProject
-        .file("local.properties")
-        .inputStream()
-        .let { stream ->
-            Properties().apply { load(stream) }
-        }
-        .map { (key, value) -> key.toString() to value.toString() }
-        .toMap()
+val secretProperties = rootProject
+        .file("secret/secret.properties")
+        .asProperties()
+        .asStringMap()
+
+
+override var version: Version
+    set(value) {
+        super.setVersion(value)
+        field = value
+    }
+
+version = Versions.app
 
 android {
     compileSdk = Versions.sdk.compile
@@ -58,8 +62,8 @@ android {
         minSdk = Versions.sdk.min
         targetSdk = Versions.sdk.target
 
-        versionCode = Versions.app.code
-        versionName = Versions.app.name
+        versionCode = version.code
+        versionName = version.name
 
         // The default test runner for Android instrumentation tests.
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -68,12 +72,9 @@ android {
     val releaseSigning by signingConfigs.creating {
         storeFile = rootProject.file("secret/MetadataRemover.jks")
                 .takeIf(File::exists)
-        storePassword = localProperties["keystore.password"]
-                ?: System.getenv("keystore_password")
-        keyAlias = localProperties["keystore.alias.googleplay.name"]
-                ?: System.getenv("keystore_alias_googleplay_name")
-        keyPassword = localProperties["keystore.alias.googleplay.password"]
-                ?: System.getenv("keystore_alias_googleplay_password")
+        storePassword = secretProperties["keystore.password"]
+        keyAlias = secretProperties["keystore.alias.googleplay.name"]
+        keyPassword = secretProperties["keystore.alias.googleplay.password"]
     }
 
     buildTypes {
@@ -154,12 +155,60 @@ play {
     resolutionStrategy = "fail"
 }
 
+//githubRelease {
+//    setToken(secretProperties["github.credentials.token"])
+//    setOwner("Crazy-Marvin")
+//    setRepo("MetadataRemover")
+//    setTagName("v$version")
+//    setTargetCommitish("master")
+//    setReleaseName("Release $version")
+//    val commitHashLinePrefix = Regex("^(?<hash>[0-9a-f]{1,40}) (?<message>.*)$", RegexOption.IGNORE_CASE)
+//    setBody(provider {
+//        "## Full changelog\n${
+//        provider(changelog())
+//                .get()
+//                .lines()
+//                .joinToString(separator = "\n") { change ->
+//                    change.replace(commitHashLinePrefix, "* \${hash} \${message}")
+//                }
+//        }"
+//    })
+//    // Don't publish releases directly.
+//    // Instead create a draft and let maintainers approve it.
+//    setDraft(true)
+//    setPrerelease(version.build != 0)
+//    val releaseAssets = buildDir
+//            .resolve("outputs")
+//            .listFiles { dir ->
+//                dir.name == "apk" || dir.name == "bundle"
+//            }
+//            .orEmpty()
+//            .flatMap { dir ->
+//                dir.resolve("release")
+//                        .listFiles()
+//                        .orEmpty()
+//                        .asIterable()
+//            }
+//    setReleaseAssets(*releaseAssets.toTypedArray())
+//    setOverwrite(true)
+//
+//    afterEvaluate {
+//        val githubRelease by tasks.getting {
+//            val bundleRelease by tasks.getting
+//            val assembleRelease by tasks.getting {
+//                shouldRunAfter(bundleRelease)
+//            }
+//            dependsOn(bundleRelease, assembleRelease)
+//        }
+//    }
+//}
+
 // Lint F-Droid resources.
 //tasks["lint"].dependsOn("fdroidLint")
 
 val printVersionName by tasks.creating {
     doLast {
-        println(Versions.app.name)
+        println(version)
     }
 }
 

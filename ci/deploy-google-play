@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+# Fail fast when a command returns non-zero exit code.
+set -e
+
+echo "Create new draft release on Google Play."
+./gradlew --daemon --console=plain publishRelease
