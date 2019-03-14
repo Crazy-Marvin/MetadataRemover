@@ -11,6 +11,7 @@
 [![Codacy grade](https://img.shields.io/codacy/grade/eed69c67a07f4a14bf0ee0fd6b2ead40/master.svg?style=flat)](https://www.codacy.com/app/CrazyMarvin/MetadataRemover)
 [![Codecov](https://img.shields.io/codecov/c/github/Crazy-Marvin/MetadataRemover/master.svg?style=flat)](https://codecov.io/gh/Crazy-Marvin/MetadataRemover)
 [![Crowdin Localization](https://d322cqt584bo4o.cloudfront.net/metadata-remover/localized.svg?style=flat)](https://crowdin.com/project/metadata-remover)
+[![Known Vulnerabilities](https://snyk.io/test/github/Crazy-Marvin/MetadataRemover/badge.svg?targetFile=build.gradle)](https://snyk.io/test/github/Crazy-Marvin/MetadataRemover?targetFile=build.gradle)
 [![F-Droid](https://img.shields.io/f-droid/v/xxxxxxxx.svg?style=flat)](https://f-droid.org/de/packages/xxxxxxxx/)
 [![Google Play](https://img.shields.io/badge/google play-install-blue.svg?style=flat&logo=google-play)](https://play.google.com/store/apps/details?id=rocks.poopjournal.metadataremover)
 
