@@ -75,5 +75,6 @@ object Dependencies {
         slidingUpPanel
         expandIcon
         aboutLibraries
+        circleImageView
     }
 }

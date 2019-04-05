@@ -9,6 +9,7 @@ import rocks.poopjournal.metadataremover.model.coordinates.Longitude
 import rocks.poopjournal.metadataremover.model.metadata.Metadata
 import rocks.poopjournal.metadataremover.model.resources.Image
 import rocks.poopjournal.metadataremover.model.resources.Text
+import rocks.poopjournal.metadataremover.util.Logger
 import rocks.poopjournal.metadataremover.util.extensions.ATTRIBUTE_DATE_FORMAT
 import rocks.poopjournal.metadataremover.util.extensions.ATTRIBUTE_TIME_FORMAT
 import rocks.poopjournal.metadataremover.util.extensions.format
@@ -262,13 +263,18 @@ val ExifInterface.creationAttribute: Metadata.Attribute?
         )
     }
 
-val exifDateFormat = SimpleDateFormat("YYYY:MM:DD HH:MM:SS", Locale.US)
+val exifDateFormat = SimpleDateFormat("yyyy:MM:dd HH:mm:ss", Locale.US)
 val ExifInterface.creationDate: Date?
     get() {
         val dateTimeString = getAttribute(ExifInterface.TAG_DATETIME_ORIGINAL)
                 ?: return null
+        Logger.d("Creation date: $dateTimeString")
         return try {
-            exifDateFormat.parse(dateTimeString); } catch (e: ParseException) {
+            exifDateFormat.parse(dateTimeString)
+                    .also {
+                        Logger.d("Creation date parsed: $it")
+                    }
+        } catch (e: ParseException) {
             null
         }
     }

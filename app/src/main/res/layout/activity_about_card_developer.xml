@@ -106,16 +106,14 @@
                 app:barrierDirection="top"
                 app:constraint_referenced_ids="avatar,name,role" />
 
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/avatar"
                 android:layout_width="@dimen/size_avatar"
                 android:layout_height="@dimen/size_avatar"
-                android:src="@{@drawable/art_about_developer_profile_image}"
+                android:src="@drawable/art_about_developer_profile_image"
                 app:layout_constraintBottom_toBottomOf="@id/barrier_below_information"
                 app:layout_constraintStart_toStartOf="@id/baseline_start"
                 app:layout_constraintTop_toTopOf="@id/barrier_above_information"
-                app:roundImage="@{true}"
-                app:srcUrl="@{@string/url_about_developer_profile_image}"
                 tools:ignore="ContentDescription" />
 
             <TextView

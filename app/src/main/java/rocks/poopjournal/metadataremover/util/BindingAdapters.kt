@@ -25,14 +25,11 @@
 
 package rocks.poopjournal.metadataremover.util
 
-import android.graphics.drawable.Drawable
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import androidx.databinding.BindingAdapter
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
 import rocks.poopjournal.metadataremover.model.resources.Image
 import rocks.poopjournal.metadataremover.model.resources.Text
 import rocks.poopjournal.metadataremover.util.extensions.android.setContentDescription
@@ -47,26 +44,6 @@ fun setImage(view: ImageView, image: Image?) {
     }
     view.setImage(image)
 }
-
-@BindingAdapter("srcUrl", "android:src", "roundImage")
-fun setImage(imageView: ImageView, url: String?, fallback: Drawable?, roundImage: Boolean?) {
-    if (url == null || fallback == null || roundImage == null) {
-        return
-    }
-    Glide.with(imageView)
-            .load(url)
-            .apply {
-                if (roundImage) {
-                    apply(RequestOptions.circleCropTransform())
-                }
-            }
-            .error(Glide.with(imageView).load(fallback))
-            .into(imageView)
-}
-
-@BindingAdapter("srcUrl", "android:src")
-fun setImage(imageView: ImageView, url: String?, fallback: Drawable?) =
-        setImage(imageView, url, fallback, false)
 
 @BindingAdapter("android:text")
 fun setText(view: TextView, text: Text?) {

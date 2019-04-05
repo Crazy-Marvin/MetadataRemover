@@ -221,3 +221,7 @@ inline val DependencyHandlerScope.expandIcon
 inline val DependencyHandlerScope.aboutLibraries
     // https://mvnrepository.com/artifact/com.mikepenz/aboutlibraries
     get() = implementation("com.mikepenz", "aboutlibraries", Versions.aboutLibraries)
+
+inline val DependencyHandlerScope.circleImageView
+    // https://mvnrepository.com/artifact/de.hdodenhof/circleimageview
+    get() = implementation("de.hdodenhof", "circleimageview", Versions.circleImageView)

@@ -59,4 +59,4 @@ inline val PluginDependenciesSpec.spoon: PluginDependencySpec
 
 inline val PluginDependenciesSpec.githubRelease: PluginDependencySpec
     // https://plugins.gradle.org/plugin/com.github.breadmoirai.github-release
-    get() = id("com.github.breadmoirai.github-release").version(Versions.githubReleasePlugin)
+    get() = id("com.heinrichreimer.github-release").version(Versions.githubReleasePlugin)
