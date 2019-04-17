@@ -58,5 +58,9 @@ inline val PluginDependenciesSpec.spoon: PluginDependencySpec
     get() = id("com.jaredsburrows.spoon").version(Versions.spoonPlugin)
 
 inline val PluginDependenciesSpec.githubRelease: PluginDependencySpec
-    // https://plugins.gradle.org/plugin/com.github.breadmoirai.github-release
+    // https://plugins.gradle.org/plugin/com.heinrichreimer.github-release
     get() = id("com.heinrichreimer.github-release").version(Versions.githubReleasePlugin)
+
+inline val PluginDependenciesSpec.canIDropJetifier: PluginDependencySpec
+    // https://plugins.gradle.org/plugin/com.github.plnice.canidropjetifier
+    get() = id("com.github.plnice.canidropjetifier").version(Versions.canIDropJetifierPlugin)

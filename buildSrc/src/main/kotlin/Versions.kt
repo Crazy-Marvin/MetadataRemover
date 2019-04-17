@@ -47,11 +47,11 @@ object Versions {
     val jvm = JavaVersion.VERSION_1_8
 
     // Plugins
-    const val androidBuildTools = "3.3.0"
-    const val androidJetifierProcessor = "1.0.0-beta02"
+    const val androidBuildTools = "3.3.2"
+    const val androidJetifierProcessor = "1.0.0-beta04"
 
     // Kotlin
-    const val kotlin = "1.3.11"
+    const val kotlin = "1.3.30"
 
     // Kotlin coroutines
     const val kotlinxCoroutines = "1.1.0"
@@ -88,7 +88,7 @@ object Versions {
 
     // Data
     const val okio = "2.2.1"
-    const val glide = "4.8.0"
+    const val glide = "4.9.0"
     const val apacheCommonsImaging = "1.0-R1401825"
     const val tika = "1.17"
     const val metadataExtractor = "2.11.0"
@@ -105,5 +105,8 @@ object Versions {
     const val fDroidPublishingPlugin = "0.2"
     const val githubReleasePlugin = "3.0.0"
     const val circleImageView = "3.0.0"
+
+    // Utilities
+    const val canIDropJetifierPlugin = "0.4"
 
 }

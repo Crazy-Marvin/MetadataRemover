@@ -36,5 +36,6 @@ object Plugins {
             jacocoAndroid
 //            spoon
             githubRelease
+            canIDropJetifier
         }
 }
