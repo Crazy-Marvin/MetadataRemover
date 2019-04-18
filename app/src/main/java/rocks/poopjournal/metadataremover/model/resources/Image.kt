@@ -24,7 +24,6 @@
 
 package rocks.poopjournal.metadataremover.model.resources
 
-import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.drawable.AdaptiveIconDrawable
@@ -33,13 +32,12 @@ import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Build.VERSION
 import android.os.Build.VERSION_CODES
+import android.widget.ImageView
 import androidx.annotation.DrawableRes
 import androidx.annotation.IntRange
-import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
 import com.bumptech.glide.Glide
 import rocks.poopjournal.metadataremover.model.resources.Image.Type.*
-import rocks.poopjournal.metadataremover.util.extensions.glide.async
 import rocks.poopjournal.metadataremover.util.extensions.parseUri
 import java.io.File
 
@@ -60,7 +58,7 @@ class Image private constructor(
         /**
          * [bitmap], [bytes], [uri] or `null`, depending on the [type].
          */
-        private var object1: Any? = null,
+        private val object1: Any? = null,
 
         /**
          * [resId], [bytesStartOffset] or `null`, depending on the [type].
@@ -226,33 +224,47 @@ class Image private constructor(
      *
      * @return The [Drawable] containing this image or `null` if this image could not be loaded.
      */
-    suspend fun load(context: Context): Drawable? {
-        return when (type) {
-            BITMAP -> BitmapDrawable(context.resources, bitmap)
+    fun load(view: ImageView) {
+        when (type) {
+            BITMAP -> {
+                Glide.with(view)
+                        .load(bitmap)
+                        .into(view)
+            }
             ADAPTIVE_BITMAP -> {
                 if (VERSION.SDK_INT >= VERSION_CODES.O) {
-                    AdaptiveIconDrawable(
+                    val drawable = AdaptiveIconDrawable(
                             null,
-                            BitmapDrawable(context.resources, bitmap)
+                            BitmapDrawable(view.resources, bitmap)
                     )
-                } else null
+                    Glide.with(view)
+                            .load(drawable)
+                            .into(view)
+                }
             }
-            RESOURCE -> ContextCompat.getDrawable(context, resId)
+            RESOURCE -> {
+                Glide.with(view)
+                        .load(resId)
+                        .into(view)
+            }
             BYTES -> {
-                BitmapDrawable(
-                        context.resources,
+                val drawable = BitmapDrawable(
+                        view.resources,
                         BitmapFactory.decodeByteArray(bytes, bytesStartOffset, bytesLength)
                 )
+                Glide.with(view)
+                        .load(drawable)
+                        .into(view)
             }
-            URI -> Glide.with(context)
-                    .asDrawable()
-                    .load(uri)
-                    .async()
-                    .await()
+            URI -> {
+                Glide.with(view)
+                        .load(uri)
+                        .into(view)
+            }
         }
     }
 
-    suspend operator fun invoke(context: Context) = load(context)
+    operator fun invoke(view: ImageView) = load(view)
 
     companion object {
         private val EMPTY_IMAGE = Image(android.R.color.transparent)

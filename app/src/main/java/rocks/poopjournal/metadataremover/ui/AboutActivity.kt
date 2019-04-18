@@ -62,6 +62,14 @@ class AboutActivity : AppCompatActivity(), ActivityLauncher, AndroidViewDslScope
         }
 
         binding.cards {
+            cardOwner {
+                buttonGithub.onClick(viewModel::openOwnerGithub)
+                buttonWebsite.onClick(viewModel::openOwnerWebsite)
+            }
+            cardDesigner {
+                buttonGithub.onClick(viewModel::openDesignerGithub)
+                buttonWebsite.onClick(viewModel::openDesignerWebsite)
+            }
             cardDeveloper {
                 buttonGithub.onClick(viewModel::openDeveloperGithub)
                 buttonWebsite.onClick(viewModel::openDeveloperWebsite)

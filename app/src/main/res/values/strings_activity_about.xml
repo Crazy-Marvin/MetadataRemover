@@ -35,14 +35,29 @@
     <string name="title_button_about_support">Support</string>
     <string name="url_about_button_support" translatable="false">https://poopjournal.rocks/MetadataRemover/support/</string>
 
+    <!-- Owner info -->
+    <string name="title_about_owner_name">Crazy Marvin &amp; Contributors</string>
+    <string name="description_about_owner_role">Development</string>
+    <string name="title_button_about_owner_github">GitHub</string>
+    <string name="url_button_about_owner_github" translatable="false">https://github.com/Crazy-Marvin/</string>
+    <string name="title_button_about_owner_website">Website</string>
+    <string name="url_button_about_owner_website" translatable="false">https://poopjournal.rocks/MetadataRemover/</string>
+
+    <!-- Designer info -->
+    <string name="title_about_designer_name">Kevin Aguilar</string>
+    <string name="description_about_designer_role">Design</string>
+    <string name="title_button_about_designer_github">GitHub</string>
+    <string name="url_button_about_designer_github" translatable="false">https://github.com/KaguilarA/</string>
+    <string name="title_button_about_designer_website">Twitter</string>
+    <string name="url_button_about_designer_website" translatable="false">https://twitter.com/kevttob/</string>
+
     <!-- Developer info -->
-    <string name="title_about_developer_name">Crazy Marvin &amp; Contributors</string>
+    <string name="title_about_developer_name">Heinrich Reimer Software</string>
     <string name="description_about_developer_role">Development</string>
-    <string name="url_about_developer_profile_image" translatable="false">https://avatars.githubusercontent.com/u/15004217?s=400</string>
     <string name="title_button_about_developer_github">GitHub</string>
-    <string name="url_button_about_developer_github" translatable="false">https://github.com/Crazy-Marvin/</string>
+    <string name="url_button_about_developer_github" translatable="false">https://github.com/heinrichreimer/</string>
     <string name="title_button_about_developer_website">Website</string>
-    <string name="url_button_about_developer_website" translatable="false">https://poopjournal.rocks/MetadataRemover/</string>
+    <string name="url_button_about_developer_website" translatable="false">https://heinrichreimer.com/</string>
 
     <!-- Source code info -->
     <string name="title_about_source">Source</string>

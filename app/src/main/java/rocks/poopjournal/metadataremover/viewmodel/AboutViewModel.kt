@@ -27,6 +27,7 @@ package rocks.poopjournal.metadataremover.viewmodel
 import android.app.Application
 import android.content.Intent
 import androidx.annotation.StringRes
+import androidx.core.net.toUri
 import androidx.lifecycle.AndroidViewModel
 import com.mikepenz.aboutlibraries.LibsBuilder
 import rocks.poopjournal.metadataremover.R
@@ -61,8 +62,7 @@ class AboutViewModel(application: Application) : AndroidViewModel(application), 
                 .getString(addressRes)
         val subject = applicationContext
                 .getString(subjectRes)
-        val intent = Intent(Intent.ACTION_SENDTO)
-        intent.putExtra(Intent.EXTRA_EMAIL, arrayOf(address))
+        val intent = Intent(Intent.ACTION_SENDTO, "mailto:$address".toUri())
         intent.putExtra(Intent.EXTRA_SUBJECT, subject)
         if (intent.resolveActivity(applicationContext.packageManager) != null) {
             startActivity(intent)
@@ -95,6 +95,14 @@ class AboutViewModel(application: Application) : AndroidViewModel(application), 
     )
 
     fun openSupport() = openUrl(R.string.url_about_button_support)
+
+    fun openOwnerGithub() = openUrl(R.string.url_button_about_owner_github)
+
+    fun openOwnerWebsite() = openUrl(R.string.url_button_about_owner_website)
+
+    fun openDesignerGithub() = openUrl(R.string.url_button_about_designer_github)
+
+    fun openDesignerWebsite() = openUrl(R.string.url_button_about_designer_website)
 
     fun openDeveloperGithub() = openUrl(R.string.url_button_about_developer_github)
 

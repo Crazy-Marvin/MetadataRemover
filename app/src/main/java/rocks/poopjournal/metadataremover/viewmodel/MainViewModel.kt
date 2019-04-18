@@ -252,6 +252,7 @@ class MainViewModel(application: Application) :
                     fileView.original,
                     fileView.output
             )
+            fileView.output.setLastModified(0)
             shareOutputFile()
         }
     }

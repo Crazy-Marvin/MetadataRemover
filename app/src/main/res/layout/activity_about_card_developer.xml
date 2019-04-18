@@ -106,16 +106,14 @@
                 app:barrierDirection="top"
                 app:constraint_referenced_ids="avatar,name,role" />
 
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/avatar"
                 android:layout_width="@dimen/size_avatar"
                 android:layout_height="@dimen/size_avatar"
-                android:src="@{@drawable/art_about_developer_profile_image}"
+                android:src="@drawable/art_about_developer_profile_image"
                 app:layout_constraintBottom_toBottomOf="@id/barrier_below_information"
                 app:layout_constraintStart_toStartOf="@id/baseline_start"
                 app:layout_constraintTop_toTopOf="@id/barrier_above_information"
-                app:roundImage="@{true}"
-                app:srcUrl="@{@string/url_about_developer_profile_image}"
                 tools:ignore="ContentDescription" />
 
             <TextView
@@ -131,8 +129,7 @@
                 app:layout_constraintEnd_toEndOf="@id/baseline_end"
                 app:layout_constraintStart_toEndOf="@id/avatar"
                 app:layout_constraintTop_toTopOf="@id/barrier_above_information"
-                app:layout_constraintVertical_chainStyle="packed"
-                tools:text="@tools:sample/full_names" />
+                app:layout_constraintVertical_chainStyle="packed" />
 
             <TextView
                 android:id="@+id/role"
@@ -149,8 +146,7 @@
                 app:layout_constraintBottom_toBottomOf="@id/barrier_below_information"
                 app:layout_constraintEnd_toEndOf="@id/baseline_end"
                 app:layout_constraintStart_toEndOf="@id/avatar"
-                android:layout_marginTop="@dimen/baseline_typo"
-                tools:text="@tools:sample/full_names" />
+                android:layout_marginTop="@dimen/baseline_typo" />
 
             <androidx.constraintlayout.widget.Barrier
                 android:id="@+id/barrier_below_information"
@@ -178,8 +174,7 @@
                 app:layout_constraintEnd_toStartOf="@id/button_website"
                 app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintStart_toStartOf="@id/baseline_start_button"
-                app:layout_constraintTop_toBottomOf="@id/baseline_buttons_top"
-                tools:text="@tools:sample/lorem" />
+                app:layout_constraintTop_toBottomOf="@id/baseline_buttons_top" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_website"
@@ -191,8 +186,7 @@
                 app:layout_constraintBottom_toBottomOf="@id/baseline_bottom_button"
                 app:layout_constraintStart_toEndOf="@id/button_github"
                 app:layout_constraintEnd_toStartOf="@id/space_button_end"
-                app:layout_constraintTop_toBottomOf="@id/baseline_buttons_top"
-                tools:text="@tools:sample/lorem" />
+                app:layout_constraintTop_toBottomOf="@id/baseline_buttons_top" />
 
             <Space
                 android:id="@+id/space_button_end"

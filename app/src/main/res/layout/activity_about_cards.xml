@@ -59,11 +59,33 @@
             app:layout_constraintGuide_end="@dimen/baseline_card" />
 
         <include
+            android:id="@+id/card_owner"
+            layout="@layout/activity_about_card_owner"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/baseline_card_top"
+            app:layout_constraintBottom_toTopOf="@id/card_designer"
+            app:layout_constraintStart_toStartOf="@id/baseline_card_start"
+            app:layout_constraintEnd_toEndOf="@id/baseline_card_end" />
+
+        <include
+            android:id="@+id/card_designer"
+            layout="@layout/activity_about_card_designer"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/baseline_card"
+            app:layout_constraintTop_toBottomOf="@id/card_owner"
+            app:layout_constraintBottom_toTopOf="@id/card_developer"
+            app:layout_constraintStart_toStartOf="@id/baseline_card_start"
+            app:layout_constraintEnd_toEndOf="@id/baseline_card_end" />
+
+        <include
             android:id="@+id/card_developer"
             layout="@layout/activity_about_card_developer"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="@id/baseline_card_top"
+            android:layout_marginTop="@dimen/baseline_card"
+            app:layout_constraintTop_toBottomOf="@id/card_designer"
             app:layout_constraintBottom_toTopOf="@id/card_source"
             app:layout_constraintStart_toStartOf="@id/baseline_card_start"
             app:layout_constraintEnd_toEndOf="@id/baseline_card_end" />
