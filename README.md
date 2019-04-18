@@ -11,11 +11,69 @@
 [![Codacy grade](https://img.shields.io/codacy/grade/eed69c67a07f4a14bf0ee0fd6b2ead40/master.svg?style=flat)](https://www.codacy.com/app/CrazyMarvin/MetadataRemover)
 [![Codecov](https://img.shields.io/codecov/c/github/Crazy-Marvin/MetadataRemover/master.svg?style=flat)](https://codecov.io/gh/Crazy-Marvin/MetadataRemover)
 [![Crowdin Localization](https://d322cqt584bo4o.cloudfront.net/metadata-remover/localized.svg?style=flat)](https://crowdin.com/project/metadata-remover)
+[![Known Vulnerabilities](https://snyk.io/test/github/Crazy-Marvin/MetadataRemover/badge.svg?targetFile=build.gradle)](https://snyk.io/test/github/Crazy-Marvin/MetadataRemover?targetFile=build.gradle)
 [![F-Droid](https://img.shields.io/f-droid/v/xxxxxxxx.svg?style=flat)](https://f-droid.org/de/packages/xxxxxxxx/)
+[![Google Play](https://img.shields.io/badge/google play-install-blue.svg?style=flat&logo=google-play)](https://play.google.com/store/apps/details?id=rocks.poopjournal.metadataremover)
 
 _Remove any image's metadata fast and easily._
 
-<!-- TODO Add app description -->
+<a href="https://play.google.com/store/apps/details?id=rocks.poopjournal.metadataremover">
+    <img alt="Get it on Google Play"
+        height="80"
+        src="https://user-images.githubusercontent.com/15004217/36810046-fa306856-1cc9-11e8-808e-6eb8a81783c7.png" />
+        </a>  
+<a href="https://f-droid.org/packages/rocks.poopjournal.metadataremover/">
+    <img alt="Get it on F-Droid"
+        height="80"
+        src="https://user-images.githubusercontent.com/15004217/36919296-19b8524e-1e5d-11e8-8962-48463b1cec8a.png" />
+        </a>
+
+
+<i>Protect your privacy by removing metadata from your photos, before sharing them on the internet!</i>
+
+<h2><b>Features:</b></h2>
+
+ ✔️ View metadata
+ 
+ ✔️ Image preview
+ 
+ ✔️ Remove metadata
+ 
+ ✔️ Simple and intuitive interface
+ 
+ ✔️ Share directly from the app
+ 
+
+<h2><b>Learn more:</b></h2>
+
+Whenever you take a picture, additional metadata is saved in the image file.
+Most smartphones do <i>not inform</i> you about this.
+
+<b>Metadata can look like this:</b>
+
+ 🕑 On which day was the picture taken, and at which time?
+ 
+ 🗺️ And where exactly?
+ 
+ 📷 Which camera or which smartphone was used?
+ 
+ 🔧 And which camera settings were used?
+ 
+ 📝 Notes of the photographer or the camera?
+ 
+ 📌 More and more often, even exact GPS coordinates are saved in your photo.
+ 
+
+Metadata is sometimes very useful—for instance when sorting holiday photos.
+But as soon as you share photos with others via social media, all this information is visible <i>publicly</i>.
+Data collectors and stalkers would possibly be able to discover your <i>place of residence or workplace<i> from the metadata or draw conclusions about your <i>daily routine</i>.
+Tracking services could create more comprehensive advertising profiles and sell your data to other organizations.
+
+With our app, you can easily view all that data, <i>remove it entirely</i>, and then share the anonymized photo directly!
+That way you stay <i>anonymous</i> and <i>safe</i> in internet, while your friends can still admire your cute cat.
+
+<i>Happy sharing! 😽</i>
+
 
 ## Contributing
 
