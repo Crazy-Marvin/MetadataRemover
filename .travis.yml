@@ -49,19 +49,20 @@ jobs:
   #    - name: Integration test
   #      script: ci/android-integration-tests
   #      env: EMULATOR_ANDROID_SDK=21 EMULATOR_ABI=armeabi-v7a
-  #- stage: Coverage
-  #  name: Test coverage
-  #  script: ci/android-test-coverage
+  - stage: Coverage
+    name: Test coverage
+    script: ci/android-test-coverage
   - stage: Deploy
     name: Google Play publish
     script: ci/deploy-google-play
     if: branch = master AND type != pull_request
-  #  - name: GitHub release
-  #    script: ci/deploy-github-releases
-  #    if: branch = master AND type != pull_request
+  - name: GitHub release
+    script: ci/deploy-github-releases
+    if: branch = master AND type != pull_request
   allow_failures:
   - name: Integration test
   - name: Google Play publish
+  - name: GitHub release
 matrix:
   fast_finish: true
 

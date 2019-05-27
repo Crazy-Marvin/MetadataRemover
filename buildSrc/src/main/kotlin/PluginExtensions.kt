@@ -50,16 +50,16 @@ inline val PluginDependenciesSpec.fDroidPublishing: PluginDependencySpec
     get() = id("org.openintents.fdroid").version(Versions.fDroidPublishingPlugin)
 
 inline val PluginDependenciesSpec.jacocoAndroid: PluginDependencySpec
-    // https://plugins.gradle.org/plugin/com.vanniktech.android.junit.jacoco
-    get() = id("com.vanniktech.android.junit.jacoco").version(Versions.jacocoAndroidPlugin)
+    // https://mvnrepository.com/artifact/com.dicedmelon.gradle/jacoco-android
+    get() = id("jacoco-android").version(Versions.jacocoAndroidPlugin)
 
 inline val PluginDependenciesSpec.spoon: PluginDependencySpec
     // https://plugins.gradle.org/plugin/com.jaredsburrows.spoon
     get() = id("com.jaredsburrows.spoon").version(Versions.spoonPlugin)
 
 inline val PluginDependenciesSpec.githubRelease: PluginDependencySpec
-    // https://plugins.gradle.org/plugin/com.heinrichreimer.github-release
-    get() = id("com.heinrichreimer.github-release").version(Versions.githubReleasePlugin)
+    // https://plugins.gradle.org/plugin/com.github.breadmoirai.github-release
+    get() = id("com.github.breadmoirai.github-release").version(Versions.githubReleasePlugin)
 
 inline val PluginDependenciesSpec.canIDropJetifier: PluginDependencySpec
     // https://plugins.gradle.org/plugin/com.github.plnice.canidropjetifier

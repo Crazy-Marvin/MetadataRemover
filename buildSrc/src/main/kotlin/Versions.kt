@@ -31,9 +31,7 @@ object Versions {
     val app = Version(
             major = 0,
             minor = 1,
-            patch = 1,
-            build = 3,
-            buildType = "alpha"
+            patch = 2
     )
 
     val sdk = Sdk
@@ -83,7 +81,7 @@ object Versions {
     const val androidxTestEspressoCore = "3.1.1"
     const val spoon = "2.0.0-SNAPSHOT"
     const val spoonPlugin = "1.5.0"
-    const val jacocoAndroidPlugin = "0.13.0"
+    const val jacocoAndroidPlugin = "0.1.4"
     const val kluent = "1.46"
 
     // Data
@@ -103,7 +101,7 @@ object Versions {
     // Publishing
     const val googlePlayPublishingPlugin = "2.1.0"
     const val fDroidPublishingPlugin = "0.2"
-    const val githubReleasePlugin = "3.0.0"
+    const val githubReleasePlugin = "2.2.8"
     const val circleImageView = "3.0.0"
 
     // Utilities

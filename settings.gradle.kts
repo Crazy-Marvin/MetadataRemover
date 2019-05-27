@@ -37,6 +37,7 @@ pluginManagement {
         eachPlugin {
             val module = when(requested.id.id) {
                 "com.android.application" -> "com.android.tools.build:gradle:${requested.version}"
+                "jacoco-android" -> "com.dicedmelon.gradle:jacoco-android:${requested.version}"
                 else -> null
             }
             if (module != null) {
