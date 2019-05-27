@@ -83,7 +83,7 @@ object Versions {
     const val androidxTestEspressoCore = "3.1.1"
     const val spoon = "2.0.0-SNAPSHOT"
     const val spoonPlugin = "1.5.0"
-    const val jacocoAndroidPlugin = "0.13.0"
+    const val jacocoAndroidPlugin = "0.1.4"
     const val kluent = "1.46"
 
     // Data

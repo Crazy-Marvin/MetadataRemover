@@ -50,8 +50,8 @@ inline val PluginDependenciesSpec.fDroidPublishing: PluginDependencySpec
     get() = id("org.openintents.fdroid").version(Versions.fDroidPublishingPlugin)
 
 inline val PluginDependenciesSpec.jacocoAndroid: PluginDependencySpec
-    // https://plugins.gradle.org/plugin/com.vanniktech.android.junit.jacoco
-    get() = id("com.vanniktech.android.junit.jacoco").version(Versions.jacocoAndroidPlugin)
+    // https://mvnrepository.com/artifact/com.dicedmelon.gradle/jacoco-android
+    get() = id("jacoco-android").version(Versions.jacocoAndroidPlugin)
 
 inline val PluginDependenciesSpec.spoon: PluginDependencySpec
     // https://plugins.gradle.org/plugin/com.jaredsburrows.spoon

@@ -49,9 +49,9 @@ jobs:
   #    - name: Integration test
   #      script: ci/android-integration-tests
   #      env: EMULATOR_ANDROID_SDK=21 EMULATOR_ABI=armeabi-v7a
-  #- stage: Coverage
-  #  name: Test coverage
-  #  script: ci/android-test-coverage
+  - stage: Coverage
+    name: Test coverage
+    script: ci/android-test-coverage
   - stage: Deploy
     name: Google Play publish
     script: ci/deploy-google-play

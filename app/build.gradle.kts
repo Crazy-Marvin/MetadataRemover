@@ -35,7 +35,7 @@ plugins {
     kotlinKapt
     googlePlayPublishing
     fDroidPublishing
-//    jacocoAndroid
+    jacocoAndroid
     githubRelease
     canIDropJetifier
 }
@@ -120,17 +120,6 @@ android {
     }
 }
 
-/*
-junitJacoco {
-    includeInstrumentationCoverageInMergedReport = false
-}
-
-val jacocoTestReport by tasks.registering {
-    group = "reporting"
-    dependsOn("jacocoTestReportDebug", "jacocoTestReportRelease")
-}
-// */
-
 kapt {
     javacOptions {
         /**
@@ -205,6 +194,10 @@ val printVersionName by tasks.creating {
     doLast {
         println(version)
     }
+}
+
+jacoco {
+    toolVersion = "0.8.3"
 }
 
 repositories(Repositories.app)
