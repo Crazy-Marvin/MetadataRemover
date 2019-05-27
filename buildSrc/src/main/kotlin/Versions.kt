@@ -31,9 +31,7 @@ object Versions {
     val app = Version(
             major = 0,
             minor = 1,
-            patch = 1,
-            build = 3,
-            buildType = "alpha"
+            patch = 2
     )
 
     val sdk = Sdk
