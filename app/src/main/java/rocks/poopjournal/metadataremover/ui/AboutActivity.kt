@@ -79,6 +79,10 @@ class AboutActivity : AppCompatActivity(), ActivityLauncher, AndroidViewDslScope
                 buttonLicense.onClick(viewModel::openSourceCodeLicense)
                 buttonLibraries.onClick(viewModel::openSourceCodeLibraries)
             }
+            cardContribute {
+                buttonTranslate.onClick(viewModel::openTranslations)
+                buttonIssue.onClick(viewModel::openReportIssue)
+            }
         }
 
         viewModel.activityLaunchInfo.observeNotNull(this, ::startActivity)

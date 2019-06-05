@@ -107,4 +107,8 @@ class AboutViewModel(application: Application) : AndroidViewModel(application), 
     fun openDeveloperGithub() = openUrl(R.string.url_button_about_developer_github)
 
     fun openDeveloperWebsite() = openUrl(R.string.url_button_about_developer_website)
+
+    fun openTranslations() = openUrl(R.string.url_button_about_contribute_translate)
+
+    fun openReportIssue() = openUrl(R.string.url_button_about_contribute_issue)
 }

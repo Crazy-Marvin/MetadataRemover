@@ -95,8 +95,7 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toTopOf="@id/baseline_top"
                 app:layout_constraintStart_toStartOf="@id/baseline_start"
-                app:layout_constraintEnd_toEndOf="@id/baseline_end"
-                tools:text="@tools:sample/full_names" />
+                app:layout_constraintEnd_toEndOf="@id/baseline_end" />
 
             <Space
                 android:id="@+id/baseline_buttons_top"

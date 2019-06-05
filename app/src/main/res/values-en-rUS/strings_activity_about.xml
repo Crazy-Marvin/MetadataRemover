@@ -49,4 +49,8 @@
     <string name="title_button_about_source_code">Code</string>
     <string name="title_button_about_source_license">License</string>
     <string name="title_button_about_source_libraries">Libraries</string>
+    <!-- Contribution info -->
+    <string name="title_about_contribute">Contribute</string>
+    <string name="title_button_about_contribute_translate">Translate</string>
+    <string name="title_button_about_contribute_issue">Report issue</string>
 </resources>
