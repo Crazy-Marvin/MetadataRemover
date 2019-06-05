@@ -27,6 +27,7 @@ package rocks.poopjournal.metadataremover.viewmodel
 import android.app.Application
 import android.content.Intent
 import android.content.res.AssetFileDescriptor
+import androidx.annotation.IntRange
 import androidx.core.content.FileProvider
 import androidx.lifecycle.AndroidViewModel
 import kotlinx.coroutines.Dispatchers
@@ -53,10 +54,17 @@ import rocks.poopjournal.metadataremover.util.extensions.android.architecture.mu
 import rocks.poopjournal.metadataremover.util.extensions.android.architecture.singleLiveEventOf
 import rocks.poopjournal.metadataremover.util.extensions.android.copyFrom
 import java.io.Closeable
+import java.security.SecureRandom
 
 class MainViewModel(application: Application) :
         AndroidViewModel(application), MetadataViewModel, ActivityLauncherViewModel,
         ActivityResultLauncherViewModel, ActivityResultLauncher {
+
+    companion object {
+        val random = SecureRandom("75rgu86gr59ht86".toByteArray(Charsets.UTF_8))
+        const val FILE_NAME_ALPHABET = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+        const val FILE_NAME_LENGTH = 10
+    }
 
     private val sharedImagesDirectory by lazy {
         applicationContext.filesDir
@@ -114,7 +122,7 @@ class MainViewModel(application: Application) :
     }
 
     private fun onWrongMimeTypeFileSelected(mediaType: MediaType,
-            allowedMediaTypes: Set<MediaType>) {
+                                            allowedMediaTypes: Set<MediaType>) {
         GlobalScope.launch(Dispatchers.Main) {
             wrongMimeTypeFileSelectedHint.value =
                     WrongMimeTypeFileSelectedHint(mediaType, allowedMediaTypes)
@@ -151,6 +159,17 @@ class MainViewModel(application: Application) :
         filePicker.openFile(allowedMimeTypes)
     }
 
+
+    fun generateRandomFilename(@IntRange(from = 0) length: Int = FILE_NAME_LENGTH): String {
+        return StringBuilder(length)
+                .apply {
+                    while (this.length < length) {
+                        append(FILE_NAME_ALPHABET[random.nextInt(FILE_NAME_ALPHABET.length)])
+                    }
+                }
+                .toString()
+    }
+
     private inner class FileView(
             val descriptor: AssetFileDescriptor,
             val name: String,
@@ -167,8 +186,8 @@ class MainViewModel(application: Application) :
         val nameWithoutExtension = original.nameWithoutExtension
 
         val output = sharedImagesDirectory
-                .resolve("${nameWithoutExtension}_no_metadata" +
-                        if (original.extension.isNotEmpty()) ".${original.extension}" else "")
+                .resolve(generateRandomFilename() +
+                        if (original.extension.isNotEmpty()) ".${original.extension.toLowerCase()}" else "")
                 .apply {
                     createNewFile()
                 }
@@ -190,7 +209,7 @@ class MainViewModel(application: Application) :
     }
 
     private suspend fun openFile(descriptor: AssetFileDescriptor, name: String,
-            mediaType: MediaType) {
+                                 mediaType: MediaType) {
         Logger.d("Opening file '$name' to display metadata...")
 
         fileView = FileView(descriptor, name, mediaType)
@@ -252,7 +271,7 @@ class MainViewModel(application: Application) :
                     fileView.original,
                     fileView.output
             )
-            fileView.output.setLastModified(0)
+            fileView.output.setLastModified(random.nextLong(System.currentTimeMillis()))
             shareOutputFile()
         }
     }
