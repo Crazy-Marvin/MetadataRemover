@@ -9,4 +9,8 @@
             parent="Widget.MaterialComponents.Button.OutlinedButton">
         <item name="android:textColor">?android:textColorPrimary</item>
     </style>
+
+    <style name="Widget.App.Toolbar.ColoredBackButton" parent="@style/ThemeOverlay.AppCompat.ActionBar">
+        <item name="colorControlNormal">?colorAccent</item>
+    </style>
 </resources>

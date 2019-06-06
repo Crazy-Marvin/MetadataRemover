@@ -66,4 +66,11 @@
     <string name="title_button_about_source_license">License</string>
     <string name="title_button_about_source_libraries">Libraries</string>
 
+    <!-- Contribution info -->
+    <string name="title_about_contribute">Contribute</string>
+    <string name="title_button_about_contribute_translate">Translate</string>
+    <string name="url_button_about_contribute_translate" translatable="false">https://crowdin.com/project/metadata-remover</string>
+    <string name="title_button_about_contribute_issue">Report issue</string>
+    <string name="url_button_about_contribute_issue" translatable="false">https://github.com/Crazy-Marvin/MetadataRemover/issues/new</string>
+
 </resources>

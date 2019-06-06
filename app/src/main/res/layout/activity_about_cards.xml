@@ -97,6 +97,17 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/baseline_card"
             app:layout_constraintTop_toBottomOf="@id/card_developer"
+            app:layout_constraintBottom_toTopOf="@id/card_contribute"
+            app:layout_constraintStart_toStartOf="@id/baseline_card_start"
+            app:layout_constraintEnd_toEndOf="@id/baseline_card_end" />
+
+        <include
+            android:id="@+id/card_contribute"
+            layout="@layout/activity_about_card_contribute"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/baseline_card"
+            app:layout_constraintTop_toBottomOf="@id/card_source"
             app:layout_constraintBottom_toBottomOf="@id/baseline_card_bottom"
             app:layout_constraintStart_toStartOf="@id/baseline_card_start"
             app:layout_constraintEnd_toEndOf="@id/baseline_card_end" />
