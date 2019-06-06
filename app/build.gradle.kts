@@ -118,6 +118,10 @@ android {
             events("passed", "skipped", "failed", "standardOut", "standardError")
         }
     }
+
+    lintOptions {
+        ignore("MissingTranslation")
+    }
 }
 
 kapt {
