@@ -1,0 +1,11 @@
+# User @heinrichreimer manages CI scripts.
+/ci/ @heinrichreimer
+
+# User @heinrichreimer manages build configuration.
+*.gradle @heinrichreimer
+*.gradle.kts @heinrichreimer
+*gradle.properties @heinrichreimer
+*gradle-wrapper.properties @heinrichreimer
+
+# User @CrazyMarvin manages artwork.
+/art/ @CrazyMarvin

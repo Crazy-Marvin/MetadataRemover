@@ -31,7 +31,7 @@
     <string name="image_content_description_app_icon">App icon</string>
     <string name="title_button_about_contact">Contact</string>
     <string name="address_email_about_button_contact" translatable="false">marvin@poopjournal.rocks</string>
-    <string name="subject_email_about_button_contact">@string/app_name</string>
+    <string name="subject_email_about_button_contact" translatable="false">@string/app_name</string>
     <string name="title_button_about_support">Support</string>
     <string name="url_about_button_support" translatable="false">https://poopjournal.rocks/MetadataRemover/support/</string>
 

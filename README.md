@@ -1,4 +1,4 @@
-[![Icon](art/icons/ic_launcher/circle/xxxhdpi/ic_launcher.png)](art/icons/ic_launcher/ic_launcher_web.png)
+[![Icon](art/icons/ic_launcher/legacy/ic_launcher_squircle_xxxhdpi.png)](art/icons/ic_launcher/ic_launcher_play_store.png)
 
 # Metadata Remover App For Android
 [![Build Status](https://img.shields.io/travis/Crazy-Marvin/MetadataRemover/master.svg?style=flat)](https://travis-ci.org/Crazy-Marvin/MetadataRemover)
@@ -12,6 +12,7 @@
 [![Codecov](https://img.shields.io/codecov/c/github/Crazy-Marvin/MetadataRemover/master.svg?style=flat)](https://codecov.io/gh/Crazy-Marvin/MetadataRemover)
 [![Crowdin Localization](https://d322cqt584bo4o.cloudfront.net/metadata-remover/localized.svg?style=flat)](https://crowdin.com/project/metadata-remover)
 [![F-Droid](https://img.shields.io/f-droid/v/xxxxxxxx.svg?style=flat)](https://f-droid.org/de/packages/xxxxxxxx/)
+[![Google Play](https://badgen.net/badge/icon/googleplay?icon=googleplay&label)](https://play.google.com/store/apps/details?id=rocks.poopjournal.metadataremover)
 
 _Remove any image's metadata fast and easily._
 
