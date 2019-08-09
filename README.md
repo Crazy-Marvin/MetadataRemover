@@ -1,4 +1,4 @@
-[![Icon](art/icons/ic_launcher/circle/xxxhdpi/ic_launcher.png)](art/icons/ic_launcher/ic_launcher_web.png)
+[![Icon](art/icons/ic_launcher/circle/xxxhdpi/ic_launcher.png)](art/icons/ic_launcher/ic_launcher_play_store.png)
 
 # Metadata Remover App For Android
 [![Build Status](https://img.shields.io/travis/Crazy-Marvin/MetadataRemover/master.svg?style=flat)](https://travis-ci.org/Crazy-Marvin/MetadataRemover)
