@@ -36,6 +36,4 @@ jobs:
         uses: codecov/codecov-action@v1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          yml: .codecov.yml #optional
-          fail_ci_if_error: true #optional (default = false)
-        run: bash <(curl -s https://codecov.io/bash)
+          yml: .codecov.yml
