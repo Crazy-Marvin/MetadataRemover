@@ -1,9 +1,0 @@
-#!/usr/bin/env bash
-
-# Fail fast when a command returns non-zero exit code.
-set -e
-CURRENT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-
-# Update SDK dependencies.
-echo "Updating Android SDK components."
-${CURRENT_DIR}/android-silent-sdkmanager --update
