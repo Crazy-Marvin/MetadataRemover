@@ -1,7 +1,7 @@
 [![Icon](art/icons/ic_launcher/legacy/ic_launcher_squircle_xxxhdpi.png)](art/icons/ic_launcher/ic_launcher_play_store.png)
 
 # Metadata Remover App For Android
-[![Build Status](https://img.shields.io/travis/Crazy-Marvin/MetadataRemover/master.svg?style=flat)](https://travis-ci.org/Crazy-Marvin/MetadataRemover)
+[![Build Status](https://img.shields.io/github/workflow/status/Crazy-Marvin/MetadataRemover/CI?style=flat)](https://github.com/Crazy-Marvin/MetadataRemover/actions)
 [![License](https://img.shields.io/github/license/Crazy-Marvin/MetadataRemover.svg?style=flat)](LICENSE.txt)
 [![Last commit](https://img.shields.io/github/last-commit/Crazy-Marvin/MetadataRemover.svg?style=flat)](https://github.com/Crazy-Marvin/MetadataRemover/commits)
 [![Releases](https://img.shields.io/github/downloads/Crazy-Marvin/MetadataRemover/total.svg?style=flat)](https://github.com/Crazy-Marvin/MetadataRemover/releases)
