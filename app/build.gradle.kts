@@ -137,14 +137,7 @@ kapt {
 }
 
 play {
-    serviceAccountCredentials = rootProject
-            .file("secret/api-7281121051860956110-977812-57e7308358e6.json")
-            .also { file ->
-                require(file.exists()) {
-                    "Could not find Google Play credentials."
-                }
-            }
-
+    serviceAccountCredentials = rootProject.file("secret/api-7281121051860956110-977812-57e7308358e6.json")
     track = "internal"
     releaseStatus = "draft"
     defaultToAppBundles = true
