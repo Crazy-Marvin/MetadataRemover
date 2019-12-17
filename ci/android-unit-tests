@@ -1,7 +1,0 @@
-#!/usr/bin/env bash
-
-# Fail fast when a command returns non-zero exit code.
-set -e
-
-echo "Running unit tests with Gradle."
-./gradlew --daemon --console=plain test

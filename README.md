@@ -1,7 +1,7 @@
 [![Icon](art/icons/ic_launcher/legacy/ic_launcher_squircle_xxxhdpi.png)](art/icons/ic_launcher/ic_launcher_play_store.png)
 
 # Metadata Remover App For Android
-[![Build Status](https://img.shields.io/travis/Crazy-Marvin/MetadataRemover/master.svg?style=flat)](https://travis-ci.org/Crazy-Marvin/MetadataRemover)
+[![Build Status](https://img.shields.io/github/workflow/status/Crazy-Marvin/MetadataRemover/CI?style=flat)](https://github.com/Crazy-Marvin/MetadataRemover/actions)
 [![License](https://img.shields.io/github/license/Crazy-Marvin/MetadataRemover.svg?style=flat)](LICENSE.txt)
 [![Last commit](https://img.shields.io/github/last-commit/Crazy-Marvin/MetadataRemover.svg?style=flat)](https://github.com/Crazy-Marvin/MetadataRemover/commits)
 [![Releases](https://img.shields.io/github/downloads/Crazy-Marvin/MetadataRemover/total.svg?style=flat)](https://github.com/Crazy-Marvin/MetadataRemover/releases)
@@ -73,6 +73,18 @@ That way you stay <i>anonymous</i> and <i>safe</i> in internet, while your frien
 
 <i>Happy sharing! 😽</i>
 
+## Deployment
+
+### Encoding secrets
+
+```shell script
+cd secrets
+tar -cf secrets.tar --exclude=secrets.tar --exclude=secrets.tar.gpg --exclude=.gitignore .
+gpg --symmetric --cipher-algo AES256 --output secrets.tar.gpg secrets.tar
+```
+
+The same password needs to be saved as `FILES_PASSPHRASE` variable
+to this repository's [secrets](https://github.com/Crazy-Marvin/MetadataRemover/settings/secrets).
 
 ## Contributing
 
