@@ -32,6 +32,8 @@ jobs:
           api: 25
           tag: google_apis
           abi: x86
+      - name: "🧪 Gradle Wrapper Validation"
+        uses: gradle/wrapper-validation-action@v1
       - name: "📤 Upload code coverage"
         uses: codecov/codecov-action@v1
         with:
