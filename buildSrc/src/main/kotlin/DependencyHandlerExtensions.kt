@@ -194,5 +194,5 @@ fun DependencyHandlerScope.annotationProcessor(
 fun DependencyHandler.kotlin(module: String, version: String? = null): String {
     val dependencyNotation: Any = kotlin(module, version)
     check(dependencyNotation is String)
-    return dependencyNotation as String
+    return dependencyNotation
 }
