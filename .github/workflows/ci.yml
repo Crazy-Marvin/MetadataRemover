@@ -28,12 +28,10 @@ jobs:
       - name: "🧪 Unit test"
         run: ./gradlew test
       - name: "🧪 Integration test"
-        uses: malinskiy/action-android/emulator-run-cmd@release/0.0.5
+        uses: reactivecircus/android-emulator-runner@v2
         with:
-          cmd: ./gradlew connectedAndroidTest
-          api: 25
-          tag: google_apis
-          abi: x86
+          api-level: 25
+          script: ./gradlew connectedAndroidTest
       - name: "📤 Upload code coverage"
         uses: codecov/codecov-action@v1
         with:
