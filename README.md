@@ -78,13 +78,13 @@ That way you stay <i>anonymous</i> and <i>safe</i> in internet, while your frien
 ### Encoding secrets
 
 ```shell script
-cd secrets
+cd secret
 tar -cf secrets.tar --exclude=secrets.tar --exclude=secrets.tar.gpg --exclude=.gitignore .
 gpg --symmetric --cipher-algo AES256 --output secrets.tar.gpg secrets.tar
 ```
 
 The same password needs to be saved as `FILES_PASSPHRASE` variable
-to this repository's [secrets](https://github.com/Crazy-Marvin/MetadataRemover/settings/secrets).
+to this repository's [secret](https://github.com/Crazy-Marvin/MetadataRemover/settings/secret).
 
 ## Contributing
 

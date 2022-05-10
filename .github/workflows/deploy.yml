@@ -20,7 +20,7 @@ jobs:
           acceptLicense: yes
       - name: "🕶 Decrypt secret files"
         run: |
-          cd secrets
+          cd secret
           gpg --quiet --batch --yes --decrypt --passphrase="${{ secrets.FILES_PASSPHRASE }}" --output secrets.tar secrets.tar.gpg
           tar -xf secrets.tar
       - name: "📁 Copy local CI properties"
