@@ -30,7 +30,7 @@ object Versions {
     // Note: The app version should always be determined based on semantic versioning rules http://semver.org/
     val app = Version(
             major = 1,
-            patch = 2
+            patch = 3
     )
 
     val sdk = Sdk
