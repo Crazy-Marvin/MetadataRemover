@@ -14,7 +14,7 @@ jobs:
           java-version: 1.8
           java-package: jdk
       - name: "🧰 Install Android SDK"
-        uses: malinskiy/action-android/install-sdk@release/0.0.5
+        uses: android-actions/setup-android@v2
         with:
           acceptLicense: yes
       - name: "📁 Copy local CI properties"
