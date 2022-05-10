@@ -85,7 +85,7 @@ class MainActivity : AppCompatActivity(), ActivityResultLauncher, AndroidViewDsl
         initializeViews()
         panelSlideListener.onPanelSlide(binding.slidingLayout, slidingOffset)
 
-        onPreviewUpdate(Resource.Empty())
+        onPreviewUpdate(Empty())
 
         viewModel.wrongMimeTypeFileSelectedHint.observeNotNull(this) { event ->
             Snackbar.make(
@@ -223,7 +223,7 @@ class MainActivity : AppCompatActivity(), ActivityResultLauncher, AndroidViewDsl
 
                             val expandIcon = actionView
                             check(expandIcon is ExpandIconView)
-                            (expandIcon as ExpandIconView) {
+                            (expandIcon) {
                                 setState(ExpandIconView.LESS, false)
                             }
                         }
@@ -269,7 +269,7 @@ class MainActivity : AppCompatActivity(), ActivityResultLauncher, AndroidViewDsl
 
                             val expandIcon = actionView
                             check(expandIcon is ExpandIconView)
-                            (expandIcon as ExpandIconView) {
+                            (expandIcon) {
                                 setState(ExpandIconView.LESS, false)
                             }
                         }
@@ -385,8 +385,8 @@ class MainActivity : AppCompatActivity(), ActivityResultLauncher, AndroidViewDsl
 
         override fun onPanelStateChanged(
                 panel: View,
-                previousState: SlidingUpPanelLayout.PanelState,
-                newState: SlidingUpPanelLayout.PanelState
+                previousState: PanelState,
+                newState: PanelState
         ) {
             val expandCollapse = binding.bottomSheet
                     .toolbar
@@ -395,7 +395,7 @@ class MainActivity : AppCompatActivity(), ActivityResultLauncher, AndroidViewDsl
                     .actionView
             check(expandCollapse is ExpandIconView)
 
-            (expandCollapse as ExpandIconView) {
+            (expandCollapse) {
                 when (newState) {
                     PanelState.COLLAPSED -> ExpandIconView.LESS to R.string.title_menu_item_collapse
                     PanelState.EXPANDED, PanelState.ANCHORED -> ExpandIconView.MORE to R.string.title_menu_item_expand
