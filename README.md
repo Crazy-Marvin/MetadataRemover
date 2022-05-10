@@ -11,7 +11,7 @@
 [![Codacy grade](https://img.shields.io/codacy/grade/eed69c67a07f4a14bf0ee0fd6b2ead40/master.svg?style=flat)](https://www.codacy.com/app/CrazyMarvin/MetadataRemover)
 [![Codecov](https://img.shields.io/codecov/c/github/Crazy-Marvin/MetadataRemover/master.svg?style=flat)](https://codecov.io/gh/Crazy-Marvin/MetadataRemover)
 [![Crowdin Localization](https://d322cqt584bo4o.cloudfront.net/metadata-remover/localized.svg?style=flat)](https://crowdin.com/project/metadata-remover)
-[![F-Droid](https://img.shields.io/f-droid/v/xxxxxxxx.svg?style=flat)](https://f-droid.org/de/packages/xxxxxxxx/)
+[![F-Droid](https://img.shields.io/f-droid/v/rocks.poopjournal.metadataremover.svg?style=flat)](https://f-droid.org/de/packages/rocks.poopjournal.metadataremover/)
 [![Google Play](https://badgen.net/badge/icon/googleplay?icon=googleplay&label)](https://play.google.com/store/apps/details?id=rocks.poopjournal.metadataremover)
 
 _Remove any image's metadata fast and easily._
@@ -28,9 +28,9 @@ _Remove any image's metadata fast and easily._
         </a>
 
 
-<i>Protect your privacy by removing metadata from your photos, before sharing them on the internet!</i>
+_Protect your privacy by removing metadata from your photos, before sharing them on the internet!_
 
-<h2><b>Features:</b></h2>
+## Features
 
  ✔️ View metadata
  
@@ -42,13 +42,12 @@ _Remove any image's metadata fast and easily._
  
  ✔️ Share directly from the app
  
-
-<h2><b>Learn more:</b></h2>
+## Learn more
 
 Whenever you take a picture, additional metadata is saved in the image file.
-Most smartphones do <i>not inform</i> you about this.
+Most smartphones do _not inform_ you about this.
 
-<b>Metadata can look like this:</b>
+**Metadata can look like this:**
 
  🕑 On which day was the picture taken, and at which time?
  
@@ -64,14 +63,14 @@ Most smartphones do <i>not inform</i> you about this.
  
 
 Metadata is sometimes very useful—for instance when sorting holiday photos.
-But as soon as you share photos with others via social media, all this information is visible <i>publicly</i>.
-Data collectors and stalkers would possibly be able to discover your <i>place of residence or workplace<i> from the metadata or draw conclusions about your <i>daily routine</i>.
+But as soon as you share photos with others via social media, all this information is visible _publicly_.
+Data collectors and stalkers would possibly be able to discover your _place of residence or workplace_ from the metadata or draw conclusions about your _daily routine_.
 Tracking services could create more comprehensive advertising profiles and sell your data to other organizations.
 
-With our app, you can easily view all that data, <i>remove it entirely</i>, and then share the anonymized photo directly!
-That way you stay <i>anonymous</i> and <i>safe</i> in internet, while your friends can still admire your cute cat.
+With our app, you can easily view all that data, _remove it entirely_, and then share the anonymized photo directly!
+That way you stay _anonymous_ and _safe_ in internet, while your friends can still admire your cute cat.
 
-<i>Happy sharing! 😽</i>
+_Happy sharing! 😽_
 
 ## Deployment
 
