@@ -27,5 +27,7 @@ jobs:
         run: ./gradlew assembleDebug
       - name: "🚀 GitHub release"
         run: ./gradlew githubRelease
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: "🚀 Google Play publish"
         run: ./gradlew publishRelease

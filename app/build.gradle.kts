@@ -145,7 +145,7 @@ play {
 }
 
 githubRelease {
-    setToken(secretProperties["github.credentials.token"])
+    setToken(System.getenv("GITHUB_TOKEN") ?: secretProperties["github.credentials.token"])
     setOwner("Crazy-Marvin")
     setRepo("MetadataRemover")
     setTagName("v$version")
