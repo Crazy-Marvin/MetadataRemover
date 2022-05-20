@@ -74,12 +74,24 @@ _Happy sharing! 😽_
 
 ## Deployment
 
-### Encoding secrets
+### Encoding/decoding secrets
 
-```shell script
+To decode the secrets, run:
+
+```shell
+cd secret
+gpg --quiet --batch --yes --decrypt --output secrets.tar secrets.tar.gpg
+tar -xf secrets.tar
+cd ..
+```
+
+To encode the secrets, run:
+
+```shell
 cd secret
 tar -cf secrets.tar --exclude=secrets.tar --exclude=secrets.tar.gpg --exclude=.gitignore .
 gpg --symmetric --cipher-algo AES256 --output secrets.tar.gpg secrets.tar
+cd ..
 ```
 
 The same password needs to be saved as `FILES_PASSPHRASE` variable
