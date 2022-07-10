@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ MIT License
+  ~
+  ~ Copyright (c) 2018 Jan Heinrich Reimer
+  ~
+  ~ Permission is hereby granted, free of charge, to any person obtaining a copy
+  ~ of this software and associated documentation files (the "Software"), to deal
+  ~ in the Software without restriction, including without limitation the rights
+  ~ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  ~ copies of the Software, and to permit persons to whom the Software is
+  ~ furnished to do so, subject to the following conditions:
+  ~
+  ~ The above copyright notice and this permission notice shall be included in all
+  ~ copies or substantial portions of the Software.
+  ~
+  ~ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  ~ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  ~ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  ~ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  ~ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  ~ SOFTWARE.
+  -->
+<resources>
+    <string name="label_attribute_file_name">नाम</string>
+    <string name="label_attribute_file_size">आकार</string>
+    <string name="description_attribute_file_size_bytes">%1$d\u200ABytes</string>
+    <string name="label_attribute_image_resolution">संकल्प</string>
+    <string name="description_attribute_image_resolution_xy">%1$d\u200Ax\u200A%2$d</string>
+    <string name="description_attribute_image_resolution_pixels">%1$d\u200APixels</string>
+    <string name="description_attribute_image_resolution_mega_pixels">%1$s\u200AMP</string>
+    <string name="label_attribute_image_exposure">खुलासा</string>
+    <string name="description_attribute_image_exposure_1_value">%1$s</string>
+    <string name="description_attribute_image_exposure_2_value">%1$s\u2003%2$s</string>
+    <string name="description_attribute_image_exposure_3_value">%1$s\u2003%2$s\u2003%3$s</string>
+    <string name="description_attribute_image_exposure_4_value">%1$s\u2003%2$s\u2003%3$s\u2003%4$s</string>
+    <string name="description_attribute_image_exposure_f_stop">f/%1$s</string>
+    <string name="description_attribute_image_exposure_exposure_time_s">%1$s\u200As</string>
+    <string name="description_attribute_image_exposure_focal_length_mm">%1$s\u200Amm</string>
+    <string name="description_attribute_image_exposure_iso_speed">ISO\u200A%1$s</string>
+    <string name="label_attribute_image_flash_light_source">फ्लैश &amp; लाइट स्त्रोत</string>
+    <string name="description_attribute_image_flash_on">फ्लैश चालू</string>
+    <string name="description_attribute_image_flash_off">फ्लैश नहीं है</string>
+    <string name="description_attribute_image_light_source_daylight">अरुणोदय</string>
+    <string name="description_attribute_image_light_source_fluorescent">प्रतिदिप्त</string>
+    <string name="description_attribute_image_light_source_tungsten">टंगस्टन</string>
+    <string name="description_attribute_image_light_source_flash">फ्लैश</string>
+    <string name="description_attribute_image_light_source_fine_weather">सुहावना मौसम</string>
+    <string name="description_attribute_image_light_source_cloudy_weather">धुंधला मौसम</string>
+    <string name="description_attribute_image_light_source_shade">छाया</string>
+    <string name="description_attribute_image_light_source_daylight_fluorescent">प्रतिदिप्त अरुणोदय(D\u200A5700–7100K)</string>
+    <string name="description_attribute_image_light_source_day_white_fluorescent">प्रतिदिप्त सफ़ेद दिन(N\u200A4600–5500K)</string>
+    <string name="description_attribute_image_light_source_cool_white_fluorescent">शांत सफ़ेद(W\u200A3800–4500K)</string>
+    <string name="description_attribute_image_light_source_white_fluorescent">सफेद प्रतिदिप्त(WW\u200A3250–3800K)</string>
+    <string name="description_attribute_image_light_source_warm_white_fluorescent">गर्मिला सफेद प्रतिदिप्त(L\u200A2600–3250K)</string>
+    <string name="label_attribute_file_last_modification_date_time">परिवर्तन की अंतिम तारीख &amp; समय</string>
+    <string name="label_attribute_file_creation_date_time">निर्माण करने की तारीख &amp; समय</string>
+    <string name="label_attribute_file_identity">पहचान</string>
+    <string name="label_attribute_image_author">लेखक</string>
+    <string name="label_attribute_image_source">स्त्रोत</string>
+    <string name="label_attribute_image_comment">कमेंट</string>
+    <string name="label_attribute_image_warning">चेतावानी</string>
+    <string name="label_attribute_image_creation_camera">कैमरा</string>
+    <string name="label_attribute_image_creation_lens">लेंस</string>
+    <string name="description_attribute_image_creation_model_serial_number">%1$s(%2$s)</string>
+    <string name="label_attribute_file_creation_location">स्थान</string>
+    <string name="description_attribute_file_creation_location_coordinates">%2$02d&#176;\u200A%3$02d’\u200A%4$02d”
+%1$s\u2003%6$02d&#176;\u200A%7$02d′\u200A%8$02d″%5$s</string>
+    <string name="description_attribute_file_creation_location_direction_east">पूर्व</string>
+    <string name="description_attribute_file_creation_location_direction_west">पश्चिम</string>
+    <string name="description_attribute_file_creation_location_direction_north">उत्तर</string>
+    <string name="description_attribute_file_creation_location_direction_south">दक्षिण</string>
+</resources>
