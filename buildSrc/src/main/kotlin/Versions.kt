@@ -31,15 +31,15 @@ object Versions {
     val app = Version(
             major = 1,
             minor = 1,
-            patch = 0
+            patch = 1
     )
 
     val sdk = Sdk
 
     object Sdk {
-        const val compile = 28
+        const val compile = 30
         const val min = 19
-        const val target = 28
+        const val target = 30
     }
 
     val jvm = JavaVersion.VERSION_1_8
