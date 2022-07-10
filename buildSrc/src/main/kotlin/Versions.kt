@@ -101,7 +101,7 @@ object Versions {
     // Publishing
     const val googlePlayPublishingPlugin = "2.1.0"
     const val fDroidPublishingPlugin = "0.2"
-    const val githubReleasePlugin = "2.4.1"
+    const val githubReleasePlugin = "2.2.8"
     const val circleImageView = "3.0.0"
 
     // Utilities
