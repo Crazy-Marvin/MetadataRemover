@@ -23,5 +23,104 @@
   ~ SOFTWARE.
   -->
 <resources>
-    <string name="app_name">میٹاڈیٹاریموور</string>
+    <string name="title_activity_about">کے بارے میں</string>
+    <string name="image_content_description_navigate_up">اوپر لے جائیں</string>
+    <!-- App info -->
+    <string name="image_content_description_app_icon">ایپ آئیکون</string>
+    <string name="title_button_about_contact">رابطہ کریں</string>
+    <string name="title_button_about_support">مدد</string>
+    <!-- Owner info -->
+    <string name="title_about_owner_name">کریزی مارون اور &amp; شراکت دار</string>
+    <string name="description_about_owner_role">ترقی</string>
+    <string name="title_button_about_owner_github">گٹہب</string>
+    <string name="title_button_about_owner_website">ویب سائٹ</string>
+    <!-- Designer info -->
+    <string name="title_about_designer_name">کیونایگیولر</string>
+    <string name="description_about_designer_role">ڈیزائن</string>
+    <string name="title_button_about_designer_github">گٹہب</string>
+    <string name="title_button_about_designer_website">ٹویٹر</string>
+    <!-- Developer info -->
+    <string name="title_about_developer_name">ہینرکریمرسافٹویئر</string>
+    <string name="description_about_developer_role">ترقی</string>
+    <string name="title_button_about_developer_github">گٹہب</string>
+    <string name="title_button_about_developer_website">ویب سائٹ</string>
+    <!-- Source code info -->
+    <string name="title_about_source">ماخذ</string>
+    <string name="title_button_about_source_code">کوڈ</string>
+    <string name="title_button_about_source_license">لائسنس</string>
+    <string name="title_button_about_source_libraries">کتب خانے</string>
+    <!-- Contribution info -->
+    <string name="title_about_contribute">شراکت</string>
+    <string name="title_button_about_contribute_translate">ترجمہ</string>
+    <string name="title_button_about_contribute_issue">مسئلہکیرپورٹکریں</string>
+
+    <string name="title_activity_libraries">کتب خانے</string>
+
+    <string name="title_activity_license">MIT لائسنس</string>
+
+    <string name="title_menu_item_about">کے بارے میں</string>
+    <string name="title_menu_item_open_file">تصویر کھولیں</string>
+    <string name="title_menu_item_expand">پھیلائیں</string>
+    <string name="title_menu_item_collapse">بند کریں</string>
+    <string name="image_content_description_preview">امیج پریویو</string>
+    <string name="title_bottom_sheet_open_file">ایک تصویر کھولیں</string>
+    <string name="title_bottom_sheet_remove_metadata">میٹاڈیٹاریموور</string>
+    <string name="description_banner_open_file">اس کےمیٹاڈیٹاکو ہٹانے کےلیےپہلےتصویرکھولیں.</string>
+    <string name="image_content_description_banner_open_file">ایک تصویر کھولیں</string>
+    <string name="description_snackbar_wrong_mime_type">\"%1$s\" قسم کیفائلیںابھیتکسپورٹیڈنہیںہیں۔.</string>
+    <string name="title_action_snackbar_wrong_mime_type">دوسری کوئی فائل کھولیں</string>
+    <!-- TODO Discuss if we should replace this with "This image doesn't contain metadata"  -->
+    <string name="description_banner_no_metadata">"کوئیمیٹاڈیٹانہیںملا."</string>
+    <string name="image_content_description_banner_no_metadata">"کوئیمیٹاڈیٹانہیںملا."</string>
+    <string name="search_text_file_explorer">فائل ایکسپلورر</string>
+    <string name="title_intent_chooser_share_without_metadata">\"%1$s\" کومیٹاڈیٹاکےبغیرشیئرکریں&#8230;</string>
+
+    <string name="label_attribute_file_name">نام</string>
+    <string name="label_attribute_file_size">حجم</string>
+    <string name="description_attribute_file_size_bytes">%1$d\u200ABytesبائٹس</string>
+    <string name="label_attribute_image_resolution">ریزولیشن</string>
+    <string name="description_attribute_image_resolution_xy">%1$d\u200Ax\u200A%2$d</string>
+    <string name="description_attribute_image_resolution_pixels">%1$d\u200Aپکسلز</string>
+    <string name="description_attribute_image_resolution_mega_pixels">%1$s\u200AMP</string>
+    <string name="label_attribute_image_exposure">ایکسپوژر</string>
+    <string name="description_attribute_image_exposure_1_value">%1$s</string>
+    <string name="description_attribute_image_exposure_2_value">%1$s\u2003%2$s</string>
+    <string name="description_attribute_image_exposure_3_value">%1$s\u2003%2$s\u2003%3$s</string>
+    <string name="description_attribute_image_exposure_4_value">%1$s\u2003%2$s\u2003%3$s\u2003%4$s</string>
+    <string name="description_attribute_image_exposure_f_stop">f/%1$s</string>
+    <string name="description_attribute_image_exposure_exposure_time_s">%1$s\u200As</string>
+    <string name="description_attribute_image_exposure_focal_length_mm">%1$s\u200Amm</string>
+    <string name="description_attribute_image_exposure_iso_speed">ISO\u200A%1$s</string>
+    <string name="label_attribute_image_flash_light_source">فلیشاور&amp; ہلکاماخذ</string>
+    <string name="description_attribute_image_flash_on">فلیش آن</string>
+    <string name="description_attribute_image_flash_off">فلیش نہیں</string>
+    <string name="description_attribute_image_light_source_daylight">ڈے لائٹ</string>
+    <string name="description_attribute_image_light_source_fluorescent">فلوروسینٹ</string>
+    <string name="description_attribute_image_light_source_tungsten">ٹنگسٹن</string>
+    <string name="description_attribute_image_light_source_flash">فلیش</string>
+    <string name="description_attribute_image_light_source_fine_weather">ٹھیک موسم</string>
+    <string name="description_attribute_image_light_source_cloudy_weather">ابر آلود موسم</string>
+    <string name="description_attribute_image_light_source_shade">چھاؤں</string>
+    <string name="description_attribute_image_light_source_daylight_fluorescent">ڈےلائٹفلوروسینٹ (D\u200A5700–7100K)</string>
+    <string name="description_attribute_image_light_source_day_white_fluorescent">ڈےوائٹفلوروسینٹ (N\u200A4600–5500K)</string>
+    <string name="description_attribute_image_light_source_cool_white_fluorescent">کولوائٹ (W\u200A3800–4500K)</string>
+    <string name="description_attribute_image_light_source_white_fluorescent">وائٹفلوروسینٹ (WW\u200A3250–3800K)</string>
+    <string name="description_attribute_image_light_source_warm_white_fluorescent">وارموائٹفلورسنٹ (L\u200A2600–3250K)</string>
+    <string name="label_attribute_file_last_modification_date_time">آخریترمیمکیتاریخ اور&amp; وقت</string>
+    <string name="label_attribute_file_creation_date_time">تخلیقکیتاریخ&amp; وقت</string>
+    <string name="label_attribute_file_identity">شناخت</string>
+    <string name="label_attribute_image_author">آتھر</string>
+    <string name="label_attribute_image_source">ماخذ</string>
+    <string name="label_attribute_image_comment">تبصرہ</string>
+    <string name="label_attribute_image_warning">انتباہ</string>
+    <string name="label_attribute_image_creation_camera">کیمرا</string>
+    <string name="label_attribute_image_creation_lens">لینس</string>
+    <string name="description_attribute_image_creation_model_serial_number">%1$s (%2$s)</string>
+    <string name="label_attribute_file_creation_location">مقام</string>
+    <string name="description_attribute_file_creation_location_coordinates">%2$02d&#176;\u200A%3$02d’\u200A%4$02d”
+%1$s\u2003%6$02d&#176;\u200A%7$02d′\u200A%8$02d″ %5$s</string>
+    <string name="description_attribute_file_creation_location_direction_east">مشرق</string>
+    <string name="description_attribute_file_creation_location_direction_west">مغرب</string>
+    <string name="description_attribute_file_creation_location_direction_north">شمال</string>
+    <string name="description_attribute_file_creation_location_direction_south">جنوب</string>
 </resources>

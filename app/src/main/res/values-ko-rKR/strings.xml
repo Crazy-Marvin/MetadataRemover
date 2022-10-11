@@ -23,5 +23,103 @@
   ~ SOFTWARE.
   -->
 <resources>
-    <string name="app_name">메타데이터 제거기</string>
+    <string name="title_activity_about">관련 정보</string>
+    <string name="image_content_description_navigate_up">위로 이동하기</string>
+    <!-- App info -->
+    <string name="image_content_description_app_icon">앱 아이콘</string>
+    <string name="title_button_about_contact">연락처</string>
+    <string name="title_button_about_support">지원</string>
+    <!-- Owner info -->
+    <string name="title_about_owner_name">Crazy Marvin &amp; Contributors</string>
+    <string name="description_about_owner_role">개발</string>
+    <string name="title_button_about_owner_github">GitHub</string>
+    <string name="title_button_about_owner_website">웹사이트</string>
+    <!-- Designer info -->
+    <string name="title_about_designer_name">Kevin Aguilar</string>
+    <string name="description_about_designer_role">디자인</string>
+    <string name="title_button_about_designer_github">GitHub</string>
+    <string name="title_button_about_designer_website">트위터</string>
+    <!-- Developer info -->
+    <string name="title_about_developer_name">Heinrich Reimer 소프트웨어</string>
+    <string name="description_about_developer_role">개발</string>
+    <string name="title_button_about_developer_github">GitHub</string>
+    <string name="title_button_about_developer_website">웹사이트</string>
+    <!-- Source code info -->
+    <string name="title_about_source">소스</string>
+    <string name="title_button_about_source_code">코드</string>
+    <string name="title_button_about_source_license">라이센스</string>
+    <string name="title_button_about_source_libraries">라이브러리</string>
+    <!-- Contribution info -->
+    <string name="title_about_contribute">기여</string>
+    <string name="title_button_about_contribute_translate">번역</string>
+    <string name="title_button_about_contribute_issue">문제 신고하기</string>
+
+    <string name="title_activity_libraries">라이브러리</string>
+
+    <string name="title_activity_license">MIT 라이센스</string>
+
+    <string name="title_menu_item_about">관련 정보</string>
+    <string name="title_menu_item_open_file">사진 열기</string>
+    <string name="title_menu_item_expand">확장하기</string>
+    <string name="title_menu_item_collapse">접기</string>
+    <string name="image_content_description_preview">이미지 미리보기</string>
+    <string name="title_bottom_sheet_open_file">사진 열기</string>
+    <string name="title_bottom_sheet_remove_metadata">메타데이터 제거하기</string>
+    <string name="description_banner_open_file">메타데이터를 제거하시려면 먼저 사진을 여세요.</string>
+    <string name="image_content_description_banner_open_file">사진 열기</string>
+    <string name="description_snackbar_wrong_mime_type">\"%1$s\"와(과) 같은 파일 타입은 지원되지 않습니다.</string>
+    <string name="title_action_snackbar_wrong_mime_type">다른 파일 열기</string>
+    <!-- TODO Discuss if we should replace this with "This image doesn't contain metadata"  -->
+    <string name="description_banner_no_metadata">"메타데이터를 찾지 못했습니다."</string>
+    <string name="image_content_description_banner_no_metadata">"메타데이터를 찾지 못했습니다."</string>
+    <string name="search_text_file_explorer">파일 탐색기</string>
+    <string name="title_intent_chooser_share_without_metadata">\"%1$s\"을(를) 메타데이터 &#8230; 없이 공유하세요</string>
+
+    <string name="label_attribute_file_name">이름</string>
+    <string name="label_attribute_file_size">크기</string>
+    <string name="description_attribute_file_size_bytes">%1$d\u200A바이트</string>
+    <string name="label_attribute_image_resolution">해상도</string>
+    <string name="description_attribute_image_resolution_xy">%1$d\u200A×\u200A%2$d</string>
+    <string name="description_attribute_image_resolution_pixels">%1$d\u200A픽셀</string>
+    <string name="description_attribute_image_resolution_mega_pixels">%1$s\u200AMP</string>
+    <string name="label_attribute_image_exposure">노출</string>
+    <string name="description_attribute_image_exposure_1_value">%1$s</string>
+    <string name="description_attribute_image_exposure_2_value">%1$s\u2003%2$s</string>
+    <string name="description_attribute_image_exposure_3_value">%1$s\u2003%2$s\u2003%3$s</string>
+    <string name="description_attribute_image_exposure_4_value">%1$s\u2003%2$s\u2003%3$s\u2003%4$s</string>
+    <string name="description_attribute_image_exposure_f_stop">f/%1$s</string>
+    <string name="description_attribute_image_exposure_exposure_time_s">%1$s\u200As</string>
+    <string name="description_attribute_image_exposure_focal_length_mm">%1$s\u200Amm</string>
+    <string name="description_attribute_image_exposure_iso_speed">ISO\u200A%1$s</string>
+    <string name="label_attribute_image_flash_light_source">플래시 &amp; 광원</string>
+    <string name="description_attribute_image_flash_on">플래시 사용</string>
+    <string name="description_attribute_image_flash_off">플래시 꺼짐</string>
+    <string name="description_attribute_image_light_source_daylight">일광</string>
+    <string name="description_attribute_image_light_source_fluorescent">형광</string>
+    <string name="description_attribute_image_light_source_tungsten">텅스텐</string>
+    <string name="description_attribute_image_light_source_flash">플래시</string>
+    <string name="description_attribute_image_light_source_fine_weather">좋은 날씨</string>
+    <string name="description_attribute_image_light_source_cloudy_weather">흐린 날씨</string>
+    <string name="description_attribute_image_light_source_shade">그늘</string>
+    <string name="description_attribute_image_light_source_daylight_fluorescent">일광 형광 (D\u200A5700–7100K)</string>
+    <string name="description_attribute_image_light_source_day_white_fluorescent">일광 백색 형광 (N\u200A4600–5500K)</string>
+    <string name="description_attribute_image_light_source_cool_white_fluorescent">시원한 백색 (W\u200A3800–4500K)</string>
+    <string name="description_attribute_image_light_source_white_fluorescent">백색 형광 (WW\u200A3250–3800K)</string>
+    <string name="description_attribute_image_light_source_warm_white_fluorescent">따뜻한 백색 형광 (L\u200A2600–3250K)</string>
+    <string name="label_attribute_file_last_modification_date_time">마지막으로 수정한 날짜 &amp; 시간</string>
+    <string name="label_attribute_file_creation_date_time">생성 날짜 &amp; 시간</string>
+    <string name="label_attribute_file_identity">신원</string>
+    <string name="label_attribute_image_author">제작자</string>
+    <string name="label_attribute_image_source">소스</string>
+    <string name="label_attribute_image_comment">댓글</string>
+    <string name="label_attribute_image_warning">경고</string>
+    <string name="label_attribute_image_creation_camera">카메라</string>
+    <string name="label_attribute_image_creation_lens">렌즈</string>
+    <string name="description_attribute_image_creation_model_serial_number">%1$s (%2$s)</string>
+    <string name="label_attribute_file_creation_location">위치</string>
+    <string name="description_attribute_file_creation_location_coordinates">%2$02d&#176;\u200A%3$02d′\u200A%4$02d″ %1$s\u2003%6$02d&#176;\u200A%7$02d′\u200A%8$02d″ %5$s</string>
+    <string name="description_attribute_file_creation_location_direction_east">동쪽</string>
+    <string name="description_attribute_file_creation_location_direction_west">서쪽</string>
+    <string name="description_attribute_file_creation_location_direction_north">북쪽</string>
+    <string name="description_attribute_file_creation_location_direction_south">남쪽</string>
 </resources>

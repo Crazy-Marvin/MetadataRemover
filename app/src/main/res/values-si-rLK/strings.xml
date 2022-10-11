@@ -23,5 +23,79 @@
   ~ SOFTWARE.
   -->
 <resources>
-    <string name="app_name">මෙටාඩේටා රීමූවර්</string>
+    <string name="title_activity_about">පිළිබඳව</string>
+    <string name="image_content_description_navigate_up">ඉහළට යාත්‍රණය</string>
+    <!-- App info -->
+    <string name="image_content_description_app_icon">යෙදුමේ නිරූපකය</string>
+    <string name="title_button_about_contact">සබඳතාව</string>
+    <string name="title_button_about_support">සහාය</string>
+    <!-- Owner info -->
+    <string name="title_about_owner_name">ක්‍රෑසි මාර්වින් &amp; දායකයින්</string>
+    <string name="description_about_owner_role">සංවර්ධනය</string>
+    <string name="title_button_about_owner_github">ගිට්හබ්</string>
+    <string name="title_button_about_owner_website">වියමන අඩවිය</string>
+    <!-- Designer info -->
+    <string name="title_about_designer_name">කෙවින් ඇගුයිලර්</string>
+    <string name="description_about_designer_role">නිර්මාණය</string>
+    <string name="title_button_about_designer_github">ගිට්හබ්</string>
+    <string name="title_button_about_designer_website">ට්විටර්</string>
+    <!-- Developer info -->
+    <string name="title_about_developer_name">හෙයින්රිච් රෙයිමර් සොෆ්ට්වෙයා</string>
+    <string name="description_about_developer_role">සංවර්ධනය</string>
+    <string name="title_button_about_developer_github">ගිට්හබ්</string>
+    <string name="title_button_about_developer_website">වියමන අඩවිය</string>
+    <!-- Source code info -->
+    <string name="title_about_source">මූලාශ්‍රය</string>
+    <string name="title_button_about_source_code">කේතය</string>
+    <string name="title_button_about_source_license">බලපත්‍ර</string>
+    <string name="title_button_about_source_libraries">එකතු</string>
+    <!-- Contribution info -->
+    <string name="title_about_contribute">දායක වන්න</string>
+    <string name="title_button_about_contribute_translate">පරිවර්තනය</string>
+    <string name="title_button_about_contribute_issue">දෝෂ වාර්තාව</string>
+
+    <string name="title_activity_libraries">එකතු</string>
+
+    <string name="title_activity_license">MIT බලපත්‍රය</string>
+
+    <string name="title_menu_item_about">පිළිබඳව</string>
+    <string name="title_menu_item_open_file">ඡායාරූපය දමන්න</string>
+    <string name="title_menu_item_expand">විහිදන්න</string>
+    <string name="title_menu_item_collapse">හකුළන්න</string>
+    <string name="image_content_description_preview">අනුරුවෙහි පෙරදසුන</string>
+    <string name="title_bottom_sheet_open_file">ඡායාරූපයක් දමන්න</string>
+    <string name="title_bottom_sheet_remove_metadata">පාරදත්ත ඉවත්කරන්න</string>
+    <string name="description_banner_open_file">ඡායාරූපයක පාරදත්ත ඉවතලීමට විවෘත කරන්න.</string>
+    <string name="image_content_description_banner_open_file">ඡායාරූපයක් දමන්න</string>
+    <string name="description_snackbar_wrong_mime_type">\"%1$s\" වර්ගයේ ගොනුවලට සහාය නොදක්වයි.</string>
+    <string name="title_action_snackbar_wrong_mime_type">වෙනත් ගොනුවත් විවෘත කරන්න</string>
+    <string name="description_banner_no_metadata">"පාරදත්ත කිසිවක් හමු නොවිණි."</string>
+    <string name="image_content_description_banner_no_metadata">"පාරදත්ත කිසිවක් හමු නොවිණි."</string>
+    <string name="search_text_file_explorer">ගොනු ගවේශකය</string>
+    <string name="title_intent_chooser_share_without_metadata">\"%1$s\" පාරදත්ත නැතිව බෙදාගන්න&#8230;</string>
+
+    <string name="label_attribute_file_name">නම</string>
+    <string name="label_attribute_file_size">ප්‍රමාණය</string>
+    <string name="description_attribute_file_size_bytes">බයිට %1$d\u200A</string>
+    <string name="label_attribute_image_resolution">විභේදනය</string>
+    <string name="description_attribute_image_resolution_xy">%1$d\u200A×\u200A%2$d</string>
+    <string name="description_attribute_image_exposure_1_value">%1$s</string>
+    <string name="description_attribute_image_exposure_2_value">%1$s\u2003%2$s</string>
+    <string name="description_attribute_image_exposure_3_value">%1$s\u2003%2$s\u2003%3$s</string>
+    <string name="description_attribute_image_exposure_4_value">%1$s\u2003%2$s\u2003%3$s\u2003%4$s</string>
+    <string name="description_attribute_image_exposure_iso_speed">ISO\u200A%1$s</string>
+    <string name="label_attribute_file_last_modification_date_time">අවසන් සංශෝධිත දිනය &amp; වේලාව</string>
+    <string name="label_attribute_file_creation_date_time">සෑදූ දිනය &amp; වේලාව</string>
+    <string name="label_attribute_file_identity">අනන්‍යතාව</string>
+    <string name="label_attribute_image_author">කතෘ</string>
+    <string name="label_attribute_image_source">මූලාශ්‍රය</string>
+    <string name="label_attribute_image_comment">අදහස</string>
+    <string name="label_attribute_image_warning">අවවාදයයි</string>
+    <string name="description_attribute_image_creation_model_serial_number">%1$s (%2$s)</string>
+    <string name="label_attribute_file_creation_location">ස්ථානය</string>
+    <string name="description_attribute_file_creation_location_coordinates">%2$02d&#176;\u200A%3$02d′\u200A%4$02d″ %1$s\u2003%6$02d&#176;\u200A%7$02d′\u200A%8$02d″ %5$s</string>
+    <string name="description_attribute_file_creation_location_direction_east">නැගෙනහිර</string>
+    <string name="description_attribute_file_creation_location_direction_west">බටහිර</string>
+    <string name="description_attribute_file_creation_location_direction_north">උතුරු</string>
+    <string name="description_attribute_file_creation_location_direction_south">දකුණ</string>
 </resources>

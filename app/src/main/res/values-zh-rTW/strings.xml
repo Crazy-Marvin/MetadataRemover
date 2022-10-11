@@ -23,5 +23,103 @@
   ~ SOFTWARE.
   -->
 <resources>
-    <string name="app_name">中繼資料清理</string>
+    <string name="title_activity_about">关于</string>
+    <string name="image_content_description_navigate_up">向上瀏覽</string>
+    <!-- App info -->
+    <string name="image_content_description_app_icon">應用程式圖標</string>
+    <string name="title_button_about_contact">聯絡我們</string>
+    <string name="title_button_about_support">客戶服務</string>
+    <!-- Owner info -->
+    <string name="title_about_owner_name">Crazy Marvin &amp; 貢獻者</string>
+    <string name="description_about_owner_role">開發</string>
+    <string name="title_button_about_owner_github">GitHub</string>
+    <string name="title_button_about_owner_website">網站</string>
+    <!-- Designer info -->
+    <string name="title_about_designer_name">Kevin Aguilar</string>
+    <string name="description_about_designer_role">設計</string>
+    <string name="title_button_about_designer_github">GitHub</string>
+    <string name="title_button_about_designer_website">Twitter</string>
+    <!-- Developer info -->
+    <string name="title_about_developer_name">Heinrich Reimer軟體</string>
+    <string name="description_about_developer_role">開發</string>
+    <string name="title_button_about_developer_github">GitHub</string>
+    <string name="title_button_about_developer_website">網站</string>
+    <!-- Source code info -->
+    <string name="title_about_source">原始碼</string>
+    <string name="title_button_about_source_code">代碼</string>
+    <string name="title_button_about_source_license">許可執照</string>
+    <string name="title_button_about_source_libraries">庫</string>
+    <!-- Contribution info -->
+    <string name="title_about_contribute">貢獻</string>
+    <string name="title_button_about_contribute_translate">翻譯</string>
+    <string name="title_button_about_contribute_issue">報告問題</string>
+
+    <string name="title_activity_libraries">庫</string>
+
+    <string name="title_activity_license">MIT許可執照</string>
+
+    <string name="title_menu_item_about">關於</string>
+    <string name="title_menu_item_open_file">打開圖片</string>
+    <string name="title_menu_item_expand">展開</string>
+    <string name="title_menu_item_collapse">摺疊</string>
+    <string name="image_content_description_preview">圖片預覽</string>
+    <string name="title_bottom_sheet_open_file">打開圖片</string>
+    <string name="title_bottom_sheet_remove_metadata">移除中繼資料</string>
+    <string name="description_banner_open_file">首先打開圖片以刪除其中繼資料。</string>
+    <string name="image_content_description_banner_open_file">打開圖片</string>
+    <string name="description_snackbar_wrong_mime_type">還不支持類型為 \"%1$s\" 的文檔。</string>
+    <string name="title_action_snackbar_wrong_mime_type">打開另一個文檔</string>
+    <!-- TODO Discuss if we should replace this with "This image doesn't contain metadata"  -->
+    <string name="description_banner_no_metadata">"找不到任何中繼資料。"</string>
+    <string name="image_content_description_banner_no_metadata">"找不到任何中繼資料。"</string>
+    <string name="search_text_file_explorer">文檔管理器</string>
+    <string name="title_intent_chooser_share_without_metadata">分享 \"%1$s\"不帶中繼資料&#8230;</string>
+
+    <string name="label_attribute_file_name">名稱</string>
+    <string name="label_attribute_file_size">大小</string>
+    <string name="description_attribute_file_size_bytes">%1$d\u200A位元組</string>
+    <string name="label_attribute_image_resolution">解析度</string>
+    <string name="description_attribute_image_resolution_xy">%1$d\u200Ax\u200A%2$d</string>
+    <string name="description_attribute_image_resolution_pixels">%1$d\u200A位元組</string>
+    <string name="description_attribute_image_resolution_mega_pixels">%1$s\u200A百萬像素</string>
+    <string name="label_attribute_image_exposure">曝光度</string>
+    <string name="description_attribute_image_exposure_1_value">%1$s</string>
+    <string name="description_attribute_image_exposure_2_value">%1$s\u2003%2$s</string>
+    <string name="description_attribute_image_exposure_3_value">%1$s\u2003%2$s\u2003%3$s</string>
+    <string name="description_attribute_image_exposure_4_value">%1$s\u2003%2$s\u2003%3$s\u2003%4$s</string>
+    <string name="description_attribute_image_exposure_f_stop">f/%1$s</string>
+    <string name="description_attribute_image_exposure_exposure_time_s">%1$s\u200A秒</string>
+    <string name="description_attribute_image_exposure_focal_length_mm">%1$s\u200A毫米</string>
+    <string name="description_attribute_image_exposure_iso_speed">ISO\u200A%1$s</string>
+    <string name="label_attribute_image_flash_light_source">閃光燈 &amp; 光源</string>
+    <string name="description_attribute_image_flash_on">閃光燈已開啟</string>
+    <string name="description_attribute_image_flash_off">未使用閃光燈</string>
+    <string name="description_attribute_image_light_source_daylight">白天</string>
+    <string name="description_attribute_image_light_source_fluorescent">日光燈</string>
+    <string name="description_attribute_image_light_source_tungsten">白熾燈</string>
+    <string name="description_attribute_image_light_source_flash">閃光燈</string>
+    <string name="description_attribute_image_light_source_fine_weather">晴天</string>
+    <string name="description_attribute_image_light_source_cloudy_weather">多雲天氣</string>
+    <string name="description_attribute_image_light_source_shade">陰影</string>
+    <string name="description_attribute_image_light_source_daylight_fluorescent">白天日光燈 (D\u200A5700–7100K)</string>
+    <string name="description_attribute_image_light_source_day_white_fluorescent">白天白色日光燈(N\u200A4600–5500K)</string>
+    <string name="description_attribute_image_light_source_cool_white_fluorescent">冷白 (W\u200A3800–4500K)</string>
+    <string name="description_attribute_image_light_source_white_fluorescent">白色日光燈(N\u200A3250–3800K)</string>
+    <string name="description_attribute_image_light_source_warm_white_fluorescent">暖白日光燈(L\u200A2600–3250K)</string>
+    <string name="label_attribute_file_last_modification_date_time">上次修改日期 &amp; 時間</string>
+    <string name="label_attribute_file_creation_date_time">創建日期 &amp; 時間</string>
+    <string name="label_attribute_file_identity">身份</string>
+    <string name="label_attribute_image_author">作者</string>
+    <string name="label_attribute_image_source">來源:</string>
+    <string name="label_attribute_image_comment">評論</string>
+    <string name="label_attribute_image_warning">警告</string>
+    <string name="label_attribute_image_creation_camera">相機</string>
+    <string name="label_attribute_image_creation_lens">鏡頭</string>
+    <string name="description_attribute_image_creation_model_serial_number">%1$s(%2$s)</string>
+    <string name="label_attribute_file_creation_location">地點</string>
+    <string name="description_attribute_file_creation_location_coordinates">%2$02d&#176;\u200A%3$02d′\u200A%4$02d″ %1$s\u2003%6$02d&#176;\u200A%7$02d′\u200A%8$02d″ %5$s</string>
+    <string name="description_attribute_file_creation_location_direction_east">東</string>
+    <string name="description_attribute_file_creation_location_direction_west">西</string>
+    <string name="description_attribute_file_creation_location_direction_north">北</string>
+    <string name="description_attribute_file_creation_location_direction_south">南</string>
 </resources>

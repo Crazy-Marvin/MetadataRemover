@@ -23,5 +23,103 @@
   ~ SOFTWARE.
   -->
 <resources>
-    <string name="app_name">Metadata Kaldırıcı</string>
+    <string name="title_activity_about">Hakkında</string>
+    <string name="image_content_description_navigate_up">Yukarı git</string>
+    <!-- App info -->
+    <string name="image_content_description_app_icon">Uygulama simgesi</string>
+    <string name="title_button_about_contact">İletişim</string>
+    <string name="title_button_about_support">Destek</string>
+    <!-- Owner info -->
+    <string name="title_about_owner_name">Crazy Marvin &amp; Destekçiler</string>
+    <string name="description_about_owner_role">Geliştirme</string>
+    <string name="title_button_about_owner_github">GitHub</string>
+    <string name="title_button_about_owner_website">Website</string>
+    <!-- Designer info -->
+    <string name="title_about_designer_name">Kevin Aguilar</string>
+    <string name="description_about_designer_role">Dizayn</string>
+    <string name="title_button_about_designer_github">GitHub</string>
+    <string name="title_button_about_designer_website">Twitter</string>
+    <!-- Developer info -->
+    <string name="title_about_developer_name">Heinrich Reimer Software</string>
+    <string name="description_about_developer_role">Geliştirme</string>
+    <string name="title_button_about_developer_github">GitHub</string>
+    <string name="title_button_about_developer_website">Website</string>
+    <!-- Source code info -->
+    <string name="title_about_source">Kaynak</string>
+    <string name="title_button_about_source_code">Kod</string>
+    <string name="title_button_about_source_license">Lisans</string>
+    <string name="title_button_about_source_libraries">Kütüphaneler</string>
+    <!-- Contribution info -->
+    <string name="title_about_contribute">Katkıda bulun</string>
+    <string name="title_button_about_contribute_translate">Çevir</string>
+    <string name="title_button_about_contribute_issue">Sorun bildir</string>
+
+    <string name="title_activity_libraries">Kütüphaneler</string>
+
+    <string name="title_activity_license">MIT Lisansı</string>
+
+    <string name="title_menu_item_about">Hakkında</string>
+    <string name="title_menu_item_open_file">Fotoğraf aç</string>
+    <string name="title_menu_item_expand">Genişlet</string>
+    <string name="title_menu_item_collapse">Daralt</string>
+    <string name="image_content_description_preview">Resim ön izleme</string>
+    <string name="title_bottom_sheet_open_file">Bir fotoğraf aç</string>
+    <string name="title_bottom_sheet_remove_metadata">Metadata kaldır</string>
+    <string name="description_banner_open_file">Metadatasını kaldırmak için önce bir fotoğraf açın.</string>
+    <string name="image_content_description_banner_open_file">Bir fotoğraf aç</string>
+    <string name="description_snackbar_wrong_mime_type">\"%1$s\" türünden dosyalar henüz desteklenmiyor.</string>
+    <string name="title_action_snackbar_wrong_mime_type">Başka bir dosya aç</string>
+    <!-- TODO Discuss if we should replace this with "This image doesn't contain metadata"  -->
+    <string name="description_banner_no_metadata">"Metadata bulunamadı."</string>
+    <string name="image_content_description_banner_no_metadata">"Metadata bulunamadı."</string>
+    <string name="search_text_file_explorer">dosya gezgini</string>
+    <string name="title_intent_chooser_share_without_metadata">\"%1$s\" dosyasını &#8230; metadata\'sı olmadan paylaş</string>
+
+    <string name="label_attribute_file_name">İsim</string>
+    <string name="label_attribute_file_size">Boyut</string>
+    <string name="description_attribute_file_size_bytes">%1$d\u200ABayt</string>
+    <string name="label_attribute_image_resolution">Çözünürlük</string>
+    <string name="description_attribute_image_resolution_xy">%1$d\u200A×\u200A%2$d</string>
+    <string name="description_attribute_image_resolution_pixels">%1$d\u200APiksel</string>
+    <string name="description_attribute_image_resolution_mega_pixels">%1$s\u200AMP</string>
+    <string name="label_attribute_image_exposure">Pozlama</string>
+    <string name="description_attribute_image_exposure_1_value">%1$s</string>
+    <string name="description_attribute_image_exposure_2_value">%1$s\u2003%2$s</string>
+    <string name="description_attribute_image_exposure_3_value">%1$s\u2003%2$s\u2003%3$s</string>
+    <string name="description_attribute_image_exposure_4_value">%1$s\u2003%2$s\u2003%3$s\u2003%4$s</string>
+    <string name="description_attribute_image_exposure_f_stop">f/%1$s</string>
+    <string name="description_attribute_image_exposure_exposure_time_s">%1$s\u200As</string>
+    <string name="description_attribute_image_exposure_focal_length_mm">%1$s\u200Amm</string>
+    <string name="description_attribute_image_exposure_iso_speed">ISO\u200A%1$s</string>
+    <string name="label_attribute_image_flash_light_source">Flaş &amp; ışık kaynağı</string>
+    <string name="description_attribute_image_flash_on">Flaş açık</string>
+    <string name="description_attribute_image_flash_off">Flaş kapalı</string>
+    <string name="description_attribute_image_light_source_daylight">Gün Işığı</string>
+    <string name="description_attribute_image_light_source_fluorescent">Florasan</string>
+    <string name="description_attribute_image_light_source_tungsten">Tungsten</string>
+    <string name="description_attribute_image_light_source_flash">Flaş</string>
+    <string name="description_attribute_image_light_source_fine_weather">Güzel hava</string>
+    <string name="description_attribute_image_light_source_cloudy_weather">Bulutlu hava</string>
+    <string name="description_attribute_image_light_source_shade">Gölge</string>
+    <string name="description_attribute_image_light_source_daylight_fluorescent">Gün ışığı florasanı (D\u200A5700–7100K)</string>
+    <string name="description_attribute_image_light_source_day_white_fluorescent">Gün beyazı florasanı (D\u200A5700–7100K)</string>
+    <string name="description_attribute_image_light_source_cool_white_fluorescent">Soğuk beyaz (W\u200A3800–4500K)</string>
+    <string name="description_attribute_image_light_source_white_fluorescent">Beyaz florasan (WW\u200A3250–3800K)</string>
+    <string name="description_attribute_image_light_source_warm_white_fluorescent">Sıcak beyaz florasan (L\u200A2600–3250K)</string>
+    <string name="label_attribute_file_last_modification_date_time">Son değişiklik tarihi &amp; zaman</string>
+    <string name="label_attribute_file_creation_date_time">Oluşturulma tarihi &amp; zaman</string>
+    <string name="label_attribute_file_identity">Kimlik</string>
+    <string name="label_attribute_image_author">Yaratıcı</string>
+    <string name="label_attribute_image_source">Kaynak</string>
+    <string name="label_attribute_image_comment">Yorum</string>
+    <string name="label_attribute_image_warning">Uyarı</string>
+    <string name="label_attribute_image_creation_camera">Kamera</string>
+    <string name="label_attribute_image_creation_lens">Lens</string>
+    <string name="description_attribute_image_creation_model_serial_number">%1$s (%2$s)</string>
+    <string name="label_attribute_file_creation_location">Konum</string>
+    <string name="description_attribute_file_creation_location_coordinates">%2$02d&#176;\u200A%3$02d′\u200A%4$02d″ %1$s\u2003%6$02d&#176;\u200A%7$02d′\u200A%8$02d″ %5$s</string>
+    <string name="description_attribute_file_creation_location_direction_east">Doğu</string>
+    <string name="description_attribute_file_creation_location_direction_west">Batı</string>
+    <string name="description_attribute_file_creation_location_direction_north">Kuzey</string>
+    <string name="description_attribute_file_creation_location_direction_south">Güney</string>
 </resources>

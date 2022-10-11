@@ -23,5 +23,103 @@
   ~ SOFTWARE.
   -->
 <resources>
-    <string name="app_name">Metadata Remover</string>
+    <string name="title_activity_about">Over</string>
+    <string name="image_content_description_navigate_up">Navigeer omhoog</string>
+    <!-- App info -->
+    <string name="image_content_description_app_icon">App icoon</string>
+    <string name="title_button_about_contact">Contact</string>
+    <string name="title_button_about_support">Hulp</string>
+    <!-- Owner info -->
+    <string name="title_about_owner_name">Crazy Marvin&amp; bijdragers</string>
+    <string name="description_about_owner_role">Ontwikkeling</string>
+    <string name="title_button_about_owner_github">GitHub</string>
+    <string name="title_button_about_owner_website">Website</string>
+    <!-- Designer info -->
+    <string name="title_about_designer_name">Kevin Aguilar</string>
+    <string name="description_about_designer_role">Ontwerp</string>
+    <string name="title_button_about_designer_github">GitHub</string>
+    <string name="title_button_about_designer_website">Twitter</string>
+    <!-- Developer info -->
+    <string name="title_about_developer_name">Heinrich Reimer Software</string>
+    <string name="description_about_developer_role">Ontwikkeling</string>
+    <string name="title_button_about_developer_github">Github</string>
+    <string name="title_button_about_developer_website">Website</string>
+    <!-- Source code info -->
+    <string name="title_about_source">Bron</string>
+    <string name="title_button_about_source_code">Code</string>
+    <string name="title_button_about_source_license">Licentie</string>
+    <string name="title_button_about_source_libraries">Bibliotheken</string>
+    <!-- Contribution info -->
+    <string name="title_about_contribute">Bijdragen</string>
+    <string name="title_button_about_contribute_translate">Vertalen</string>
+    <string name="title_button_about_contribute_issue">Een probleem melden</string>
+
+    <string name="title_activity_libraries">Bibliotheken</string>
+
+    <string name="title_activity_license">MIT Licentie</string>
+
+    <string name="title_menu_item_about">Over</string>
+    <string name="title_menu_item_open_file">Foto openen</string>
+    <string name="title_menu_item_expand">Vergrootten</string>
+    <string name="title_menu_item_collapse">Samenvouwen</string>
+    <string name="image_content_description_preview">Voorbeeld afbeelding</string>
+    <string name="title_bottom_sheet_open_file">Een foto openen</string>
+    <string name="title_bottom_sheet_remove_metadata">Verwijder metadata</string>
+    <string name="description_banner_open_file">Open eerst een foto om de metadata te verwijderen.</string>
+    <string name="image_content_description_banner_open_file">Open een foto</string>
+    <string name="description_snackbar_wrong_mime_type">Bestanden van het type \"%1$s\" worden nog niet ondersteund.</string>
+    <string name="title_action_snackbar_wrong_mime_type">Open een ander bestand</string>
+    <!-- TODO Discuss if we should replace this with "This image doesn't contain metadata"  -->
+    <string name="description_banner_no_metadata">"Kon geen Metadata vinden."</string>
+    <string name="image_content_description_banner_no_metadata">"Kon geen Metadata vinden."</string>
+    <string name="search_text_file_explorer">verkenner</string>
+    <string name="title_intent_chooser_share_without_metadata">Deel \"%1$s\" zonder metadata&#8230;</string>
+
+    <string name="label_attribute_file_name">Naam</string>
+    <string name="label_attribute_file_size">Grootte</string>
+    <string name="description_attribute_file_size_bytes">%1$d\u200ABytes</string>
+    <string name="label_attribute_image_resolution">Resolutie</string>
+    <string name="description_attribute_image_resolution_xy">%1$d\u200A×\u200A%2$d</string>
+    <string name="description_attribute_image_resolution_pixels">%1$d\u200APixels</string>
+    <string name="description_attribute_image_resolution_mega_pixels">%1$s\u200AMP</string>
+    <string name="label_attribute_image_exposure">Blootstelling</string>
+    <string name="description_attribute_image_exposure_1_value">%1$s</string>
+    <string name="description_attribute_image_exposure_2_value">%1$s\u2003%2$s</string>
+    <string name="description_attribute_image_exposure_3_value">%1$s\u2003%2$s\u2003%3$s</string>
+    <string name="description_attribute_image_exposure_4_value">%1$s\u2003%2$s\u2003%3$s\u2003%4$s</string>
+    <string name="description_attribute_image_exposure_f_stop">f/%1$s</string>
+    <string name="description_attribute_image_exposure_exposure_time_s">%1$s\u200As</string>
+    <string name="description_attribute_image_exposure_focal_length_mm">%1$s\u200Amm</string>
+    <string name="description_attribute_image_exposure_iso_speed">ISO\u200A%1$s</string>
+    <string name="label_attribute_image_flash_light_source">Flash &amp; lichtbron</string>
+    <string name="description_attribute_image_flash_on">Flash aan</string>
+    <string name="description_attribute_image_flash_off">Geen flash</string>
+    <string name="description_attribute_image_light_source_daylight">Daglicht</string>
+    <string name="description_attribute_image_light_source_fluorescent">Fluorescerend</string>
+    <string name="description_attribute_image_light_source_tungsten">Wolfraam</string>
+    <string name="description_attribute_image_light_source_flash">Flash</string>
+    <string name="description_attribute_image_light_source_fine_weather">Mooi weer</string>
+    <string name="description_attribute_image_light_source_cloudy_weather">Bewolkt weer</string>
+    <string name="description_attribute_image_light_source_shade">Schaduw</string>
+    <string name="description_attribute_image_light_source_daylight_fluorescent">Daglichtfluorescerend (D\u200A5700–7100K)</string>
+    <string name="description_attribute_image_light_source_day_white_fluorescent">Dag witte fluoreserend (N\u200A4600–5500K)</string>
+    <string name="description_attribute_image_light_source_cool_white_fluorescent">Koel wit (W\u200A3800–4500K)</string>
+    <string name="description_attribute_image_light_source_white_fluorescent">Wit fluorescerend (WW\u200A3250–3800K)</string>
+    <string name="description_attribute_image_light_source_warm_white_fluorescent">Warm wit fluorescerend (L\u200A2600–3250K)</string>
+    <string name="label_attribute_file_last_modification_date_time">Laatste wijziging datum &amp; tijd</string>
+    <string name="label_attribute_file_creation_date_time">Aanmaakdatum &amp; tijd</string>
+    <string name="label_attribute_file_identity">Identiteit</string>
+    <string name="label_attribute_image_author">Auteur</string>
+    <string name="label_attribute_image_source">Bron</string>
+    <string name="label_attribute_image_comment">Opmerking</string>
+    <string name="label_attribute_image_warning">Waarschuwing</string>
+    <string name="label_attribute_image_creation_camera">Camera</string>
+    <string name="label_attribute_image_creation_lens">Lens</string>
+    <string name="description_attribute_image_creation_model_serial_number">%1$s (%2$s)</string>
+    <string name="label_attribute_file_creation_location">Locatie</string>
+    <string name="description_attribute_file_creation_location_coordinates">%2$02d&#176;\u200A%3$02d′\u200A%4$02d″ %1$s\u2003%6$02d&#176;\u200A%7$02d′\u200A%8$02d″ %5$s</string>
+    <string name="description_attribute_file_creation_location_direction_east">Oost</string>
+    <string name="description_attribute_file_creation_location_direction_west">West</string>
+    <string name="description_attribute_file_creation_location_direction_north">Noord</string>
+    <string name="description_attribute_file_creation_location_direction_south">Zuid</string>
 </resources>

@@ -23,5 +23,103 @@
   ~ SOFTWARE.
   -->
 <resources>
-    <string name="app_name">Metaadat eltávolító</string>
+    <string name="title_activity_about">Névjegy</string>
+    <string name="image_content_description_navigate_up">Fel</string>
+    <!-- App info -->
+    <string name="image_content_description_app_icon">Alkalmazás ikon</string>
+    <string name="title_button_about_contact">Kapcsolat</string>
+    <string name="title_button_about_support">Segítség</string>
+    <!-- Owner info -->
+    <string name="title_about_owner_name">Crazy Marvin és csapata</string>
+    <string name="description_about_owner_role">Fejlesztés</string>
+    <string name="title_button_about_owner_github">GitHub</string>
+    <string name="title_button_about_owner_website">Web</string>
+    <!-- Designer info -->
+    <string name="title_about_designer_name">Kevin Aguilar</string>
+    <string name="description_about_designer_role">Design</string>
+    <string name="title_button_about_designer_github">GitHub</string>
+    <string name="title_button_about_designer_website">Twitter</string>
+    <!-- Developer info -->
+    <string name="title_about_developer_name">Heinrich Reimer Software</string>
+    <string name="description_about_developer_role">Fejlesztés</string>
+    <string name="title_button_about_developer_github">GitHub</string>
+    <string name="title_button_about_developer_website">Web</string>
+    <!-- Source code info -->
+    <string name="title_about_source">Forrás</string>
+    <string name="title_button_about_source_code">Kód</string>
+    <string name="title_button_about_source_license">Licensz</string>
+    <string name="title_button_about_source_libraries">Könyvtárak</string>
+    <!-- Contribution info -->
+    <string name="title_about_contribute">Közreműködés</string>
+    <string name="title_button_about_contribute_translate">Fordítás</string>
+    <string name="title_button_about_contribute_issue">Probléma jelentése</string>
+
+    <string name="title_activity_libraries">Könyvtárak</string>
+
+    <string name="title_activity_license">MIT Licensz</string>
+
+    <string name="title_menu_item_about">Névjegy</string>
+    <string name="title_menu_item_open_file">Kép megnyitása</string>
+    <string name="title_menu_item_expand">Kinyit</string>
+    <string name="title_menu_item_collapse">Becsuk</string>
+    <string name="image_content_description_preview">Előnézet</string>
+    <string name="title_bottom_sheet_open_file">Kép megnyitása</string>
+    <string name="title_bottom_sheet_remove_metadata">Metaadat eltávolítása</string>
+    <string name="description_banner_open_file">Nyiss meg egy képet, aminek eltávolítanád a meta adatát!</string>
+    <string name="image_content_description_banner_open_file">Kép megnyitása</string>
+    <string name="description_snackbar_wrong_mime_type">\"%1$s\" típusú formátum még nincs támogatva.</string>
+    <string name="title_action_snackbar_wrong_mime_type">Másik fájl megnyitása</string>
+    <!-- TODO Discuss if we should replace this with "This image doesn't contain metadata"  -->
+    <string name="description_banner_no_metadata">"Nincs meta adat."</string>
+    <string name="image_content_description_banner_no_metadata">"Nincs meta adat."</string>
+    <string name="search_text_file_explorer">fájlböngésző</string>
+    <string name="title_intent_chooser_share_without_metadata">Oszd meg \"%1$s\" metaadat nélkül&#8230;</string>
+
+    <string name="label_attribute_file_name">Név</string>
+    <string name="label_attribute_file_size">Méret</string>
+    <string name="description_attribute_file_size_bytes">%1$d\u200AByte</string>
+    <string name="label_attribute_image_resolution">Felbontás</string>
+    <string name="description_attribute_image_resolution_xy">%1$d\u200A×\u200A%2$d</string>
+    <string name="description_attribute_image_resolution_pixels">%1$d\u200APixel</string>
+    <string name="description_attribute_image_resolution_mega_pixels">%1$s\u200AMP</string>
+    <string name="label_attribute_image_exposure">Expozíció</string>
+    <string name="description_attribute_image_exposure_1_value">%1$s</string>
+    <string name="description_attribute_image_exposure_2_value">%1$s\u2003%2$s</string>
+    <string name="description_attribute_image_exposure_3_value">%1$s\u2003%2$s\u2003%3$s</string>
+    <string name="description_attribute_image_exposure_4_value">%1$s\u2003%2$s\u2003%3$s\u2003%4$s</string>
+    <string name="description_attribute_image_exposure_f_stop">f/%1$s</string>
+    <string name="description_attribute_image_exposure_exposure_time_s">%1$s\u200As</string>
+    <string name="description_attribute_image_exposure_focal_length_mm">%1$s\u200Amm</string>
+    <string name="description_attribute_image_exposure_iso_speed">ISO\u200A%1$s</string>
+    <string name="label_attribute_image_flash_light_source">Vaku és zseblámpa</string>
+    <string name="description_attribute_image_flash_on">Vaku be</string>
+    <string name="description_attribute_image_flash_off">Vaku nélkül</string>
+    <string name="description_attribute_image_light_source_daylight">Nappali fény</string>
+    <string name="description_attribute_image_light_source_fluorescent">Fénycső</string>
+    <string name="description_attribute_image_light_source_tungsten">Volfrám</string>
+    <string name="description_attribute_image_light_source_flash">Vaku</string>
+    <string name="description_attribute_image_light_source_fine_weather">Jó idő</string>
+    <string name="description_attribute_image_light_source_cloudy_weather">Felhős idő</string>
+    <string name="description_attribute_image_light_source_shade">Árnyékolt</string>
+    <string name="description_attribute_image_light_source_daylight_fluorescent">Nappali fények (D\u200A5700–7100K)</string>
+    <string name="description_attribute_image_light_source_day_white_fluorescent">Nappali fehér fények (N\u200A4600–5500K)</string>
+    <string name="description_attribute_image_light_source_cool_white_fluorescent">Hideg fehér (W\u200A3800–4500K)</string>
+    <string name="description_attribute_image_light_source_white_fluorescent">Fehéres (WW\u200A3250–3800K)</string>
+    <string name="description_attribute_image_light_source_warm_white_fluorescent">Meleg fehér (L\u200A2600–3250K)</string>
+    <string name="label_attribute_file_last_modification_date_time">Utolsó módosítási idő</string>
+    <string name="label_attribute_file_creation_date_time">Készítési idő</string>
+    <string name="label_attribute_file_identity">Személyazonosság</string>
+    <string name="label_attribute_image_author">Szerző</string>
+    <string name="label_attribute_image_source">Forrás</string>
+    <string name="label_attribute_image_comment">Megjegyzés</string>
+    <string name="label_attribute_image_warning">Figyelmeztetés</string>
+    <string name="label_attribute_image_creation_camera">Kamera</string>
+    <string name="label_attribute_image_creation_lens">Objektív</string>
+    <string name="description_attribute_image_creation_model_serial_number">%1$s (%2$s)</string>
+    <string name="label_attribute_file_creation_location">Tartózkodási hely</string>
+    <string name="description_attribute_file_creation_location_coordinates">%2$02d&#176;\u200A%3$02d′\u200A%4$02d″ %1$s\u2003%6$02d&#176;\u200A%7$02d′\u200A%8$02d″ %5$s</string>
+    <string name="description_attribute_file_creation_location_direction_east">Kelet</string>
+    <string name="description_attribute_file_creation_location_direction_west">Nyugat</string>
+    <string name="description_attribute_file_creation_location_direction_north">Észak</string>
+    <string name="description_attribute_file_creation_location_direction_south">Dél</string>
 </resources>
