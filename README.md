@@ -10,7 +10,7 @@
 [![Pull requests](https://img.shields.io/github/issues-pr/Crazy-Marvin/MetadataRemover.svg?style=flat)](https://github.com/Crazy-Marvin/MetadataRemover/pulls)
 [![Codacy grade](https://img.shields.io/codacy/grade/eed69c67a07f4a14bf0ee0fd6b2ead40/master.svg?style=flat)](https://www.codacy.com/app/CrazyMarvin/MetadataRemover)
 [![Codecov](https://img.shields.io/codecov/c/github/Crazy-Marvin/MetadataRemover/master.svg?style=flat)](https://codecov.io/gh/Crazy-Marvin/MetadataRemover)
-[![Crowdin Localization](https://d322cqt584bo4o.cloudfront.net/metadata-remover/localized.svg?style=flat)](https://crowdin.com/project/metadata-remover)
+[![Translation status](https://hosted.weblate.org/widgets/metadata-remover/-/svg-badge.svg)](https://hosted.weblate.org/engage/metadata-remover/)
 [![F-Droid](https://img.shields.io/f-droid/v/rocks.poopjournal.metadataremover.svg?style=flat)](https://f-droid.org/de/packages/rocks.poopjournal.metadataremover/)
 [![Google Play](https://badgen.net/badge/icon/googleplay?icon=googleplay&label)](https://play.google.com/store/apps/details?id=rocks.poopjournal.metadataremover)
 
