@@ -30,7 +30,7 @@ Before creating bug reports, please check this list as you might find out that y
 
 ### Translating Strings
 
-You can help to translate the app and marketing texts (e.g. Google Play description) via [Crowdin](https://crowdin.com/project/metadata-remover).
+You can help to translate the app and marketing texts (e.g. Google Play description) via [Weblate](https://hosted.weblate.org/engage/metadata-remover/).
 
 ### Suggesting Enhancements
 
