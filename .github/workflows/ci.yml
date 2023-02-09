@@ -5,7 +5,7 @@ jobs:
     runs-on: macos-10.15
     steps:
       - name: "📥 Check-out"
-        uses: actions/checkout@v1
+        uses: actions/checkout@v3
       - name: "🧪 Gradle Wrapper Validation"
         uses: gradle/wrapper-validation-action@v1
       - name: "🧰 Install JDK"
