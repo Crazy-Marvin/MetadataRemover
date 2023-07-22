@@ -13,6 +13,7 @@
 [![Hosted Weblate](https://hosted.weblate.org/widgets/metadata-remover/-/svg-badge.svg)](https://hosted.weblate.org/engage/metadata-remover/)
 [![Known Vulnerabilities](https://snyk.io/test/github/Crazy-Marvin/MetadataRemover/badge.svg?targetFile=app%2Fbuild.gradle.kts)](https://snyk.io/test/github/Crazy-Marvin/MetadataRemover?targetFile=app%2Fbuild.gradle.kts)
 [![API](https://img.shields.io/badge/API-19%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=19)
+![Gradle Play Publisher](https://img.shields.io/badge/-Gradle_Play_Publisher-brightgreen?logo=gradle&link=https%3A%2F%2Fgithub.com%2FTriple-T%2Fgradle-play-publisher)
 [![F-Droid](https://img.shields.io/f-droid/v/rocks.poopjournal.MetadataRemover.svg)](https://f-droid.org/en/packages/rocks.poopjournal.MetadataRemover/)
 [![Google Play](https://badgen.net/badge/icon/googleplay?icon=googleplay&label)](https://play.google.com/store/apps/details?id=rocks.poopjournal.MetadataRemover)
 
