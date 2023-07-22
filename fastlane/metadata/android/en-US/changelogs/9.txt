@@ -1,0 +1,4 @@
+- Many Bugs Fixed Thanks To subeep 🐛
+- Switch To Vector Graphics For A Sharper View Thanks To karthikayya 🎨
+- Dependency Updates ⚙️
+- Translation Updates 🗺️

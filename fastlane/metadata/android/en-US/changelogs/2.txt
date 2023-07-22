@@ -1,0 +1,5 @@
+- Removed designer from About screen
+- Moved hard-coded strings from the layout into the strings.xml for easier translation
+- Update Used Licenses section with all used dependencies (thanks to all of them!)
+- Add more swipe gestures
+- Little improvements under the hood
