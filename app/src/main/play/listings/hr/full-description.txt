@@ -1,0 +1,32 @@
+<i>Zaštiti svoju privatnost uklanjanjem metapodataka iz tvojih fotografija, prije nego što ih dijeliš na internetu.</i>
+
+<h2><b>Značajke:</b></h2>
+
+✔️ Pregledaj metapodatke
+✔️ Pregled slike
+✔️ Ukloni metapodatke
+✔️ Jednostavno i intuitivno sučelje
+✔️ Dijeli izravno iz aplikacije
+
+<h2><b>Saznaj više:</b></h2>
+
+Kad god snimiš sliku, u slikovnu datoteku se spremaju metapodaci.
+Većina pametnih telefona te o tome <i>ne obavještava</i>.
+
+<b>Metapodaci mogu izgledati ovako:</b>
+🕑 Dan i vrijeme slikanja.
+🗺️ Mjesto.
+📷 Koja je kamera ili pametni telefon korišten?
+🔧 Koje su postavke kamere korištene?
+📝 Bilješke o fotografu ili kamere.
+📌 Sve češće se spremaju čak i točne GPS koordinate u sliku.
+
+Metapodaci su ponekad vrlo korisni – na primjer pri razvrstavanju slika.
+Čim dijeliš slike s drugima putem društvenih medija, sve te informacije su <i>javno</i> vidljive.
+Sakupljači podataka i uhode lakše mogu otkriti tvoje <i>mjesto stanovanja ili radno mjesto<i> iz metapodataka ili izvući zaključke o tvojoj <i>dnevnoj rutini</i>.
+Usluge praćenja stvaraju sveobuhvatnije profile za oglašavanje i prodaju tvoje podatke drugim organizacijama.
+
+Koristi aplikaciju „Uklanjanje metapodataka” za jednostavno pregledavanje svih tih podataka, <i>potpuno ih ukloni</i>, te zatim izravno dijeli anonimiziranu sliku!
+To osigurava tvoju <i>anonimnost</i> i <i>sigurnost</i> na internetu, dok se tvoji prijatelji i dalje mogu diviti tvojoj slatkoj mački.
+
+<i>Sretno dijeljenje! 😽</i>
