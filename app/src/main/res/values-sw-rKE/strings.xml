@@ -21,8 +21,7 @@
   ~ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
   ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
   ~ SOFTWARE.
-  -->
-<resources>
+  --><resources>
     <string name="title_activity_about">Kuhusu</string>
     <string name="image_content_description_navigate_up">Enda juu</string>
     <!-- App info -->
@@ -53,11 +52,8 @@
     <string name="title_about_contribute">Kuchangia</string>
     <string name="title_button_about_contribute_translate">Kutasfiri</string>
     <string name="title_button_about_contribute_issue">Ripoti masuala</string>
-
     <string name="title_activity_libraries">Maktaba</string>
-
     <string name="title_activity_license">Leseni ya MIT</string>
-
     <string name="title_menu_item_about">Kuhusu</string>
     <string name="title_menu_item_open_file">Fungua picha</string>
     <string name="title_menu_item_expand">Panua</string>
@@ -73,8 +69,7 @@
     <string name="description_banner_no_metadata">"Hatukuweza kupata Metadata yoyote."</string>
     <string name="image_content_description_banner_no_metadata">"Hatukuweza kupata Metadata yoyote."</string>
     <string name="search_text_file_explorer">uchunguzi wa Faili</string>
-    <string name="title_intent_chooser_share_without_metadata">Gawa \"%1$s\" bila metadata &#8230;</string>
-
+    <string name="title_intent_chooser_share_without_metadata">Gawa \"%1$s\" bila metadata …</string>
     <string name="label_attribute_file_name">Jina</string>
     <string name="label_attribute_file_size">Ukubwa</string>
     <string name="description_attribute_file_size_bytes">%1$d\u200ABytes</string>
@@ -117,9 +112,10 @@
     <string name="label_attribute_image_creation_lens">Lenzi</string>
     <string name="description_attribute_image_creation_model_serial_number">%1$s (%2$s)</string>
     <string name="label_attribute_file_creation_location">Eneo</string>
-    <string name="description_attribute_file_creation_location_coordinates">%2$02d&#176;\u200A%3$02d′\u200A%4$02d″ %1$s\u2003%6$02d&#176;\u200A%7$02d′\u200A%8$02d″ %5$s</string>
+    <string name="description_attribute_file_creation_location_coordinates">%2$02d°\u200A%3$02d′\u200A%4$02d″ %1$s\u2003%6$02d°\u200A%7$02d′\u200A%8$02d″ %5$s</string>
     <string name="description_attribute_file_creation_location_direction_east">Mashariki</string>
     <string name="description_attribute_file_creation_location_direction_west">Magharibi</string>
     <string name="description_attribute_file_creation_location_direction_north">Kaskazini</string>
     <string name="description_attribute_file_creation_location_direction_south">Kusini</string>
+    <string name="app_name">kiondoaji cha taarifa kuhusu taarifa nyingineo</string>
 </resources>
