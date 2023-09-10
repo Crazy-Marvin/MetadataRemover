@@ -21,8 +21,7 @@
   ~ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
   ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
   ~ SOFTWARE.
-  -->
-<resources>
+  --><resources>
     <string name="title_activity_about">Tentang</string>
     <string name="image_content_description_navigate_up">Navigasi ke atas</string>
     <!-- App info -->
@@ -53,11 +52,8 @@
     <string name="title_about_contribute">Kontribusi</string>
     <string name="title_button_about_contribute_translate">Terjemahan</string>
     <string name="title_button_about_contribute_issue">Laporkan masalah</string>
-
     <string name="title_activity_libraries">Pustaka</string>
-
     <string name="title_activity_license">Lisensi MIT</string>
-
     <string name="title_menu_item_about">Tentang</string>
     <string name="title_menu_item_open_file">Buka gambar</string>
     <string name="title_menu_item_expand">Perluas</string>
@@ -73,8 +69,7 @@
     <string name="description_banner_no_metadata">"Tidak bisa menemukan Metadata apa pun."</string>
     <string name="image_content_description_banner_no_metadata">"Tidak bisa menemukan Metadata apa pun."</string>
     <string name="search_text_file_explorer">file explorer</string>
-    <string name="title_intent_chooser_share_without_metadata">Bagikan \"%1$s\" tanpa metadata&#8230;</string>
-
+    <string name="title_intent_chooser_share_without_metadata">Bagikan \"%1$s\" tanpa metadata…</string>
     <string name="label_attribute_file_name">Nama</string>
     <string name="label_attribute_file_size">Ukuran</string>
     <string name="description_attribute_file_size_bytes">%1$d\u200AByte</string>
@@ -117,9 +112,10 @@
     <string name="label_attribute_image_creation_lens">Lensa</string>
     <string name="description_attribute_image_creation_model_serial_number">%1$s (%2$s)</string>
     <string name="label_attribute_file_creation_location">Lokasi</string>
-    <string name="description_attribute_file_creation_location_coordinates">%2$02d&#176;\u200A%3$02d′\u200A%4$02d″ %1$s\u2003%6$02d&#176;\u200A%7$02d′\u200A%8$02d″ %5$s</string>
+    <string name="description_attribute_file_creation_location_coordinates">%2$02d°\u200A%3$02d′\u200A%4$02d″ %1$s\u2003%6$02d°\u200A%7$02d′\u200A%8$02d″ %5$s</string>
     <string name="description_attribute_file_creation_location_direction_east">Timur</string>
     <string name="description_attribute_file_creation_location_direction_west">Barat</string>
     <string name="description_attribute_file_creation_location_direction_north">Utara</string>
     <string name="description_attribute_file_creation_location_direction_south">Selatan</string>
+    <string name="app_name">Penghapus Metadata</string>
 </resources>
