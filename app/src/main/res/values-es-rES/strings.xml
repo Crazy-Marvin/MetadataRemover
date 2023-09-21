@@ -21,8 +21,7 @@
   ~ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
   ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
   ~ SOFTWARE.
-  -->
-<resources>
+  --><resources>
     <string name="title_activity_about">Acerca de</string>
     <string name="image_content_description_navigate_up">Desplazarse hacia arriba</string>
     <!-- App info -->
@@ -53,11 +52,8 @@
     <string name="title_about_contribute">Contribuir</string>
     <string name="title_button_about_contribute_translate">Traducir</string>
     <string name="title_button_about_contribute_issue">Reportar problema</string>
-
     <string name="title_activity_libraries">Bibliotecas</string>
-
     <string name="title_activity_license">Licencia MIT</string>
-
     <string name="title_menu_item_about">Acerca de</string>
     <string name="title_menu_item_open_file">Abrir la imagen</string>
     <string name="title_menu_item_expand">Ampliar</string>
@@ -73,8 +69,7 @@
     <string name="description_banner_no_metadata">"No se ha encontrado ninguna Metadata."</string>
     <string name="image_content_description_banner_no_metadata">"No se ha encontrado ninguna Metadata."</string>
     <string name="search_text_file_explorer">Explorador de archivos</string>
-    <string name="title_intent_chooser_share_without_metadata">Compartir \"%1$s\" sin metadatos&#8230;</string>
-
+    <string name="title_intent_chooser_share_without_metadata">Compartir \"%1$s\" sin metadatos…</string>
     <string name="label_attribute_file_name">Nombre</string>
     <string name="label_attribute_file_size">Tamaño</string>
     <string name="description_attribute_file_size_bytes">%1$d\u200ABytes</string>
@@ -117,9 +112,10 @@
     <string name="label_attribute_image_creation_lens">Lente</string>
     <string name="description_attribute_image_creation_model_serial_number">%1$s (%2$s)</string>
     <string name="label_attribute_file_creation_location">Ubicación</string>
-    <string name="description_attribute_file_creation_location_coordinates">%2$02d&#176;\u200A%3$02d \u200A%4$02d  %1$s\u2003%6$02d&#176;\u200A%7$02d] => [\u200A%8$02d  %5$s</string>
+    <string name="description_attribute_file_creation_location_coordinates">%2$02d°\u200A%3$02d \u200A%4$02d  %1$s\u2003%6$02d°\u200A%7$02d] =&gt; [\u200A%8$02d  %5$s</string>
     <string name="description_attribute_file_creation_location_direction_east">Este</string>
     <string name="description_attribute_file_creation_location_direction_west">Oeste</string>
     <string name="description_attribute_file_creation_location_direction_north">Norte</string>
     <string name="description_attribute_file_creation_location_direction_south">Sur</string>
+    <string name="app_name">Metadata Remover</string>
 </resources>
