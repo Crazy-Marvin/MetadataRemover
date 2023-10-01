@@ -14,7 +14,7 @@ jobs:
           java-version: 1.8
           java-package: jdk
       - name: "🧰 Install Android SDK"
-        uses: android-actions/setup-android@v2
+        uses: android-actions/setup-android@v3
       - name: "📁 Copy local CI properties"
         run: cp ci/local.properties ./
       - name: "🏗 Build"
