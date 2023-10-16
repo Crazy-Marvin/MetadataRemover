@@ -1,0 +1,32 @@
+<i>Beskytt ditt personvern ved å fjerne metadata fra bildene dine før du deler dem på Internett.</i>
+
+<h2><b>Funksjoner:</b></h2>
+
+ ✔️ Vis metadata
+ ✔️ Bildeforhåndsvisning
+ ✔️ Fjern metadata
+ ✔️ Enkelt og intuitivt grensesnitt
+ ✔️ Del direkte fra programmet
+
+<h2><b>Lær mer:</b></h2>
+
+Når du tar et bilde blir ytterligere metadata lagret i bildefilen.
+De fleste smarttelefoner informerer deg <i>ikke</i> om dette.
+
+<b>Metadata kan se slik ut:</b>
+ 🕑 Hvilken dag ble bildet tatt, og når?
+ 🗺️ Hvor da?
+ 📷 Hvilket kamera og hvilken smarttelefon ble brukt?
+ 🔧 Hvilke kamerainnstillinger ble brukt?
+ 📝 Merknader om fotograf eller kamera?
+ 📌 Oftere og oftere blir eksakte GPS-koordinater lagret i bildet.
+
+Metadata er noen ganger veldig nyttig — for eksempel ved sortering av feriebilder.
+Så snart du deler bilder med andre via sosiale media er all denne infoen tilgjengelig for <i>almenheten</i>.
+Datasamlere og spioner kan dermed enklere oppdage og følge din <i>bolig eller arbeidsplass<i> fra metadata, eller ta rede på din <i>daglige rutine</i>.
+Sporingstjenester lager med fullstendige reklameprofiler og selger dataen din til andre organisasjoner.
+
+Bruk Metadatafjerner for å enkelt vise all denne dataen, <i>fjern den helt og holdent</i>, og del det anonyme bildet direkte!
+Slik forblir du <i>anonym</i> og <i>trygg</i> på Internett, selv om vennene dine fremdeles kan få fine kattebilder.
+
+<i>Gledelig deling! 😽</i>
