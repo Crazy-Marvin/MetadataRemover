@@ -21,8 +21,7 @@
   ~ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
   ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
   ~ SOFTWARE.
-  -->
-<resources>
+  --><resources>
     <string name="title_activity_about">À propos</string>
     <string name="image_content_description_navigate_up">Revenir en haut de la page</string>
     <!-- App info -->
@@ -53,11 +52,8 @@
     <string name="title_about_contribute">Contribuer</string>
     <string name="title_button_about_contribute_translate">Traduire</string>
     <string name="title_button_about_contribute_issue">Signaler un problème</string>
-
     <string name="title_activity_libraries">Librairies</string>
-
     <string name="title_activity_license">Licence MIT</string>
-
     <string name="title_menu_item_about">À propos</string>
     <string name="title_menu_item_open_file">Ouvrir une image</string>
     <string name="title_menu_item_expand">Agrandir</string>
@@ -73,8 +69,7 @@
     <string name="description_banner_no_metadata">"Impossible de trouver des métadonnées."</string>
     <string name="image_content_description_banner_no_metadata">"Impossible de trouver des métadonnées."</string>
     <string name="search_text_file_explorer">gestionnaire de fichiers</string>
-    <string name="title_intent_chooser_share_without_metadata">Partagez \"%1$s\" sans métadonnées&#8230;</string>
-
+    <string name="title_intent_chooser_share_without_metadata">Partagez \"%1$s\" sans métadonnées…</string>
     <string name="label_attribute_file_name">Nom</string>
     <string name="label_attribute_file_size">Taille</string>
     <string name="description_attribute_file_size_bytes">%1$d\u200AOctets</string>
@@ -117,9 +112,10 @@
     <string name="label_attribute_image_creation_lens">Objectif</string>
     <string name="description_attribute_image_creation_model_serial_number">%1$s (%2$s)</string>
     <string name="label_attribute_file_creation_location">Géolocalisation</string>
-    <string name="description_attribute_file_creation_location_coordinates">%2$02d&#176;\u200A%3$02d′\u200A%4$02d″ %1$s\u2003%6$02d&#176;\u200A%7$02d′\u200A%8$02d″ %5$s</string>
+    <string name="description_attribute_file_creation_location_coordinates">%2$02d°\u200A%3$02d′\u200A%4$02d″ %1$s\u2003%6$02d°\u200A%7$02d′\u200A%8$02d″ %5$s</string>
     <string name="description_attribute_file_creation_location_direction_east">Est</string>
     <string name="description_attribute_file_creation_location_direction_west">Ouest</string>
     <string name="description_attribute_file_creation_location_direction_north">Nord</string>
     <string name="description_attribute_file_creation_location_direction_south">Sud</string>
+    <string name="app_name">Metadata Remover</string>
 </resources>
