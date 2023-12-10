@@ -21,8 +21,7 @@
   ~ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
   ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
   ~ SOFTWARE.
-  -->
-<resources>
+  --><resources>
     <string name="title_activity_about">О программе</string>
     <string name="image_content_description_navigate_up">Перейти выше</string>
     <!-- App info -->
@@ -53,11 +52,8 @@
     <string name="title_about_contribute">Помочь</string>
     <string name="title_button_about_contribute_translate">Перевести</string>
     <string name="title_button_about_contribute_issue">Сообщить о проблеме</string>
-
     <string name="title_activity_libraries">Библиотеки</string>
-
     <string name="title_activity_license">Лицензия MIT</string>
-
     <string name="title_menu_item_about">О программе</string>
     <string name="title_menu_item_open_file">Открыть картинку</string>
     <string name="title_menu_item_expand">Развернуть</string>
@@ -73,8 +69,7 @@
     <string name="description_banner_no_metadata">"Не удалось найти метаданные."</string>
     <string name="image_content_description_banner_no_metadata">"Не удалось найти метаданные."</string>
     <string name="search_text_file_explorer">проводник</string>
-    <string name="title_intent_chooser_share_without_metadata">Поделиться c \"%1$s\" без метаданных&#8230;</string>
-
+    <string name="title_intent_chooser_share_without_metadata">Поделиться c \"%1$s\" без метаданных…</string>
     <string name="label_attribute_file_name">Имя</string>
     <string name="label_attribute_file_size">Размер</string>
     <string name="description_attribute_file_size_bytes">%1$d\u200Aбайт</string>
@@ -117,9 +112,10 @@
     <string name="label_attribute_image_creation_lens">Линза</string>
     <string name="description_attribute_image_creation_model_serial_number">%1$s (%2$s)</string>
     <string name="label_attribute_file_creation_location">Место</string>
-    <string name="description_attribute_file_creation_location_coordinates">%2$02d&#176;\u200A%3$02dґ\u200A%4$02d\'\' %1$s\u2003%6$02d&#176;\u200A%7$02dґ\u200A%8$02d\'\' %5$s</string>
+    <string name="description_attribute_file_creation_location_coordinates">%2$02d°\u200A%3$02dґ\u200A%4$02d\'\' %1$s\u2003%6$02d°\u200A%7$02dґ\u200A%8$02d\'\' %5$s</string>
     <string name="description_attribute_file_creation_location_direction_east">Восток</string>
     <string name="description_attribute_file_creation_location_direction_west">Запад</string>
     <string name="description_attribute_file_creation_location_direction_north">Север</string>
     <string name="description_attribute_file_creation_location_direction_south">Юг</string>
+    <string name="app_name">Удаление метаданных</string>
 </resources>
