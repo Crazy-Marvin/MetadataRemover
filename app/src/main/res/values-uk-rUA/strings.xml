@@ -21,8 +21,7 @@
   ~ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
   ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
   ~ SOFTWARE.
-  -->
-<resources>
+  --><resources>
     <string name="title_activity_about">Про додаток</string>
     <string name="image_content_description_navigate_up">Перейти вгору</string>
     <!-- App info -->
@@ -53,11 +52,8 @@
     <string name="title_about_contribute">Підтримати проект</string>
     <string name="title_button_about_contribute_translate">Переклад</string>
     <string name="title_button_about_contribute_issue">Повідомити про проблему</string>
-
     <string name="title_activity_libraries">Бібліотеки</string>
-
     <string name="title_activity_license">Ліцензія MIT</string>
-
     <string name="title_menu_item_about">Про додаток</string>
     <string name="title_menu_item_open_file">Відкрити зображення</string>
     <string name="title_menu_item_expand">Розгорнути</string>
@@ -73,8 +69,7 @@
     <string name="description_banner_no_metadata">"Метаданих не знайдено."</string>
     <string name="image_content_description_banner_no_metadata">"Метаданих не знайдено."</string>
     <string name="search_text_file_explorer">провідник</string>
-    <string name="title_intent_chooser_share_without_metadata">Поділитися з \"%1$s\" без метаданих&#8230;</string>
-
+    <string name="title_intent_chooser_share_without_metadata">Поділитися з \"%1$s\" без метаданих…</string>
     <string name="label_attribute_file_name">Ім’я</string>
     <string name="label_attribute_file_size">Розмір</string>
     <string name="description_attribute_file_size_bytes">%1$d\u200Aбайт</string>
@@ -117,9 +112,10 @@
     <string name="label_attribute_image_creation_lens">Лiнза</string>
     <string name="description_attribute_image_creation_model_serial_number">%1$s (%2$s)</string>
     <string name="label_attribute_file_creation_location">Місцезнаходження</string>
-    <string name="description_attribute_file_creation_location_coordinates">%2$02d&#176;\u200A%3$02d′\u200A%4$02d″ %1$s\u2003%6$02d&#176;\u200A%7$02d′\u200A%8$02d″ %5$s</string>
+    <string name="description_attribute_file_creation_location_coordinates">%2$02d°\u200A%3$02d′\u200A%4$02d″ %1$s\u2003%6$02d°\u200A%7$02d′\u200A%8$02d″ %5$s</string>
     <string name="description_attribute_file_creation_location_direction_east">Схід</string>
     <string name="description_attribute_file_creation_location_direction_west">Захід</string>
     <string name="description_attribute_file_creation_location_direction_north">Північ</string>
     <string name="description_attribute_file_creation_location_direction_south">Південь</string>
+    <string name="app_name">Видалення метаданих</string>
 </resources>
