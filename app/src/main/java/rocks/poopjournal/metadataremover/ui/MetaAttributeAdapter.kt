@@ -24,7 +24,6 @@
 
 package rocks.poopjournal.metadataremover.ui
 
-import android.os.Build
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -53,11 +52,11 @@ class MetaAttributeAdapter(
                 R.layout.listitem_meta_data,
                 parent,
                 false)
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            binding.icon.setColorFilter(
-                    binding.icon.context.getThemeColor(android.R.attr.textColorSecondary)
-            )
-        }
+
+        binding.icon.setColorFilter(
+                binding.icon.context.getThemeColor(android.R.attr.textColorSecondary)
+        )
+
         return ViewHolder(binding)
     }
 

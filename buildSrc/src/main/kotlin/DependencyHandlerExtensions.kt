@@ -28,6 +28,7 @@ import org.gradle.api.initialization.dsl.ScriptHandler
 import org.gradle.kotlin.dsl.DependencyHandlerScope
 import org.gradle.kotlin.dsl.kotlin
 
+/*
 const val CLASSPATH_CONFIGURATION = ScriptHandler.CLASSPATH_CONFIGURATION
 const val IMPLEMENTATION_CONFIGURATION = "implementation"
 const val TEST_IMPLEMENTATION_CONFIGURATION = "testImplementation"
@@ -196,3 +197,4 @@ fun DependencyHandler.kotlin(module: String, version: String? = null): String {
     check(dependencyNotation is String)
     return dependencyNotation
 }
+*/

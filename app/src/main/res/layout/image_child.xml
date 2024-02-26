@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingVertical="75dp"
+    android:paddingHorizontal="20dp"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:shapeAppearanceOverlay="@style/roundedImageView"
+        android:contentDescription= "aa"
+        android:scaleType="center"
+        tools:srcCompat ="@tools:sample/backgrounds/scenic"/>
+
+</FrameLayout>
