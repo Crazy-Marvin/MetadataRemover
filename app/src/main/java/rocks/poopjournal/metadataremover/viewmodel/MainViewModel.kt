@@ -24,6 +24,7 @@ import rocks.poopjournal.metadataremover.util.extensions.sizeAttribute
 import rocks.poopjournal.metadataremover.viewmodel.usecases.GetDescriptor
 import rocks.poopjournal.metadataremover.viewmodel.usecases.GetFileUri
 import rocks.poopjournal.metadataremover.viewmodel.usecases.MetadataHandler
+import rocks.poopjournal.metadataremover.viewmodel.usecases.SaveImages
 import rocks.poopjournal.metadataremover.viewmodel.usecases.SharedImages
 import java.io.Closeable
 import java.security.SecureRandom
@@ -36,6 +37,7 @@ class MainViewModel @Inject constructor(
     private val getDescriptor: GetDescriptor,
     private val metadata: MetadataHandler,
     private val sharedImages: SharedImages,
+    private val saveImage: SaveImages,
     private val fileProvider: GetFileUri
 ) : ViewModel() {
 
@@ -54,6 +56,10 @@ class MainViewModel @Inject constructor(
     private val _clearedFile = MutableLiveData<ClearedFile>()
     val clearedFile: LiveData<ClearedFile>
         get() = _clearedFile
+
+    private val _toast = MutableLiveData<String>()
+    val toast: LiveData<String>
+        get() = _toast
 
     fun getPickedImageUris(uris: List<Uri>){
 
@@ -104,11 +110,11 @@ class MainViewModel @Inject constructor(
         _outputMetadata.value = currentList
     }
 
-    fun removeMetadata(index: Int) {
+    fun removeMetadata(index: Int, saveToDevice: Boolean = false) {
         val fileView = fileViews[index] ?: return
 
         if (fileView.isMetadataRemoved) {
-            shareOutputFile(index)
+            handleClearedFile(index, saveToDevice)
             return
         }
 
@@ -119,20 +125,27 @@ class MainViewModel @Inject constructor(
                 fileView.output
             )
             fileView.output.setLastModified(random.nextLong(System.currentTimeMillis()))
-            shareOutputFile(index)
+            handleClearedFile(index, saveToDevice)
         }
     }
 
-    private fun shareOutputFile(index: Int) {
+    private fun handleClearedFile(index: Int, saveToDevice: Boolean) {
         val fileView = fileViews[index] ?: return
         if (!fileView.isMetadataRemoved) return
 
         val fileUri = fileProvider.getUri(fileView.output)
 
         if (fileUri != null) {
-           _clearedFile.value = ClearedFile(fileUri, fileView.name)
+            if (saveToDevice){
+                saveImage.toDevice(fileView.name, fileUri){message ->
+                    _toast.value = message
+                }
+            } else {
+                _clearedFile.value = ClearedFile(fileUri, fileView.name)
+            }
         }
     }
+
     private fun generateRandomFilename(@IntRange(from = 0) length: Int = FILE_NAME_LENGTH): String {
         return StringBuilder(length)
             .apply {
