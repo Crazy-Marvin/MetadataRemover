@@ -71,7 +71,6 @@ class MainViewModel @Inject constructor(
     }
 
     fun getPickedImageUris(uris: List<Uri>){
-        println(fileViews.size)
         uris.forEach {
             getDescriptor.openFile(it, onResult = {file, displayName, mediaType ->
                 fileViews.add(FileView(file, displayName, mediaType))
@@ -109,7 +108,6 @@ class MainViewModel @Inject constructor(
             title = inputMetadata.title ?: Text(fileView.nameWithoutExtension),
             attributes = inputMetadata.attributes + fileSystemAttributes
         )
-
 
         val currentList = _outputMetadata.value.orEmpty().toMutableList()
         currentList.add(Resource.Success(output))

@@ -27,7 +27,9 @@ package rocks.poopjournal.metadataremover.ui
 
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.os.Parcelable
 import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
@@ -49,6 +51,8 @@ import rocks.poopjournal.metadataremover.model.resources.Resource
 import rocks.poopjournal.metadataremover.ui.adapter.OnLastItemClickedListener
 import rocks.poopjournal.metadataremover.ui.adapter.PageAdapter
 import rocks.poopjournal.metadataremover.util.extensions.android.getThemeColor
+import rocks.poopjournal.metadataremover.util.extensions.android.parcelable
+import rocks.poopjournal.metadataremover.util.extensions.android.parcelableArrayList
 import rocks.poopjournal.metadataremover.util.extensions.android.setText
 import rocks.poopjournal.metadataremover.util.extensions.android.tint
 import rocks.poopjournal.metadataremover.viewmodel.MainViewModel
@@ -90,7 +94,7 @@ class MainActivity : AppCompatActivity(), OnLastItemClickedListener {
         initListeners()
 
         viewModel.outputMetadata.observe(this) { data ->
-            if (data.isNotEmpty()){
+            if (data.isNotEmpty()) {
                 metadata.add(data.last())
                 setListData(metadata.lastIndex)
             }
@@ -116,6 +120,19 @@ class MainActivity : AppCompatActivity(), OnLastItemClickedListener {
 
         viewModel.toast.observe(this) { message ->
             Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        when (intent?.action) {
+            Intent.ACTION_SEND -> {
+                handleSendImage(intent)
+            }
+
+            Intent.ACTION_SEND_MULTIPLE -> {
+                handleSendMultipleImages(intent)
+            }
         }
     }
 
@@ -201,13 +218,14 @@ class MainActivity : AppCompatActivity(), OnLastItemClickedListener {
         viewPager.registerOnPageChangeCallback(object : OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
-                if (viewPager.isVisible){
+                if (viewPager.isVisible) {
                     if (!adapter.isLastItem(viewPager.currentItem)) {
                         setListData(position)
                         binding.bottomSheet.addPicture.visibility = View.GONE
                         binding.bottomSheet.arrowUp.visibility = View.VISIBLE
                     } else {
-                        binding.bottomSheet.title.text = getText(R.string.title_bottom_sheet_open_file)
+                        binding.bottomSheet.title.text =
+                            getText(R.string.title_bottom_sheet_open_file)
                         binding.bottomSheet.addPicture.visibility = View.VISIBLE
                         binding.bottomSheet.arrowUp.visibility = View.GONE
                     }
@@ -217,22 +235,24 @@ class MainActivity : AppCompatActivity(), OnLastItemClickedListener {
     }
 
     private fun setListData(position: Int) {
-        when (metadata[position]) {
-            is Resource.Empty -> {
-                //
-            }
+        if (metadata.size -1 >= position){
+            when (metadata[position]) {
+                is Resource.Empty -> {
+                    //
+                }
 
-            is Resource.Loading -> {
-                //
-            }
+                is Resource.Loading -> {
+                    //
+                }
 
-            is Resource.Success -> {
-                binding.bottomSheet.title.setText((metadata[position] as Resource.Success<Metadata>).value.title!!)
-                binding.bottomSheet.listMetadata.apply {
-                    val adapter = adapter
-                    check(adapter is MetaAttributeAdapter)
-                    adapter.attributes =
-                        (metadata[position] as Resource.Success<Metadata>).value.attributes
+                is Resource.Success -> {
+                    binding.bottomSheet.title.setText((metadata[position] as Resource.Success<Metadata>).value.title!!)
+                    binding.bottomSheet.listMetadata.apply {
+                        val adapter = adapter
+                        check(adapter is MetaAttributeAdapter)
+                        adapter.attributes =
+                            (metadata[position] as Resource.Success<Metadata>).value.attributes
+                    }
                 }
             }
         }
@@ -250,7 +270,7 @@ class MainActivity : AppCompatActivity(), OnLastItemClickedListener {
 
         binding.bottomSheet.addPicture.visibility = if (show) View.GONE else View.VISIBLE
         binding.bottomSheet.arrowUp.visibility = if (show) View.VISIBLE else View.GONE
-        if (!show){
+        if (!show) {
             binding.bottomSheet.title.text = getText(R.string.title_bottom_sheet_open_file)
         }
 
@@ -263,6 +283,31 @@ class MainActivity : AppCompatActivity(), OnLastItemClickedListener {
 
     private fun launchPhotoPicker() {
         pickMultipleMedia.launch(arrayOf("image/png", "image/jpeg"))
+    }
+
+    private fun handleSendImage(intent: Intent) {
+        (intent.parcelable<Parcelable>(Intent.EXTRA_STREAM) as? Uri)?.let { uri ->
+            val uris = arrayListOf<Uri>()
+            uris.add(uri)
+
+            viewModel.getPickedImageUris(uris)
+            adapter.setImageUris(uris)
+            preparePager(true)
+        }
+    }
+
+    private fun handleSendMultipleImages(intent: Intent) {
+        (intent.parcelableArrayList<Parcelable>(Intent.EXTRA_STREAM) as List<*>).let { data ->
+            val uris = arrayListOf<Uri>()
+
+            data.forEach { uri ->
+                uris.add(uri as Uri)
+            }
+
+            viewModel.getPickedImageUris(uris)
+            adapter.setImageUris(uris)
+            preparePager(true)
+        }
     }
 
     private fun showRestartConfirmationDialog(context: Context, onConfirmed: () -> Unit) {
