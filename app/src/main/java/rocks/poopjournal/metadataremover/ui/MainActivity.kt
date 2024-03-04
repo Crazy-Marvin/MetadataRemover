@@ -43,6 +43,7 @@ import rocks.poopjournal.metadataremover.R
 import rocks.poopjournal.metadataremover.databinding.ActivityMainBinding
 import rocks.poopjournal.metadataremover.model.metadata.Metadata
 import rocks.poopjournal.metadataremover.model.resources.Resource
+import rocks.poopjournal.metadataremover.ui.adapter.OnLastItemClickedListener
 import rocks.poopjournal.metadataremover.ui.adapter.PageAdapter
 import rocks.poopjournal.metadataremover.util.extensions.android.getThemeColor
 import rocks.poopjournal.metadataremover.util.extensions.android.setText
@@ -51,10 +52,11 @@ import rocks.poopjournal.metadataremover.viewmodel.MainViewModel
 
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), OnLastItemClickedListener {
 
     private lateinit var binding: ActivityMainBinding
     private val viewModel: MainViewModel by viewModels()
+    private lateinit var viewPager : ViewPager2
     private lateinit var adapter: PageAdapter
 
     private val metadata :  ArrayList<Resource<Metadata>> = arrayListOf()
@@ -73,8 +75,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
 
-        val viewPager = binding.preview.viewPager
+        viewPager = binding.preview.viewPager
         adapter = PageAdapter()
+        adapter.setOnLastItemClickedListener(this)
         viewPager.adapter = adapter
 
         viewPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
@@ -84,10 +87,7 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.outputMetadata.observe(this) { data ->
             metadata.add(data.last())
-
-            if (metadata.size == 1){
-                setListData(0)
-            }
+            setListData(metadata.lastIndex)
         }
 
         viewModel.clearedFile.observe(this){file ->
@@ -147,6 +147,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun initListeners(){
         binding.bottomSheet.arrowUp.setOnClickListener {
+            if (adapter.isLastItem(viewPager.currentItem)){
+                return@setOnClickListener
+            }
+
             BottomSheetBehavior.from(binding.bottomSheet.frame).apply {
                state = BottomSheetBehavior.STATE_EXPANDED
             }
@@ -162,10 +166,19 @@ class MainActivity : AppCompatActivity() {
             binding.bottomSheet.arrowDown.visibility = View.GONE
         }
 
-        binding.preview.viewPager.registerOnPageChangeCallback(object: OnPageChangeCallback(){
+        viewPager.registerOnPageChangeCallback(object: OnPageChangeCallback(){
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
-                setListData(position)
+                println("current Item: " + viewPager.currentItem)
+                if (!adapter.isLastItem(viewPager.currentItem)){
+                    setListData(position)
+                    binding.bottomSheet.addPicture.visibility = View.GONE
+                    binding.bottomSheet.arrowUp.visibility = View.VISIBLE
+                } else {
+                    binding.bottomSheet.title.text = getText(R.string.title_bottom_sheet_open_file)
+                    binding.bottomSheet.addPicture.visibility = View.VISIBLE
+                    binding.bottomSheet.arrowUp.visibility = View.GONE
+                }
             }
         })
     }
@@ -200,6 +213,10 @@ class MainActivity : AppCompatActivity() {
         }
         binding.bottomSheet.addPicture.visibility = View.GONE
         binding.bottomSheet.arrowUp.visibility = View.VISIBLE
+    }
+
+    override fun onLastItemClicked() {
+        launchPhotoPicker()
     }
     private fun launchPhotoPicker(){
         pickMultipleMedia.launch(arrayOf("image/png", "image/jpeg"))

@@ -62,17 +62,13 @@ class MainViewModel @Inject constructor(
         get() = _toast
 
     fun getPickedImageUris(uris: List<Uri>){
-
         uris.forEach {
             getDescriptor.openFile(it, onResult = {file, displayName, mediaType ->
                 fileViews.add(FileView(file, displayName, mediaType))
+                viewModelScope.launch {
+                    loadMetadata(fileViews.lastIndex, fileViews.last()!!)
+                }
             })
-        }
-
-        fileViews.forEachIndexed { index, fileView ->
-            viewModelScope.launch {
-                loadMetadata(index, fileView!!)
-            }
         }
     }
 

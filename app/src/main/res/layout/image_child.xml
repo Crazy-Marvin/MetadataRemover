@@ -7,14 +7,32 @@
     android:paddingHorizontal="20dp"
     xmlns:tools="http://schemas.android.com/tools">
 
-
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:shapeAppearanceOverlay="@style/roundedImageView"
-        android:contentDescription= "aa"
+        android:contentDescription= ""
         android:scaleType="center"
         tools:srcCompat ="@tools:sample/backgrounds/scenic"/>
+
+    <View
+        android:id="@+id/addNewBody"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:background="@drawable/rounded_corner_background"
+        android:backgroundTint="@color/color_accent"/>
+
+    <ImageButton
+        android:id="@+id/addNewButton"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:visibility="gone"
+        android:contentDescription = ""
+        android:backgroundTint="@color/white"
+        android:background="@drawable/add_circle"
+        android:layout_gravity="center"/>
+
 
 </FrameLayout>
