@@ -69,6 +69,12 @@ class PageAdapter : RecyclerView.Adapter<PageAdapter.PageViewHolder>() {
         notifyDataSetChanged()
     }
 
+    @SuppressLint("NotifyDataSetChanged")
+    fun restart(){
+        imageUris.clear()
+        notifyDataSetChanged()
+    }
+
     fun setOnLastItemClickedListener(listener: OnLastItemClickedListener) {
         lastItemClickedListener = listener
     }

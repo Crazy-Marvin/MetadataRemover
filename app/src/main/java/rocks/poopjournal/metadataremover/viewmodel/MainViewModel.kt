@@ -61,7 +61,17 @@ class MainViewModel @Inject constructor(
     val toast: LiveData<String>
         get() = _toast
 
+
+    fun restart(){
+        fileViews.forEach {
+            it?.close()
+        }
+        fileViews.clear()
+       _outputMetadata.value = emptyList()
+    }
+
     fun getPickedImageUris(uris: List<Uri>){
+        println(fileViews.size)
         uris.forEach {
             getDescriptor.openFile(it, onResult = {file, displayName, mediaType ->
                 fileViews.add(FileView(file, displayName, mediaType))

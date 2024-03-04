@@ -24,15 +24,18 @@
 
 package rocks.poopjournal.metadataremover.ui
 
+
+import android.content.Context
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
@@ -56,16 +59,17 @@ class MainActivity : AppCompatActivity(), OnLastItemClickedListener {
 
     private lateinit var binding: ActivityMainBinding
     private val viewModel: MainViewModel by viewModels()
-    private lateinit var viewPager : ViewPager2
+    private lateinit var viewPager: ViewPager2
     private lateinit var adapter: PageAdapter
 
-    private val metadata :  ArrayList<Resource<Metadata>> = arrayListOf()
+    private val metadata: ArrayList<Resource<Metadata>> = arrayListOf()
 
     private val pickMultipleMedia =
         registerForActivityResult(ActivityResultContracts.OpenMultipleDocuments()) { uris ->
             if (uris.isNotEmpty()) {
                 viewModel.getPickedImageUris(uris)
-                setAdapter(uris)
+                adapter.setImageUris(uris)
+                preparePager(true)
             }
         }
 
@@ -86,11 +90,13 @@ class MainActivity : AppCompatActivity(), OnLastItemClickedListener {
         initListeners()
 
         viewModel.outputMetadata.observe(this) { data ->
-            metadata.add(data.last())
-            setListData(metadata.lastIndex)
+            if (data.isNotEmpty()){
+                metadata.add(data.last())
+                setListData(metadata.lastIndex)
+            }
         }
 
-        viewModel.clearedFile.observe(this){file ->
+        viewModel.clearedFile.observe(this) { file ->
             val sendIntent = Intent()
             sendIntent.action = Intent.ACTION_SEND
             sendIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
@@ -101,7 +107,9 @@ class MainActivity : AppCompatActivity(), OnLastItemClickedListener {
                 sendIntent,
                 this.getString(
                     R.string.title_intent_chooser_share_without_metadata,
-                    file.name))
+                    file.name
+                )
+            )
 
             startActivity(chooserIntent)
         }
@@ -117,10 +125,34 @@ class MainActivity : AppCompatActivity(), OnLastItemClickedListener {
             val tintColor = getThemeColor(android.R.attr.textColorSecondary)
             preview.toolbar.inflateMenu(R.menu.menu_main)
             preview.toolbar.menu.findItem(R.id.menu_item_about).icon?.tint(tintColor)
+            preview.toolbar.menu.findItem(R.id.menu_item_restart).apply {
+                icon?.tint(tintColor)
+                isVisible = false
+            }
+
+            preview.toolbar.setOnMenuItemClickListener {
+                when (it.itemId) {
+                    R.id.menu_item_about -> {
+                        val intent = Intent(this@MainActivity, AboutActivity::class.java)
+                        startActivity(intent)
+                    }
+
+                    R.id.menu_item_restart -> {
+                        showRestartConfirmationDialog(this@MainActivity, onConfirmed = {
+                            metadata.clear()
+                            viewModel.restart()
+                            adapter.restart()
+                            preparePager(false)
+                        })
+                    }
+                }
+                true
+            }
 
             BottomSheetBehavior.from(bottomSheet.frame).apply {
                 isGestureInsetBottomIgnored = true
             }
+
 
             bottomSheet.listMetadata.apply {
                 adapter = MetaAttributeAdapter()
@@ -145,14 +177,14 @@ class MainActivity : AppCompatActivity(), OnLastItemClickedListener {
         }
     }
 
-    private fun initListeners(){
+    private fun initListeners() {
         binding.bottomSheet.arrowUp.setOnClickListener {
-            if (adapter.isLastItem(viewPager.currentItem)){
+            if (adapter.isLastItem(viewPager.currentItem)) {
                 return@setOnClickListener
             }
 
             BottomSheetBehavior.from(binding.bottomSheet.frame).apply {
-               state = BottomSheetBehavior.STATE_EXPANDED
+                state = BottomSheetBehavior.STATE_EXPANDED
             }
             binding.bottomSheet.arrowUp.visibility = View.GONE
             binding.bottomSheet.arrowDown.visibility = View.VISIBLE
@@ -166,59 +198,83 @@ class MainActivity : AppCompatActivity(), OnLastItemClickedListener {
             binding.bottomSheet.arrowDown.visibility = View.GONE
         }
 
-        viewPager.registerOnPageChangeCallback(object: OnPageChangeCallback(){
+        viewPager.registerOnPageChangeCallback(object : OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
-                println("current Item: " + viewPager.currentItem)
-                if (!adapter.isLastItem(viewPager.currentItem)){
-                    setListData(position)
-                    binding.bottomSheet.addPicture.visibility = View.GONE
-                    binding.bottomSheet.arrowUp.visibility = View.VISIBLE
-                } else {
-                    binding.bottomSheet.title.text = getText(R.string.title_bottom_sheet_open_file)
-                    binding.bottomSheet.addPicture.visibility = View.VISIBLE
-                    binding.bottomSheet.arrowUp.visibility = View.GONE
+                if (viewPager.isVisible){
+                    if (!adapter.isLastItem(viewPager.currentItem)) {
+                        setListData(position)
+                        binding.bottomSheet.addPicture.visibility = View.GONE
+                        binding.bottomSheet.arrowUp.visibility = View.VISIBLE
+                    } else {
+                        binding.bottomSheet.title.text = getText(R.string.title_bottom_sheet_open_file)
+                        binding.bottomSheet.addPicture.visibility = View.VISIBLE
+                        binding.bottomSheet.arrowUp.visibility = View.GONE
+                    }
                 }
             }
         })
     }
 
-    private fun setListData(position: Int){
+    private fun setListData(position: Int) {
         when (metadata[position]) {
             is Resource.Empty -> {
                 //
             }
+
             is Resource.Loading -> {
                 //
             }
+
             is Resource.Success -> {
                 binding.bottomSheet.title.setText((metadata[position] as Resource.Success<Metadata>).value.title!!)
                 binding.bottomSheet.listMetadata.apply {
                     val adapter = adapter
                     check(adapter is MetaAttributeAdapter)
-                    adapter.attributes = (metadata[position] as Resource.Success<Metadata>).value.attributes
+                    adapter.attributes =
+                        (metadata[position] as Resource.Success<Metadata>).value.attributes
                 }
             }
         }
     }
-    private fun setAdapter(uris: List<Uri>){
-        adapter.setImageUris(uris)
-        binding.preview.viewPager.visibility = View.VISIBLE
-        binding.preview.bannerImageOpenImage.visibility = View.GONE
-        binding.preview.bannerTextOpenImage.visibility = View.GONE
 
+    private fun preparePager(show: Boolean) {
+        viewPager.visibility = if (show) View.VISIBLE else View.INVISIBLE
+        binding.preview.bannerImageOpenImage.visibility = if (show) View.GONE else View.VISIBLE
+        binding.preview.bannerTextOpenImage.visibility = if (show) View.GONE else View.VISIBLE
 
         BottomSheetBehavior.from(binding.bottomSheet.frame).apply {
-            isDraggable = true
+            isDraggable = show
+            state = BottomSheetBehavior.STATE_COLLAPSED
         }
-        binding.bottomSheet.addPicture.visibility = View.GONE
-        binding.bottomSheet.arrowUp.visibility = View.VISIBLE
+
+        binding.bottomSheet.addPicture.visibility = if (show) View.GONE else View.VISIBLE
+        binding.bottomSheet.arrowUp.visibility = if (show) View.VISIBLE else View.GONE
+        if (!show){
+            binding.bottomSheet.title.text = getText(R.string.title_bottom_sheet_open_file)
+        }
+
+        binding.preview.toolbar.menu.findItem(R.id.menu_item_restart).isVisible = show
     }
 
     override fun onLastItemClicked() {
         launchPhotoPicker()
     }
-    private fun launchPhotoPicker(){
+
+    private fun launchPhotoPicker() {
         pickMultipleMedia.launch(arrayOf("image/png", "image/jpeg"))
+    }
+
+    private fun showRestartConfirmationDialog(context: Context, onConfirmed: () -> Unit) {
+        AlertDialog.Builder(context, R.style.AlertDialogTheme)
+            .setMessage(R.string.restart_confirmation_description)
+            .setPositiveButton(android.R.string.ok) { dialog, _ ->
+                onConfirmed()
+                dialog.dismiss()
+            }
+            .setNegativeButton(android.R.string.cancel) { dialog, _ ->
+                dialog.dismiss()
+            }
+            .show()
     }
 }

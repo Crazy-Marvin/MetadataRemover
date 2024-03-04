@@ -26,6 +26,8 @@
     <string name="title_activity_main" translatable="false">@string/app_name</string>
 
     <string name="title_menu_item_about">About</string>
+    <string name="title_menu_item_restart">Restart</string>
+    <string name="restart_confirmation_description">Are you sure you want to restart The Metadata Remover?</string>
     <string name="title_menu_item_open_file">Open picture</string>
     <string name="title_menu_item_expand">Expand</string>
     <string name="title_menu_item_collapse">Collapse</string>
