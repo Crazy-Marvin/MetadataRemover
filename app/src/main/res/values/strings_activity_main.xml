@@ -34,6 +34,8 @@
 
     <string name="title_bottom_sheet_open_file">Open a picture</string>
     <string name="title_bottom_sheet_remove_metadata">Remove metadata</string>
+    <string name="title_bottom_sheet_remove_metadata_and_save_to_device">Remove metadata and save to device</string>
+    <string name="saved_to_device_successfully">File has been saved to device successfully</string>
 
     <string name="description_banner_open_file">Tap to select one or more pictures.</string>
     <string name="image_content_description_banner_open_file">Open a picture</string>

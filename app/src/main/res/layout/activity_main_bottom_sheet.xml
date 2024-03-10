@@ -101,8 +101,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clipToPadding="false"
-        android:paddingBottom="@dimen/padding_bottom_metadata_list"
         app:layout_constraintTop_toBottomOf="@id/divider_toolbar"
+        app:layout_constraintBottom_toTopOf="@id/button_remove_and_save"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:listitem="@layout/listitem_meta_data"
@@ -140,6 +140,22 @@
         app:layout_constraintWidth_max="@dimen/max_short_text_width" />
 
     <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_remove_and_save"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/baseline"
+        android:layout_marginEnd="@dimen/baseline"
+        android:layout_marginBottom="@dimen/baseline_half"
+        android:lines="1"
+        android:text="@string/title_bottom_sheet_remove_metadata_and_save_to_device"
+        android:textColor="?android:textColorPrimary"
+        app:layout_constraintTop_toBottomOf="@id/list_metadata"
+        app:layout_constraintBottom_toTopOf="@id/button_remove_metadata"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/button_remove_metadata"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="0dp"
@@ -150,6 +166,7 @@
         android:lines="1"
         android:text="@string/title_bottom_sheet_remove_metadata"
         android:textColor="?android:textColorPrimary"
+        app:layout_constraintTop_toBottomOf="@id/button_remove_and_save"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

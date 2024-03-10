@@ -9,6 +9,7 @@ import dagger.hilt.components.SingletonComponent
 import rocks.poopjournal.metadataremover.viewmodel.usecases.GetDescriptor
 import rocks.poopjournal.metadataremover.viewmodel.usecases.GetFileUri
 import rocks.poopjournal.metadataremover.viewmodel.usecases.MetadataHandler
+import rocks.poopjournal.metadataremover.viewmodel.usecases.SaveImages
 import rocks.poopjournal.metadataremover.viewmodel.usecases.SharedImages
 import javax.inject.Singleton
 
@@ -37,7 +38,13 @@ object AppModule {
     @Provides
     @Singleton
     fun providesFileUri(@ApplicationContext context: Context) : GetFileUri {
-        return  GetFileUri(context = context)
+        return GetFileUri(context = context)
+    }
+
+    @Provides
+    @Singleton
+    fun providesSaveImages(@ApplicationContext context: Context): SaveImages{
+        return SaveImages(context = context)
     }
 
 }
