@@ -30,7 +30,7 @@
     <color name="background_app">#FAFAFA</color>
     <color name="background_status_bar">@android:color/black</color>
     <color name="background_navigation_bar">@android:color/black</color>
-    <color name="background_bottom_sheet">@color/background_app</color>
+    <color name="background_bottom_sheet">#FFFFFFFF</color>
 
     <color name="text_color_primary">#DE000000</color>
     <color name="text_color_secondary">#8A000000</color>
@@ -49,5 +49,9 @@
     <color name="background_shadow_navigation_bar">#1f000000</color>
 
     <color name="background_divider">#1F000000</color>
+
+
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
 
 </resources>

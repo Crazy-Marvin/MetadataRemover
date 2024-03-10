@@ -22,23 +22,27 @@
  * SOFTWARE.
  */
 
+/*
 import com.android.build.gradle.BaseExtension
 import com.android.build.gradle.internal.dsl.TestOptions
 import com.android.builder.core.DefaultApiVersion
 import com.android.builder.core.DefaultProductFlavor
 import org.gradle.internal.Cast.uncheckedCast
+*/
 
 plugins {
     androidApplication
     kotlinAndroid
-    kotlinAndroidExtensions
     kotlinKapt
-    googlePlayPublishing
-    fDroidPublishing
-    jacocoAndroid
-    githubRelease
-    canIDropJetifier
+    daggerHilt
+    //googlePlayPublishing
+    //fDroidPublishing
+    //jacocoAndroid
+    //githubRelease
+    //canIDropJetifier
 }
+
+
 
 val secretProperties = rootProject
         .file("secret/secret.properties")
@@ -46,25 +50,27 @@ val secretProperties = rootProject
         .asStringMap()
 
 
+/*
 override var version: Version
     set(value) {
         super.setVersion(value)
         field = value
     }
 
-version = Versions.app
 
+version = Versions.app
+ */
 android {
-    compileSdk = Versions.sdk.compile
+    compileSdk = Versions.Sdk.compile
 
     defaultConfig {
         applicationId = "rocks.poopjournal.metadataremover"
 
-        minSdk = Versions.sdk.min
-        targetSdk = Versions.sdk.target
+        minSdk = Versions.Sdk.min
+        targetSdk = Versions.Sdk.target
 
-        versionCode = version.code
-        versionName = version.name
+        versionCode = 4
+        versionName = "1.0.3"
 
         // The default test runner for Android instrumentation tests.
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -102,9 +108,10 @@ android {
         }
     }
 
-    // Enable Android data binding.
-    dataBinding {
-        isEnabled = true
+
+    buildFeatures {
+        viewBinding = true
+        dataBinding = true
     }
 
     compileOptions {
@@ -113,15 +120,17 @@ android {
     }
 
     // Always show the result of every unit test, even if it passes.
+    /*
     testOptions.unitTests.all {
         testLogging {
             events("passed", "skipped", "failed", "standardOut", "standardError")
         }
-    }
+    }*/
 
     lintOptions {
         ignore("MissingTranslation")
     }
+    namespace = "rocks.poopjournal.metadataremover"
 }
 
 kapt {
@@ -136,14 +145,55 @@ kapt {
     }
 }
 
+//dependencies(Dependencies.app)
+
+dependencies {
+
+    implementation("androidx.core:core-ktx:1.12.0")
+    implementation ("androidx.activity:activity-ktx:1.8.0")
+    implementation("androidx.appcompat:appcompat:1.6.1")
+    implementation("com.google.android.material:material:1.10.0")
+    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+
+    //Metadata Extractors
+    implementation("com.drewnoakes:metadata-extractor:2.11.0")
+    implementation("androidx.exifinterface:exifinterface:1.0.0")
+    implementation("ar.com.hjg:pngj:2.1.0") {
+        // Explicitly exclude the AWT library, as that is not available on Android.
+        exclude(group = "java.awt.image")
+    }
+
+    //Glide
+    implementation("com.github.bumptech.glide:glide:4.13.2")
+    kapt("com.github.bumptech.glide:compiler:4.8.0")
+
+    //CircleImageView
+    implementation("de.hdodenhof:circleimageview:3.1.0")
+
+    //Timber
+    implementation("com.jakewharton.timber:timber:4.7.1")
+
+    //About libraries
+    implementation("com.mikepenz:aboutlibraries:6.2.0-rc01")
+
+    //Dagger-hilt
+    implementation ("com.google.dagger:hilt-android:2.44")
+    kapt ("com.google.dagger:hilt-android-compiler:2.44")
+    kapt ("androidx.hilt:hilt-compiler:1.0.0")
+
+}
+
+
+/*
 play {
     serviceAccountCredentials = rootProject.file("secret/api-7281121051860956110-977812-57e7308358e6.json")
     track = "internal"
     releaseStatus = "draft"
     defaultToAppBundles = true
     resolutionStrategy = "fail"
-}
+}*/
 
+/*
 githubRelease {
     setToken(System.getenv("GITHUB_TOKEN") ?: secretProperties["github.credentials.token"])
     setOwner("Crazy-Marvin")
@@ -183,6 +233,8 @@ githubRelease {
         }
     }
 }
+*/
+
 
 // Lint F-Droid resources.
 //tasks["lint"].dependsOn("fdroidLint")

@@ -56,7 +56,19 @@
         <item name="android:textColorPrimaryInverse">@color/text_color_primary_inverse</item>
         <item name="android:textColorSecondaryInverse">@color/text_color_secondary_inverse</item>
         <item name="android:textColorHintInverse">@color/text_color_hint_inverse</item>
-
+        <item name="bottomSheetDialogTheme">@style/BottomSheet</item>
     </style>
+
+    <style name="BottomSheet" parent="Theme.MaterialComponents.Light.BottomSheetDialog">
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">?android:colorBackground</item>
+    </style>
+
+    <style name="roundedImageView" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">12dp</item>
+    </style>
+
 
 </resources>

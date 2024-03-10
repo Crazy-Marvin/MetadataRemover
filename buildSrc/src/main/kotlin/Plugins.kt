@@ -29,13 +29,13 @@ object Plugins {
         get() = {
             androidApplication
             kotlinAndroid
-            kotlinAndroidExtensions
             kotlinKapt
+            daggerHilt
 //            googlePlayPublishing
 //            fDroidPublishing
-            jacocoAndroid
+            //jacocoAndroid
 //            spoon
-            githubRelease
-            canIDropJetifier
+            //githubRelease
+            //canIDropJetifier
         }
 }

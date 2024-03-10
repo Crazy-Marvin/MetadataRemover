@@ -24,391 +24,175 @@
 
 package rocks.poopjournal.metadataremover.ui
 
-import android.annotation.SuppressLint
 import android.content.Intent
-import android.os.Build
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
-import androidx.annotation.FloatRange
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.core.view.isVisible
-import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.github.zagum.expandicon.ExpandIconView
-import com.google.android.material.snackbar.Snackbar
-import com.sothree.slidinguppanel.SlidingUpPanelLayout
-import com.sothree.slidinguppanel.SlidingUpPanelLayout.PanelSlideListener
-import com.sothree.slidinguppanel.SlidingUpPanelLayout.PanelState
+import androidx.viewpager2.widget.ViewPager2
+import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import dagger.hilt.android.AndroidEntryPoint
 import rocks.poopjournal.metadataremover.R
 import rocks.poopjournal.metadataremover.databinding.ActivityMainBinding
 import rocks.poopjournal.metadataremover.model.metadata.Metadata
 import rocks.poopjournal.metadataremover.model.resources.Resource
-import rocks.poopjournal.metadataremover.model.resources.Resource.*
-import rocks.poopjournal.metadataremover.util.ActivityLauncher
-import rocks.poopjournal.metadataremover.util.ActivityResultLauncher
-import rocks.poopjournal.metadataremover.util.AndroidViewDslScope
-import rocks.poopjournal.metadataremover.util.Logger
-import rocks.poopjournal.metadataremover.util.extensions.android.*
-import rocks.poopjournal.metadataremover.util.extensions.android.architecture.get
-import rocks.poopjournal.metadataremover.util.extensions.android.architecture.observeNotNull
+import rocks.poopjournal.metadataremover.ui.adapter.PageAdapter
+import rocks.poopjournal.metadataremover.util.extensions.android.getThemeColor
+import rocks.poopjournal.metadataremover.util.extensions.android.setText
+import rocks.poopjournal.metadataremover.util.extensions.android.tint
 import rocks.poopjournal.metadataremover.viewmodel.MainViewModel
 
-class MainActivity : AppCompatActivity(), ActivityResultLauncher, AndroidViewDslScope {
+
+@AndroidEntryPoint
+class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private lateinit var viewModel: MainViewModel
+    private val viewModel: MainViewModel by viewModels()
+    private lateinit var adapter: PageAdapter
 
-    companion object {
-        private const val KEY_SLIDING_OFFSET = "SLIDING_OFFSET"
-    }
+    private val metadata :  ArrayList<Resource<Metadata>> = arrayListOf()
 
-    @FloatRange(from = 0.0, to = 1.0)
-    private var slidingOffset: Float = 0f
-
-    private val panelSlideListener: PanelSlideListener = InnerPanelSlideListener()
+    private val pickMultipleMedia =
+        registerForActivityResult(ActivityResultContracts.OpenMultipleDocuments()) { uris ->
+            if (uris.isNotEmpty()) {
+                viewModel.getPickedImageUris(uris)
+                setAdapter(uris)
+            }
+        }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_AUTO)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
 
-        slidingOffset = savedInstanceState
-                ?.getFloat(KEY_SLIDING_OFFSET, slidingOffset)
-                ?: slidingOffset
+        val viewPager = binding.preview.viewPager
+        adapter = PageAdapter()
+        viewPager.adapter = adapter
 
-        viewModel = ViewModelProviders.of(this).get()
-
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        viewPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
 
         initializeViews()
-        panelSlideListener.onPanelSlide(binding.slidingLayout, slidingOffset)
+        initListeners()
 
-        onPreviewUpdate(Empty())
+        viewModel.outputMetadata.observe(this) { data ->
+            metadata.add(data.last())
 
-        viewModel.wrongMimeTypeFileSelectedHint.observeNotNull(this) { event ->
-            Snackbar.make(
-                    binding.coordinator,
-                    getString(R.string.description_snackbar_wrong_mime_type, event.mediaType),
-                    Snackbar.LENGTH_LONG
-            ).setAction(R.string.title_action_snackbar_wrong_mime_type) {
-                viewModel.openFile()
+            if (metadata.size == 1){
+                setListData(0)
             }
         }
-        viewModel.metadata.observeNotNull(this, ::onPreviewUpdate)
-        viewModel.activityLaunchInfo.observeNotNull(this, ::startActivity)
-        viewModel.activityResultLaunchInfo.observeNotNull(this, ::startActivityForResult)
+
+        viewModel.clearedFile.observe(this){file ->
+            val sendIntent = Intent()
+            sendIntent.action = Intent.ACTION_SEND
+            sendIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+            sendIntent.putExtra(Intent.EXTRA_STREAM, file.uri)
+            sendIntent.setDataAndType(file.uri, this.contentResolver.getType(file.uri))
+
+            val chooserIntent = Intent.createChooser(
+                sendIntent,
+                this.getString(
+                    R.string.title_intent_chooser_share_without_metadata,
+                    file.name))
+
+            startActivity(chooserIntent)
+        }
     }
 
-    override fun onResume() {
-        super.onResume()
-        binding.slidingLayout.addPanelSlideListener(panelSlideListener)
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        viewModel.onActivityResult(requestCode, resultCode, data)
-        super.onActivityResult(requestCode, resultCode, data)
-    }
-
-    override fun onPause() {
-        binding.slidingLayout.removePanelSlideListener(panelSlideListener)
-        super.onPause()
-    }
-
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-        outState[KEY_SLIDING_OFFSET] = slidingOffset
-    }
-
-    override fun startActivity(launchInfo: ActivityLauncher.LaunchInfo) =
-            startActivity(launchInfo.intent, launchInfo.options)
-
-    @SuppressLint("RestrictedApi")
-    override fun startActivityForResult(launchInfo: ActivityResultLauncher.LaunchInfo) =
-            startActivityForResult(launchInfo.intent, launchInfo.requestCode, launchInfo.options)
 
     private fun initializeViews() {
-        binding {
-            preview {
-                toolbar {
-                    inflateMenu(R.menu.menu_main)
-                    menu.findItem(R.id.menu_item_about) {
-                        val tintColor = getThemeColor(android.R.attr.textColorSecondary)
-                        icon = icon.tint(tintColor)
-                    }
-                            .onMenuItemClick(viewModel::openAboutScreen)
-                }
+        binding.apply {
+            val tintColor = getThemeColor(android.R.attr.textColorSecondary)
+            preview.toolbar.inflateMenu(R.menu.menu_main)
+            preview.toolbar.menu.findItem(R.id.menu_item_about).icon?.tint(tintColor)
 
-                bannerOpenImage.setOnClickListener { viewModel.openFile() }
+            BottomSheetBehavior.from(bottomSheet.frame).apply {
+                isGestureInsetBottomIgnored = true
             }
 
-            slidingLayout.isTouchEnabled = false
+            bottomSheet.listMetadata.apply {
+                adapter = MetaAttributeAdapter()
+                layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+            }
 
-            bottomSheet {
-                toolbar {
-                    setOnClickListener { viewModel.openFile() }
-                    inflateMenu(R.menu.menu_main_bottom_sheet)
-                    menu.findItem(R.id.menu_item_open_file)
-                            .onMenuItemClick(viewModel::openFile)
-                    menu.findItem(R.id.menu_item_expand_collapse)
-                            .actionView
-                            .onClick {
-                                slidingLayout {
-                                    panelState = when (panelState) {
-                                        PanelState.EXPANDED, PanelState.ANCHORED -> PanelState.COLLAPSED
-                                        else -> PanelState.ANCHORED
-                                    }
-                                }
-                            }
-                    setNavigationOnClickListener { viewModel.closeFile() }
-                }
+            preview.bannerImageOpenImage.setOnClickListener {
+                launchPhotoPicker()
+            }
 
-                listMetadata {
-                    adapter = MetaAttributeAdapter()
-                    layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
-                }
+            bottomSheet.addPicture.setOnClickListener {
+                launchPhotoPicker()
+            }
+
+            bottomSheet.buttonRemoveMetadata.setOnClickListener {
+                viewModel.removeMetadata(preview.viewPager.currentItem)
             }
         }
     }
 
-    private fun onPreviewUpdate(resource: Resource<Metadata>) {
-        when (resource) {
-            is Empty -> {
-                Logger.d("Update preview: empty")
-                onPreviewClear()
+    private fun initListeners(){
+        binding.bottomSheet.arrowUp.setOnClickListener {
+            BottomSheetBehavior.from(binding.bottomSheet.frame).apply {
+               state = BottomSheetBehavior.STATE_EXPANDED
             }
-            is Loading -> {
-                Logger.d("Update preview: loading...")
-                onPreviewLoading()
-            }
-            is Success -> {
-                val metadata = resource.value
-                Logger.d("Update preview: $metadata")
-                updatePreviewSuccess(metadata)
-            }
+            binding.bottomSheet.arrowUp.visibility = View.GONE
+            binding.bottomSheet.arrowDown.visibility = View.VISIBLE
         }
 
-    }
-
-    private fun onPreviewClear() {
-        binding {
-            preview {
-                progress.isVisible = false
-
-                thumbnail {
-                    setImageDrawable(null)
-                    isVisible = false
-                }
-
-                bannerOpenImage.isVisible = true
+        binding.bottomSheet.arrowDown.setOnClickListener {
+            BottomSheetBehavior.from(binding.bottomSheet.frame).apply {
+                state = BottomSheetBehavior.STATE_COLLAPSED
             }
-
-            slidingLayout {
-                panelState = PanelState.COLLAPSED
-                isTouchEnabled = false
-            }
-
-            bottomSheet {
-                toolbar {
-                    setTitle(R.string.title_bottom_sheet_open_file)
-                    navigationIcon = null
-                    setOnClickListener { viewModel.openFile() }
-
-                    menu {
-                        findItem(R.id.menu_item_open_file)
-                                .isVisible = true
-                        findItem(R.id.menu_item_expand_collapse) {
-                            isVisible = false
-
-                            val expandIcon = actionView
-                            check(expandIcon is ExpandIconView)
-                            (expandIcon) {
-                                setState(ExpandIconView.LESS, false)
-                            }
-                        }
-                    }
-                }
-
-                listMetadata.isVisible = false
-                bannerNoMetadata.isVisible = true
-                buttonRemoveMetadata.isEnabled = false
-            }
+            binding.bottomSheet.arrowUp.visibility = View.VISIBLE
+            binding.bottomSheet.arrowDown.visibility = View.GONE
         }
+
+        binding.preview.viewPager.registerOnPageChangeCallback(object: OnPageChangeCallback(){
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                setListData(position)
+            }
+        })
     }
 
-    private fun onPreviewLoading() {
-        binding {
-            preview {
-                progress.isVisible = true
-
-                thumbnail {
-                    setImageDrawable(null)
-                    isVisible = false
-                }
-
-                bannerOpenImage.isVisible = false
+    private fun setListData(position: Int){
+        when (metadata[position]) {
+            is Resource.Empty -> {
+                //
             }
-
-            slidingLayout {
-                panelState = PanelState.COLLAPSED
-                isTouchEnabled = false
+            is Resource.Loading -> {
+                //
             }
-
-            bottomSheet {
-                toolbar {
-                    setTitle(R.string.title_bottom_sheet_open_file)
-                    navigationIcon = null
-                    setOnClickListener { viewModel.openFile() }
-
-                    menu {
-                        findItem(R.id.menu_item_open_file)
-                                .isVisible = true
-                        findItem(R.id.menu_item_expand_collapse) {
-                            isVisible = false
-
-                            val expandIcon = actionView
-                            check(expandIcon is ExpandIconView)
-                            (expandIcon) {
-                                setState(ExpandIconView.LESS, false)
-                            }
-                        }
-                    }
-                }
-
-                listMetadata {
-                    isVisible = false
-
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                        addOnScrollListener(object : RecyclerView.OnScrollListener() {
-                            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                                if (recyclerView.canScrollVertically(-1)) {
-                                    toolbar.setElevation(resources.getDimension(R.dimen.elevation_toolbar))
-                                    dividerToolbar.setVisibility(View.INVISIBLE)
-                                } else {
-                                    toolbar.setElevation(0f)
-                                    dividerToolbar.setVisibility(View.VISIBLE)
-                                }
-                            }
-                        })
-                    }
-                }
-                bannerNoMetadata.isVisible = true
-                buttonRemoveMetadata.isEnabled = false
-            }
-        }
-    }
-
-    private fun updatePreviewSuccess(metadata: Metadata) {
-        binding {
-            preview {
-                progress.isVisible = false
-
-                thumbnail {
-                    setImage(metadata.thumbnail)
-                    isVisible = true
-                }
-
-                bannerOpenImage.isVisible = false
-            }
-
-            slidingLayout.isTouchEnabled = true
-
-            bottomSheet {
-                toolbar {
-                    setTitle(metadata.title!!)
-                    setNavigationIcon(R.drawable.ic_close)
-                    isClickable = false
-
-                    menu {
-                        findItem(R.id.menu_item_open_file).isVisible = false
-                        findItem(R.id.menu_item_expand_collapse).isVisible = true
-                    }
-                }
-
-                listMetadata {
-                    isVisible = true
-
-                    Logger.d("${metadata.attributes.size} metadata attributes")
-
+            is Resource.Success -> {
+                binding.bottomSheet.title.setText((metadata[position] as Resource.Success<Metadata>).value.title!!)
+                binding.bottomSheet.listMetadata.apply {
                     val adapter = adapter
                     check(adapter is MetaAttributeAdapter)
-                    adapter.attributes = metadata.attributes
-                    Logger.d("${adapter.attributes.size} metadata attributes (adapter)")
-                }
-
-                bannerNoMetadata.isVisible = false
-                buttonRemoveMetadata {
-                    isEnabled = true
-                    setOnClickListener { viewModel.removeMetadata() }
+                    adapter.attributes = (metadata[position] as Resource.Success<Metadata>).value.attributes
                 }
             }
         }
     }
+    private fun setAdapter(uris: List<Uri>){
+        adapter.setImageUris(uris)
+        binding.preview.viewPager.visibility = View.VISIBLE
+        binding.preview.bannerImageOpenImage.visibility = View.GONE
+        binding.preview.bannerTextOpenImage.visibility = View.GONE
 
-    inner class InnerPanelSlideListener : PanelSlideListener {
 
-        override fun onPanelSlide(
-                panel: View,
-                @FloatRange(from = 0.0, to = 1.0) slideOffset: Float
-        ) {
-            slidingOffset = slideOffset
-
-            binding {
-                val expandCollapse = bottomSheet
-                        .toolbar
-                        .menu
-                        .findItem(R.id.menu_item_expand_collapse)
-                        .actionView
-                check(expandCollapse is ExpandIconView)
-
-                val panelHeight = slidingLayout.height - slidingLayout.panelHeight
-                val absoluteOffset = panelHeight * slideOffset
-                val reverseAbsoluteOffset = panelHeight * (1 - slideOffset)
-                val limitedReverseAbsoluteOffset = reverseAbsoluteOffset
-                        .coerceAtMost(panelHeight * (1 - slidingLayout.anchorPoint))
-
-                navigationBarShadow {
-                    val relativeOffset = absoluteOffset / height
-                    alpha = (relativeOffset - 1).coerceAtMost(1f)
-                }
-                bottomSheet.buttonRemoveMetadata.translationY = -limitedReverseAbsoluteOffset
-
-                if (slidingLayout.panelState == PanelState.DRAGGING) {
-                    val fraction = 1 -
-                            (slideOffset.coerceAtMost(slidingLayout.anchorPoint) /
-                                    slidingLayout.anchorPoint)
-                    expandCollapse.setFraction(fraction, false)
-                }
-            }
+        BottomSheetBehavior.from(binding.bottomSheet.frame).apply {
+            isDraggable = true
         }
-
-        override fun onPanelStateChanged(
-                panel: View,
-                previousState: PanelState,
-                newState: PanelState
-        ) {
-            val expandCollapse = binding.bottomSheet
-                    .toolbar
-                    .menu
-                    .findItem(R.id.menu_item_expand_collapse)
-                    .actionView
-            check(expandCollapse is ExpandIconView)
-
-            (expandCollapse) {
-                when (newState) {
-                    PanelState.COLLAPSED -> ExpandIconView.LESS to R.string.title_menu_item_collapse
-                    PanelState.EXPANDED, PanelState.ANCHORED -> ExpandIconView.MORE to R.string.title_menu_item_expand
-                    PanelState.HIDDEN, PanelState.DRAGGING -> null
-                }?.let {
-                    setState(it.first, true)
-                    contentDescription = getText(it.second)
-                }
-            }
-
-            if (newState == PanelState.COLLAPSED) {
-                binding.bottomSheet.listMetadata.scrollToPosition(0)
-            }
-        }
+        binding.bottomSheet.addPicture.visibility = View.GONE
+        binding.bottomSheet.arrowUp.visibility = View.VISIBLE
+    }
+    private fun launchPhotoPicker(){
+        pickMultipleMedia.launch(arrayOf("image/png", "image/jpeg"))
     }
 }

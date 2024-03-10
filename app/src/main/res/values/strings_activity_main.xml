@@ -35,7 +35,7 @@
     <string name="title_bottom_sheet_open_file">Open a picture</string>
     <string name="title_bottom_sheet_remove_metadata">Remove metadata</string>
 
-    <string name="description_banner_open_file">First open a picture to remove its metadata.</string>
+    <string name="description_banner_open_file">Tap to select one or more pictures.</string>
     <string name="image_content_description_banner_open_file">Open a picture</string>
 
     <string name="description_snackbar_wrong_mime_type">Files of type "%1$s" are not yet supported.</string>

@@ -24,4 +24,4 @@
 
 package rocks.poopjournal.metadataremover.model.metadata
 
-interface MetadataHandler : MetadataReader, MetadataWriter
+interface  MetadataHandler : MetadataReader, MetadataWriter

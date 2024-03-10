@@ -25,32 +25,29 @@
 package rocks.poopjournal.metadataremover.ui
 
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NavUtils
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProviders
 import rocks.poopjournal.metadataremover.R
-
 
 import rocks.poopjournal.metadataremover.databinding.ActivityAboutBinding
 import rocks.poopjournal.metadataremover.util.ActivityLauncher
 import rocks.poopjournal.metadataremover.util.AndroidViewDslScope
 import rocks.poopjournal.metadataremover.util.extensions.android.activity
-import rocks.poopjournal.metadataremover.util.extensions.android.architecture.get
 import rocks.poopjournal.metadataremover.util.extensions.android.architecture.observeNotNull
 import rocks.poopjournal.metadataremover.util.extensions.android.onClick
-import rocks.poopjournal
-        .metadataremover.viewmodel.AboutViewModel
+import rocks.poopjournal.metadataremover.viewmodel.AboutViewModel
+
 
 class AboutActivity : AppCompatActivity(), ActivityLauncher, AndroidViewDslScope {
 
     private lateinit var binding: ActivityAboutBinding
-    private lateinit var viewModel: AboutViewModel
+    private val viewModel: AboutViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        viewModel = ViewModelProviders.of(this).get()
         binding = DataBindingUtil.setContentView(this, R.layout.activity_about)
 
         binding.header {

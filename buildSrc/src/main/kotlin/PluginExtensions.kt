@@ -27,19 +27,19 @@ import org.gradle.plugin.use.PluginDependenciesSpec
 import org.gradle.plugin.use.PluginDependencySpec
 
 inline val PluginDependenciesSpec.androidApplication: PluginDependencySpec
-    get() = id("com.android.application").version(Versions.androidBuildTools)
+    get() = id("com.android.application")
 
 inline val PluginDependenciesSpec.kotlinAndroid: PluginDependencySpec
     // https://plugins.gradle.org/plugin/org.jetbrains.kotlin.android
-    get() = kotlin("android").version(Versions.kotlin)
-
-inline val PluginDependenciesSpec.kotlinAndroidExtensions: PluginDependencySpec
-    // https://plugins.gradle.org/plugin/org.jetbrains.kotlin.android.extensions
-    get() = kotlin("android.extensions").version(Versions.kotlin)
+    get() = kotlin("android")
 
 inline val PluginDependenciesSpec.kotlinKapt: PluginDependencySpec
     // https://plugins.gradle.org/plugin/org.jetbrains.kotlin.kapt
-    get() = kotlin("kapt").version(Versions.kotlin)
+    get() = kotlin("kapt")
+
+inline val PluginDependenciesSpec.daggerHilt: PluginDependencySpec
+    // https://developer.android.com/training/dependency-injection/hilt-android
+    get() = id("dagger.hilt.android.plugin")
 
 inline val PluginDependenciesSpec.googlePlayPublishing: PluginDependencySpec
     // https://plugins.gradle.org/plugin/com.github.triplet.play
