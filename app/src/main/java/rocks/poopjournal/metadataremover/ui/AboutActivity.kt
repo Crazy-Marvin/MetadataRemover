@@ -24,67 +24,141 @@
 
 package rocks.poopjournal.metadataremover.ui
 
+import android.content.ActivityNotFoundException
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
-import androidx.activity.viewModels
+import android.widget.Toast
+import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NavUtils
-import androidx.databinding.DataBindingUtil
+import androidx.core.net.toUri
+import com.mikepenz.aboutlibraries.LibsBuilder
 import rocks.poopjournal.metadataremover.R
-
 import rocks.poopjournal.metadataremover.databinding.ActivityAboutBinding
-import rocks.poopjournal.metadataremover.util.ActivityLauncher
-import rocks.poopjournal.metadataremover.util.AndroidViewDslScope
 import rocks.poopjournal.metadataremover.util.extensions.android.activity
-import rocks.poopjournal.metadataremover.util.extensions.android.architecture.observeNotNull
-import rocks.poopjournal.metadataremover.util.extensions.android.onClick
-import rocks.poopjournal.metadataremover.viewmodel.AboutViewModel
 
 
-class AboutActivity : AppCompatActivity(), ActivityLauncher, AndroidViewDslScope {
+class AboutActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityAboutBinding
-    private val viewModel: AboutViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = ActivityAboutBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_about)
-
-        binding.header {
+        binding.header.apply {
             toolbar.setNavigationOnClickListener {
                 NavUtils.navigateUpFromSameTask(activity)
             }
-            buttonContact.onClick(viewModel::openContact)
-            buttonSupport.onClick(viewModel::openSupport)
-        }
-
-        binding.cards {
-            cardOwner {
-                buttonGithub.onClick(viewModel::openOwnerGithub)
-                buttonWebsite.onClick(viewModel::openOwnerWebsite)
+            buttonContact.setOnClickListener {
+                composeEmail()
             }
-            cardDesigner {
-                buttonGithub.onClick(viewModel::openDesignerGithub)
-                buttonWebsite.onClick(viewModel::openDesignerWebsite)
-            }
-            cardDeveloper {
-                buttonGithub.onClick(viewModel::openDeveloperGithub)
-                buttonWebsite.onClick(viewModel::openDeveloperWebsite)
-            }
-            cardSource {
-                buttonCode.onClick(viewModel::openSourceCode)
-                buttonLicense.onClick(viewModel::openSourceCodeLicense)
-                buttonLibraries.onClick(viewModel::openSourceCodeLibraries)
-            }
-            cardContribute {
-                buttonTranslate.onClick(viewModel::openTranslations)
-                buttonIssue.onClick(viewModel::openReportIssue)
+            buttonSupport.setOnClickListener {
+                launchUrl(R.string.url_about_button_support)
             }
         }
 
-        viewModel.activityLaunchInfo.observeNotNull(this, ::startActivity)
+        binding.cards.apply {
+            cardOwner.apply {
+                buttonGithub.setOnClickListener {
+                    launchUrl(R.string.url_button_about_owner_github)
+                }
+                buttonWebsite.setOnClickListener {
+                    launchUrl(R.string.url_button_about_owner_website)
+                }
+            }
+            cardDesigner.apply {
+                buttonGithub.setOnClickListener {
+                    launchUrl(R.string.url_button_about_designer_github)
+                }
+                buttonWebsite.setOnClickListener {
+                    launchUrl(R.string.url_button_about_designer_website)
+                }
+            }
+            cardDeveloper.apply {
+                buttonGithub.setOnClickListener {
+                    launchUrl(R.string.url_button_about_developer_github)
+                }
+                buttonWebsite.setOnClickListener {
+                    launchUrl(R.string.url_button_about_developer_website)
+                }
+            }
+            cardDeveloper2.apply {
+                buttonGithub.setOnClickListener {
+                    launchUrl(R.string.url_button_about_developer_github2)
+                }
+                buttonWebsite.setOnClickListener {
+                    launchUrl(R.string.url_button_about_developer_website2)
+                }
+            }
+            cardSource.apply {
+                buttonCode.setOnClickListener {
+                    launchUrl(R.string.url_button_about_source_code)
+                }
+                buttonLicense.setOnClickListener {
+                    startActivity(
+                        Intent(
+                            this@AboutActivity,
+                            LicenseActivity::class.java
+                        )
+                    )
+
+                }
+                buttonLibraries.setOnClickListener {
+                    startActivity(
+                        LibsBuilder()
+                            .apply {
+                                autoDetect = true
+                                activityTheme = R.style.Theme_App
+                                excludeLibraries = arrayOf(
+                                    "AndroidIconics",
+                                    "fastadapter"
+                                )
+                            }
+                            .intent(this@AboutActivity, LibrariesActivity::class.java)
+                    )
+                }
+            }
+            cardContribute.apply {
+                buttonTranslate.setOnClickListener {
+                    launchUrl(R.string.url_button_about_contribute_translate)
+                }
+                buttonIssue.setOnClickListener {
+                    launchUrl(R.string.url_button_about_contribute_issue)
+                }
+            }
+        }
     }
 
-    override fun startActivity(launchInfo: ActivityLauncher.LaunchInfo) =
-            startActivity(launchInfo.intent, launchInfo.options)
+    private fun launchUrl(@StringRes urlRes: Int) {
+        try {
+            val url = getString(urlRes)
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+            startActivity(intent)
+        } catch (e: ActivityNotFoundException) {
+            Toast.makeText(
+                this,
+                getString(R.string.can_not_handle),
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+    }
+
+    private fun composeEmail() {
+        try {
+            val address = getString(R.string.address_email_about_button_contact)
+            val subject = getString(R.string.subject_email_about_button_contact)
+            val intent = Intent(Intent.ACTION_SENDTO, "mailto:$address".toUri())
+            intent.putExtra(Intent.EXTRA_SUBJECT, subject)
+            startActivity(intent)
+        } catch (e: ActivityNotFoundException) {
+            Toast.makeText(
+                this,
+                getString(R.string.can_not_handle),
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+    }
 }
