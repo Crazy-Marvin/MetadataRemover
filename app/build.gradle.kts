@@ -69,8 +69,8 @@ android {
         minSdk = Versions.Sdk.min
         targetSdk = Versions.Sdk.target
 
-        versionCode = 1
-        versionName = "1.0.0"
+        versionCode = 4
+        versionName = "1.0.3"
 
         // The default test runner for Android instrumentation tests.
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
