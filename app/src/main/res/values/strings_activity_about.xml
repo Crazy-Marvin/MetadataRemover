@@ -59,6 +59,14 @@
     <string name="title_button_about_developer_website">Website</string>
     <string name="url_button_about_developer_website" translatable="false">https://heinrichreimer.com/</string>
 
+    <!-- Developer2 info -->
+    <string name="title_about_developer_name2">Andres Velasquez</string>
+    <string name="description_about_developer_role2">Development</string>
+    <string name="title_button_about_developer_github2">GitHub</string>
+    <string name="url_button_about_developer_github2" translatable="false">https://github.com/Rashxz/</string>
+    <string name="title_button_about_developer_website2">Twitter</string>
+    <string name="url_button_about_developer_website2" translatable="false">https://twitter.com/rash_xy</string>
+
     <!-- Source code info -->
     <string name="title_about_source">Source</string>
     <string name="title_button_about_source_code">Code</string>
@@ -73,4 +81,6 @@
     <string name="title_button_about_contribute_issue">Report issue</string>
     <string name="url_button_about_contribute_issue" translatable="false">https://github.com/Crazy-Marvin/MetadataRemover/issues/new</string>
 
+    <!-- Toast -->
+    <string name="can_not_handle">You do not have any application capable of handling this action</string>
 </resources>
