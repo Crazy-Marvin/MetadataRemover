@@ -24,6 +24,7 @@
 
 import org.gradle.kotlin.dsl.DependencyHandlerScope
 
+/*
 object Dependencies {
 
     inline val app: DependencyHandlerScope.() -> Unit get() = {
@@ -37,8 +38,13 @@ object Dependencies {
         googleAndroidMaterial
 
         // AppCompat support
-        androidxAppCompat
         androidxCoreKtx
+        androidActivity
+        androidxAppCompat
+        lifecycleViewModel
+        lifecycleRuntime
+        lifecycleExtensions
+
         androidxConstraintLayout
         androidxRecyclerView
         androidxCardView
@@ -78,3 +84,4 @@ object Dependencies {
         circleImageView
     }
 }
+*/

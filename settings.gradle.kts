@@ -24,26 +24,14 @@
 
 include("app")
 
-pluginManagement {
-    /**
-     * Repositories for resolving plugins.
-     */
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
-        gradlePluginPortal()
         google()
-        maven("https://oss.sonatype.org/content/repositories/snapshots/")
-    }
-    resolutionStrategy {
-        eachPlugin {
-            val module = when(requested.id.id) {
-                "com.android.application" -> "com.android.tools.build:gradle:${requested.version}"
-                "jacoco-android" -> "com.dicedmelon.gradle:jacoco-android:${requested.version}"
-                else -> null
-            }
-            if (module != null) {
-                logger.debug("Use module '$module' for requested plugin '${requested.id}' (version ${requested.version}).")
-                useModule(module)
-            }
-        }
+        mavenCentral()
+        maven ( url = "https://jitpack.io")
+        maven( url = "https://oss.sonatype.org/content/repositories/snapshots/")
+        gradlePluginPortal()
+        jcenter()
     }
 }

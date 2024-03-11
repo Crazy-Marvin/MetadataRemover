@@ -1,0 +1,32 @@
+<i>Lindungi privasi Anda dengan menghapus metadata dari foto Anda, sebelum membagikannya di Internet.</i>
+
+<h2><b>Fitur:</b></h2>
+
+✔️ Lihat metadata 
+✔️ Pratinjau gambar 
+✔️ Hapus metadata 
+✔️ Antarmuka yang sederhana dan intuitif 
+✔️ Bagikan langsung dari aplikasi
+
+<h2><b>Pelajari lebih lanjut:</b></h2>
+
+Setiap kali Anda mengambil gambar, metadata tambahan disimpan dalam file gambar. 
+Sebagian besar ponsel cerdas tidak <i>memberitahukan</i> Anda tentang hal ini.
+
+<b>Metadata dapat terlihat seperti ini:</b> 
+🕑 Pada hari apa foto itu diambil, dan pada jam berapa? 
+🗺️ Dan di mana tepatnya? 
+📷 Kamera atau ponsel cerdas mana yang digunakan? 
+🔧 Pengaturan kamera apa yang digunakan? 
+📝 Catatan fotografer atau kamera? 
+📌 Semakin sering, bahkan koordinat GPS yang tepat pun tersimpan dalam foto Anda.
+
+Metadata terkadang sangat berguna - misalnya saat menyortir foto liburan. 
+Segera setelah Anda berbagi foto dengan orang lain melalui media sosial, semua informasi ini dapat dilihat secara <i>publik</i>. 
+Pengumpul data dan penguntit dapat dengan mudah menemukan <i>tempat tinggal atau tempat kerja<i> Anda dari metadata atau menarik kesimpulan tentang <i>rutinitas<i> Anda. 
+Layanan pelacakan membuat profil periklanan yang lebih komprehensif dan menjual data Anda ke organisasi lain.
+
+Gunakan Penghapus Metadata untuk melihat semua data tersebut dengan mudah, <i>hapus seluruhnya</i>, lalu bagikan foto anonim secara langsung! 
+Dengan begitu, Anda tetap <i>anonim</i> dan <i>aman</i> di Internet, sementara teman-teman Anda tetap bisa mengagumi kucing Anda yang lucu.
+
+<i>Selamat berbagi! 😽</i>

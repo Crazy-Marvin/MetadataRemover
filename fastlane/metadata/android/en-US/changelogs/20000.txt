@@ -1,0 +1,8 @@
+- A lot of maintenance and refactoring under the hood 👨🏿‍🔬
+- Dependency updates ⚙️
+- Translation updates 🗺️
+- Select Metadata Remover as sharing target to share it without metadata 🚀
+- Batch processing (remove metadata from several files at once) 🪓
+- Save file without metadata on device 💾
+
+A huge thanks goes to @Rashxz who did everything for this update! 😍

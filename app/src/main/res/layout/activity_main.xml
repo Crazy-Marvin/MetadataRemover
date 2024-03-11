@@ -21,60 +21,26 @@
   ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
   ~ SOFTWARE.
   -->
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+
+
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     tools:context=".ui.MainActivity">
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:id="@+id/coordinator"
+    <include
+        android:id="@+id/preview"
+        layout="@layout/activity_main_preview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="0dp">
+        android:layout_height="match_parent"/>
 
-        <com.sothree.slidinguppanel.SlidingUpPanelLayout
-            android:id="@+id/sliding_layout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="bottom"
-            app:umanoPanelHeight="?actionBarSize"
-            app:umanoShadowHeight="@dimen/elevation_bottom_sheet"
-            app:umanoScrollableView="@id/list_metadata"
-            app:umanoOverlay="true"
-            app:umanoAnchorPoint="0.75"
-            app:umanoFadeColor="@color/background_scrim"
-            app:umanoInitialState="collapsed">
-            <!-- TODO set the shadow depending on the API version -->
+    <include
+        android:id="@+id/bottomSheet"
+        layout="@layout/activity_main_bottom_sheet" />
 
-            <include
-                android:id="@+id/preview"
-                layout="@layout/activity_main_preview"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingBottom="?actionBarSize" />
 
-            <include
-                android:id="@+id/bottom_sheet"
-                layout="@layout/activity_main_bottom_sheet"
-                android:elevation="@dimen/elevation_bottom_sheet"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:visibility="visible"
-                tools:ignore="UnusedAttribute" />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-        </com.sothree.slidinguppanel.SlidingUpPanelLayout>
-
-        <View
-            android:id="@+id/navigation_bar_shadow"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/height_navigation_bar_shadow"
-            android:layout_gravity="bottom"
-            android:elevation="@dimen/elevation_bottom_sheet"
-            android:background="@drawable/shadow_navigation_bar"
-            tools:ignore="UnusedAttribute"
-            android:focusable="false"
-            android:clickable="false" />
-
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
-</layout>

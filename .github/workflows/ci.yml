@@ -2,19 +2,19 @@ name: CI
 on: push
 jobs:
   build:
-    runs-on: macos-10.15
+    runs-on: macos-latest
     steps:
       - name: "📥 Check-out"
-        uses: actions/checkout@v1
+        uses: actions/checkout@v4
       - name: "🧪 Gradle Wrapper Validation"
-        uses: gradle/wrapper-validation-action@v1
+        uses: gradle/wrapper-validation-action@v2
       - name: "🧰 Install JDK"
-        uses: actions/setup-java@v1
+        uses: actions/setup-java@v4
         with:
           java-version: 1.8
           java-package: jdk
       - name: "🧰 Install Android SDK"
-        uses: android-actions/setup-android@v2
+        uses: android-actions/setup-android@v3
       - name: "📁 Copy local CI properties"
         run: cp ci/local.properties ./
       - name: "🏗 Build"
@@ -31,6 +31,6 @@ jobs:
           api-level: 25
           script: ./gradlew connectedAndroidTest
       - name: "📤 Upload code coverage"
-        uses: codecov/codecov-action@v2
+        uses: codecov/codecov-action@v4
         with:
           token: ${{ secrets.CODECOV_TOKEN }}

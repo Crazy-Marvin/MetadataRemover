@@ -25,21 +25,13 @@
 import org.gradle.kotlin.dsl.DependencyHandlerScope
 import org.gradle.kotlin.dsl.exclude
 
+/*
 // Android
-inline val DependencyHandlerScope.androidBuildToolsPlugin
-    // https://mvnrepository.com/artifact/com.android.tools.build/gradle
-    get() = classpath("com.android.tools.build", "gradle", Versions.androidBuildTools)
-
 inline val DependencyHandlerScope.androidJetifierProcessor
     // https://mvnrepository.com/artifact/com.android.tools.build.jetifier/jetifier-processor
     get() = classpath("com.android.tools.build.jetifier", "jetifier-processor", Versions.androidJetifierProcessor)
 
-
 // Kotlin
-inline val DependencyHandlerScope.kotlinPlugin
-    // https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-gradle-plugin
-    get() = classpath(kotlin("gradle-plugin", Versions.kotlin))
-
 inline val DependencyHandlerScope.kotlinStandardLibraryJdk8
     // https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-stdlib-jdk8
     get() = implementation(kotlin("stdlib-jdk8", Versions.kotlin))
@@ -66,17 +58,33 @@ inline val DependencyHandlerScope.googleAndroidMaterial
 
 
 // Support libraries
+inline val DependencyHandlerScope.androidxCoreKtx //CHECK
+    // https://mvnrepository.com/artifact/androidx.core/core-ktx
+    get() = implementation("androidx.core", "core-ktx", Versions.androidxCoreKtx)
+
+inline val DependencyHandlerScope.androidActivity //CHECK
+    get() = implementation("androidx.activity", "activity-ktx", Versions.androidActivity)
+
+inline val DependencyHandlerScope.androidxAppCompat // CHECK
+    // https://mvnrepository.com/artifact/androidx.appcompat/appcompat
+    get() = implementation("androidx.appcompat", "appcompat", Versions.androidxAppCompat)
+
+inline val DependencyHandlerScope.lifecycleViewModel // CHECK
+    get() = implementation("androidx.lifecycle", "lifecycle-viewmodel", Versions.lifecycleViewModel)
+
+inline val DependencyHandlerScope.lifecycleRuntime // CHECK
+    get() = implementation("androidx.lifecycle", "lifecycle-runtime", Versions.lifecycleRuntime)
+
+inline val DependencyHandlerScope.lifecycleExtensions // CHECK
+    get() = implementation("androidx.lifecycle", "lifecycle-extensions", Versions.lifecycleExtension)
+
 inline val DependencyHandlerScope.androidxDatabinding
     // https://mvnrepository.com/artifact/androidx.databinding/databinding-compiler
     get() = annotationProcessor("androidx.databinding", "databinding-compiler", Versions.androidBuildTools)
 
-inline val DependencyHandlerScope.androidxAppCompat
-    // https://mvnrepository.com/artifact/androidx.appcompat/appcompat
-    get() = implementation("androidx.appcompat", "appcompat", Versions.androidxAppCompat)
 
-inline val DependencyHandlerScope.androidxCoreKtx
-    // https://mvnrepository.com/artifact/androidx.core/core-ktx
-    get() = implementation("androidx.core", "core-ktx", Versions.androidxCoreKtx)
+
+
 
 inline val DependencyHandlerScope.androidxConstraintLayout
     // https://mvnrepository.com/artifact/androidx.constraintlayout/constraintlayout
@@ -225,3 +233,4 @@ inline val DependencyHandlerScope.aboutLibraries
 inline val DependencyHandlerScope.circleImageView
     // https://mvnrepository.com/artifact/de.hdodenhof/circleimageview
     get() = implementation("de.hdodenhof", "circleimageview", Versions.circleImageView)
+*/

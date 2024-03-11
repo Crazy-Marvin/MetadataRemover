@@ -1,0 +1,5 @@
+{
+  "name": "Docker Android Build Box",
+  "image": "mingc/android-build-box:latest",
+  "extensions": ["vscode-icons-team.vscode-icons", "MS-vsliveshare.vsliveshare"]
+}

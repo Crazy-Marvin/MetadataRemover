@@ -37,12 +37,12 @@ object Versions {
     val sdk = Sdk
 
     object Sdk {
-        const val compile = 30
-        const val min = 19
-        const val target = 30
+        const val compile = 34
+        const val min = 21
+        const val target = 34
     }
 
-    val jvm = JavaVersion.VERSION_1_8
+    val jvm = JavaVersion.VERSION_17
 
     // Plugins
     const val androidBuildTools = "3.3.2"
@@ -58,8 +58,13 @@ object Versions {
     const val googleAndroidMaterial = "1.0.0"
 
     // Support libraries
-    const val androidxCoreKtx = "1.0.1"
-    const val androidxAppCompat = "1.0.2"
+    const val androidxCoreKtx = "1.12.0"
+    const val androidActivity = "1.8.0"
+    const val androidxAppCompat = "1.6.1"
+    const val lifecycleExtension = "2.2.0"
+    const val lifecycleViewModel = "2.6.2"
+    const val lifecycleRuntime = "2.6.2"
+
     const val androidxConstraintLayout = "1.1.3"
     const val androidxRecyclerView = "1.0.0"
     const val androidxCardView = "1.0.0"

@@ -22,11 +22,11 @@
   ~ SOFTWARE.
 -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="rocks.poopjournal.metadataremover">
+    xmlns:tools="http://schemas.android.com/tools">
 
     <application
-            android:label="@string/app_name"
+        android:name=".MetadataRemoverApp"
+        android:label="@string/app_name"
         android:allowBackup="true"
         android:fullBackupContent="true"
         android:icon="@mipmap/ic_launcher"
@@ -34,7 +34,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.App">
 
-        <activity android:name=".ui.MainActivity">
+        <activity android:exported="true" android:name=".ui.MainActivity">
 
             <tools:validation testUrl="https://poopjournal.rocks/MetadataRemover/app" />
 
@@ -53,6 +53,18 @@
                     android:scheme="https"
                     android:host="poopjournal.rocks"
                     android:pathPrefix="/MetadataRemover/app" />
+            </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="image/*" />
+            </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.intent.action.SEND_MULTIPLE" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="image/*" />
             </intent-filter>
 
         </activity>
