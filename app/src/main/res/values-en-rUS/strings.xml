@@ -56,7 +56,7 @@
 
     <string name="title_activity_libraries">Libraries</string>
 
-    <string name="title_activity_license">MIT License</string>
+    <string name="title_activity_license">Apache License 2.0</string>
 
     <string name="title_menu_item_about">About</string>
     <string name="title_menu_item_open_file">Open picture</string>

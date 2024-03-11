@@ -53,7 +53,7 @@
     <string name="title_button_about_contribute_translate">Traducir</string>
     <string name="title_button_about_contribute_issue">Reportar problema</string>
     <string name="title_activity_libraries">Bibliotecas</string>
-    <string name="title_activity_license">Licencia MIT</string>
+    <string name="title_activity_license">Licencia Apache 2.0</string>
     <string name="title_menu_item_about">Acerca de</string>
     <string name="title_menu_item_open_file">Abrir la imagen</string>
     <string name="title_menu_item_expand">Ampliar</string>
