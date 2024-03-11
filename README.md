@@ -15,6 +15,7 @@
 [![API](https://img.shields.io/badge/API-19%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=19)
 ![Gradle Play Publisher](https://img.shields.io/badge/-Gradle_Play_Publisher-brightgreen?logo=gradle&link=https%3A%2F%2Fgithub.com%2FTriple-T%2Fgradle-play-publisher)
 [![F-Droid](https://img.shields.io/f-droid/v/rocks.poopjournal.MetadataRemover.svg)](https://f-droid.org/en/packages/rocks.poopjournal.MetadataRemover/)
+[![IzzyOnDroid](https://img.shields.io/endpoint?url=https://apt.izzysoft.de/fdroid/api/v1/shield/rocks.poopjournal.MetadataRemover&label=IzzyOnDroid&cacheSeconds=86400)](https://apt.izzysoft.de/fdroid/index/apk/rocks.poopjournal.metadataremover)
 [![Google Play](https://badgen.net/badge/icon/googleplay?icon=googleplay&label)](https://play.google.com/store/apps/details?id=rocks.poopjournal.MetadataRemover)
 
 _Remove any image's metadata fast and easily._
@@ -29,7 +30,11 @@ _Remove any image's metadata fast and easily._
         height="80"
         src="https://user-images.githubusercontent.com/15004217/36919296-19b8524e-1e5d-11e8-8962-48463b1cec8a.png" />
         </a>
-
+<a href="https://apt.izzysoft.de/fdroid/index/apk/rocks.poopjournal.metadataremover">
+    <img alt="Get it on IzzyOnDroid"
+        height="80"
+        src="https://github.com/Crazy-Marvin/MetadataRemover/assets/15004217/978819ff-a4ac-4656-ace7-a0607fca50b3.png" />
+        </a>
 
 _Protect your privacy by removing metadata from your photos, before sharing them on the internet!_
 
