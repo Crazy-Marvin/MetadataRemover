@@ -92,7 +92,7 @@
 
         <include
             android:id="@+id/card_developer2"
-            layout="@layout/activity_about_card_developer2"
+            layout="@layout/activity_about_card_developer"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/baseline_card"

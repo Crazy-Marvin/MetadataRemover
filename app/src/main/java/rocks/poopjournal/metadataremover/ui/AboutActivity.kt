@@ -86,6 +86,10 @@ class AboutActivity : AppCompatActivity() {
                 }
             }
             cardDeveloper2.apply {
+                avatar.setImageResource(R.drawable.art_about_developer2_profile_image)
+                name.text = getString(R.string.title_about_developer_name2)
+                buttonWebsite.text = getString(R.string.title_button_about_developer_website2)
+
                 buttonGithub.setOnClickListener {
                     launchUrl(R.string.url_button_about_developer_github2)
                 }
