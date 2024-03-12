@@ -69,8 +69,13 @@ android {
         minSdk = Versions.Sdk.min
         targetSdk = Versions.Sdk.target
 
-        versionCode = 20000
-        versionName = "2.0.0"
+        versionCode = 20010
+        versionName = "2.0.1"
+
+    // https://f-droid.org/docs/Reproducible_Builds/#pngs-crushcrunch
+    aaptOptions {
+        cruncherEnabled = false
+    }
 
         // The default test runner for Android instrumentation tests.
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
