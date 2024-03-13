@@ -72,11 +72,6 @@ android {
         versionCode = 20010
         versionName = "2.0.1"
 
-    // https://f-droid.org/docs/Reproducible_Builds/#pngs-crushcrunch
-    aaptOptions {
-        cruncherEnabled = false
-    }
-
     dependenciesInfo {
         // Disables dependency metadata when building APKs.
         includeInApk = false
@@ -117,6 +112,7 @@ android {
                 proguardFiles += file("proguard-rules.pro")
             }
             signingConfig = releaseSigning
+            isCrunchPngs = false
         }
     }
 
