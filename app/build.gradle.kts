@@ -77,6 +77,13 @@ android {
         cruncherEnabled = false
     }
 
+    dependenciesInfo {
+        // Disables dependency metadata when building APKs.
+        includeInApk = false
+        // Disables dependency metadata when building Android App Bundles.
+        includeInBundle = false
+    }
+
         // The default test runner for Android instrumentation tests.
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
