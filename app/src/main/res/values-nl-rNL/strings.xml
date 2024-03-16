@@ -21,8 +21,7 @@
   ~ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
   ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
   ~ SOFTWARE.
-  -->
-<resources>
+  --><resources>
     <string name="title_activity_about">Over</string>
     <string name="image_content_description_navigate_up">Navigeer omhoog</string>
     <!-- App info -->
@@ -53,11 +52,8 @@
     <string name="title_about_contribute">Bijdragen</string>
     <string name="title_button_about_contribute_translate">Vertalen</string>
     <string name="title_button_about_contribute_issue">Een probleem melden</string>
-
     <string name="title_activity_libraries">Bibliotheken</string>
-
     <string name="title_activity_license">MIT Licentie</string>
-
     <string name="title_menu_item_about">Over</string>
     <string name="title_menu_item_open_file">Foto openen</string>
     <string name="title_menu_item_expand">Vergrootten</string>
@@ -73,8 +69,7 @@
     <string name="description_banner_no_metadata">"Kon geen Metadata vinden."</string>
     <string name="image_content_description_banner_no_metadata">"Kon geen Metadata vinden."</string>
     <string name="search_text_file_explorer">verkenner</string>
-    <string name="title_intent_chooser_share_without_metadata">Deel \"%1$s\" zonder metadata&#8230;</string>
-
+    <string name="title_intent_chooser_share_without_metadata">Deel \"%1$s\" zonder metadata…</string>
     <string name="label_attribute_file_name">Naam</string>
     <string name="label_attribute_file_size">Grootte</string>
     <string name="description_attribute_file_size_bytes">%1$d\u200ABytes</string>
@@ -117,9 +112,10 @@
     <string name="label_attribute_image_creation_lens">Lens</string>
     <string name="description_attribute_image_creation_model_serial_number">%1$s (%2$s)</string>
     <string name="label_attribute_file_creation_location">Locatie</string>
-    <string name="description_attribute_file_creation_location_coordinates">%2$02d&#176;\u200A%3$02d′\u200A%4$02d″ %1$s\u2003%6$02d&#176;\u200A%7$02d′\u200A%8$02d″ %5$s</string>
+    <string name="description_attribute_file_creation_location_coordinates">%2$02d°\u200A%3$02d′\u200A%4$02d″ %1$s\u2003%6$02d°\u200A%7$02d′\u200A%8$02d″ %5$s</string>
     <string name="description_attribute_file_creation_location_direction_east">Oost</string>
     <string name="description_attribute_file_creation_location_direction_west">West</string>
     <string name="description_attribute_file_creation_location_direction_north">Noord</string>
     <string name="description_attribute_file_creation_location_direction_south">Zuid</string>
+    <string name="app_name">Metadata Verwijderaar</string>
 </resources>

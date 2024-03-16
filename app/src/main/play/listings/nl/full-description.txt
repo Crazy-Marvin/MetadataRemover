@@ -1,24 +1,31 @@
-<div><i>Bescherm uw privacy door metadata van uw foto`s te verwijderen voordat u ze deelt op het internet!</i><br><br><h2><b>Kenmerken:</b></h2><br><br>✔️Bekijk metadata <br>
-✔️Voorbeeld van afbeelding <br>
-✔️Verwijder metadata <br>
-✔️Eenvoudige en intuïtieve interface <br>
-✔️Deel rechtstreeks vanuit de app<br><br><h2><b>Meer informatie:</b></h2><br><br>Wanneer u een foto neemt, wordt extra metagegevens opgeslagen in het beeldbestand. <br>
-De meeste smartphones geven hier <i>geen informatie</i> over. <br><br><b>
+<i>Bescherm uw privacy door metadata te verwijderen uit je foto's voordat u ze deelt op internet.</i>
 
-Metadata kan er zo uitzien: </b><br><br>
- 🕑 Op welke dag is de foto genomen, en op welk tijdstip?<br> 
- 🗺️ En waar precies?<br> 
- 📷 Welke camera of welke smartphone werd gebruikt?<br> 
- 🔧 En welke camera-instellingen werden gebruikt?<br> 
- 📝 Notities van de fotograaf of de camera?<br> 
- 📌 Steeds vaker worden ook exacte GPS-coördinaten in uw foto opgeslagen.<br> <br> 
+<h2><b>Kenmerken:</b></h2>
 
-Metadata is soms erg handig, bijvoorbeeld bij het sorteren van vakantiefoto's.<br> 
-Maar zodra je foto's deelt met anderen via sociale media, is al deze informatie <i>publiekelijk </i>zichtbaar.
-<br><i>Dataverzamelaars en stalkers zouden mogelijk in staat kunnen zijn om uit de metadata <i>uw woon- of werkplaats<i> te ontdekken of conclusies te trekken over uw <i>dagelijkse routine.</i>
-<br>Tracking services kunnen uitgebreidere advertentieprofielen maken en uw gegevens aan andere organisaties verkopen.
+ ✔️ Bekijk metadata
+ ✔️ Voorbeeld van afbeelding
+ ✔️ Verwijder metadata
+ ✔️ Eenvoudige en intuïtieve interface
+ ✔️ Deel rechtstreeks vanuit de app
+<h2><b>Meer informatie:</b></h2>
 
-<br><br>Met onze app kunt u al deze gegevens eenvoudig bekijken, <i>volledig verwijderen en vervolgens de geanonimiseerde foto direct delen!</i>
-Zo blijft u <i>anoniem</i> en <i>veilig </i>op internet, terwijl uw vrienden uw schattige kat nog steeds kunnen bewonderen.<br><br><1>
+Telkens wanneer u een foto maakt, wordt er extra metadata opgeslagen in het afbeeldingsbestand.
+De meeste smartphones <i>informeren u hier niet over</i>.
 
-Veel plezier met het delen van foto's! 😽! 😽</i></i></i></div>
+<b>Metadata kan er zo uitzien:</b>
+ 🕑 Op welke dag en hoe laat is de foto genomen?
+ 🗺️ En waar precies?
+ 📷 Welke camera of smartphone is gebruikt?
+ 🔧 Welke camerainstellingen zijn gebruikt?
+ 📝 Notities van de fotograaf of de camera?
+ 📌 Steeds vaker worden zelfs exacte GPS-coördinaten opgeslagen in je foto.
+
+Metadata is soms erg handig, bijvoorbeeld bij het sorteren van vakantiefoto's.
+Zodra u echter foto's deelt met anderen via sociale media, is al deze informatie <i>openbaar</i> zichtbaar.
+Data-verzamelaars en stalkers kunnen eenvoudiger uw <i>woon- of werkplaats</i> ontdekken uit de metadata of conclusies trekken over uw <i>dagelijkse routine</i>.
+Tracking-services creëren uitgebreidere advertentieprofielen en verkopen uw gegevens aan andere organisaties.
+
+Gebruik de Metadata Remover om eenvoudig al deze gegevens te bekijken, <i>volledig te verwijderen</i> en vervolgens de geanonimiseerde foto direct te delen!
+Op deze manier blijft u <i>anoniem</i> en <i>veilig</i> op internet, terwijl uw vrienden nog steeds kunnen genieten van uw schattige kat.
+
+<i>Veel deelplezier! 😽</i>
