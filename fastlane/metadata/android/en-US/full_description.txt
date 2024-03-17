@@ -2,28 +2,37 @@
 
 <h2><b>Features:</b></h2>
 
- ✔️ View metadata
- ✔️ Image preview
- ✔️ Remove metadata
- ✔️ Simple and intuitive interface
- ✔️ Share directly from the app
+<ul>
+<li> ✔️ View metadata </li>
+<li> ✔️ Image preview </li>
+<li> ✔️ Remove metadata </li>
+<li> ✔️ Simple and intuitive interface </li>
+<li> ✔️ Share directly from the app </li>
+</ul>
 
 <h2><b>Learn more:</b></h2>
 
 Whenever you take a picture, additional metadata is saved in the image file.
+
 Most smartphones do <i>not inform</i> you about this.
 
 <b>Metadata can look like this:</b>
- 🕑 On which day was the picture taken, and at what time?
- 🗺️ And where exactly?
- 📷 Which camera or smartphone was used?
- 🔧 What camera settings were used?
- 📝 Notes of the photographer or the camera?
- 📌 More and more often, even exact GPS coordinates are saved in your photo.
+
+<ul>
+<li> 🕑 On which day was the picture taken, and at what time? </li>
+<li> 🗺️ And where exactly? </li>
+<li> 📷 Which camera or smartphone was used? </li>
+<li> 🔧 What camera settings were used? </li>
+<li> 📝 Notes of the photographer or the camera? </li>
+<li> 📌 More and more often, even exact GPS coordinates are saved in your photo. </li>
+</ul>
 
 Metadata is sometimes very useful — for instance when sorting holiday photos.
+
 As soon as you share photos with others via social media, all this info is visible <i>publicly</i>.
+
 Data collectors and stalkers are more easily able to discover your <i>place of residence or workplace<i> from the metadata or draw conclusions about your <i>daily routine</i>.
+
 Tracking services create more comprehensive advertising profiles and sell your data to other organizations.
 
 Use the Metadata Remover to easily view all that data, <i>remove it entirely</i>, and then share the anonymized photo directly!
