@@ -173,7 +173,7 @@ dependencies {
 
     //Glide
     implementation("com.github.bumptech.glide:glide:4.13.2")
-    kapt("com.github.bumptech.glide:compiler:4.8.0")
+    kapt("com.github.bumptech.glide:compiler:4.16.0")
 
     //CircleImageView
     implementation("de.hdodenhof:circleimageview:3.1.0")
