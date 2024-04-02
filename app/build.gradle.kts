@@ -185,8 +185,8 @@ dependencies {
     implementation("com.mikepenz:aboutlibraries:6.2.0-rc01")
 
     //Dagger-hilt
-    implementation ("com.google.dagger:hilt-android:2.44")
-    kapt ("com.google.dagger:hilt-android-compiler:2.44")
+    implementation ("com.google.dagger:hilt-android:2.51.1")
+    kapt ("com.google.dagger:hilt-android-compiler:2.51.1")
     kapt ("androidx.hilt:hilt-compiler:1.0.0")
 
 }
