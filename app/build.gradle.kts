@@ -164,7 +164,7 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
 
     //Metadata Extractors
-    implementation("com.drewnoakes:metadata-extractor:2.11.0")
+    implementation("com.drewnoakes:metadata-extractor:2.19.0")
     implementation("androidx.exifinterface:exifinterface:1.0.0")
     implementation("ar.com.hjg:pngj:2.1.0") {
         // Explicitly exclude the AWT library, as that is not available on Android.
