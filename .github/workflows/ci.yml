@@ -7,7 +7,7 @@ jobs:
       - name: "📥 Check-out"
         uses: actions/checkout@v4
       - name: "🧪 Gradle Wrapper Validation"
-        uses: gradle/wrapper-validation-action@v2
+        uses: gradle/wrapper-validation-action@v3
       - name: "🧰 Install JDK"
         uses: actions/setup-java@v4
         with:
