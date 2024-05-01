@@ -179,7 +179,7 @@ dependencies {
     implementation("de.hdodenhof:circleimageview:3.1.0")
 
     //Timber
-    implementation("com.jakewharton.timber:timber:4.7.1")
+    implementation("com.jakewharton.timber:timber:5.0.1")
 
     //About libraries
     implementation("com.mikepenz:aboutlibraries:11.1.4")
