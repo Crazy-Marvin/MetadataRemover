@@ -182,7 +182,7 @@ dependencies {
     implementation("com.jakewharton.timber:timber:4.7.1")
 
     //About libraries
-    implementation("com.mikepenz:aboutlibraries:6.2.0-rc01")
+    implementation("com.mikepenz:aboutlibraries:11.1.4")
 
     //Dagger-hilt
     implementation ("com.google.dagger:hilt-android:2.51.1")
