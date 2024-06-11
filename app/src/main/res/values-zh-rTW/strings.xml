@@ -21,8 +21,7 @@
   ~ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
   ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
   ~ SOFTWARE.
-  -->
-<resources>
+  --><resources>
     <string name="title_activity_about">关于</string>
     <string name="image_content_description_navigate_up">向上瀏覽</string>
     <!-- App info -->
@@ -53,11 +52,8 @@
     <string name="title_about_contribute">貢獻</string>
     <string name="title_button_about_contribute_translate">翻譯</string>
     <string name="title_button_about_contribute_issue">報告問題</string>
-
     <string name="title_activity_libraries">庫</string>
-
     <string name="title_activity_license">MIT許可執照</string>
-
     <string name="title_menu_item_about">關於</string>
     <string name="title_menu_item_open_file">打開圖片</string>
     <string name="title_menu_item_expand">展開</string>
@@ -73,8 +69,7 @@
     <string name="description_banner_no_metadata">"找不到任何中繼資料。"</string>
     <string name="image_content_description_banner_no_metadata">"找不到任何中繼資料。"</string>
     <string name="search_text_file_explorer">文檔管理器</string>
-    <string name="title_intent_chooser_share_without_metadata">分享 \"%1$s\"不帶中繼資料&#8230;</string>
-
+    <string name="title_intent_chooser_share_without_metadata">分享 \"%1$s\"不帶中繼資料…</string>
     <string name="label_attribute_file_name">名稱</string>
     <string name="label_attribute_file_size">大小</string>
     <string name="description_attribute_file_size_bytes">%1$d\u200A位元組</string>
@@ -117,9 +112,10 @@
     <string name="label_attribute_image_creation_lens">鏡頭</string>
     <string name="description_attribute_image_creation_model_serial_number">%1$s(%2$s)</string>
     <string name="label_attribute_file_creation_location">地點</string>
-    <string name="description_attribute_file_creation_location_coordinates">%2$02d&#176;\u200A%3$02d′\u200A%4$02d″ %1$s\u2003%6$02d&#176;\u200A%7$02d′\u200A%8$02d″ %5$s</string>
+    <string name="description_attribute_file_creation_location_coordinates">%2$02d°\u200A%3$02d′\u200A%4$02d″ %1$s\u2003%6$02d°\u200A%7$02d′\u200A%8$02d″ %5$s</string>
     <string name="description_attribute_file_creation_location_direction_east">東</string>
     <string name="description_attribute_file_creation_location_direction_west">西</string>
     <string name="description_attribute_file_creation_location_direction_north">北</string>
     <string name="description_attribute_file_creation_location_direction_south">南</string>
+    <string name="app_name">元資料移除器</string>
 </resources>
