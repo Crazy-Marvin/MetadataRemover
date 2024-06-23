@@ -1,1 +1,32 @@
-<div><i></i><br><br><h2><b></b></h2><br><br><br><br><h2><b></b></h2><br><br> </div>
+i>Proteja sua privacidade removendo metadados das suas fotos antes de compartilhá-las na Internet.</i>
+
+<h2><b>Recursos:</b></h2>
+
+ ✔️ Visualizar metadados
+ ✔️ Pré-visualização de imagem
+ ✔️ Remover metadados
+ ✔️ Interface simples e intuitiva
+ ✔️ Compartilhar direto do app
+
+<h2><b>Saiba mais:</b></h2>
+
+Sempre que você tira uma foto, metadados adicionais são salvos no arquivo da imagem.
+A maior parte dos smartphones <i>não te contam</i> isso.
+
+<b>Metadados se parecem com isso:</b>
+ 🕑 Que dia a foto foi tirada, e quando?
+ 🗺️ E onde, exatamente?
+ 📷 Qual câmera ou smartphone foi usado?
+ 🔧 Quais configurações de câmera foram usadas?
+ 📝 Alguma nota do fotógrafo ou da câmera?
+ 📌 Com mais e mais frequência, até mesmo suas coordenadas exatas são salvas na sua foto.
+
+Metadados às vezes são bem úteis — como quando se quer ordenar aquelas fotos tiradas no feriado, por exemplo.
+Mas assim que você compartilha suas fotos com outras pessoas em redes sociais, toda essa informação é visível <i>publicamente</i>.
+Empresas que coletam dados e stalkers podem encontrar seu <i>endereço ou local de trabalho<i> mais facilmente com os metadados ou fazer conclusões sobre a sua <i>rotina diária</i>.
+Serviços de rastreamento criam perfis publicitários mais precisos e vendem seus dados para outras organizações.
+
+Use o Removedor de Metadados para ver todos os seus dados, <i>removê-los completamente</i> e então compartilhar sua foto anonimizada!
+Dessa forma, você fica <i>anônimo</i> e <i>seguro</i> na Internet, enquanto seus amigos ainda poderão admirar o seu gatinho fofo.
+
+<i>Compartilhe com tranquilidade! 😽</i>
