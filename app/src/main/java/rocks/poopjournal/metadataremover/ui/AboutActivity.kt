@@ -111,18 +111,7 @@ class AboutActivity : AppCompatActivity() {
 
                 }
                 buttonLibraries.setOnClickListener {
-                    startActivity(
-                        LibsBuilder()
-                            .apply {
-                                autoDetect = true
-                                activityTheme = R.style.Theme_App
-                                excludeLibraries = arrayOf(
-                                    "AndroidIconics",
-                                    "fastadapter"
-                                )
-                            }
-                            .intent(this@AboutActivity, LibrariesActivity::class.java)
-                    )
+                    LibsBuilder().start(this@AboutActivity)
                 }
             }
             cardContribute.apply {

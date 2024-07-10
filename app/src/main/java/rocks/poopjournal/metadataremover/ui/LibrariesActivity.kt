@@ -25,13 +25,12 @@
 package rocks.poopjournal.metadataremover.ui
 
 import android.os.Bundle
-import com.mikepenz.aboutlibraries.Libs
 import com.mikepenz.aboutlibraries.ui.LibsActivity
 import rocks.poopjournal.metadataremover.util.Logger
 
 class LibrariesActivity : LibsActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
-        intent.putExtra(Libs.BUNDLE_TITLE, title)
+        //intent.putExtra(Libs.BUNDLE_TITLE, title)
 
         super.onCreate(savedInstanceState)
         Logger.d("Libraries")

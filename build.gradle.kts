@@ -28,12 +28,19 @@ buildscript {
     repositories {
         google()
         mavenCentral()
+        gradlePluginPortal()
     }
+
     dependencies {
-        classpath("com.android.tools.build:gradle:8.4.1")
+        classpath("com.android.tools.build:gradle:8.5.0")
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:2.0.0")
-        classpath("com.google.dagger:hilt-android-gradle-plugin:2.44")
+        classpath("com.google.dagger:hilt-android-gradle-plugin:2.51.1")
+        classpath("com.mikepenz.aboutlibraries.plugin:aboutlibraries-plugin:11.2.2")
     }
+}
+
+plugins {
+    id("com.google.devtools.ksp") version "2.0.0-1.0.21" apply false
 }
 
 /**

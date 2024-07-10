@@ -33,8 +33,9 @@ import org.gradle.internal.Cast.uncheckedCast
 plugins {
     androidApplication
     kotlinAndroid
-    kotlinKapt
+    ksp
     daggerHilt
+    id("com.mikepenz.aboutlibraries.plugin")
     //googlePlayPublishing
     //fDroidPublishing
     //jacocoAndroid
@@ -141,17 +142,7 @@ android {
     namespace = "rocks.poopjournal.metadataremover"
 }
 
-kapt {
-    javacOptions {
-        /**
-         * Increase the max error count that is displayed for annotation processors using kapt.
-         * This is needed as errors in Annotation processors
-         * (which will fail Android Data Binding) are not shown.
-         * Refer to: https://github.com/google/dagger/issues/306
-         */
-        option("-Xmaxerrs", 500)
-    }
-}
+
 
 //dependencies(Dependencies.app)
 
@@ -173,7 +164,7 @@ dependencies {
 
     //Glide
     implementation("com.github.bumptech.glide:glide:4.16.0")
-    kapt("com.github.bumptech.glide:compiler:4.16.0")
+    ksp("com.github.bumptech.glide:compiler:4.16.0")
 
     //CircleImageView
     implementation("de.hdodenhof:circleimageview:3.1.0")
@@ -186,9 +177,11 @@ dependencies {
 
     //Dagger-hilt
     implementation ("com.google.dagger:hilt-android:2.51.1")
-    kapt ("com.google.dagger:hilt-android-compiler:2.51.1")
-    kapt ("androidx.hilt:hilt-compiler:1.2.0")
+    ksp ("com.google.dagger:hilt-android-compiler:2.51.1")
+    ksp ("androidx.hilt:hilt-compiler:1.2.0")
 
+    //ffmpeg
+    implementation("com.arthenica:ffmpeg-kit-full:6.0-2.LTS")
 }
 
 

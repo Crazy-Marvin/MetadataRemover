@@ -9,8 +9,8 @@ import dagger.hilt.components.SingletonComponent
 import rocks.poopjournal.metadataremover.viewmodel.usecases.GetDescriptor
 import rocks.poopjournal.metadataremover.viewmodel.usecases.GetFileUri
 import rocks.poopjournal.metadataremover.viewmodel.usecases.MetadataHandler
-import rocks.poopjournal.metadataremover.viewmodel.usecases.SaveImages
-import rocks.poopjournal.metadataremover.viewmodel.usecases.SharedImages
+import rocks.poopjournal.metadataremover.viewmodel.usecases.SaveFiles
+import rocks.poopjournal.metadataremover.viewmodel.usecases.SharedFiles
 import javax.inject.Singleton
 
 @Module
@@ -31,8 +31,8 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun providesSharedImages (@ApplicationContext context: Context) : SharedImages {
-        return SharedImages(context = context)
+    fun providesSharedImages (@ApplicationContext context: Context) : SharedFiles {
+        return SharedFiles(context = context)
     }
 
     @Provides
@@ -43,8 +43,8 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun providesSaveImages(@ApplicationContext context: Context): SaveImages{
-        return SaveImages(context = context)
+    fun providesSaveImages(@ApplicationContext context: Context): SaveFiles{
+        return SaveFiles(context = context)
     }
 
 }

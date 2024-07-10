@@ -3,13 +3,13 @@ package rocks.poopjournal.metadataremover.viewmodel.usecases
 import android.content.Context
 import javax.inject.Inject
 
-class SharedImages @Inject constructor(
+class SharedFiles @Inject constructor(
     private val context: Context
 ) {
 
     val dir by lazy {
         context.filesDir
-            .resolve("images")
+            .resolve("metadata-remover-files")
             .apply { mkdirs() }
     }
 }

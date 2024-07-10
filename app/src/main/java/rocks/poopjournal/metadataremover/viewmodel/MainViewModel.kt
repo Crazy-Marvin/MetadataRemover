@@ -24,8 +24,8 @@ import rocks.poopjournal.metadataremover.util.extensions.sizeAttribute
 import rocks.poopjournal.metadataremover.viewmodel.usecases.GetDescriptor
 import rocks.poopjournal.metadataremover.viewmodel.usecases.GetFileUri
 import rocks.poopjournal.metadataremover.viewmodel.usecases.MetadataHandler
-import rocks.poopjournal.metadataremover.viewmodel.usecases.SaveImages
-import rocks.poopjournal.metadataremover.viewmodel.usecases.SharedImages
+import rocks.poopjournal.metadataremover.viewmodel.usecases.SaveFiles
+import rocks.poopjournal.metadataremover.viewmodel.usecases.SharedFiles
 import java.io.Closeable
 import java.security.SecureRandom
 import java.util.Locale
@@ -36,8 +36,8 @@ import javax.inject.Inject
 class MainViewModel @Inject constructor(
     private val getDescriptor: GetDescriptor,
     private val metadata: MetadataHandler,
-    private val sharedImages: SharedImages,
-    private val saveImage: SaveImages,
+    private val sharedFiles: SharedFiles,
+    private val saveFile: SaveFiles,
     private val fileProvider: GetFileUri
 ) : ViewModel() {
 
@@ -70,7 +70,7 @@ class MainViewModel @Inject constructor(
        _outputMetadata.value = emptyList()
     }
 
-    fun getPickedImageUris(uris: List<Uri>){
+    fun getPicketUris(uris: List<Uri>){
         uris.forEach {
             getDescriptor.openFile(it, onResult = {file, displayName, mediaType ->
                 fileViews.add(FileView(file, displayName, mediaType))
@@ -128,6 +128,7 @@ class MainViewModel @Inject constructor(
                 fileView.original,
                 fileView.output
             )
+
             fileView.output.setLastModified(random.nextLong(System.currentTimeMillis()))
             handleClearedFile(index, saveToDevice)
         }
@@ -141,7 +142,7 @@ class MainViewModel @Inject constructor(
 
         if (fileUri != null) {
             if (saveToDevice){
-                saveImage.toDevice(fileView.name, fileUri){message ->
+                saveFile.toDevice(fileView.name, fileUri){message ->
                     _toast.value = message
                 }
             } else {
@@ -168,7 +169,7 @@ class MainViewModel @Inject constructor(
         val mediaType: MediaType
     ) : Closeable {
 
-        val original = sharedImages.dir
+        val original = sharedFiles.dir
             .resolve(name)
             .apply {
                 createNewFile()
@@ -177,7 +178,7 @@ class MainViewModel @Inject constructor(
 
         val nameWithoutExtension = original.nameWithoutExtension
 
-        val output = sharedImages.dir
+        val output = sharedFiles.dir
             .resolve(generateRandomFilename() +
                     if (original.extension.isNotEmpty()) ".${original.extension.lowercase(Locale.getDefault())}" else "")
             .apply {

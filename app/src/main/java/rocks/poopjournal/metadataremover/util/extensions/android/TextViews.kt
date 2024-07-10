@@ -35,6 +35,7 @@ var TextView.textColor: Int
         setTextColor(value)
     }
 
+
 /**
  * Sets the [text] to be displayed in this [TextView].
  */

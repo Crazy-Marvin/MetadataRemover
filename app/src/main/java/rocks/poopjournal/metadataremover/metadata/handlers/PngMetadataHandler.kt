@@ -77,8 +77,6 @@ object PngMetadataHandler : MetadataHandler {
 
         usePngTransforming(inputFile, outputFile, true) { reader, writer ->
 
-            System.out.println(reader.toString())
-
             writer.copyChunksFrom(reader.chunksList, ChunkCopyBehaviour.COPY_ALL_SAFE)
 
             writer.metadata.apply {
