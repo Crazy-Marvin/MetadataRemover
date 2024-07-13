@@ -49,8 +49,7 @@ class VideoMetadataHandler(private val context: Context): MetadataHandler {
         inputFile: File,
         outputFile: File,
     ): Boolean {
-
-        println(outputFile.absolutePath)
+        check(mediaType in writableMimeTypes)
 
         val command = "-y -i ${inputFile.absolutePath} -map 0 -map_metadata -1 -c copy ${outputFile.absolutePath}"
         val session = FFmpegKit.execute(command)

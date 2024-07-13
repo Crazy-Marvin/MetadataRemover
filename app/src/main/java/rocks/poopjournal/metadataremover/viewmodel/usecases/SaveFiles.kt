@@ -25,7 +25,7 @@ class SaveFiles @Inject constructor(
         val collection = when {
             mimeType?.startsWith("image/") == true -> MediaStore.Images.Media.EXTERNAL_CONTENT_URI
             mimeType?.startsWith("video/") == true -> MediaStore.Video.Media.EXTERNAL_CONTENT_URI
-            else -> throw IllegalArgumentException("Unsupported MIME type: $mimeType")
+            else -> MediaStore.Files.getContentUri("external")
         }
 
         val uriToInsert = contentResolver.insert(collection, contentValues)

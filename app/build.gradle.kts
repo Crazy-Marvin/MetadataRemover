@@ -128,6 +128,13 @@ android {
         targetCompatibility = Versions.jvm
     }
 
+    packaging {
+        resources {
+            excludes.add("META-INF/INDEX.LIST")
+            excludes.add("META-INF/DEPENDENCIES")
+        }
+    }
+
     // Always show the result of every unit test, even if it passes.
     /*
     testOptions.unitTests.all {
@@ -182,6 +189,13 @@ dependencies {
 
     //ffmpeg
     implementation("com.arthenica:ffmpeg-kit-full:6.0-2.LTS")
+
+    //Apache POI
+    implementation ("org.apache.poi:poi:5.3.0")
+    implementation ("org.apache.poi:poi-ooxml:5.3.0")
+    implementation ("org.apache.poi:poi-scratchpad:5.2.2")
+    implementation ("org.apache.odftoolkit:simple-odf:0.8.2-incubating")
+    implementation ("com.itextpdf:itext7-core:7.1.16")
 }
 
 
