@@ -1,3 +1,4 @@
 - Support some videos 📹
+- Support some documents 📄
 - Dependency updates ⚙️
 - Translation updates 🗺️
