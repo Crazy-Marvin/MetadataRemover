@@ -36,7 +36,7 @@ _Remove any image's metadata fast and easily._
         src="https://github.com/Crazy-Marvin/MetadataRemover/assets/15004217/978819ff-a4ac-4656-ace7-a0607fca50b3.png" />
         </a>
 
-_Protect your privacy by removing metadata from your photos, videos and documents before sharing them on the internet!_
+_Protect your privacy by removing metadata from your photos, videos and documents, before sharing them on the internet!_
 
 ## Features
 
