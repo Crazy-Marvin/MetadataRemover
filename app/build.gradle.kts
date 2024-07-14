@@ -70,8 +70,8 @@ android {
         minSdk = Versions.Sdk.min
         targetSdk = Versions.Sdk.target
 
-        versionCode = 20020
-        versionName = "2.0.2"
+        versionCode = 20030
+        versionName = "2.0.3"
 
     dependenciesInfo {
         // Disables dependency metadata when building APKs.
