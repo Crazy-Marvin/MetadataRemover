@@ -12,7 +12,7 @@
 [![codecov](https://codecov.io/gh/Crazy-Marvin/MetadataRemover/branch/development/graph/badge.svg?token=ECQID61KGH)](https://codecov.io/gh/Crazy-Marvin/MetadataRemover)
 [![Hosted Weblate](https://hosted.weblate.org/widgets/metadata-remover/-/svg-badge.svg)](https://hosted.weblate.org/engage/metadata-remover/)
 [![Known Vulnerabilities](https://snyk.io/test/github/Crazy-Marvin/MetadataRemover/badge.svg?targetFile=app%2Fbuild.gradle.kts)](https://snyk.io/test/github/Crazy-Marvin/MetadataRemover?targetFile=app%2Fbuild.gradle.kts)
-[![API](https://img.shields.io/badge/API-19%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=19)
+[![API](https://img.shields.io/badge/API-26%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=26)
 ![Gradle Play Publisher](https://img.shields.io/badge/-Gradle_Play_Publisher-brightgreen?logo=gradle&link=https%3A%2F%2Fgithub.com%2FTriple-T%2Fgradle-play-publisher)
 [![F-Droid](https://img.shields.io/f-droid/v/rocks.poopjournal.MetadataRemover.svg)](https://f-droid.org/en/packages/rocks.poopjournal.MetadataRemover/)
 [![IzzyOnDroid](https://img.shields.io/endpoint?url=https://apt.izzysoft.de/fdroid/api/v1/shield/rocks.poopjournal.MetadataRemover&label=IzzyOnDroid&cacheSeconds=86400)](https://apt.izzysoft.de/fdroid/index/apk/rocks.poopjournal.metadataremover)
@@ -36,7 +36,7 @@ _Remove any image's metadata fast and easily._
         src="https://github.com/Crazy-Marvin/MetadataRemover/assets/15004217/978819ff-a4ac-4656-ace7-a0607fca50b3.png" />
         </a>
 
-_Protect your privacy by removing metadata from your photos, before sharing them on the internet!_
+_Protect your privacy by removing metadata from your photos, videos and documents before sharing them on the internet!_
 
 ## Features
 
