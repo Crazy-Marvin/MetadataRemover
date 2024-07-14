@@ -33,9 +33,9 @@ inline val PluginDependenciesSpec.kotlinAndroid: PluginDependencySpec
     // https://plugins.gradle.org/plugin/org.jetbrains.kotlin.android
     get() = kotlin("android")
 
-inline val PluginDependenciesSpec.kotlinKapt: PluginDependencySpec
+inline val PluginDependenciesSpec.ksp: PluginDependencySpec
     // https://plugins.gradle.org/plugin/org.jetbrains.kotlin.kapt
-    get() = kotlin("kapt")
+    get() = id("com.google.devtools.ksp")
 
 inline val PluginDependenciesSpec.daggerHilt: PluginDependencySpec
     // https://developer.android.com/training/dependency-injection/hilt-android

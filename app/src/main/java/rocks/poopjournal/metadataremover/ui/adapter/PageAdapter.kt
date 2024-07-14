@@ -1,6 +1,9 @@
 package rocks.poopjournal.metadataremover.ui.adapter
 
 import android.annotation.SuppressLint
+import android.content.Context
+import android.graphics.Bitmap
+import android.media.MediaMetadataRetriever
 import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
@@ -10,15 +13,19 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import rocks.poopjournal.metadataremover.R
+import rocks.poopjournal.metadataremover.model.util.SupportedTypes
 
 class PageAdapter : RecyclerView.Adapter<PageAdapter.PageViewHolder>() {
 
     private val imageUris = mutableListOf<Uri>()
+    private var mediaType = SupportedTypes.IMAGE
+
     private var lastItemClickedListener: OnLastItemClickedListener? = null
     inner class PageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val imageView: ImageView = itemView.findViewById(R.id.imageView)
         val addNewBody: View = itemView.findViewById(R.id.addNewBody)
         val addNewButton : ImageButton = itemView.findViewById(R.id.addNewButton)
+        val playIcon: ImageView = itemView.findViewById(R.id.playIcon)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PageViewHolder {
@@ -42,9 +49,15 @@ class PageAdapter : RecyclerView.Adapter<PageAdapter.PageViewHolder>() {
             holder.addNewBody.visibility = View.GONE
             holder.addNewButton.visibility = View.GONE
 
-            Glide.with(holder.imageView)
-                .load(uri)
-                .into(holder.imageView)
+            if (mediaType == SupportedTypes.IMAGE){
+                Glide.with(holder.imageView)
+                    .load(uri)
+                    .into(holder.imageView)
+            } else {
+                val thumbnail = getThumbnail(holder.imageView.context, uri)
+                holder.imageView.setImageBitmap(thumbnail)
+                holder.playIcon.visibility = View.VISIBLE
+            }
         }
     }
 
@@ -57,7 +70,7 @@ class PageAdapter : RecyclerView.Adapter<PageAdapter.PageViewHolder>() {
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setImageUris(uris: List<Uri>) {
+    fun setUris(uris: List<Uri>, type: SupportedTypes) {
         if (imageUris.isEmpty()){
             imageUris.addAll(uris)
             imageUris.add(Uri.EMPTY)
@@ -66,6 +79,7 @@ class PageAdapter : RecyclerView.Adapter<PageAdapter.PageViewHolder>() {
             imageUris.addAll(uris)
             imageUris.add(Uri.EMPTY)
         }
+        mediaType = type
         notifyDataSetChanged()
     }
 
@@ -73,6 +87,14 @@ class PageAdapter : RecyclerView.Adapter<PageAdapter.PageViewHolder>() {
     fun restart(){
         imageUris.clear()
         notifyDataSetChanged()
+    }
+
+    private fun getThumbnail(context: Context, videoUri: Uri): Bitmap? {
+        val retriever = MediaMetadataRetriever()
+        retriever.setDataSource(context, videoUri)
+        val bitmap: Bitmap? = retriever.getFrameAtTime(1, MediaMetadataRetriever.OPTION_CLOSEST)
+        retriever.release()
+        return bitmap
     }
 
     fun setOnLastItemClickedListener(listener: OnLastItemClickedListener) {

@@ -13,8 +13,17 @@
         android:layout_height="match_parent"
         app:shapeAppearanceOverlay="@style/roundedImageView"
         android:contentDescription= ""
-        android:scaleType="center"
+        android:scaleType="centerCrop"
         tools:srcCompat ="@tools:sample/backgrounds/scenic"/>
+
+    <ImageView
+        android:id="@+id/playIcon"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/ic_play"
+        app:tint="@color/white"
+        android:visibility="gone"
+        android:layout_gravity="center"/>
 
     <View
         android:id="@+id/addNewBody"

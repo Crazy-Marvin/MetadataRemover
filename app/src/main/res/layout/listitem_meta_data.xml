@@ -26,22 +26,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ui.MainActivity">
 
-    <data>
-
-        <variable
-            name="attribute"
-            type="rocks.poopjournal.metadataremover.model.metadata.Metadata.Attribute" />
-
-        <import
-                type="android.view.View"
-                alias="View"/>
-
-    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/label"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:contentDescription="@{attribute.label}">
+        android:layout_height="wrap_content">
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/baseline_start"
@@ -85,12 +74,10 @@
             app:layout_constraintTop_toTopOf="@id/baseline_top"
             app:layout_constraintBottom_toBottomOf="@id/baseline_bottom"
             app:layout_constraintStart_toStartOf="@id/baseline_start"
-                tools:src="@drawable/ic_event"
-            android:src="@{attribute.icon}"
+            tools:src="@drawable/ic_event"
             app:tint="?android:textColorSecondary"
             android:tintMode="src_in"
-                android:contentDescription="@{attribute.label}"
-                tools:ignore="UnusedAttribute"/>
+            tools:ignore="UnusedAttribute"/>
 
         <TextView
             android:id="@+id/title"
@@ -101,8 +88,7 @@
             app:layout_constraintStart_toStartOf="@id/baseline_content"
             app:layout_constraintVertical_chainStyle="packed"
             style="@style/Base.TextAppearance.AppCompat.Body2"
-            tools:text="snake_picture.jpg"
-            android:text="@{attribute.primaryValue}" />
+            tools:text="snake_picture.jpg" />
 
         <TextView
             android:id="@+id/description"
@@ -114,9 +100,7 @@
             style="@style/Base.TextAppearance.AppCompat.Body1"
             android:textColor="?android:textColorSecondary"
             tools:text="12 MP\n4032x3024px\n4.22 MB"
-                tools:visibility="visible"
-                android:visibility="@{attribute.secondaryValue != null ? View.VISIBLE : View.GONE}"
-            android:text="@{attribute.secondaryValue}" />
+            tools:visibility="visible" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

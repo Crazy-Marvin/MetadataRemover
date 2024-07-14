@@ -29,7 +29,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/frame"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     app:behavior_peekHeight="?attr/actionBarSize"
     app:behavior_hideable="false"
     app:behavior_draggable ="false"
@@ -99,14 +99,14 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list_metadata"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:clipToPadding="false"
         app:layout_constraintTop_toBottomOf="@id/divider_toolbar"
         app:layout_constraintBottom_toTopOf="@id/button_remove_and_save"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:listitem="@layout/listitem_meta_data"
-        tools:itemCount="4" />
+        tools:itemCount="20" />
 
     <ImageView
         android:id="@+id/banner_image_no_metadata"
