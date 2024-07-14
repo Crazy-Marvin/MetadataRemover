@@ -93,6 +93,16 @@ class MainActivity : AppCompatActivity(), OnLastItemClickedListener {
             }
         }
 
+    private val pickMultipleDocuments =
+        registerForActivityResult(ActivityResultContracts.OpenMultipleDocuments()) { uris ->
+            if (uris.isNotEmpty()) {
+                viewModel.getPicketUris(uris)
+                adapter.setUris(uris, SupportedTypes.DOCUMENTS)
+                currentSupportedType = SupportedTypes.DOCUMENTS
+                preparePager(true)
+            }
+        }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -174,6 +184,7 @@ class MainActivity : AppCompatActivity(), OnLastItemClickedListener {
                         showRestartConfirmationDialog(this@MainActivity, onConfirmed = {
                             metadata.clear()
                             viewModel.restart()
+                            adapter.restart()
                             binding.bottomSheet.listMetadata.apply {
                                 val adapter = adapter
                                 if (adapter is MetaAttributeAdapter) {
@@ -300,10 +311,16 @@ class MainActivity : AppCompatActivity(), OnLastItemClickedListener {
     }
 
     override fun onLastItemClicked() {
-        if (currentSupportedType == SupportedTypes.IMAGE){
-            launchPhotoPicker()
-        } else {
-            launchVideoPicker()
+        when (currentSupportedType) {
+            SupportedTypes.IMAGE -> {
+                launchPhotoPicker()
+            }
+            SupportedTypes.VIDEO -> {
+                launchVideoPicker()
+            }
+            else -> {
+                launchDocumentPicker()
+            }
         }
     }
 
@@ -313,6 +330,20 @@ class MainActivity : AppCompatActivity(), OnLastItemClickedListener {
 
     private fun launchVideoPicker(){
         pickMultipleVideos.launch(arrayOf("video/*"))
+    }
+
+    private fun launchDocumentPicker(){
+        val mimeTypes = arrayOf(
+            "application/msword",
+            "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+            "application/vnd.ms-excel",
+            "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            "application/vnd.oasis.opendocument.text",
+            "application/vnd.oasis.opendocument.spreadsheet",
+            "application/pdf"
+        )
+
+        pickMultipleDocuments.launch(mimeTypes)
     }
 
     private fun handleSendImage(intent: Intent) {
@@ -369,6 +400,11 @@ class MainActivity : AppCompatActivity(), OnLastItemClickedListener {
 
         dialogBinding.videoSelection.setOnClickListener {
             launchVideoPicker()
+            dialog.dismiss()
+        }
+
+        dialogBinding.documentSelection.setOnClickListener {
+            launchDocumentPicker()
             dialog.dismiss()
         }
     }

@@ -43,5 +43,30 @@
         android:background="@drawable/add_circle"
         android:layout_gravity="center"/>
 
+    <View
+        android:id="@+id/documentBackground"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/rounded_corner_background"
+        android:backgroundTint="@color/color_accent"
+        android:visibility="gone"/>
+
+    <ImageView
+        android:id="@+id/documentIcon"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/ic_document"
+        app:tint="@color/white"
+        android:layout_gravity="center"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/documentType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="PDF"
+        android:textSize="18sp"
+        android:layout_gravity="center"
+        android:visibility="gone"/>
 
 </FrameLayout>

@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import rocks.poopjournal.metadataremover.R
@@ -26,6 +27,9 @@ class PageAdapter : RecyclerView.Adapter<PageAdapter.PageViewHolder>() {
         val addNewBody: View = itemView.findViewById(R.id.addNewBody)
         val addNewButton : ImageButton = itemView.findViewById(R.id.addNewButton)
         val playIcon: ImageView = itemView.findViewById(R.id.playIcon)
+        val documentBackground: View = itemView.findViewById(R.id.documentBackground)
+        val documentIcon: ImageView = itemView.findViewById(R.id.documentIcon)
+        val documentType: TextView = itemView.findViewById(R.id.documentType)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PageViewHolder {
@@ -39,6 +43,11 @@ class PageAdapter : RecyclerView.Adapter<PageAdapter.PageViewHolder>() {
         if (isLastItem(position)){
             holder.addNewBody.visibility = View.VISIBLE
             holder.addNewButton.visibility = View.VISIBLE
+
+            holder.documentBackground.visibility = View.GONE
+            holder.documentIcon.visibility = View.GONE
+            holder.documentType.visibility = View.GONE
+
             holder.addNewBody.setOnClickListener {
                 lastItemClickedListener?.onLastItemClicked()
             }
@@ -53,11 +62,33 @@ class PageAdapter : RecyclerView.Adapter<PageAdapter.PageViewHolder>() {
                 Glide.with(holder.imageView)
                     .load(uri)
                     .into(holder.imageView)
-            } else {
+            } else if (mediaType == SupportedTypes.VIDEO) {
                 val thumbnail = getThumbnail(holder.imageView.context, uri)
                 holder.imageView.setImageBitmap(thumbnail)
                 holder.playIcon.visibility = View.VISIBLE
+            } else {
+                holder.documentBackground.visibility = View.VISIBLE
+                holder.documentIcon.visibility = View.VISIBLE
+                holder.documentType.visibility = View.VISIBLE
+
+                val docType = getMimeTypeFromUri(holder.itemView.context, uri)
+                holder.documentType.text = docType
             }
+        }
+    }
+
+    private fun getMimeTypeFromUri(context: Context, uri: Uri): String {
+        val mimeType = context.contentResolver.getType(uri) ?: return "Unknown type"
+
+        return when {
+            mimeType.startsWith("application/vnd.openxmlformats-officedocument.wordprocessingml.document") -> "DOCX"
+            mimeType.startsWith("application/msword") -> "DOC"
+            mimeType.startsWith("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet") -> "XLSX"
+            mimeType.startsWith("application/vnd.ms-excel") -> "XLS"
+            mimeType.startsWith("application/vnd.oasis.opendocument.text") -> "ODT"
+            mimeType.startsWith("application/vnd.oasis.opendocument.spreadsheet") -> "ODS"
+            mimeType.startsWith("application/pdf") -> "PDF"
+            else -> "Other ($mimeType)"
         }
     }
 
