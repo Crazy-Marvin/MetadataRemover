@@ -24,7 +24,7 @@
 <paths>
 
     <files-path
-        name="images"
-        path="images/" />
+        name="metadata-remover-files"
+        path="metadata-remover-files/" />
 
 </paths>

@@ -27,6 +27,8 @@ package rocks.poopjournal.metadataremover.ui
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.os.Parcelable
@@ -46,8 +48,10 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import dagger.hilt.android.AndroidEntryPoint
 import rocks.poopjournal.metadataremover.R
 import rocks.poopjournal.metadataremover.databinding.ActivityMainBinding
+import rocks.poopjournal.metadataremover.databinding.TypeSelectorDialogBinding
 import rocks.poopjournal.metadataremover.model.metadata.Metadata
 import rocks.poopjournal.metadataremover.model.resources.Resource
+import rocks.poopjournal.metadataremover.model.util.SupportedTypes
 import rocks.poopjournal.metadataremover.ui.adapter.OnLastItemClickedListener
 import rocks.poopjournal.metadataremover.ui.adapter.PageAdapter
 import rocks.poopjournal.metadataremover.util.extensions.android.getThemeColor
@@ -67,12 +71,34 @@ class MainActivity : AppCompatActivity(), OnLastItemClickedListener {
     private lateinit var adapter: PageAdapter
 
     private val metadata: ArrayList<Resource<Metadata>> = arrayListOf()
+    private var currentSupportedType = SupportedTypes.IMAGE
 
     private val pickMultipleMedia =
         registerForActivityResult(ActivityResultContracts.OpenMultipleDocuments()) { uris ->
             if (uris.isNotEmpty()) {
-                viewModel.getPickedImageUris(uris)
-                adapter.setImageUris(uris)
+                viewModel.getPicketUris(uris)
+                adapter.setUris(uris, SupportedTypes.IMAGE)
+                currentSupportedType = SupportedTypes.IMAGE
+                preparePager(true)
+            }
+        }
+
+    private val pickMultipleVideos =
+        registerForActivityResult(ActivityResultContracts.OpenMultipleDocuments()) { uris ->
+            if (uris.isNotEmpty()) {
+                viewModel.getPicketUris(uris)
+                adapter.setUris(uris, SupportedTypes.VIDEO)
+                currentSupportedType = SupportedTypes.VIDEO
+                preparePager(true)
+            }
+        }
+
+    private val pickMultipleDocuments =
+        registerForActivityResult(ActivityResultContracts.OpenMultipleDocuments()) { uris ->
+            if (uris.isNotEmpty()) {
+                viewModel.getPicketUris(uris)
+                adapter.setUris(uris, SupportedTypes.DOCUMENTS)
+                currentSupportedType = SupportedTypes.DOCUMENTS
                 preparePager(true)
             }
         }
@@ -159,6 +185,13 @@ class MainActivity : AppCompatActivity(), OnLastItemClickedListener {
                             metadata.clear()
                             viewModel.restart()
                             adapter.restart()
+                            binding.bottomSheet.listMetadata.apply {
+                                val adapter = adapter
+                                if (adapter is MetaAttributeAdapter) {
+                                    adapter.attributes = emptySet()
+                                    adapter.notifyDataSetChanged()
+                                }
+                            }
                             preparePager(false)
                         })
                     }
@@ -177,11 +210,11 @@ class MainActivity : AppCompatActivity(), OnLastItemClickedListener {
             }
 
             preview.bannerImageOpenImage.setOnClickListener {
-                launchPhotoPicker()
+                showTypeSelectionDialog()
             }
 
             bottomSheet.addPicture.setOnClickListener {
-                launchPhotoPicker()
+                showTypeSelectionDialog()
             }
 
             bottomSheet.buttonRemoveAndSave.setOnClickListener {
@@ -278,11 +311,39 @@ class MainActivity : AppCompatActivity(), OnLastItemClickedListener {
     }
 
     override fun onLastItemClicked() {
-        launchPhotoPicker()
+        when (currentSupportedType) {
+            SupportedTypes.IMAGE -> {
+                launchPhotoPicker()
+            }
+            SupportedTypes.VIDEO -> {
+                launchVideoPicker()
+            }
+            else -> {
+                launchDocumentPicker()
+            }
+        }
     }
 
     private fun launchPhotoPicker() {
         pickMultipleMedia.launch(arrayOf("image/png", "image/jpeg"))
+    }
+
+    private fun launchVideoPicker(){
+        pickMultipleVideos.launch(arrayOf("video/*"))
+    }
+
+    private fun launchDocumentPicker(){
+        val mimeTypes = arrayOf(
+            "application/msword",
+            "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+            "application/vnd.ms-excel",
+            "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            "application/vnd.oasis.opendocument.text",
+            "application/vnd.oasis.opendocument.spreadsheet",
+            "application/pdf"
+        )
+
+        pickMultipleDocuments.launch(mimeTypes)
     }
 
     private fun handleSendImage(intent: Intent) {
@@ -290,8 +351,8 @@ class MainActivity : AppCompatActivity(), OnLastItemClickedListener {
             val uris = arrayListOf<Uri>()
             uris.add(uri)
 
-            viewModel.getPickedImageUris(uris)
-            adapter.setImageUris(uris)
+            viewModel.getPicketUris(uris)
+            adapter.setUris(uris, SupportedTypes.IMAGE)
             preparePager(true)
         }
     }
@@ -304,8 +365,8 @@ class MainActivity : AppCompatActivity(), OnLastItemClickedListener {
                 uris.add(uri as Uri)
             }
 
-            viewModel.getPickedImageUris(uris)
-            adapter.setImageUris(uris)
+            viewModel.getPicketUris(uris)
+            adapter.setUris(uris, SupportedTypes.IMAGE)
             preparePager(true)
         }
     }
@@ -321,5 +382,30 @@ class MainActivity : AppCompatActivity(), OnLastItemClickedListener {
                 dialog.dismiss()
             }
             .show()
+    }
+
+    private fun showTypeSelectionDialog(){
+        val dialogBinding = TypeSelectorDialogBinding.inflate(layoutInflater)
+        val builder = android.app.AlertDialog.Builder(this)
+        builder.setView(dialogBinding.root)
+
+        val dialog = builder.create()
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.show()
+
+        dialogBinding.pictureSelection.setOnClickListener {
+            launchPhotoPicker()
+            dialog.dismiss()
+        }
+
+        dialogBinding.videoSelection.setOnClickListener {
+            launchVideoPicker()
+            dialog.dismiss()
+        }
+
+        dialogBinding.documentSelection.setOnClickListener {
+            launchDocumentPicker()
+            dialog.dismiss()
+        }
     }
 }

@@ -33,8 +33,9 @@ import org.gradle.internal.Cast.uncheckedCast
 plugins {
     androidApplication
     kotlinAndroid
-    kotlinKapt
+    ksp
     daggerHilt
+    id("com.mikepenz.aboutlibraries.plugin")
     //googlePlayPublishing
     //fDroidPublishing
     //jacocoAndroid
@@ -69,8 +70,8 @@ android {
         minSdk = Versions.Sdk.min
         targetSdk = Versions.Sdk.target
 
-        versionCode = 20020
-        versionName = "2.0.2"
+        versionCode = 20030
+        versionName = "2.0.3"
 
     dependenciesInfo {
         // Disables dependency metadata when building APKs.
@@ -127,6 +128,13 @@ android {
         targetCompatibility = Versions.jvm
     }
 
+    packaging {
+        resources {
+            excludes.add("META-INF/INDEX.LIST")
+            excludes.add("META-INF/DEPENDENCIES")
+        }
+    }
+
     // Always show the result of every unit test, even if it passes.
     /*
     testOptions.unitTests.all {
@@ -141,31 +149,21 @@ android {
     namespace = "rocks.poopjournal.metadataremover"
 }
 
-kapt {
-    javacOptions {
-        /**
-         * Increase the max error count that is displayed for annotation processors using kapt.
-         * This is needed as errors in Annotation processors
-         * (which will fail Android Data Binding) are not shown.
-         * Refer to: https://github.com/google/dagger/issues/306
-         */
-        option("-Xmaxerrs", 500)
-    }
-}
+
 
 //dependencies(Dependencies.app)
 
 dependencies {
 
-    implementation("androidx.core:core-ktx:1.12.0")
-    implementation ("androidx.activity:activity-ktx:1.8.2")
-    implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("com.google.android.material:material:1.11.0")
+    implementation("androidx.core:core-ktx:1.13.1")
+    implementation ("androidx.activity:activity-ktx:1.9.0")
+    implementation("androidx.appcompat:appcompat:1.7.0")
+    implementation("com.google.android.material:material:1.12.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
 
     //Metadata Extractors
     implementation("com.drewnoakes:metadata-extractor:2.19.0")
-    implementation("androidx.exifinterface:exifinterface:1.0.0")
+    implementation("androidx.exifinterface:exifinterface:1.3.7")
     implementation("ar.com.hjg:pngj:2.1.0") {
         // Explicitly exclude the AWT library, as that is not available on Android.
         exclude(group = "java.awt.image")
@@ -173,22 +171,31 @@ dependencies {
 
     //Glide
     implementation("com.github.bumptech.glide:glide:4.16.0")
-    kapt("com.github.bumptech.glide:compiler:4.16.0")
+    ksp("com.github.bumptech.glide:compiler:4.16.0")
 
     //CircleImageView
     implementation("de.hdodenhof:circleimageview:3.1.0")
 
     //Timber
-    implementation("com.jakewharton.timber:timber:4.7.1")
+    implementation("com.jakewharton.timber:timber:5.0.1")
 
     //About libraries
-    implementation("com.mikepenz:aboutlibraries:6.2.0-rc01")
+    implementation("com.mikepenz:aboutlibraries:11.2.2")
 
     //Dagger-hilt
     implementation ("com.google.dagger:hilt-android:2.51.1")
-    kapt ("com.google.dagger:hilt-android-compiler:2.51.1")
-    kapt ("androidx.hilt:hilt-compiler:1.2.0")
+    ksp ("com.google.dagger:hilt-android-compiler:2.51.1")
+    ksp ("androidx.hilt:hilt-compiler:1.2.0")
 
+    //ffmpeg
+    implementation("com.arthenica:ffmpeg-kit-full:6.0-2.LTS")
+
+    //Apache POI
+    implementation ("org.apache.poi:poi:5.3.0")
+    implementation ("org.apache.poi:poi-ooxml:5.3.0")
+    implementation ("org.apache.poi:poi-scratchpad:5.2.2")
+    implementation ("org.apache.odftoolkit:simple-odf:0.8.2-incubating")
+    implementation ("com.itextpdf:itext7-core:7.1.16")
 }
 
 

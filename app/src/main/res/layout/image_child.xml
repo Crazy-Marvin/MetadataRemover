@@ -13,8 +13,17 @@
         android:layout_height="match_parent"
         app:shapeAppearanceOverlay="@style/roundedImageView"
         android:contentDescription= ""
-        android:scaleType="center"
+        android:scaleType="centerCrop"
         tools:srcCompat ="@tools:sample/backgrounds/scenic"/>
+
+    <ImageView
+        android:id="@+id/playIcon"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/ic_play"
+        app:tint="@color/white"
+        android:visibility="gone"
+        android:layout_gravity="center"/>
 
     <View
         android:id="@+id/addNewBody"
@@ -34,5 +43,30 @@
         android:background="@drawable/add_circle"
         android:layout_gravity="center"/>
 
+    <View
+        android:id="@+id/documentBackground"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/rounded_corner_background"
+        android:backgroundTint="@color/color_accent"
+        android:visibility="gone"/>
+
+    <ImageView
+        android:id="@+id/documentIcon"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/ic_document"
+        app:tint="@color/white"
+        android:layout_gravity="center"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/documentType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="PDF"
+        android:textSize="18sp"
+        android:layout_gravity="center"
+        android:visibility="gone"/>
 
 </FrameLayout>

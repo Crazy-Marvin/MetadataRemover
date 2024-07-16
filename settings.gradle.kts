@@ -28,10 +28,10 @@ dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
         google()
+        gradlePluginPortal()
         mavenCentral()
         maven ( url = "https://jitpack.io")
         maven( url = "https://oss.sonatype.org/content/repositories/snapshots/")
-        gradlePluginPortal()
         jcenter()
     }
 }

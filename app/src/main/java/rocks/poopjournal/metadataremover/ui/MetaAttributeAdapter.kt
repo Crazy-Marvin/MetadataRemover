@@ -24,6 +24,7 @@
 
 package rocks.poopjournal.metadataremover.ui
 
+import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -33,6 +34,7 @@ import rocks.poopjournal.metadataremover.model.metadata.Metadata
 import rocks.poopjournal.metadataremover.ui.MetaAttributeAdapter.ViewHolder
 import rocks.poopjournal.metadataremover.util.extensions.android.getThemeColor
 import rocks.poopjournal.metadataremover.util.extensions.android.layoutInflater
+import rocks.poopjournal.metadataremover.util.extensions.android.setImage
 
 class MetaAttributeAdapter(
         attributes: Set<Metadata.Attribute> = emptySet())
@@ -64,8 +66,20 @@ class MetaAttributeAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val attribute = _attributes[position]
-        holder.binding.attribute = attribute
-        holder.binding.executePendingBindings()
+        val labelText = attribute.label.load(holder.itemView.context)
+        val primaryValue = attribute.primaryValue.load(holder.itemView.context)
+        val secondaryValue = attribute.secondaryValue?.load(holder.itemView.context)
+
+        with(holder.binding) {
+            title.text = primaryValue
+            label.contentDescription = labelText
+            icon.contentDescription = labelText
+            icon.setImage(attribute.icon)
+            description.visibility = if (secondaryValue != null) View.VISIBLE else View.GONE
+            description.text = secondaryValue
+
+            executePendingBindings()
+        }
     }
 
     class ViewHolder(internal val binding: ListitemMetaDataBinding)
