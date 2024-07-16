@@ -1,0 +1,4 @@
+- Add Dark Mode 🌑
+- Support Per-app Language Preferences 🗣️
+- Dependency Updates ⚙️
+- Translation Updates 🗺️
