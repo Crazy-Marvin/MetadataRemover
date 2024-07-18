@@ -135,6 +135,15 @@ android {
         }
     }
 
+    splits {
+        abi {
+            isEnable = true
+            reset()
+            include("x86", "x86_64", "armeabi-v7a", "arm64-v8a")
+            isUniversalApk = false
+        }
+    }
+
     // Always show the result of every unit test, even if it passes.
     /*
     testOptions.unitTests.all {
@@ -188,7 +197,8 @@ dependencies {
     ksp ("androidx.hilt:hilt-compiler:1.2.0")
 
     //ffmpeg
-    implementation("com.arthenica:ffmpeg-kit-full:6.0-2.LTS")
+    implementation ("com.arthenica:smart-exception-java:0.2.1")
+    implementation( files("../libs/ffmpeg-kit.aar"))
 
     //Apache POI
     implementation ("org.apache.poi:poi:5.3.0")
