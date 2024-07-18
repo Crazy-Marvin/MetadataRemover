@@ -1,0 +1,7 @@
+- Dark Mode 🕶️
+- Support Themed Icon for Android 13+ 🏳️‍🌈
+- Documentation Improved 📝
+- Descriptions Improved 📝
+- Dependency Updates ⚙️
+- Translation Updates 🗺️
+- Bugfixes 🐛
