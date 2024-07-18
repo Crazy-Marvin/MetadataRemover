@@ -144,6 +144,11 @@ android {
         }
     }
 
+    aboutLibraries {
+        // Remove the "generated" timestamp to allow for reproducible builds
+        excludeFields = arrayOf("generated")
+    }
+
     // Always show the result of every unit test, even if it passes.
     /*
     testOptions.unitTests.all {
