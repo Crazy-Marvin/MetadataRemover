@@ -21,8 +21,7 @@
   ~ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
   ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
   ~ SOFTWARE.
-  -->
-<resources>
+  --><resources>
     <string name="title_activity_about">Hakkında</string>
     <string name="image_content_description_navigate_up">Yukarı git</string>
     <!-- App info -->
@@ -53,11 +52,8 @@
     <string name="title_about_contribute">Katkıda bulun</string>
     <string name="title_button_about_contribute_translate">Çevir</string>
     <string name="title_button_about_contribute_issue">Sorun bildir</string>
-
     <string name="title_activity_libraries">Kütüphaneler</string>
-
     <string name="title_activity_license">MIT Lisansı</string>
-
     <string name="title_menu_item_about">Hakkında</string>
     <string name="title_menu_item_open_file">Fotoğraf aç</string>
     <string name="title_menu_item_expand">Genişlet</string>
@@ -73,8 +69,7 @@
     <string name="description_banner_no_metadata">"Metadata bulunamadı."</string>
     <string name="image_content_description_banner_no_metadata">"Metadata bulunamadı."</string>
     <string name="search_text_file_explorer">dosya gezgini</string>
-    <string name="title_intent_chooser_share_without_metadata">\"%1$s\" dosyasını &#8230; metadata\'sı olmadan paylaş</string>
-
+    <string name="title_intent_chooser_share_without_metadata">\"%1$s\" dosyasını … metadata\'sı olmadan paylaş</string>
     <string name="label_attribute_file_name">İsim</string>
     <string name="label_attribute_file_size">Boyut</string>
     <string name="description_attribute_file_size_bytes">%1$d\u200ABayt</string>
@@ -117,9 +112,10 @@
     <string name="label_attribute_image_creation_lens">Lens</string>
     <string name="description_attribute_image_creation_model_serial_number">%1$s (%2$s)</string>
     <string name="label_attribute_file_creation_location">Konum</string>
-    <string name="description_attribute_file_creation_location_coordinates">%2$02d&#176;\u200A%3$02d′\u200A%4$02d″ %1$s\u2003%6$02d&#176;\u200A%7$02d′\u200A%8$02d″ %5$s</string>
+    <string name="description_attribute_file_creation_location_coordinates">%2$02d°\u200A%3$02d′\u200A%4$02d″ %1$s\u2003%6$02d°\u200A%7$02d′\u200A%8$02d″ %5$s</string>
     <string name="description_attribute_file_creation_location_direction_east">Doğu</string>
     <string name="description_attribute_file_creation_location_direction_west">Batı</string>
     <string name="description_attribute_file_creation_location_direction_north">Kuzey</string>
     <string name="description_attribute_file_creation_location_direction_south">Güney</string>
+    <string name="app_name">Metadata Kaldırıcı</string>
 </resources>
