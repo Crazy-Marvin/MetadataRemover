@@ -27,16 +27,21 @@ package rocks.poopjournal.metadataremover.ui
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.provider.Settings
+import android.view.View
 import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.app.NavUtils
 import androidx.core.net.toUri
 import com.mikepenz.aboutlibraries.LibsBuilder
 import rocks.poopjournal.metadataremover.R
 import rocks.poopjournal.metadataremover.databinding.ActivityAboutBinding
 import rocks.poopjournal.metadataremover.util.extensions.android.activity
+import java.util.Locale
 
 
 class AboutActivity : AppCompatActivity() {
@@ -122,8 +127,28 @@ class AboutActivity : AppCompatActivity() {
                     launchUrl(R.string.url_button_about_contribute_issue)
                 }
             }
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU){
+                val localeList = AppCompatDelegate.getApplicationLocales()
+
+                val currentLocaleName = if (!localeList.isEmpty) {
+                    AppCompatDelegate.getApplicationLocales()[0]?.displayName
+                } else {
+                    Locale.getDefault().displayName
+                }
+
+                cardLanguage.root.visibility = View.VISIBLE
+                cardLanguage.languajePicker.text = currentLocaleName
+                cardLanguage.languajePicker.setOnClickListener {
+                    val intent = Intent(Settings.ACTION_APP_LOCALE_SETTINGS)
+                    intent.data = Uri.fromParts("package", packageName, null)
+                    startActivity(intent)
+                }
+            }
         }
     }
+
+
 
     private fun launchUrl(@StringRes urlRes: Int) {
         try {
