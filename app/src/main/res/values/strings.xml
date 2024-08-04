@@ -24,6 +24,6 @@
 <resources>
 
     <string name="app_name">Metadata Remover</string>
-    <string name="languaje">Languaje</string>
+    <string name="languaje">Language</string>
 
 </resources>
