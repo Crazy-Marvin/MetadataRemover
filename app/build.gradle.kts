@@ -214,7 +214,7 @@ dependencies {
     implementation ("org.apache.poi:poi-ooxml:5.3.0")
     implementation ("org.apache.poi:poi-scratchpad:5.3.0")
     implementation ("org.apache.odftoolkit:simple-odf:0.8.2-incubating")
-    implementation ("com.itextpdf:itext7-core:8.0.5")
+    implementation ("com.itextpdf:itext7-core:7.1.15")
 }
 
 
