@@ -3,10 +3,8 @@ package rocks.poopjournal.metadataremover.metadata.handlers
 import android.content.Context
 import android.net.Uri
 import androidx.core.net.toUri
-import com.itextpdf.kernel.pdf.PdfDocument
-import com.itextpdf.kernel.pdf.PdfName
-import com.itextpdf.kernel.pdf.PdfReader
-import com.itextpdf.kernel.pdf.PdfWriter
+import com.tom_roush.pdfbox.pdmodel.PDDocument
+import com.tom_roush.pdfbox.pdmodel.PDDocumentInformation
 import org.apache.poi.hssf.usermodel.HSSFWorkbook
 import org.apache.poi.hwpf.HWPFDocument
 import org.apache.poi.poifs.filesystem.OfficeXmlFileException
@@ -500,9 +498,8 @@ class DocumentMetadataHandler(private val context: Context) : MetadataHandler {
     //PDF
     private fun readPDFMetadata(context: Context, uri: Uri, metadataList: MutableList<Metadata.Attribute>) {
         context.contentResolver.openInputStream(uri)?.use { inputStream ->
-            val reader = PdfReader(inputStream)
-            val pdfDocument = PdfDocument(reader)
-            val info = pdfDocument.documentInfo
+            val document = PDDocument.load(inputStream)
+            val info = document.documentInformation
 
             info.author?.takeIf { it.isNotBlank() }?.let {
                 metadataList.add(Metadata.Attribute(label = Text("Author"), icon = Image(R.drawable.ic_person), primaryValue = Text(info.author)))
@@ -520,32 +517,50 @@ class DocumentMetadataHandler(private val context: Context) : MetadataHandler {
                 metadataList.add(Metadata.Attribute(label = Text("Creator"), icon = Image(R.drawable.ic_build), primaryValue = Text(info.creator)))
             }
 
-            pdfDocument.close()
-            reader.close()
+            info.producer?.takeIf { it.isNotBlank() }?.let {
+                metadataList.add(Metadata.Attribute(label = Text("Producer"), icon = Image(R.drawable.ic_apps), primaryValue = Text(info.producer)))
+            }
+
+            info.creationDate?.let {
+                metadataList.add(Metadata.Attribute(label = Text("Created Date"), icon = Image(R.drawable.ic_calendar_today), primaryValue = Text(convertDate(info.creationDate.time))))
+            }
+
+            info.modificationDate?.let {
+                metadataList.add(Metadata.Attribute(label = Text("Modification Date"), icon = Image(R.drawable.ic_update), primaryValue = Text(convertDate(info.modificationDate.time))))
+            }
+
+            document.close()
         }
     }
 
     private fun removePDFMetadata(inputFile: File, outputFile: File) {
-        val tempFile = File(outputFile.absolutePath + ".temp")
-        PdfDocument(PdfReader(inputFile), PdfWriter(tempFile)).use { pdfDoc ->
-            pdfDoc.documentInfo.apply {
-                author = ""
-                title = ""
-                subject = ""
-                keywords = ""
-                creator = ""
+        FileInputStream(inputFile).use { inputStream ->
+            PDDocument.load(inputStream).use { document ->
+                val info: PDDocumentInformation = document.documentInformation
+
+                info.title = ""
+                info.author = ""
+                info.subject = ""
+                info.keywords = ""
+                info.creator = ""
+                info.producer = ""
+                info.creationDate = null
+                info.modificationDate = null
+
+                FileOutputStream(outputFile).use { outputStream ->
+                    document.save(outputStream)
+                }
             }
         }
-        tempFile.renameTo(outputFile)
     }
 
-    private fun convertDate(date: Date): String {
-        val formatter = SimpleDateFormat("dd MMM yyyy, HH:mm:ss", Locale.getDefault())
-        return formatter.format(date)
-    }
+private fun convertDate(date: Date): String {
+val formatter = SimpleDateFormat("dd MMM yyyy, HH:mm:ss", Locale.getDefault())
+return formatter.format(date)
+}
 
-    private fun getStartOfTimeDate(): Date {
-        val calendar = GregorianCalendar(1970, 0, 1)
-        return calendar.time
-    }
+private fun getStartOfTimeDate(): Date {
+val calendar = GregorianCalendar(1970, 0, 1)
+return calendar.time
+}
 }
