@@ -25,5 +25,8 @@
 
     <string name="app_name">Metadata Remover</string>
     <string name="languaje">Language</string>
+    <string name="documents">Documents</string>
+    <string name="pictures">Pictures</string>
+    <string name="video_audio">Video/Audio</string>
 
 </resources>

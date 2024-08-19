@@ -16,7 +16,7 @@ import rocks.poopjournal.metadataremover.model.resources.MediaTypes
 import rocks.poopjournal.metadataremover.model.resources.Text
 import java.io.File
 
-class VideoMetadataHandler(private val context: Context): MetadataHandler {
+class AudioVideoMetadataHandler(private val context: Context): MetadataHandler {
 
     override val readableMimeTypes =    MediaTypes[MediaTypes.AVI_VIDEO]    +
                                         MediaTypes[MediaTypes.MP4_VIDEO]    +
@@ -24,7 +24,12 @@ class VideoMetadataHandler(private val context: Context): MetadataHandler {
                                         MediaTypes[ MediaTypes.OGG_VIDEO]   +
                                         MediaTypes[ MediaTypes.QUICKTIME]   +
                                         MediaTypes[ MediaTypes.WEBM_VIDEO]  +
-                                        MediaTypes[ MediaTypes.WMV]
+                                        MediaTypes[ MediaTypes.WMV]         +
+                                        MediaTypes[ MediaTypes.MP4_AUDIO]   +
+                                        MediaTypes[ MediaTypes.MPEG_AUDIO]  +
+                                        MediaTypes[ MediaTypes.OGG_AUDIO]   +
+                                        MediaTypes[ MediaTypes.WEBM_AUDIO]  +
+                                        MediaTypes[ MediaTypes.WAV_AUDIO]
 
     override val writableMimeTypes =    MediaTypes[MediaTypes.AVI_VIDEO]    +
                                         MediaTypes[MediaTypes.MP4_VIDEO]    +
@@ -32,7 +37,12 @@ class VideoMetadataHandler(private val context: Context): MetadataHandler {
                                         MediaTypes[ MediaTypes.OGG_VIDEO]   +
                                         MediaTypes[ MediaTypes.QUICKTIME]   +
                                         MediaTypes[ MediaTypes.WEBM_VIDEO]  +
-                                        MediaTypes[ MediaTypes.WMV]
+                                        MediaTypes[ MediaTypes.WMV]         +
+                                        MediaTypes[ MediaTypes.MP4_AUDIO]   +
+                                        MediaTypes[ MediaTypes.MPEG_AUDIO]  +
+                                        MediaTypes[ MediaTypes.OGG_AUDIO]   +
+                                        MediaTypes[ MediaTypes.WEBM_AUDIO]  +
+                                        MediaTypes[ MediaTypes.WAV_AUDIO]
 
     override suspend fun loadMetadata(mediaType: MediaType, inputFile: File): Metadata? {
         check(mediaType in readableMimeTypes)

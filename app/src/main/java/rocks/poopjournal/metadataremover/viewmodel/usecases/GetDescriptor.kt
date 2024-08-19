@@ -23,7 +23,7 @@ class GetDescriptor @Inject constructor(
         }
 
         val fileName = uri.getFileName(context)?.takeIf(String::isNotBlank)
-        println("FILENAME $fileName")
+
         if (fileName == null) {
             Logger.w("Could not get name from file '$uri'.")
             return
