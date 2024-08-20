@@ -329,7 +329,7 @@ class MainActivity : AppCompatActivity(), OnLastItemClickedListener {
     }
 
     private fun launchVideoPicker(){
-        pickMultipleVideos.launch(arrayOf("video/*"))
+        pickMultipleVideos.launch(arrayOf("video/*", "audio/*"))
     }
 
     private fun launchDocumentPicker(){

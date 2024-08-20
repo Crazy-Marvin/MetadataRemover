@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:drawablePadding="16dp"
-            android:text="Pictures"
+            android:text="@string/pictures"
             android:textSize="18sp"
             android:textStyle="bold"
             app:drawableStartCompat="@drawable/ic_image" />
@@ -44,7 +44,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:drawablePadding="16dp"
-            android:text="Videos"
+            android:text="@string/video_audio"
             android:textSize="18sp"
             android:textStyle="bold"
             app:drawableStartCompat="@drawable/ic_video" />
@@ -67,7 +67,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:drawablePadding="16dp"
-            android:text="Documents"
+            android:text="@string/documents"
             android:textSize="18sp"
             android:textStyle="bold"
             app:drawableStartCompat="@drawable/ic_document" />

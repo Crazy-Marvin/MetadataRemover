@@ -6,7 +6,7 @@ import rocks.poopjournal.metadataremover.metadata.handlers.DocumentMetadataHandl
 import rocks.poopjournal.metadataremover.metadata.handlers.ExifMetadataHandler
 import rocks.poopjournal.metadataremover.metadata.handlers.FirstMatchMetadataHandler
 import rocks.poopjournal.metadataremover.metadata.handlers.PngMetadataHandler
-import rocks.poopjournal.metadataremover.metadata.handlers.VideoMetadataHandler
+import rocks.poopjournal.metadataremover.metadata.handlers.AudioVideoMetadataHandler
 import javax.inject.Inject
 
 class MetadataHandler @Inject constructor(
@@ -18,7 +18,7 @@ class MetadataHandler @Inject constructor(
             ExifMetadataHandler(context),
 //          DrewMetadataReader.toMetadataHandler(),
             PngMetadataHandler,
-            VideoMetadataHandler(context),
+            AudioVideoMetadataHandler(context),
             DocumentMetadataHandler(context)
         )
 //      , NopMetadataHandler // For testing purposes only. TODO Remove after testing.
