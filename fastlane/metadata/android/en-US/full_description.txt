@@ -25,7 +25,7 @@ Most smartphones do <i>not inform</i> you about this.
 <li> 🔧 What camera settings were used? </li>
 <li> 📝 Notes of the photographer or the camera? </li>
 <li> 📌 More and more often, even exact GPS coordinates are saved in your photo. </li>
-<li> 👥 Who created the docuemnt?</li>
+<li> 👥 Who created the document?</li>
 </ul>
 
 Metadata is sometimes very useful — for instance when sorting holiday photos.
