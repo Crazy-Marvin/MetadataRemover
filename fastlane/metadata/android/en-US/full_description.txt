@@ -32,7 +32,7 @@ Metadata is sometimes very useful — for instance when sorting holiday photos.
 
 As soon as you share files with others via social media, all this info is visible <i>publicly</i>.
 
-Data collectors and stalkers are more easily able to discover your <i>place of residence or workplace<i> from the metadata or draw conclusions about your <i>daily routine</i>.
+Data collectors and stalkers are more easily able to discover your <i>place of residence or workplace</i> from the metadata or draw conclusions about your <i>daily routine</i>.
 
 Tracking services create more comprehensive advertising profiles and sell your data to other organizations.
 
