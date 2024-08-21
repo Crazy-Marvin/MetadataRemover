@@ -52,33 +52,42 @@ _Protect your privacy by removing metadata from your photos, videos and document
  
 ## Learn more
 
-Whenever you take a picture, additional metadata is saved in the image file.
-Most smartphones do _not inform_ you about this.
+Whenever you take a picture, shoot a video or create a document additional metadata is saved in the image file.
 
-**Metadata can look like this:**
+Most smartphones do <i>not inform</i> you about this.
 
- 🕑 On which day was the picture taken, and at which time?
- 
- 🗺️ And where exactly?
- 
- 📷 Which camera or which smartphone was used?
- 
- 🔧 And which camera settings were used?
- 
- 📝 Notes of the photographer or the camera?
- 
- 📌 More and more often, even exact GPS coordinates are saved in your photo.
- 
+<b>Metadata can look like this:</b>
 
-Metadata is sometimes very useful—for instance when sorting holiday photos.
-But as soon as you share photos with others via social media, all this information is visible _publicly_.
-Data collectors and stalkers would possibly be able to discover your _place of residence or workplace_ from the metadata or draw conclusions about your _daily routine_.
-Tracking services could create more comprehensive advertising profiles and sell your data to other organizations.
+<ul>
+<li> 🕑 On which day was the picture taken, and at what time? </li>
+<li> 🗺️ And where exactly? </li>
+<li> 📷 Which camera or smartphone was used? </li>
+<li> 🔧 What camera settings were used? </li>
+<li> 📝 Notes of the photographer or the camera? </li>
+<li> 📌 More and more often, even exact GPS coordinates are saved in your photo. </li>
+<li> 👥 Who created the document?</li>    
+</ul>
 
-With our app, you can easily view all that data, _remove it entirely_, and then share the anonymized photo directly!
-That way you stay _anonymous_ and _safe_ in internet, while your friends can still admire your cute cat.
+Metadata is sometimes very useful — for instance when sorting holiday photos.
 
-_Happy sharing! 😽_
+As soon as you share files with others via social media, all this info is visible <i>publicly</i>.
+
+Data collectors and stalkers are more easily able to discover your <i>place of residence or workplace</i> from the metadata or draw conclusions about your <i>daily routine</i>.
+
+Tracking services create more comprehensive advertising profiles and sell your data to other organizations.
+
+Use the Metadata Remover to easily view all that data, <i>remove it entirely</i>, and then share the anonymized file directly!
+That way you stay <i>anonymous</i> and <i>safe</i> on the Internet, while your friends can still admire your cute cat.
+
+Those formats are supported at the moment:
+<ul>
+<li>📷 Image: PNG & JPEG</li>
+<li>📹 Video: AVI, MP4, MPEG, OGG, QUICKTIME, WEBM & WMV</li>
+<li>📝 Docs: DOCX, DOC, XLSX, XLS, ODT, ODS & PDF</li>
+<li>🎵 Audio: MP4, MPEG, OGG, WEBM & X-WAV</li>
+</ul>
+
+<i>Happy sharing! 😽</i>
 
 ## Deployment
 
