@@ -12,7 +12,7 @@
 
 <h2><b>Learn more:</b></h2>
 
-Whenever you take a picture, additional metadata is saved in the image file.
+Whenever you take a picture, shoot a video or create a document additional metadata is saved in the image file.
 
 Most smartphones do <i>not inform</i> you about this.
 
@@ -29,13 +29,21 @@ Most smartphones do <i>not inform</i> you about this.
 
 Metadata is sometimes very useful — for instance when sorting holiday photos.
 
-As soon as you share photos with others via social media, all this info is visible <i>publicly</i>.
+As soon as you share files with others via social media, all this info is visible <i>publicly</i>.
 
 Data collectors and stalkers are more easily able to discover your <i>place of residence or workplace<i> from the metadata or draw conclusions about your <i>daily routine</i>.
 
 Tracking services create more comprehensive advertising profiles and sell your data to other organizations.
 
-Use the Metadata Remover to easily view all that data, <i>remove it entirely</i>, and then share the anonymized photo directly!
+Use the Metadata Remover to easily view all that data, <i>remove it entirely</i>, and then share the anonymized file directly!
 That way you stay <i>anonymous</i> and <i>safe</i> on the Internet, while your friends can still admire your cute cat.
+
+Those formats are supported at the moment:
+<ul>
+<li>Image: PNG & JPEG</li>
+<li>Video: AVI, MP4, MPEG, OGG, QUICKTIME, WEBM & WMV</li>
+<li>Docs: DOCX, DOC, XLSX, XLS, ODT, ODS & PDF</li>
+<li>Audio: MP4, MPEG, OGG, WEBM & X-WAV</li>
+</ul>
 
 <i>Happy sharing! 😽</i>
