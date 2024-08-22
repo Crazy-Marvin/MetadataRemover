@@ -44,7 +44,7 @@ Those formats are supported at the moment:
 <li>📷 Image: PNG & JPEG</li>
 <li>📹 Video: AVI, MP4, MPEG, OGG, QUICKTIME, WEBM & WMV</li>
 <li>📝 Docs: DOCX, DOC, XLSX, XLS, ODT, ODS & PDF</li>
-<li>🎵 Audio: MP4, MPEG, OGG, WEBM & X-WAV</li>
+<li>🎵 Audio: MP4, MPEG (including AAC & MP3), OGG, WEBM & X-WAV</li>
 </ul>
 
 <i>Happy sharing! 😽</i>
