@@ -201,7 +201,7 @@ dependencies {
     implementation("com.mikepenz:aboutlibraries:11.2.2")
 
     //Dagger-hilt
-    implementation ("com.google.dagger:hilt-android:2.51.1")
+    implementation ("com.google.dagger:hilt-android:2.52")
     ksp ("com.google.dagger:hilt-android-compiler:2.52")
     ksp ("androidx.hilt:hilt-compiler:1.2.0")
 
