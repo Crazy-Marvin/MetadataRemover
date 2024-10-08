@@ -118,4 +118,8 @@
     <string name="description_attribute_file_creation_location_direction_north">Kuzey</string>
     <string name="description_attribute_file_creation_location_direction_south">Güney</string>
     <string name="app_name">Metadata Kaldırıcı</string>
+    <string name="documents">Belgeler</string>
+    <string name="video_audio">Video/Ses</string>
+    <string name="languaje">Dil</string>
+    <string name="pictures">Resimler</string>
 </resources>
