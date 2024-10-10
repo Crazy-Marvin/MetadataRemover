@@ -118,4 +118,8 @@
     <string name="description_attribute_file_creation_location_direction_north">Norte</string>
     <string name="description_attribute_file_creation_location_direction_south">Sur</string>
     <string name="app_name">Metadata Remover</string>
+    <string name="documents">Documentos</string>
+    <string name="video_audio">Vídeo/Audio</string>
+    <string name="pictures">Imágenes</string>
+    <string name="languaje">Idioma</string>
 </resources>
