@@ -118,4 +118,8 @@
     <string name="description_attribute_file_creation_location_direction_north">Північ</string>
     <string name="description_attribute_file_creation_location_direction_south">Південь</string>
     <string name="app_name">Видалення метаданих</string>
+    <string name="languaje">Мова</string>
+    <string name="documents">Документи</string>
+    <string name="pictures">Зображення</string>
+    <string name="video_audio">Відео/Аудіо</string>
 </resources>
