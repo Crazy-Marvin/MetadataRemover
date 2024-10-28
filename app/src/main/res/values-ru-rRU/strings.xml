@@ -118,4 +118,8 @@
     <string name="description_attribute_file_creation_location_direction_north">Север</string>
     <string name="description_attribute_file_creation_location_direction_south">Юг</string>
     <string name="app_name">Удаление метаданных</string>
+    <string name="video_audio">Видео/Аудио</string>
+    <string name="languaje">Язык</string>
+    <string name="documents">Документы</string>
+    <string name="pictures">Картинки</string>
 </resources>
