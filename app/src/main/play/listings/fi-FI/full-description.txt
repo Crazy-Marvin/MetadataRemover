@@ -1,0 +1,32 @@
+<i>Suojaa yksityisyyttäsi poistamalla metatiedot valokuvistasi ennen niiden jakamista Internetissä.</i>
+
+<h2><b>Ominaisuudet:</b></h2>
+
+ ✔️ Näytä metatiedot
+ ✔️ Kuvan esikatselu
+ ✔️ Poista metatiedot
+ ✔️ Yksinkertainen ja intuitiivinen käyttöliittymä
+ ✔️ Jaa suoraan sovelluksesta
+
+<h2><b>Lisätietoja:</b></h2>
+
+Aina kun otat kuvan, kuvatiedostoon tallennetaan lisää metatietoja.
+Useimmat älypuhelimet <i>eivät ilmoita</i> sinulle tästä.
+
+<b>Metatiedot voivat näyttää tältä:</b>
+ 🕑 Minä päivänä kuva on otettu ja mihin aikaan?
+ 🗺️ Ja missä tarkalleen?
+ 📷 Mitä kameraa tai älypuhelinta käytettiin?
+ 🔧 Mitä kameran asetuksia käytettiin?
+ 📝 Kuvaajan vai kameran muistiinpanoja?
+ 📌 Yhä useammin jopa tarkat GPS-koordinaatit tallentuvat valokuvaasi.
+
+Metadata on joskus erittäin hyödyllistä – esimerkiksi lomakuvien lajittelussa.
+Heti kun jaat kuvia muiden kanssa sosiaalisessa mediassa, kaikki nämä tiedot näkyvät <i>julkisesti</i>.
+Tiedonkerääjät ja piilojäljittäjät pystyvät helpommin löytämään <i>asuinpaikkasi tai työpaikkasi<i> metatiedoista tai tekemään johtopäätöksiä <i>päivittäisistä rutiineistasi</i>.
+Seurantapalvelut luovat kattavampia mainosprofiileja ja myyvät tietojasi muille organisaatioille.
+
+Käytä Metadata Removeria, helposti kaikkien tietojen näkemiseksi, <i>niiden poistamiseksi kokonaan</i> ja sitten anonymisoidun valokuvan jakamiseksi suoraan!
+Näin pysyt <i>nimettömänä</i> ja <i>turvassa</i> Internetissä, kun taas ystäväsi voivat silti ihailla söpöä kissaasi.
+
+<i>Hyvää jakamista! 😽</i>
