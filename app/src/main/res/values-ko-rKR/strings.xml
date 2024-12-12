@@ -118,4 +118,8 @@
     <string name="description_attribute_file_creation_location_direction_north">북쪽</string>
     <string name="description_attribute_file_creation_location_direction_south">남쪽</string>
     <string name="app_name">메타자료 제거기</string>
+    <string name="documents">문서</string>
+    <string name="pictures">사진</string>
+    <string name="languaje">언어</string>
+    <string name="video_audio">비디오/오디오</string>
 </resources>
