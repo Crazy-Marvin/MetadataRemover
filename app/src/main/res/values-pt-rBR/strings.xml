@@ -118,4 +118,8 @@
     <string name="description_attribute_file_creation_location_direction_north">Norte</string>
     <string name="description_attribute_file_creation_location_direction_south">Sul</string>
     <string name="app_name">Removedor de Metadados</string>
+    <string name="documents">Documentos</string>
+    <string name="video_audio">Video/Audio</string>
+    <string name="languaje">Língua</string>
+    <string name="pictures">Fotos</string>
 </resources>
