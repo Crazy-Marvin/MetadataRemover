@@ -1,0 +1,33 @@
+<i>Chroń swoją prywatność usuwając metadane z twoich zdjęć, zanim udostępnisz je do internetu.</i>
+
+<h2><b>Funkcje:</b></h2>
+
+ ✔️ Zobacz metadane
+ ✔️ Podgląd zdjęcia
+ ✔️ Usuń metadane
+ ✔️ Prosty i intuicyjny interfejs
+ ✔️ Udostępnij prosto z aplikacji
+
+<h2><Dowiedz się więcej:</b></h2>
+
+Kiedykolwiek zrobisz zdjęcie, dodatkowe metadane są zapisywane w pliku zdjęciowym.
+Większość smartfonów <i>nie informuję</i> cię o tym.
+
+<b>Metadane mogą wyglądać tak:</b>
+ 🕑 Jakiego dnia zdjęcie było zrobione, i o której godzinie?
+ 🗺️ W jakim miejscu?
+ 📷 Jaka kamera lub smartfon został użyty?
+ 🔧 Jakie ustawienia kamery były użyte?
+ 📝 Notatki fotografa lub kamery?
+ 📌 Coraz częściej, dokładne koordynaty GPS są zapisywane w twoich zdjęciach.
+
+Metadane są czasem bardzo przydatne — na przykład kiedy uporządkowujesz zdjęcia z wakacji.
+Tak szybko jak wstawiasz swoje zdjęcia na social media, wszystkie te dane są widoczne  <i>publicznie</i>.
+Kolekcjonerzy danych i stalkerzy są w stanie łatwiej znaleźć twoje <i>miejsce zamieszkania lub pracy<i> z metadanych lub określić twoją <i>codzienną rutynę</i>.
+
+Serwisy śledzące tworzą bardziej dopasowane profile reklamowe i sprzedają twoje dane do innych firm.
+
+Użyj Metadata Remover aby łatwo sprawdzić wszystkie dane, <i>całkowicie je usunąć</i>, i udostępnić anonimowe zdjęcie!
+Tym sposobem pozostajesz <i>anonimowy</i> i <i>bezpieczny</i> w internecie, kiedy twoi przyjaciele wciąż mogą podziwiać twojego słodkiego kotka.
+
+<i>Wesołego udostępniania! 😽</i>
