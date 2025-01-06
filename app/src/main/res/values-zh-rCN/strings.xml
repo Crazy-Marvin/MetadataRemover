@@ -118,4 +118,6 @@
     <string name="description_attribute_file_creation_location_direction_north">北</string>
     <string name="description_attribute_file_creation_location_direction_south">南</string>
     <string name="app_name">元数据清除器</string>
+    <string name="languaje">语言</string>
+    <string name="pictures">图片</string>
 </resources>
