@@ -118,4 +118,8 @@
     <string name="description_attribute_file_creation_location_direction_north">Utara</string>
     <string name="description_attribute_file_creation_location_direction_south">Selatan</string>
     <string name="app_name">Penghapus Metadata</string>
+    <string name="pictures">Gambar</string>
+    <string name="documents">Dokumen</string>
+    <string name="languaje">Bahasa</string>
+    <string name="video_audio">Video/Audio</string>
 </resources>
