@@ -3,6 +3,7 @@
 # Metadata Remover App For Android
 [![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/Crazy-Marvin/MetadataRemover/CI/development)](https://github.com/Crazy-Marvin/MetadataRemover/actions)
 [![License](https://img.shields.io/github/license/Crazy-Marvin/MetadataRemover.svg)](https://github.com/Crazy-Marvin/MetadataRemover/blob/trunk/LICENSE)
+[![Figma Mockups](https://img.shields.io/badge/Figma-black?logo=figma)](https://www.figma.com/file/wD8JMCudIIPFW80mDP8QJ8/Metadata-Remover?type=design&mode=design&t=nuZ7zffrFlfe3AW5-1)
 [![Last commit](https://img.shields.io/github/last-commit/Crazy-Marvin/MetadataRemover.svg?style=flat)](https://github.com/Crazy-Marvin/MetadataRemover/commits)
 [![Releases](https://img.shields.io/github/downloads/Crazy-Marvin/MetadataRemover/total.svg?style=flat)](https://github.com/Crazy-Marvin/MetadataRemover/releases)
 [![Latest tag](https://img.shields.io/github/tag/Crazy-Marvin/MetadataRemover.svg?style=flat)](https://github.com/Crazy-Marvin/MetadataRemover/tags)
