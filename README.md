@@ -21,21 +21,21 @@
 
 _Remove any image's metadata fast and easily._
 
-<a href="https://play.google.com/store/apps/details?id=rocks.poopjournal.metadataremover">
-    <img alt="Get it on Google Play"
-        height="80"
-        src="https://user-images.githubusercontent.com/15004217/36810046-fa306856-1cc9-11e8-808e-6eb8a81783c7.png" />
-        </a>  
 <a href="https://f-droid.org/packages/rocks.poopjournal.metadataremover/">
     <img alt="Get it on F-Droid"
         height="80"
-        src="https://user-images.githubusercontent.com/15004217/36919296-19b8524e-1e5d-11e8-8962-48463b1cec8a.png" />
+        src="https://f-droid.org/badge/get-it-on.png" />
         </a>
 <a href="https://apt.izzysoft.de/fdroid/index/apk/rocks.poopjournal.metadataremover">
     <img alt="Get it on IzzyOnDroid"
         height="80"
         src="https://github.com/Crazy-Marvin/MetadataRemover/assets/15004217/978819ff-a4ac-4656-ace7-a0607fca50b3.png" />
         </a>
+<a href="https://play.google.com/store/apps/details?id=rocks.poopjournal.metadataremover">
+    <img alt="Get it on Google Play"
+        height="80"
+        src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" />
+        </a> 
 
 _Protect your privacy by removing metadata from your photos, videos and documents, before sharing them on the internet!_
 
