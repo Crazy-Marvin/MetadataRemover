@@ -21,8 +21,7 @@
   ~ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
   ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
   ~ SOFTWARE.
-  -->
-<resources>
+  --><resources>
     <string name="title_activity_about">विषयी</string>
     <string name="image_content_description_navigate_up">वर नेव्हिगेट करा</string>
     <!-- App info -->
@@ -53,11 +52,8 @@
     <string name="title_about_contribute">देणे</string>
     <string name="title_button_about_contribute_translate">अनुवाद</string>
     <string name="title_button_about_contribute_issue">समस्या नोंदवा</string>
-
     <string name="title_activity_libraries">ग्रंथालय</string>
-
     <string name="title_activity_license">एमआयटि लाइसेंस</string>
-
     <string name="title_menu_item_about">विषयी</string>
     <string name="title_menu_item_open_file">उघडे चित्र</string>
     <string name="title_menu_item_expand">विस्तारणे</string>
@@ -72,8 +68,7 @@
     <string name="description_banner_no_metadata">"कुठलाही मेटाडेटा सापडत नाही."</string>
     <string name="image_content_description_banner_no_metadata">"कुठलाही मेटाडेटा सापडत नाही."</string>
     <string name="search_text_file_explorer">फाईल एक्सप्लोरर</string>
-    <string name="title_intent_chooser_share_without_metadata">मेटाडेटा &#8230; शिवाय“%1$s”शेअर करा</string>
-
+    <string name="title_intent_chooser_share_without_metadata">मेटाडेटा … शिवाय“%1$s”शेअर करा</string>
     <string name="label_attribute_file_name">नाव</string>
     <string name="label_attribute_file_size">आकार</string>
     <string name="description_attribute_file_size_bytes">%1$d\u200ABytes</string>
@@ -116,9 +111,14 @@
     <string name="label_attribute_image_creation_lens">भिंग</string>
     <string name="description_attribute_image_creation_model_serial_number">%1$s(%2$s)</string>
     <string name="label_attribute_file_creation_location">स्थान</string>
-    <string name="description_attribute_file_creation_location_coordinates">%2$02d&#176;\u200A%3$02d’\u200A%4$02d”%1$s\u2003%6$02d&#176;\u200A%7$02d′\u200A%8$02d″%5$s</string>
+    <string name="description_attribute_file_creation_location_coordinates">%2$02d°\u200A%3$02d’\u200A%4$02d”%1$s\u2003%6$02d°\u200A%7$02d′\u200A%8$02d″%5$s</string>
     <string name="description_attribute_file_creation_location_direction_east">पूर्व</string>
     <string name="description_attribute_file_creation_location_direction_west">पश्चिम</string>
     <string name="description_attribute_file_creation_location_direction_north">उत्तर</string>
     <string name="description_attribute_file_creation_location_direction_south">दक्षिण</string>
+    <string name="app_name">मेटाडेटा रिमूव्हर</string>
+    <string name="languaje">भाषा</string>
+    <string name="documents">कागदपत्रे</string>
+    <string name="pictures">चित्रे</string>
+    <string name="video_audio">व्हिडिओ/ऑडिओ</string>
 </resources>
