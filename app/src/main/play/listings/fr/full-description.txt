@@ -1,1 +1,31 @@
-<div><i>Protégez votre vie privée en supprimant les métadonnées de vos photos, avant de les partager sur Internet !</i><br><br><h2><b>Fonctionnalités :</b></h2><br><br>✔️ Afficher les métadonnées<br>✔️ Aperçu de l'image<br>✔️ Supprimer les métadonnées<br>✔️ Interface simple et intuitive<br>✔️ Partager directement depuis l'application<br><br><h2><b>Plus d'informations :</b></h2><br><br>À chaque fois que vous prenez une photo, des métadonnées supplémentaires sont enregistrées dans le fichier image.<br>La plupart des smartphones ne vous renseignent pas</i> à ce sujet.<br><br><b>Les métadonnées peuvent ressembler à ceci :</b><br> : two_o’’clock : Quel jour a été pris la photo, et à quelle heure ?<br>🗺️ Et où exactement ?<br>📷 Quelle appareil photo ou quel smartphone a été utilisé ?<br> : wclch : Et quels réglages ont été utilisés ?<br>📝 Notes du photographe ou de l'appareil ?<br>📌 De plus en plus souvent, même les coordonnées GPS exactes sont enregistrées dans votre photo.<br><br>Les métadonnées sont parfois très utiles, par exemple lors du tri des photos de vacances.<br>Mais dès que vous partagez des photos avec d'autres via les médias sociaux, toutes ces informations sont visibles <i>publiquement</i>.<br>Les collecteurs de données et les traqueurs pourraient être en mesure de découvrir votre <i>lieu de résidence ou de travail<i> à partir des métadonnées ou de tirer des conclusions sur votre <i>routine quotidienne</i>.<br>Les services de suivi pourraient créer des profils de publicité plus complets et vendre vos données à d'autres organisations.<br><br>Avec notre application, vous pouvez facilement voir toutes ces données, <i>le supprimer entièrement</i>, puis partager la photo anonymisée directement !<br>De cette façon, vous restez <i>anonyme</i> sur Internet, tandis que vos amis peuvent encore admirer votre chat tout mignon.<br><br><i>Partagez avec confiance et confidentialité ! 😽</i></i></i></div>
+<i>Protégez votre vie privée en supprimant les métadonnées de vos photos, avant de les partager sur Internet !</i>
+
+<h2><b>Fonctionnalités :</b></h2>
+
+ ✔️ Afficher les métadonnées
+ ✔️ Aperçu de l'image
+ ✔️ Supprimer les métadonnées
+ ✔️ Interface simple et intuitive
+ ✔️ Partager directement depuis l'application
+
+<h2><b>Plus d'informations :</b></h2>
+
+À chaque fois que vous prenez une photo, des métadonnées supplémentaires sont enregistrées dans le fichier image.
+La plupart des smartphones <i>ne vous renseignent pas</i> à ce sujet.
+
+<b>Les métadonnées peuvent ressembler à ceci :</b>
+ 🕑 Quel jour a été pris la photo, et à quelle heure ?
+ 🗺️ Et où exactement ?
+ 📷 Quel appareil photo ou quel smartphone a été utilisé ?
+ 🔧Et quels réglages ont été utilisés ?
+ 📝 Notes du photographe ou de l'appareil ?
+ 📌 De plus en plus souvent, même les coordonnées GPS exactes sont enregistrées dans votre photo.
+
+Les métadonnées sont parfois très utiles, par exemple lors du tri des photos de vacances.<br>Mais dès que vous partagez des photos avec d'autres via les médias sociaux, toutes ces informations sont visibles <i>publiquement</i>.
+Les collecteurs de données et les traqueurs pourraient être en mesure de découvrir votre <i>lieu de résidence ou de travail<i> à partir des métadonnées ou de tirer des conclusions sur votre <i>routine quotidienne</i>.
+Les services de suivi pourraient créer des profils de publicité plus complets et vendre vos données à d'autres organisations.
+
+Avec notre application, vous pouvez facilement voir toutes ces données, <i>le supprimer entièrement</i>, puis partager la photo anonymisée directement !
+De cette façon, vous restez <i>anonyme</i> sur Internet, tandis que vos amis peuvent encore admirer votre chat tout mignon.
+
+<i>Partagez avec confiance et confidentialité ! 😽</i></i></i></div>
