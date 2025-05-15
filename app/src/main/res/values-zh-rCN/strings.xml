@@ -117,7 +117,9 @@
     <string name="description_attribute_file_creation_location_direction_west">西</string>
     <string name="description_attribute_file_creation_location_direction_north">北</string>
     <string name="description_attribute_file_creation_location_direction_south">南</string>
-    <string name="app_name">元数据清除器</string>
+    <string name="app_name">元数据清除工具</string>
     <string name="languaje">语言</string>
     <string name="pictures">图片</string>
+    <string name="documents">文档</string>
+    <string name="video_audio">视频/音频</string>
 </resources>
