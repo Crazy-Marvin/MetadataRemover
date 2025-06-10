@@ -118,4 +118,8 @@
     <string name="description_attribute_file_creation_location_direction_north">Nord</string>
     <string name="description_attribute_file_creation_location_direction_south">Süd</string>
     <string name="app_name">Metadatenentferner</string>
+    <string name="languaje">Sprache</string>
+    <string name="documents">Dokumente</string>
+    <string name="pictures">Bilder</string>
+    <string name="video_audio">Video/ Audio</string>
 </resources>
