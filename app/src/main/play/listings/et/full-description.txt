@@ -1,0 +1,32 @@
+<i>Kaitse oma privaatsust ja eemalda fotodest enne internetis jagamist kõik metateave.</i>
+
+<h2><b>Mida see rakendus oskab:</b></h2>
+
+ ✔️ Metateabe vaatamine
+ ✔️ Pildi eelvaade
+ ✔️ Metateabe eemaldamine
+ ✔️ Lihtne ja intuitiivne kasutajaliides
+ ✔️ Faile saad edasi jagada otse rakendusest
+
+<h2><b>Lisateave:</b></h2>
+
+Millal iganes pildistad, siis alati salvestatakse fotofaili erinevat metateavet.
+Enamus nutitelefone <i>ei anna</i> sulle teada.
+
+<b>Metateave võib olla näiteks:</b>
+ 🕑 Mis päeval ja kellaajal on pilt tehtud?
+ 🗺️ Kus täpselt see juhtus?
+ 📷 Mis kaamerat või nutitelefoni kasutati?
+ 🔧 Missugused olid kaamera seadistused?
+ 📝 Missugused on pildistajaga või kaameraga märkmed?
+ 📌 Aina sagedamini salvestatakse detailselt täpsed GPS-koordinaadid otse fotofaili.
+
+Loomulikult võib metaandmetest kasu olla — näiteks puhkusepiltidest galerii koostamisel.
+Aga niipea, kui jagad neid fotosid sotsiaalmeedias, kõik see teave saab olema <i>avalikult</i> nähtav.
+Andmekogujad, jälitajad ja niisama huvilised saavad sedaviisi väga kergesti metaandmetest tuvastada <i>sinu elu- ja töökoha</i> ning neil tekib hea ülevaade sinu <i>igapäevastest harjumustest</i>.
+Võrgus toimivad jälitusteenused suudavad sinu kohta luua detailse profiili ja need andmed muudele organisatsioonidele edasi müüa.
+
+Metateabe Eemaldaja näitab sulle neid andmeid, <i>eemaldab kõik jäädavalt</i> ja alles siis jagab anonüümsemaks tehtud fotot edasi!
+Nii saad jääda Internetis <i>anonüümsemaks</i> ja <i>püsida turvalisena</i>, kuid sinu sõbrad saavad ikkagi imetleda vahvaid pilte sinu imelisest kassist.
+
+<i>Toredat jagamist! 😽</i>
