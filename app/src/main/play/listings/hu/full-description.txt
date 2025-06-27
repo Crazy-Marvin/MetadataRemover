@@ -1,1 +1,33 @@
-<div><i>Védje meg magánéletét azáltal, hogy eltávolítja a metaadatokat fotóiról, mielőtt megosztaná őket az interneten!</i><br><br><h2><b>Jellemzők:</b></h2><br><br>✔️ Metaadatok megtekintése<br> ✔️ Kép előnézete<br> ✔️ Metaadatok eltávolítása<br> ✔️ Egyszerű és intuitív kezelőfelület<br> ✔️ Megosztás közvetlenül az alkalmazásból<br><br><h2><b>Tudj meg többet:</b></h2><br><br>Amikor fényképet készít, további metaadatok kerülnek mentésre a képfájlba.<br>A legtöbb okostelefon <i>nem tájékoztat</i> erről.<br><br><b>A metaadatok így nézhetnek ki:</b><br> 🕑 Melyik napon és mikor készült a kép?<br> 🗺️ És pontosan hol?<br> 📷 Milyen kamerát vagy okostelefont használtak?<br> 🔧 És milyen kamerabeállításokat használtak?<br> 📝 A fotós vagy a fényképezőgép jegyzetei?<br> 📌 Egyre gyakrabban a pontos GPS-koordináták is elmentődnek a fényképen.<br><br>A metaadatok néha nagyon hasznosak – például az ünnepi fotók rendezésekor.<br>De amint megosztja fotóit másokkal a közösségi médián keresztül, ezek az információk <i>nyilvánosan</i> láthatók.<br>Az adatgyűjtők és a nyomozók a metaadatok alapján felderíthetik az Ön <i>lakóhelyét vagy munkahelyét<i>, vagy következtetéseket vonhatnak le a <i>napi rutinjáról</i>.<br>A nyomkövetési szolgáltatások átfogóbb hirdetési profilokat hozhatnak létre, és eladhatják adatait más szervezeteknek.<br><br>Alkalmazásunkkal könnyedén megtekintheti az összes adatot, <i>teljesen eltávolíthatja őket</i>, majd közvetlenül megoszthatja az anonimizált fotót!<br>Így Ön <i>névtelen</i> és <i>biztonságban</i> marad az interneten, miközben barátai továbbra is megcsodálhatják aranyos macskáját.<br><br><i>Boldog megosztást! 😽</i></i></i></div>
+<i>Védd meg a magánéleted: távolítsd el a metaadatokat a fotóidról, mielőtt megosztanád őket az interneten!</i>
+
+<h2><b>Funkciók:</b></h2>
+
+ ✔️ Metaadatok megtekintése  
+ ✔️ Kép előnézete  
+ ✔️ Metaadatok eltávolítása  
+ ✔️ Egyszerű, intuitív kezelőfelület  
+ ✔️ Megosztás közvetlenül az alkalmazásból  
+
+<h2><b>Tudj meg többet:</b></h2>
+
+Amikor fényképet készítesz, a képfájl extra adatokat is tartalmaz.  
+A legtöbb okostelefon <i>nem szól</i> erről.
+
+<b>A metaadatok például ilyenek lehetnek:</b>  
+🕑 Melyik napon készült a kép és mikor?  
+🗺️ Pontosan hol?  
+📷 Milyen készülékkel?  
+🔧 Milyen kamera-beállításokat használt a telefon?  
+📝 Jegyzetek a fotóstól vagy a kamerától?  
+📌 Egyre gyakrabban még a GPS-koordináták is benne vannak.
+
+Ezek az adatok néha hasznosak – például amikor a nyaralós képeket rendezed.  
+De ha feltöltöd a képeket közösségi médiára, mindenki számára <i>láthatóvá</i> válnak.  
+Az adatgyűjtők vagy zaklatók könnyen megtudhatják, hol laksz vagy dolgozol, és következtethetnek a <i>napirendedre</i> is.  
+A nyomkövető szolgáltatások részletes reklámprofilt készítenek rólad, és el is adhatják az adataidat.
+
+A Metadata Eltávolító megmutatja, milyen adatokat tartalmaz a kép, lehetővé teszi, hogy <i>mindet töröld</i>, és aztán az anonimizált verziót közvetlenül meg is oszthatod!
+
+Így <i>névtelen</i> és <i>biztonságos</i> maradsz a neten — a barátaid pedig továbbra is csodálhatják a cuki cicádat.  
+
+<i>Oszd meg bátran! 😽</i>
