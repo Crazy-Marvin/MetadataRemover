@@ -4,7 +4,7 @@
 
  ✔️ Metaadatok megtekintése 
  ✔️ Kép előnézete 
- ✔️ Metaadatok eltávolítása  
+ ✔️ Metaadatok eltávolítása 
  ✔️ Egyszerű, intuitív kezelőfelület  
  ✔️ Megosztás közvetlenül az alkalmazásból  
 
