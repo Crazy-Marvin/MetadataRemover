@@ -21,8 +21,7 @@
   ~ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
   ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
   ~ SOFTWARE.
-  -->
-<resources>
+  --><resources>
     <string name="title_activity_about">Névjegy</string>
     <string name="image_content_description_navigate_up">Fel</string>
     <!-- App info -->
@@ -53,11 +52,8 @@
     <string name="title_about_contribute">Közreműködés</string>
     <string name="title_button_about_contribute_translate">Fordítás</string>
     <string name="title_button_about_contribute_issue">Probléma jelentése</string>
-
     <string name="title_activity_libraries">Könyvtárak</string>
-
     <string name="title_activity_license">MIT Licensz</string>
-
     <string name="title_menu_item_about">Névjegy</string>
     <string name="title_menu_item_open_file">Kép megnyitása</string>
     <string name="title_menu_item_expand">Kinyit</string>
@@ -73,8 +69,7 @@
     <string name="description_banner_no_metadata">"Nincs meta adat."</string>
     <string name="image_content_description_banner_no_metadata">"Nincs meta adat."</string>
     <string name="search_text_file_explorer">fájlböngésző</string>
-    <string name="title_intent_chooser_share_without_metadata">Oszd meg \"%1$s\" metaadat nélkül&#8230;</string>
-
+    <string name="title_intent_chooser_share_without_metadata">Oszd meg \"%1$s\" metaadat nélkül…</string>
     <string name="label_attribute_file_name">Név</string>
     <string name="label_attribute_file_size">Méret</string>
     <string name="description_attribute_file_size_bytes">%1$d\u200AByte</string>
@@ -117,9 +112,14 @@
     <string name="label_attribute_image_creation_lens">Objektív</string>
     <string name="description_attribute_image_creation_model_serial_number">%1$s (%2$s)</string>
     <string name="label_attribute_file_creation_location">Tartózkodási hely</string>
-    <string name="description_attribute_file_creation_location_coordinates">%2$02d&#176;\u200A%3$02d′\u200A%4$02d″ %1$s\u2003%6$02d&#176;\u200A%7$02d′\u200A%8$02d″ %5$s</string>
+    <string name="description_attribute_file_creation_location_coordinates">%2$02d°\u200A%3$02d′\u200A%4$02d″ %1$s\u2003%6$02d°\u200A%7$02d′\u200A%8$02d″ %5$s</string>
     <string name="description_attribute_file_creation_location_direction_east">Kelet</string>
     <string name="description_attribute_file_creation_location_direction_west">Nyugat</string>
     <string name="description_attribute_file_creation_location_direction_north">Észak</string>
     <string name="description_attribute_file_creation_location_direction_south">Dél</string>
+    <string name="app_name">Metaadat Eltávolító</string>
+    <string name="languaje">Nyelv</string>
+    <string name="documents">Dokumentumok</string>
+    <string name="pictures">Képek</string>
+    <string name="video_audio">Videó/Hang</string>
 </resources>
