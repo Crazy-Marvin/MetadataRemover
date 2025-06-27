@@ -2,8 +2,8 @@
 
 <h2><b>Funkciók:</b></h2>
 
- ✔️ Metaadatok megtekintése  
- ✔️ Kép előnézete  
+ ✔️ Metaadatok megtekintése 
+ ✔️ Kép előnézete 
  ✔️ Metaadatok eltávolítása  
  ✔️ Egyszerű, intuitív kezelőfelület  
  ✔️ Megosztás közvetlenül az alkalmazásból  
