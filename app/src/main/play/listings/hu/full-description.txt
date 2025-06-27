@@ -5,8 +5,8 @@
  ✔️ Metaadatok megtekintése 
  ✔️ Kép előnézete 
  ✔️ Metaadatok eltávolítása 
- ✔️ Egyszerű, intuitív kezelőfelület  
- ✔️ Megosztás közvetlenül az alkalmazásból  
+ ✔️ Egyszerű, intuitív kezelőfelület 
+ ✔️ Megosztás közvetlenül az alkalmazásból 
 
 <h2><b>Tudj meg többet:</b></h2>
 
@@ -27,7 +27,6 @@ Az adatgyűjtők vagy zaklatók könnyen megtudhatják, hol laksz vagy dolgozol,
 A nyomkövető szolgáltatások részletes reklámprofilt készítenek rólad, és el is adhatják az adataidat.
 
 A Metadata Eltávolító megmutatja, milyen adatokat tartalmaz a kép, lehetővé teszi, hogy <i>mindet töröld</i>, és aztán az anonimizált verziót közvetlenül meg is oszthatod!
-
 Így <i>névtelen</i> és <i>biztonságos</i> maradsz a neten — a barátaid pedig továbbra is csodálhatják a cuki cicádat.  
 
 <i>Oszd meg bátran! 😽</i>
