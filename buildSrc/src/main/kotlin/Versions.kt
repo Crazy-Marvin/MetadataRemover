@@ -37,9 +37,9 @@ object Versions {
     val sdk = Sdk
 
     object Sdk {
-        const val compile = 34
+        const val compile = 36
         const val min = 26
-        const val target = 34
+        const val target = 36
     }
 
     val jvm = JavaVersion.VERSION_17
