@@ -40,7 +40,7 @@ buildscript {
 }
 
 plugins {
-    id("com.google.devtools.ksp") version "2.1.0-1.0.29" apply false
+    id("com.google.devtools.ksp") version "2.2.10-2.0.2" apply false
 }
 
 /**
