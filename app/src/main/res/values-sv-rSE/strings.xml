@@ -30,4 +30,8 @@
     <!-- Contribution info -->
     <!-- TODO Discuss if we should replace this with "This image doesn't contain metadata"  -->
     <string name="app_name">Metadata Remover</string>
+    <string name="languaje">Språk</string>
+    <string name="documents">Dokument</string>
+    <string name="pictures">Bilder</string>
+    <string name="video_audio">Video/Ljud</string>
 </resources>
