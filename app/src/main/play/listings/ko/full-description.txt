@@ -1,32 +1,32 @@
-<i>Protect your privacy by removing metadata from your photos, before sharing them on the Internet.</i>
+<i>인터넷에 공유하기 전에 사진에서 메타데이터를 제거함으로써 개인정보를 보호합니다.</i>
 
-<h2><b>Features:</b></h2>
+<h2><b>기능:</b></h2>
 
- ✔️ View metadata
- ✔️ Image preview
- ✔️ Remove metadata
- ✔️ Simple and intuitive interface
- ✔️ Share directly from the app
+ ✔️ 메타데이터 보기
+ ✔️ 사진 미리보기
+ ✔️ 메타데이터 삭제하기
+ ✔️ 간단하고 직관적인 화면
+ ✔️ 앱에서 바로 공유하기
 
-<h2><b>Learn more:</b></h2>
+<h2><b>더 알아보기:</b></h2>
 
-Whenever you take a picture, additional metadata is saved in the image file.
-Most smartphones do <i>not inform</i> you about this.
+사진을 찍으면, 추가적인 메타데이터가 사진에 저장됩니다.
+대부분은 스마트폰은 이 점을 <i>알려주지 않습니다</i>.
 
-<b>Metadata can look like this:</b>
- 🕑 On which day was the picture taken, and at what time?
- 🗺️ And where exactly?
- 📷 Which camera or smartphone was used?
- 🔧 What camera settings were used?
- 📝 Notes of the photographer or the camera?
- 📌 More and more often, even exact GPS coordinates are saved in your photo.
+<b>메타데이터는 다음과 같을 수 있습니다:</b>
+ 🕑 어느 날짜에 어느 시간에 찍었는지?
+ 🗺️ 그리고 정확히 어디에서 찍었는지?
+ 📷 어떤 카메라나 스마트폰을 사용했는지?
+ 🔧어떤 카메라 설정이 쓰였는지?
+ 📝 촬영자나 카메라가 남긴 메모
+ 📌 날이 갈수로 더 자주, 심지어 GPS 좌표까지 사진에 저장됩니다.
 
-Metadata is sometimes very useful — for instance when sorting holiday photos.
-As soon as you share photos with others via social media, all this info is visible <i>publicly</i>.
-Data collectors and stalkers are more easily able to discover your <i>place of residence or workplace<i> from the metadata or draw conclusions about your <i>daily routine</i>.
-Tracking services create more comprehensive advertising profiles and sell your data to other organizations.
+메타데이터는 가끔 유용합니다 — 여행 사진을 정리할 때 등
+사진을 다른 이들과 SNS로 공유하면 , 이 모든 정보가 <i>공개됩니다.</i>.
+데이터 수집가와 스토커는 메타데이터를 통해 여러분의 <i>거주지나 직장</i>을 더 쉽게 알아내거나 <i>일상생활에 대한 정보</i>를 알아낼 수 있습니다.
+추적 서비스는 더욱 포괄적인 광고 프로필을 만들고 여러분의 데이터를 다른 업체에 판매합니다.
 
-Use the Metadata Remover to easily view all that data, <i>remove it entirely</i>, and then share the anonymized photo directly!
-That way you stay <i>anonymous</i> and <i>safe</i> on the Internet, while your friends can still admire your cute cat.
+메타데이터 제거기를 사용하면 이러한 모든 데이터를 간편하게 확인하고 <i>완전히 삭제</i>한 다음 익명화된 사진을 바로 공유할 수 있습니다!
+이렇게 하면 인터넷에서 <i>익명성<i/>을 유지하고 <i>안전하게</i> 활동할 수 있으며, 친구들은 여전히 여러분의 귀여운 고양이 사진을 감상할 수 있습니다.
 
-<i>Happy sharing! 😽</i>
+<i>즐겁게 공유하세요~ 😽</i>
