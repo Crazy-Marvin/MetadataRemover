@@ -210,9 +210,9 @@ dependencies {
     implementation( files("../libs/ffmpeg-kit.aar"))
 
     //Apache POI
-    implementation ("org.apache.poi:poi:5.4.0")
-    implementation ("org.apache.poi:poi-ooxml:5.4.0")
-    implementation ("org.apache.poi:poi-scratchpad:5.4.0")
+    implementation ("org.apache.poi:poi:5.5.1")
+    implementation ("org.apache.poi:poi-ooxml:5.5.1")
+    implementation ("org.apache.poi:poi-scratchpad:5.5.1")
     implementation ("org.apache.odftoolkit:simple-odf:0.8.2-incubating")
     implementation ("com.tom-roush:pdfbox-android:2.0.27.0")
 }
