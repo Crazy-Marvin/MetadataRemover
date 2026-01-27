@@ -12,6 +12,7 @@
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/7dadc506c2df42a38c2ef733948f9492)](https://www.codacy.com/gh/Crazy-Marvin/MetadataRemover/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Crazy-Marvin/MetadataRemover&amp;utm_campaign=Badge_Grade)
 [![codecov](https://codecov.io/gh/Crazy-Marvin/MetadataRemover/branch/development/graph/badge.svg?token=ECQID61KGH)](https://codecov.io/gh/Crazy-Marvin/MetadataRemover)
 [![Hosted Weblate](https://hosted.weblate.org/widgets/metadata-remover/-/svg-badge.svg)](https://hosted.weblate.org/engage/metadata-remover/)
+[![Sentry](https://img.shields.io/badge/Sentry-%23362D59.svg?logo=sentry&style=flat)](https://sentry.com)
 [![Known Vulnerabilities](https://snyk.io/test/github/Crazy-Marvin/MetadataRemover/badge.svg?targetFile=app%2Fbuild.gradle.kts)](https://snyk.io/test/github/Crazy-Marvin/MetadataRemover?targetFile=app%2Fbuild.gradle.kts)
 [![API](https://img.shields.io/badge/API-26%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=26)
 ![Gradle Play Publisher](https://img.shields.io/badge/-Gradle_Play_Publisher-brightgreen?logo=gradle&link=https%3A%2F%2Fgithub.com%2FTriple-T%2Fgradle-play-publisher)
