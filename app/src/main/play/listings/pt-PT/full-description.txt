@@ -1,1 +1,32 @@
-<div><i>Proteja a sua privacidade removendo metadados das suas fotografias, antes de as partilhar na internet!</i><br><br><h2><b>Características:</b></h2><br><br>✔️ Ver metadados<br> ✔️ Pré-visualizar imagem<br> ✔️ Remover metadados<br> ✔️ Interface simples e intuitiva<br> ✔️ Partilhar diretamente a partir da aplicação<br><br><h2><b>Saiba mais:</b></h2><br><br>Sempre que tira uma fotografia, metadados adicionais ficam guardados no ficheiro de imagem.<br>A maioria dos smartphones <i>não informam</i> sobre este facto.<br><br><b>Os metadados podem ter o seguinte aspeto:</b><br> 🕑 Em que dia e a que hora foi tirada a fotografia?<br> 🗺️ E onde, exatamente?<br> 📷 Que câmara ou que smartphone foi utilizado?<br> 🔧 E que definições de câmara foram utilizadas?<br> 📝 Notas do fotógrafo ou da câmara?<br> 📌 Cada vez mais, até as coordenadas de GPS exatas são guardadas na sua fotografia.<br><br>Os metadados são muitas vezes muito úteis—por exemplo para ordenar fotografias de férias.<br>Mas todas estas informações ficam visíveis <i>publicamente</i> quando partilha as suas fotografias com outras pessoas nas redes sociais.<br>As pessoas que recolhem dados e perseguem outras pessoas seriam capazes de descobrir o local onde <i>mora ou trabalha<i> a partir dos metadados e tirar conclusões acerca da sua <i>rotina diária</i>.<br>Os serviços de rastreio podem criar perfis de publicidade mais abrangentes e vender os seus dados a outras organizações.<br><br>Com a nossa aplicação, pode visualizar facilmente todos estes dados, <i>removê-los completamente</i>, e depois partilhar diretamente a fotografia anónima!<br>Assim mantém a sua identificação <i>anónima</i> e <i>segura</i> na internet, e os seus amigos podem continuar a admirar o seu querido gato.<br><br><i>Boas partilhas! 😽</i></i></i></div>
+<i>Proteja a sua privacidade ao remover metadados das suas fotos, antes de as partilhar na Internet.</i>
+
+<h2><b>Funcionalidades:</b></h2>
+
+ ✔️ Ver metadados
+ ✔️ Pré-visualização de imagem
+ ✔️ Remover metadados
+ ✔️ Interfaces simples e intuitiva
+ ✔️ Partilhar diretamente a partir da aplicação
+
+<h2><b>Saiba Mais:</b></h2>
+
+Quando está a tirar uma fotografia, metadados adicionais são guardados no ficheiro da imagem.
+A maior parte dos smartphones <i>não o informam</i> sobre isto.
+
+<b>Metadados podem ter o seguinte aspeto:</b>
+ 🕑 Em que dia foi a fotografia tirada, e a que horas?
+ 🗺️ E onde, exatamente?
+ 📷 Qual câmara ou smartphone foi utilizado?
+ 🔧 Que definições de câmara foram utilizadas?
+ 📝 Notas do fotógrafo ou da câmara?
+ 📌 Mais e cada vez mais frequentemente, até coordenadas de GPS exatas são guardadas na sua foto.
+
+Metadados são, por vezes, muito úteis — por exemplo ao organizar fotos de férias.
+Assim que partilha fotos com outros através das redes sociais, toda esta informação é visível <i>publicamente</i>.
+Coletores de dados e perseguidores são mais facilmente capazes de descobrir o seu <i>local de residência ou local de trabalho<i> a partir dos metadados ou tirar conclusões sobre a sua <i>rotina diária</i>.
+Serviços de rastreamento criam perfis publicitários mais abrangentes e vendem a sua informação a outras organizações.
+
+Usar o Metadata Remover para facilmente ver toda essa informação, <i>removê-la completamente</i>, e depois partilhar a fotografia anonimizada diretamente!
+Dessa maneira mantém-se <i>anónimo</i> e <i>seguro</i> na Internet, enquanto que os seus amigos ainda podem admirar o seu gato fofo.
+
+<i>Feliz Partilhar! 😽</i>
