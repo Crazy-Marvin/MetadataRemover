@@ -172,11 +172,17 @@ class MainActivity : AppCompatActivity(), OnLastItemClickedListener {
                 icon?.tint(tintColor)
                 isVisible = false
             }
+            preview.toolbar.menu.findItem(R.id.menu_item_settings).icon?.tint(tintColor)
 
             preview.toolbar.setOnMenuItemClickListener {
                 when (it.itemId) {
                     R.id.menu_item_about -> {
                         val intent = Intent(this@MainActivity, AboutActivity::class.java)
+                        startActivity(intent)
+                    }
+
+                    R.id.menu_item_settings ->{
+                        val intent = Intent(this@MainActivity, SettingsActivity::class.java)
                         startActivity(intent)
                     }
 

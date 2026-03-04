@@ -28,5 +28,8 @@
     <string name="documents">Documents</string>
     <string name="pictures">Pictures</string>
     <string name="video_audio">Video/Audio</string>
-
+    <string name="title_menu_item_settings">Settings</string>
+    <string name="monitor_errors_with_sentry">Monitor Errors with Sentry</string>
+    <string name="monitor_error">Monitor errors</string>
+    <string name="monitor_information">Use Sentry to auto-report issues for faster bug fixes and improved stability. Only essential technical data is collected.</string>
 </resources>
