@@ -34,7 +34,7 @@ buildscript {
     dependencies {
         classpath("com.android.tools.build:gradle:9.0.1")
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:2.2.21")
-        classpath("com.google.dagger:hilt-android-gradle-plugin:2.59")
+        classpath("com.google.dagger:hilt-android-gradle-plugin:2.59.2")
         classpath("com.mikepenz.aboutlibraries.plugin:aboutlibraries-plugin:13.2.1")
     }
 }
