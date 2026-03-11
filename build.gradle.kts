@@ -28,7 +28,7 @@ plugins {
     alias(libs.plugins.android.application) apply false
     alias(libs.plugins.kotlin.android) apply false
     id("com.google.dagger.hilt.android") version "2.57.1" apply false
-    id("com.google.devtools.ksp") version "2.3.5" apply false
+    id("com.google.devtools.ksp") version "2.3.6" apply false
     id("com.mikepenz.aboutlibraries.plugin") version "13.2.1" apply false
 }
 
