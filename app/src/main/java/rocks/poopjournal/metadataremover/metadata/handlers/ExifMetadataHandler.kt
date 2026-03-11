@@ -45,62 +45,145 @@ class ExifMetadataHandler(context: Context? = null) : MetadataHandler {
     }
 
     override val writableMimeTypes = MediaTypes[MediaTypes.JPEG]
-    override val readableMimeTypes = MediaTypes[MediaTypes.JPEG] +
-            MediaTypes[MediaTypes.DNG] + MediaTypes[MediaTypes.CR2] +
-            MediaTypes[MediaTypes.NEF] + MediaTypes[MediaTypes.NRW] +
-            MediaTypes[MediaTypes.ARW] + MediaTypes[MediaTypes.RW2] +
-            MediaTypes[MediaTypes.ORF] + MediaTypes[MediaTypes.PEF] +
-            MediaTypes[MediaTypes.SRW] + MediaTypes[MediaTypes.RAF]
 
-    override suspend fun loadMetadata(mediaType: MediaType, inputFile: File): Metadata? {
+    override val readableMimeTypes =
+        MediaTypes[MediaTypes.JPEG] +
+                MediaTypes[MediaTypes.DNG] + MediaTypes[MediaTypes.CR2] +
+                MediaTypes[MediaTypes.NEF] + MediaTypes[MediaTypes.NRW] +
+                MediaTypes[MediaTypes.ARW] + MediaTypes[MediaTypes.RW2] +
+                MediaTypes[MediaTypes.ORF] + MediaTypes[MediaTypes.PEF] +
+                MediaTypes[MediaTypes.SRW] + MediaTypes[MediaTypes.RAF]
+
+    override suspend fun loadMetadata(
+        mediaType: MediaType,
+        inputFile: File
+    ): Metadata? {
+
         check(mediaType in readableMimeTypes)
 
         val exif = ExifInterface(inputFile.inputStream())
+
         val thumbnail =
-                exif.thumbnailBitmap
-                        ?.takeIf {
-                            // Only use the contained thumbnail if it is larger than 1MP.
-                            it.width * it.height > 1_000_000
-                        }
-                        ?.let { Image(it) }
-                        ?: Image(inputFile)
+            exif.thumbnailBitmap
+                ?.takeIf { it.width * it.height > 1_000_000 }
+                ?.let { Image(it) }
+                ?: Image(inputFile)
 
         val imageFile = ImageFile(inputFile)
 
-        val attributes = listOfNotNull(
-                exif.creationAttribute,
-                imageFile.resolutionAttribute,
-                exif.exposureAttribute,
-                exif.getLocationAttribute(geocoder),
-                exif.cameraAttribute,
-                exif.lensAttribute,
-                exif.lightAttribute,
-                exif.ownerAttribute
-        )
+        val attributes = mutableListOf<Metadata.Attribute>()
+
+        exif.creationAttribute?.let {
+            attributes.add(
+                it.copy(
+                    removable = true,
+                    tag = ExifInterface.TAG_DATETIME
+                )
+            )
+        }
+
+
+
+        imageFile.resolutionAttribute?.let {
+            attributes.add(
+                it.copy(removable = true, tag = ExifInterface.TAG_LENS_MODEL)
+            )
+        }
+
+        exif.exposureAttribute?.let {
+            attributes.add(
+                it.copy(
+                    removable = true,
+                    tag = ExifInterface.TAG_EXPOSURE_TIME
+                )
+            )
+        }
+
+
+        exif.getLocationAttribute(geocoder)?.let {
+            attributes.add(
+                it.copy(
+                    removable = true,
+                    tag = ExifInterface.TAG_GPS_LATITUDE
+                )
+            )
+        }
+
+        exif.cameraAttribute?.let {
+            attributes.add(
+                it.copy(
+                    removable = true,
+                    tag = ExifInterface.TAG_MODEL
+                )
+            )
+        }
+
+        exif.lensAttribute?.let {
+            attributes.add(
+                it.copy(
+                    removable = true,
+                    tag = ExifInterface.TAG_LENS_MODEL
+                )
+            )
+        }
+
+        exif.lightAttribute?.let {
+            attributes.add(
+                it.copy(
+                    removable = true,
+                    tag = ExifInterface.TAG_FLASH
+                )
+            )
+        }
+
+        exif.ownerAttribute?.let {
+            attributes.add(
+                it.copy(
+                    removable = true,
+                    tag = ExifInterface.TAG_ARTIST
+                )
+            )
+        }
 
         return Metadata(
-                thumbnail = thumbnail,
-                attributes = attributes.toSet()
+            thumbnail = thumbnail,
+            attributes = attributes.toSet()
         )
     }
 
     override suspend fun removeMetadata(
-            mediaType: MediaType,
-            inputFile: File,
-            outputFile: File): Boolean {
+        mediaType: MediaType,
+        inputFile: File,
+        outputFile: File,
+        attributes: List<Metadata.Attribute>
+    ): Boolean {
+
         check(mediaType in writableMimeTypes)
 
-        // Delete old output files.
+        // Delete previous output
         outputFile.deleteIfExists()
 
-        // Copy input file to output directory,
-        // then edit that output file.
+        // Copy original to output
         inputFile.copyTo(outputFile)
 
-        // Clear all EXIF tags.
-        ExifInterface(outputFile.path)
-                .clearAllAttributes()
-                .saveAttributes()
+        val exif = ExifInterface(outputFile.path)
+
+        // Collect selected removable tags
+        val tagsToRemove = attributes
+            .filter { it.removable && it.selected }
+            .mapNotNull { it.tag }
+
+        if (tagsToRemove.isEmpty()) {
+            // If nothing selected → remove everything
+            exif.clearAllAttributes()
+        } else {
+
+            tagsToRemove.forEach { tag ->
+                exif.setAttribute(tag, null)
+            }
+        }
+
+        exif.saveAttributes()
 
         return true
     }

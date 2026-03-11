@@ -31,16 +31,12 @@ import org.gradle.internal.Cast.uncheckedCast
 */
 
 plugins {
-    androidApplication
-    kotlinAndroid
-    ksp
-    daggerHilt
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.android)
+    id("com.google.devtools.ksp")
+    id("com.google.dagger.hilt.android")
     id("com.mikepenz.aboutlibraries.plugin")
-    //googlePlayPublishing
-    //fDroidPublishing
-    //jacocoAndroid
-    //githubRelease
-    //canIDropJetifier
+    id("io.sentry.kotlin.compiler.gradle") version "6.0.0"
 }
 
 
@@ -62,13 +58,13 @@ override var version: Version
 version = Versions.app
  */
 android {
-    compileSdk = Versions.Sdk.compile
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "rocks.poopjournal.metadataremover"
 
-        minSdk = Versions.Sdk.min
-        targetSdk = Versions.Sdk.target
+        minSdk = 26
+        targetSdk = 36
 
         versionCode = 30000
         versionName = "3.0.0"
@@ -104,14 +100,14 @@ android {
 
         // Production builds
         val release by existing {
-            postprocessing {
-                isRemoveUnusedCode = false
-                isRemoveUnusedResources = false
-                isObfuscate = false
-                isOptimizeCode = false
-                proguardFiles += getDefaultProguardFile("proguard-android.txt")
-                proguardFiles += file("proguard-rules.pro")
-            }
+            isMinifyEnabled = false
+            isShrinkResources = false
+
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+
             signingConfig = releaseSigning
             isCrunchPngs = false
         }
@@ -121,11 +117,16 @@ android {
     buildFeatures {
         viewBinding = true
         dataBinding = true
+        buildConfig = true
     }
 
     compileOptions {
-        sourceCompatibility = Versions.jvm
-        targetCompatibility = Versions.jvm
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+
+    kotlin {
+        jvmToolchain(17)
     }
 
     packaging {
@@ -148,10 +149,6 @@ android {
         }
     }
 
-    aboutLibraries {
-        // Remove the "generated" timestamp to allow for reproducible builds
-        excludeFields = arrayOf("generated")
-    }
 
     // Always show the result of every unit test, even if it passes.
     /*
@@ -173,7 +170,7 @@ android {
 
 dependencies {
 
-    implementation("androidx.core:core-ktx:1.15.0")
+    implementation("androidx.core:core-ktx:1.17.0")
     implementation ("androidx.activity:activity-ktx:1.10.0")
     implementation("androidx.appcompat:appcompat:1.7.0")
     implementation("com.google.android.material:material:1.13.0")
@@ -189,6 +186,7 @@ dependencies {
 
     //Glide
     implementation("com.github.bumptech.glide:glide:5.0.5")
+    implementation(libs.androidx.activity)
     ksp("com.github.bumptech.glide:compiler:5.0.5")
 
     //CircleImageView
@@ -201,9 +199,9 @@ dependencies {
     implementation("com.mikepenz:aboutlibraries:13.1.0")
 
     //Dagger-hilt
-    implementation ("com.google.dagger:hilt-android:2.55")
-    ksp ("com.google.dagger:hilt-android-compiler:2.55")
-    ksp ("androidx.hilt:hilt-compiler:1.3.0")
+    implementation ("com.google.dagger:hilt-android:2.57.1")
+    ksp ("com.google.dagger:hilt-android-compiler:2.57.1")
+    ksp ("androidx.hilt:hilt-compiler:1.2.0")
 
     //ffmpeg
     implementation ("com.arthenica:smart-exception-java:0.2.1")
@@ -215,6 +213,10 @@ dependencies {
     implementation ("org.apache.poi:poi-scratchpad:5.5.1")
     implementation ("org.apache.odftoolkit:simple-odf:0.8.2-incubating")
     implementation ("com.tom-roush:pdfbox-android:2.0.27.0")
+
+    //sentry
+    implementation("io.sentry:sentry-android:8.32.0")
+
 }
 
 

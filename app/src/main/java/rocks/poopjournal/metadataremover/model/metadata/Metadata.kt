@@ -75,6 +75,21 @@ data class Metadata(
             /**
              * The attribute's optional secondary value (e.g. "11:21 AM").
              */
-            val secondaryValue: Text? = null
+            val secondaryValue: Text? = null,
+
+            /**
+             * Whether this metadata attribute can be removed individually.
+             */
+            val removable: Boolean = false,
+
+            /**
+             * Underlying metadata tag (EXIF tag etc.)
+             */
+            val tag: String? = null,
+
+            /**
+             * UI checkbox state
+             */
+            var selected: Boolean = false
     )
 }

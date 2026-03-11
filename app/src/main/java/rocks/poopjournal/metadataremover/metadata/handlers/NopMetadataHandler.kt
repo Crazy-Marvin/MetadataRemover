@@ -40,7 +40,8 @@ object NopMetadataHandler : MetadataHandler {
     override suspend fun removeMetadata(
             mediaType: MediaType,
             inputFile: File,
-            outputFile: File
+            outputFile: File,
+            attributes: List<Metadata.Attribute>
     ) = false
 }
 

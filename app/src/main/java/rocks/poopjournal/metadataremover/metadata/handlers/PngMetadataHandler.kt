@@ -49,50 +49,74 @@ object PngMetadataHandler : MetadataHandler {
         val imageFile = ImageFile(inputFile)
 
         val attributes = listOfNotNull(
-                metadata.creationAttribute,
-                metadata.lastModifiedAttribute,
-                imageFile.resolutionAttribute,
-                metadata.authorAttribute,
-                metadata.sourceAttribute,
-                metadata.commentAttribute,
-                metadata.warningAttribute
+            metadata.creationAttribute,
+            metadata.lastModifiedAttribute,
+            imageFile.resolutionAttribute,
+            metadata.authorAttribute,
+            metadata.sourceAttribute,
+            metadata.commentAttribute,
+            metadata.warningAttribute
         )
 
         return Metadata(
-                title = metadata
-                        .getTxtForKey(PngChunkTextVar.KEY_Title)
-                        ?.takeIf(String::isNotBlank)
-                        ?.let { Text(it) },
-                thumbnail = Image(inputFile),
-                attributes = attributes.toSet()
+            title = metadata
+                .getTxtForKey(PngChunkTextVar.KEY_Title)
+                ?.takeIf(String::isNotBlank)
+                ?.let { Text(it) },
+            thumbnail = Image(inputFile),
+            attributes = attributes.toSet()
         )
     }
 
-
     override suspend fun removeMetadata(
-            mediaType: MediaType,
-            inputFile: File,
-            outputFile: File): Boolean {
+        mediaType: MediaType,
+        inputFile: File,
+        outputFile: File,
+        attributes: List<Metadata.Attribute>
+    ): Boolean {
         check(mediaType in writableMimeTypes)
+
+        val selectedKeys = attributes
+            .filter { it.removable && it.selected }
+            .mapNotNull { it.tag }
+
+        val removeAll = selectedKeys.isEmpty()
 
         usePngTransforming(inputFile, outputFile, true) { reader, writer ->
 
             writer.copyChunksFrom(reader.chunksList, ChunkCopyBehaviour.COPY_ALL_SAFE)
 
             writer.metadata.apply {
-                // Reset date
-                setTimeYMDHMS(0, 0, 0, 0, 0, 0)
-                // Reset metadata
-                setText(PngChunkTextVar.KEY_Title, "")
-                setText(PngChunkTextVar.KEY_Author, "")
-                setText(PngChunkTextVar.KEY_Description, "")
-                setText(PngChunkTextVar.KEY_Copyright, "")
-                setText(PngChunkTextVar.KEY_Creation_Time, "")
-                setText(PngChunkTextVar.KEY_Software, "")
-                setText(PngChunkTextVar.KEY_Disclaimer, "")
-                setText(PngChunkTextVar.KEY_Warning, "")
-                setText(PngChunkTextVar.KEY_Source, "")
-                setText(PngChunkTextVar.KEY_Comment, "")
+                if (removeAll) {
+                    // Reset all metadata
+                    setTimeYMDHMS(0, 0, 0, 0, 0, 0)
+                    setText(PngChunkTextVar.KEY_Title, "")
+                    setText(PngChunkTextVar.KEY_Author, "")
+                    setText(PngChunkTextVar.KEY_Description, "")
+                    setText(PngChunkTextVar.KEY_Copyright, "")
+                    setText(PngChunkTextVar.KEY_Creation_Time, "")
+                    setText(PngChunkTextVar.KEY_Software, "")
+                    setText(PngChunkTextVar.KEY_Disclaimer, "")
+                    setText(PngChunkTextVar.KEY_Warning, "")
+                    setText(PngChunkTextVar.KEY_Source, "")
+                    setText(PngChunkTextVar.KEY_Comment, "")
+                } else {
+                    // Reset only selected metadata
+                    selectedKeys.forEach { key ->
+                        when (key) {
+                            "title" -> setText(PngChunkTextVar.KEY_Title, "")
+                            "author" -> setText(PngChunkTextVar.KEY_Author, "")
+                            "description" -> setText(PngChunkTextVar.KEY_Description, "")
+                            "copyright" -> setText(PngChunkTextVar.KEY_Copyright, "")
+                            "creation_time" -> setText(PngChunkTextVar.KEY_Creation_Time, "")
+                            "software" -> setText(PngChunkTextVar.KEY_Software, "")
+                            "disclaimer" -> setText(PngChunkTextVar.KEY_Disclaimer, "")
+                            "warning" -> setText(PngChunkTextVar.KEY_Warning, "")
+                            "source" -> setText(PngChunkTextVar.KEY_Source, "")
+                            "comment" -> setText(PngChunkTextVar.KEY_Comment, "")
+                        }
+                    }
+                }
             }
 
             reader.copyRowsTo(writer)
@@ -102,10 +126,10 @@ object PngMetadataHandler : MetadataHandler {
     }
 
     private fun <R> usePngTransforming(
-            inputFile: File,
-            outputFile: File,
-            allowOverwrite: Boolean = true,
-            block: (PngReader, PngWriter) -> R
+        inputFile: File,
+        outputFile: File,
+        allowOverwrite: Boolean = true,
+        block: (PngReader, PngWriter) -> R
     ): R {
         val reader = PngReader(inputFile)
         val writer = PngWriter(outputFile, reader.imgInfo, allowOverwrite)

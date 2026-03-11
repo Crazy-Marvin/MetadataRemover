@@ -3,6 +3,7 @@ package rocks.poopjournal.metadataremover.viewmodel
 
 import android.content.res.AssetFileDescriptor
 import android.net.Uri
+import android.util.Log
 import androidx.annotation.IntRange
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -114,7 +115,12 @@ class MainViewModel @Inject constructor(
         _outputMetadata.value = currentList
     }
 
-    fun removeMetadata(index: Int, saveToDevice: Boolean = false) {
+    fun removeMetadata(
+        index: Int,
+        attributes: List<Metadata.Attribute>,
+        saveToDevice: Boolean = false
+    ) {
+
         val fileView = fileViews[index] ?: return
 
         if (fileView.isMetadataRemoved) {
@@ -123,13 +129,20 @@ class MainViewModel @Inject constructor(
         }
 
         viewModelScope.launch {
+
+            Log.d("MetadataRemove", "Removing attributes: ${attributes.map { it.tag }}")
+
             metadata.handler.removeMetadata(
                 fileView.mediaType,
                 fileView.original,
-                fileView.output
+                fileView.output,
+                attributes
             )
 
-            fileView.output.setLastModified(random.nextLong(System.currentTimeMillis()))
+            fileView.output.setLastModified(
+                random.nextLong(System.currentTimeMillis())
+            )
+
             handleClearedFile(index, saveToDevice)
         }
     }

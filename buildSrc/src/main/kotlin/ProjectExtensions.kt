@@ -22,19 +22,12 @@ fun Properties.asStringMap() =
 
 
 val Project.latestCommitHash: String
-    get() {
-        return ByteArrayOutputStream()
-                .also { stream ->
-                    exec {
-                        commandLine = listOf(
-                                "git",
-                                "rev-parse",
-                                "--short",
-                                "HEAD"
-                        )
-                        standardOutput = stream
-                    }
-                }
-                .toString()
-                .trim()
+    get()  {
+    val output = ByteArrayOutputStream()
+
+    providers.exec {
+        commandLine("git", "rev-parse", "--short", "HEAD")
+    }.standardOutput.asText.get()
+
+    return output.toString().trim()
     }

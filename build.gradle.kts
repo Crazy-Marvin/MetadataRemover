@@ -24,31 +24,11 @@
 
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
-buildscript {
-    repositories {
-        google()
-        mavenCentral()
-        gradlePluginPortal()
-    }
-
-    dependencies {
-        classpath("com.android.tools.build:gradle:9.0.1")
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:2.2.21")
-        classpath("com.google.dagger:hilt-android-gradle-plugin:2.59")
-        classpath("com.mikepenz.aboutlibraries.plugin:aboutlibraries-plugin:13.2.1")
-    }
-}
-
 plugins {
+    alias(libs.plugins.android.application) apply false
+    alias(libs.plugins.kotlin.android) apply false
+    id("com.google.dagger.hilt.android") version "2.57.1" apply false
     id("com.google.devtools.ksp") version "2.3.5" apply false
+    id("com.mikepenz.aboutlibraries.plugin") version "13.2.1" apply false
 }
 
-/**
- * Task to clean the build directory.
- *
- * This might be useful when a build fails and one doesn't want the next build to depend
- * on possibly broken cached build files.
- */
-val clean by tasks.registering(Delete::class) {
-    delete(rootProject.buildDir)
-}

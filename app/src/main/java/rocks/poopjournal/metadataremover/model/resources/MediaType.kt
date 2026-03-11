@@ -16,6 +16,8 @@ package rocks.poopjournal.metadataremover.model.resources
 
 import rocks.poopjournal.metadataremover.util.Logger
 import java.nio.charset.Charset
+import java.util.Locale
+import java.util.Locale.getDefault
 
 /**
  * Represents an [Internet Media Type](http://en.wikipedia.org/wiki/Internet_media_type)
@@ -73,7 +75,7 @@ class MediaType(
             .run {
                 // Add the charset to the parameter list.
                 if (charset != null) {
-                    this + (CHARSET_ATTRIBUTE to charset.name().toLowerCase())
+                    this + (CHARSET_ATTRIBUTE to charset.name().lowercase(getDefault()))
                 } else this
             }
             .normalizeParameters()
@@ -231,7 +233,7 @@ class MediaType(
         }
     }
 
-    private fun String.normalizeToken() = toLowerCase()
+    private fun String.normalizeToken() = lowercase(getDefault())
 
     private fun String.checkToken() {
         check(none {

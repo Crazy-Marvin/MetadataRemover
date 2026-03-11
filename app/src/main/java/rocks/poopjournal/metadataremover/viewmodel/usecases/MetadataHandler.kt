@@ -7,6 +7,10 @@ import rocks.poopjournal.metadataremover.metadata.handlers.ExifMetadataHandler
 import rocks.poopjournal.metadataremover.metadata.handlers.FirstMatchMetadataHandler
 import rocks.poopjournal.metadataremover.metadata.handlers.PngMetadataHandler
 import rocks.poopjournal.metadataremover.metadata.handlers.AudioVideoMetadataHandler
+import rocks.poopjournal.metadataremover.model.resources.MediaType
+import rocks.poopjournal.metadataremover.model.metadata.Metadata
+import rocks.poopjournal.metadataremover.model.util.toMetadataHandler
+import java.io.File
 import javax.inject.Inject
 
 class MetadataHandler @Inject constructor(
@@ -23,4 +27,5 @@ class MetadataHandler @Inject constructor(
         )
 //      , NopMetadataHandler // For testing purposes only. TODO Remove after testing.
     )
+
 }

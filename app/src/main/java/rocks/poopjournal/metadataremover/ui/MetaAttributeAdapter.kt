@@ -24,6 +24,7 @@
 
 package rocks.poopjournal.metadataremover.ui
 
+import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -35,28 +36,35 @@ import rocks.poopjournal.metadataremover.ui.MetaAttributeAdapter.ViewHolder
 import rocks.poopjournal.metadataremover.util.extensions.android.getThemeColor
 import rocks.poopjournal.metadataremover.util.extensions.android.layoutInflater
 import rocks.poopjournal.metadataremover.util.extensions.android.setImage
+import timber.log.Timber
 
 class MetaAttributeAdapter(
-        attributes: Set<Metadata.Attribute> = emptySet())
-    : RecyclerView.Adapter<ViewHolder>() {
+    attributes: Set<Metadata.Attribute> = emptySet()
+) : RecyclerView.Adapter<MetaAttributeAdapter.ViewHolder>() {
 
-    private var _attributes: List<Metadata.Attribute> = attributes.toList()
+    private var _attributes: MutableList<Metadata.Attribute> = attributes.toMutableList()
+
     var attributes: Set<Metadata.Attribute>
         get() = _attributes.toSet()
         set(value) {
-            _attributes = value.toList()
+            _attributes = value.toMutableList()
             notifyDataSetChanged()
         }
 
+    fun getSelectedAttributes(): List<Metadata.Attribute> {
+        return _attributes.filter { it.removable && it.selected }
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = DataBindingUtil.inflate<ListitemMetaDataBinding>(
-                parent.layoutInflater,
-                R.layout.listitem_meta_data,
-                parent,
-                false)
+            parent.layoutInflater,
+            R.layout.listitem_meta_data,
+            parent,
+            false
+        )
 
         binding.icon.setColorFilter(
-                binding.icon.context.getThemeColor(android.R.attr.textColorSecondary)
+            binding.icon.context.getThemeColor(android.R.attr.textColorSecondary)
         )
 
         return ViewHolder(binding)
@@ -65,23 +73,39 @@ class MetaAttributeAdapter(
     override fun getItemCount() = _attributes.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+
         val attribute = _attributes[position]
+
         val labelText = attribute.label.load(holder.itemView.context)
         val primaryValue = attribute.primaryValue.load(holder.itemView.context)
         val secondaryValue = attribute.secondaryValue?.load(holder.itemView.context)
 
         with(holder.binding) {
+
             title.text = primaryValue
             label.contentDescription = labelText
             icon.contentDescription = labelText
             icon.setImage(attribute.icon)
-            description.visibility = if (secondaryValue != null) View.VISIBLE else View.GONE
+
+            description.visibility =
+                if (secondaryValue != null) View.VISIBLE else View.GONE
             description.text = secondaryValue
+
+            // Checkbox logic
+            itemCheckbox.visibility =
+                if (attribute.removable) View.VISIBLE else View.GONE
+
+            itemCheckbox.isChecked = attribute.selected
+
+            itemCheckbox.setOnCheckedChangeListener { _, isChecked ->
+                attribute.selected = isChecked
+                Timber.tag("MetadataSelection").d("Selected: ${attribute.label}")
+            }
 
             executePendingBindings()
         }
     }
 
-    class ViewHolder(internal val binding: ListitemMetaDataBinding)
+    class ViewHolder(val binding: ListitemMetaDataBinding)
         : RecyclerView.ViewHolder(binding.root)
 }
