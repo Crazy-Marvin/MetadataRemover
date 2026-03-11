@@ -59,11 +59,21 @@ class FirstMatchMetadataHandler(
     }
 
     override suspend fun removeMetadata(
-            mediaType: MediaType,
-            inputFile: File,
-            outputFile: File): Boolean {
-        return findMetadataHandler(mediaType)
-                ?.removeMetadata(mediaType, inputFile, outputFile)
-                ?: false
+        mediaType: MediaType,
+        inputFile: File,
+        outputFile: File,
+        attributes: List<Metadata.Attribute>
+    ): Boolean {
+
+        val handler = findMetadataHandler(mediaType) ?: return false
+
+        return handler.removeMetadata(
+            mediaType,
+            inputFile,
+            outputFile,
+            attributes
+        )
     }
+
+
 }

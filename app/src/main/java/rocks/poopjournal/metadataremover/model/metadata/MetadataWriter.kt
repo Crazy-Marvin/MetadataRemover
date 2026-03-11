@@ -38,5 +38,10 @@ interface MetadataWriter {
      *
      * @return `true` if the removal was successful, `false` otherwise.
      */
-    suspend fun removeMetadata(mediaType: MediaType, inputFile: File, outputFile: File): Boolean
+    suspend fun removeMetadata(
+        mediaType: MediaType,
+        inputFile: File,
+        outputFile: File,
+        attributes: List<Metadata.Attribute>
+    ): Boolean
 }

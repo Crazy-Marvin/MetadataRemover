@@ -78,9 +78,11 @@ class ApplyAllMetadataHandler(
     override suspend fun removeMetadata(
             mediaType: MediaType,
             inputFile: File,
-            outputFile: File): Boolean {
-        // FIXME instead use temporary files, so that metadata handlers don't overwrite each other.
-        return filterMetadataHandlers(mediaType)
-                .any { it.removeMetadata(mediaType, inputFile, outputFile) }
+            outputFile: File,
+            attributes: List<Metadata.Attribute>
+    ): Boolean {
+
+        return  filterMetadataHandlers(mediaType)
+                .any { it.removeMetadata(mediaType, inputFile, outputFile,attributes) }
     }
 }

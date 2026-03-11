@@ -32,6 +32,7 @@ import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.os.Parcelable
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
@@ -60,6 +61,7 @@ import rocks.poopjournal.metadataremover.util.extensions.android.parcelableArray
 import rocks.poopjournal.metadataremover.util.extensions.android.setText
 import rocks.poopjournal.metadataremover.util.extensions.android.tint
 import rocks.poopjournal.metadataremover.viewmodel.MainViewModel
+import timber.log.Timber
 
 
 @AndroidEntryPoint
@@ -224,11 +226,31 @@ class MainActivity : AppCompatActivity(), OnLastItemClickedListener {
             }
 
             bottomSheet.buttonRemoveAndSave.setOnClickListener {
-                viewModel.removeMetadata(preview.viewPager.currentItem, true)
+
+                val adapter = bottomSheet.listMetadata.adapter as MetaAttributeAdapter
+                val selected = adapter.getSelectedAttributes()
+
+                Timber.tag("MetadataRemove").d("Selected attributes: ${selected.map { it.tag }}")
+
+                viewModel.removeMetadata(
+                    preview.viewPager.currentItem,
+                    selected,
+                    true
+                )
             }
 
             bottomSheet.buttonRemoveMetadata.setOnClickListener {
-                viewModel.removeMetadata(preview.viewPager.currentItem)
+
+                val adapter = bottomSheet.listMetadata.adapter as MetaAttributeAdapter
+                val selected = adapter.getSelectedAttributes()
+
+                Timber.tag("MetadataRemove").d("Selected attributes: ${selected.map { it.tag }}")
+
+                viewModel.removeMetadata(
+                    preview.viewPager.currentItem,
+                    selected,
+                    false
+                )
             }
         }
     }
