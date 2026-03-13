@@ -122,4 +122,7 @@
     <string name="documents">Dokumentumok</string>
     <string name="pictures">Képek</string>
     <string name="video_audio">Videó/Hang</string>
+    <string name="title_menu_item_settings">Beállítások</string>
+    <string name="monitor_errors_with_sentry">Hibák figyelése Sentry-vel</string>
+    <string name="monitor_error">Hibák figyelése</string>
 </resources>
