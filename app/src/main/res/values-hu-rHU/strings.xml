@@ -125,4 +125,5 @@
     <string name="title_menu_item_settings">Beállítások</string>
     <string name="monitor_errors_with_sentry">Hibák figyelése Sentry-vel</string>
     <string name="monitor_error">Hibák figyelése</string>
+    <string name="monitor_information">Sentry használata a hibák automatikus jelentéséhez, hogy gyorsabban javíthassuk ki a hibákat és növeljük a stabilitást. Csak a legszükségesebb műszaki adatokat gyűjtjük.</string>
 </resources>
