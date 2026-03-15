@@ -5,4 +5,8 @@
     <string name="documents">وثائق</string>
     <string name="pictures">صور</string>
     <string name="video_audio">فيديو/صوت</string>
+    <string name="title_menu_item_settings">الإعدادات</string>
+    <string name="monitor_errors_with_sentry">مراقبة الأخطاء باستخدام Sentry</string>
+    <string name="monitor_error">راقب الأخطاء</string>
+    <string name="monitor_information">استخدم Sentry للإبلاغ التلقائي عن المشكلات من أجل إصلاح الأخطاء بشكل أسرع وتحسين الاستقرار. يتم فقط جمع البيانات التقنية الأساسية.</string>
 </resources>

@@ -34,4 +34,8 @@
     <string name="documents">ஆவணங்கள்</string>
     <string name="pictures">படங்கள்</string>
     <string name="video_audio">காணொளி/ஒலிதம்</string>
+    <string name="title_menu_item_settings">அமைப்புகள்</string>
+    <string name="monitor_errors_with_sentry">சென்ட்ரி மூலம் பிழைகளைக் கண்காணிக்கவும்</string>
+    <string name="monitor_error">மானிட்டர் பிழைகள்</string>
+    <string name="monitor_information">விரைவான பிழைத்திருத்தங்களுக்கும் மேம்பட்ட நிலைப்புத்தன்மைக்கும் சிக்கல்களைத் தானாகப் புகாரளிக்க சென்ட்ரியைப் பயன்படுத்தவும். அத்தியாவசிய தொழில்நுட்ப தகவல்கள் மட்டுமே சேகரிக்கப்படுகின்றன.</string>
 </resources>

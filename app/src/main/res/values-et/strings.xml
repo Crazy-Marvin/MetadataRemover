@@ -5,4 +5,8 @@
     <string name="documents">Dokumendid</string>
     <string name="pictures">Pildid</string>
     <string name="video_audio">Video- ja helifailid</string>
+    <string name="title_menu_item_settings">Seadistused</string>
+    <string name="monitor_errors_with_sentry">Vigade jälgimine Sentry abil</string>
+    <string name="monitor_error">Vigade jälgimine</string>
+    <string name="monitor_information">Kasuta Sentry teenust tekkinud vigade automaatse teavituse ja seega parema töökindluse jaoks. Seejuures kogub rakendus vaid olulist tehnilist teavet.</string>
 </resources>
