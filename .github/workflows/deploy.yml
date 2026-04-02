@@ -15,7 +15,7 @@ jobs:
           java-version: 1.8
           java-package: jdk
       - name: "🧰 Install Android SDK"
-        uses: android-actions/setup-android@v3
+        uses: android-actions/setup-android@v4
       - name: "🕶 Decrypt secret files"
         run: |
           cd secret
