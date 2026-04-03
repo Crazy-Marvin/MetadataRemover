@@ -34,4 +34,8 @@
     <string name="documents">Dokument</string>
     <string name="pictures">Bilder</string>
     <string name="video_audio">Video/Ljud</string>
+    <string name="title_menu_item_settings">Inställningar</string>
+    <string name="monitor_errors_with_sentry">Övervaka fel med Sentry</string>
+    <string name="monitor_error">Övervaka fel</string>
+    <string name="monitor_information">Använd Sentry till att automatiskt rapportera problem för snabbare buggfixar och förbättrad stabilitet. Endast väsentlig teknisk data samlas in.</string>
 </resources>
