@@ -1,0 +1,34 @@
+<i>Proteggi la tua privacy rimuovendo i metadati dalle tue foto prima di condividerle su Internet.</i>
+
+<h2><b>Funzionalità:</b></h2>
+
+✔️ Visualizzazione dei metadati
+✔️ Anteprima dell'immagine
+✔️ Rimozione dei metadati
+✔️ Interfaccia semplice e intuitiva
+✔️ Condivisione diretta dall'app
+
+<h2><b>Scopri di più:</b></h2>
+
+Ogni volta che scatti una foto, nel file immagine vengono salvati metadati aggiuntivi.
+La maggior parte degli smartphone <i>non ti informa</i> di questo.
+
+<b>I metadati possono apparire così:</b>
+🕑 In che giorno è stata scattata la foto e a che ora? 
+🗺️ E dove esattamente? 
+📷 Quale fotocamera o smartphone è stato utilizzato?
+
+🔧 Quali impostazioni della fotocamera sono state utilizzate? 
+📝 Note del fotografo o della fotocamera? 
+📌 Sempre più spesso, anche le coordinate GPS precise vengono salvate nelle tue foto.
+
+I metadati a volte sono molto utili, ad esempio per organizzare le foto delle vacanze.
+
+Non appena condividi le foto con altri tramite i social media, tutte queste informazioni sono visibili <i>pubblicamente</i>.
+I raccoglitori di dati e gli stalker possono scoprire più facilmente il tuo <i>luogo di residenza o di lavoro</i> dai metadati o trarre conclusioni sulla tua <i>routine quotidiana</i>.
+I servizi di tracciamento creano profili pubblicitari più completi e vendono i tuoi dati ad altre organizzazioni.
+
+Usa Metadata Remover per visualizzare facilmente tutti questi dati, <i>rimuoverli completamente</i> e poi condividere direttamente la foto anonimizzata!
+In questo modo rimani <i>anonimo</i> e <i>al sicuro</i> su Internet, mentre i tuoi amici possono comunque ammirare il tuo adorabile gatto.
+
+Buona condivisione! 😽</i>
