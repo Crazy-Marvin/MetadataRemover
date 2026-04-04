@@ -36,7 +36,7 @@ plugins {
     id("com.google.devtools.ksp")
     id("com.google.dagger.hilt.android")
     id("com.mikepenz.aboutlibraries.plugin")
-    id("io.sentry.kotlin.compiler.gradle") version "6.0.0"
+    id("io.sentry.kotlin.compiler.gradle") version "6.3.0"
 }
 
 
