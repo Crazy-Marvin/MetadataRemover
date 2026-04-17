@@ -122,4 +122,8 @@
     <string name="languaje">Язык</string>
     <string name="documents">Документы</string>
     <string name="pictures">Картинки</string>
+    <string name="title_menu_item_settings">Настройки</string>
+    <string name="monitor_errors_with_sentry">Отслеживать ошибки с помощью Sentry</string>
+    <string name="monitor_error">Отслеживать ошибки</string>
+    <string name="monitor_information">Используйте Sentry для автоматической отправки отчетов об ошибках — это ускорит исправление багов и повысит стабильность. Собираются только необходимые технические данные.</string>
 </resources>
