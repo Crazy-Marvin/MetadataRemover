@@ -21,8 +21,7 @@
   ~ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
   ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
   ~ SOFTWARE.
-  -->
-<resources>
+  --><resources>
     <string name="title_activity_about">About</string>
     <string name="image_content_description_navigate_up">Navigate up</string>
     <!-- App info -->
@@ -53,11 +52,8 @@
     <string name="title_about_contribute">Contribute</string>
     <string name="title_button_about_contribute_translate">Translate</string>
     <string name="title_button_about_contribute_issue">Report issue</string>
-
     <string name="title_activity_libraries">Libraries</string>
-
     <string name="title_activity_license">Apache License 2.0</string>
-
     <string name="title_menu_item_about">About</string>
     <string name="title_menu_item_open_file">Open picture</string>
     <string name="title_menu_item_expand">Expand</string>
@@ -73,8 +69,7 @@
     <string name="description_banner_no_metadata">"Couldn't find any Metadata."</string>
     <string name="image_content_description_banner_no_metadata">"Couldn't find any Metadata."</string>
     <string name="search_text_file_explorer">file explorer</string>
-    <string name="title_intent_chooser_share_without_metadata">Share \"%1$s\" without metadata&#8230;</string>
-
+    <string name="title_intent_chooser_share_without_metadata">Share \"%1$s\" without metadata…</string>
     <string name="label_attribute_file_name">Name</string>
     <string name="label_attribute_file_size">Size</string>
     <string name="description_attribute_file_size_bytes">%1$d\u200ABytes</string>
@@ -117,9 +112,18 @@
     <string name="label_attribute_image_creation_lens">Lens</string>
     <string name="description_attribute_image_creation_model_serial_number">%1$s (%2$s)</string>
     <string name="label_attribute_file_creation_location">Location</string>
-    <string name="description_attribute_file_creation_location_coordinates">%2$02d&#176;\u200A%3$02d′\u200A%4$02d″ %1$s\u2003%6$02d&#176;\u200A%7$02d′\u200A%8$02d″ %5$s</string>
+    <string name="description_attribute_file_creation_location_coordinates">%2$02d°\u200A%3$02d′\u200A%4$02d″ %1$s\u2003%6$02d°\u200A%7$02d′\u200A%8$02d″ %5$s</string>
     <string name="description_attribute_file_creation_location_direction_east">East</string>
     <string name="description_attribute_file_creation_location_direction_west">West</string>
     <string name="description_attribute_file_creation_location_direction_north">North</string>
     <string name="description_attribute_file_creation_location_direction_south">South</string>
+    <string name="app_name">Kiondoa Data Meta</string>
+    <string name="languaje">Lugha</string>
+    <string name="documents">Nyaraka</string>
+    <string name="pictures">Picha</string>
+    <string name="video_audio">Video/Sauti</string>
+    <string name="title_menu_item_settings">Mipangilio</string>
+    <string name="monitor_errors_with_sentry">Fuatilia Hitilafu ukitumia Sentry</string>
+    <string name="monitor_error">Fuatilia Hitilafu</string>
+    <string name="monitor_information">Tumia Sentry kuripoti hitilafu kiotomatiki ili kurekebisha **matatizo ya programu** kwa haraka zaidi na kuboresha uthabiti. Ni data muhimu tu ya kiufundi inayokusanywa.</string>
 </resources>
