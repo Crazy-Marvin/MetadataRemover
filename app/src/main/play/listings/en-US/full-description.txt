@@ -1,0 +1,24 @@
+<i>Linda faragha yako kwa kuondoa metadata kwenye picha zako, kabla ya kuzisambaza kwenye Mtandao.</i>
+<h2><b>Vipengele:</b></h2>
+ ✔️ Angalia metadata
+ ✔️ Hakiki picha
+ ✔️ Ondoa metadata
+ ✔️ Muonekano rahisi na rahisi kuelewa
+ ✔️ Sambaza moja kwa moja kutoka kwenye programu
+<h2><b>Jifunze zaidi:</b></h2>
+Kila unapopiga picha, metadata ya ziada huhifadhiwa ndani ya faili la picha.
+Simu nyingi janja <i>hazikuarifu</i> kuhusu jambo hili.
+<b>Metadata inaweza kuonekana hivi:</b>
+ 🕑 Picha ilipigwa siku gani, na saa ngapi?
+ 🗺️ Na wapi hasa?
+ 📷 Ni kamera gani au simu gani ilitumika?
+ 🔧 Ni mipangilio gani ya kamera ilitumiwa?
+ 📝 Maelezo ya mpiga picha au ya kamera?
+ 📌 Mara nyingi zaidi, hata majira kamili ya GPS huhifadhiwa kwenye picha yako.
+Metadata wakati mwingine huwa na manufaa sana — kwa mfano wakati wa kupanga picha za likizo.
+Mara tu unaposambaza picha na wengine kupitia mitandao ya kijamii, maelezo haya yote huonekana <i>hadharani</i>.
+Wanaokusanya data na wafuatiliaji haramu (stalkers) wanaweza kugundua kwa urahisi <i>mahali unapoishi au unakofanyia kazi</i> kutoka kwenye metadata au kufikia hitimisho kuhusu <i>ratiba yako ya kila siku</i>.
+Huduma za ufuatiliaji hutengeneza wasifu mpana wa matangazo na kuuza data zako kwa mashirika mengine.
+Tumia Metadata Remover ili kuona data hiyo yote kwa urahisi, <i>iondoe kabisa</i>, na kisha usambaze picha isiyo na utambulisho moja kwa moja!
+Kwa njia hiyo unakaa <i>bila kujulikana</i> na <i>salama</i> kwenye Mtandao, huku marafiki zako wakiendelea kufurahia paka wako mrembo.
+<i>Furahia kusambaza! 😽</i>
