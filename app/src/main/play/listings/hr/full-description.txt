@@ -1,9 +1,9 @@
-<i>Zaštiti svoju privatnost uklanjanjem metapodataka iz tvojih fotografija, prije nego što ih dijeliš na internetu.</i>
+<i>Zaštit svoju privatnost uklanjanjem metapodataka iz tvojih fotografija, prije nego što ih dijeliš na internetu.</i>
 
 <h2><b>Značajke:</b></h2>
 
-✔️ Pregledaj metapodatke
-✔️ Pregled slike
+✔️ Prikaz metapodataka
+✔️ Pregled slika
 ✔️ Ukloni metapodatke
 ✔️ Jednostavno i intuitivno sučelje
 ✔️ Dijeli izravno iz aplikacije
