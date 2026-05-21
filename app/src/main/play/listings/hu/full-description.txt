@@ -8,10 +8,10 @@
  ✔️ Egyszerű, intuitív kezelőfelület 
  ✔️ Megosztás közvetlenül az alkalmazásból 
 
-<h2><b>Tudj meg többet:</b></h2>
+<h2><b>További információk::</b></h2>
 
 Amikor fényképet készítesz, a képfájl extra adatokat is tartalmaz.  
-A legtöbb okostelefon <i>nem szól</i> erről.
+A legtöbb okostelefon erről <i>nem szól</i>.
 
 <b>A metaadatok például ilyenek lehetnek:</b>  
 🕑 Melyik napon készült a kép és mikor?  
@@ -26,7 +26,7 @@ De ha feltöltöd a képeket közösségi médiára, mindenki számára <i>láth
 Az adatgyűjtők vagy zaklatók könnyen megtudhatják, hol laksz vagy dolgozol, és következtethetnek a <i>napirendedre</i> is.  
 A nyomkövető szolgáltatások részletes reklámprofilt készítenek rólad, és el is adhatják az adataidat.
 
-A Metadata Eltávolító megmutatja, milyen adatokat tartalmaz a kép, lehetővé teszi, hogy <i>mindet töröld</i>, és aztán az anonimizált verziót közvetlenül meg is oszthatod!
+A Metaadat Eltávolító megmutatja, milyen adatokat tartalmaz a kép, lehetővé teszi, hogy <i>mindet töröld</i>, és aztán az anonimizált verziót közvetlenül meg is oszthatod!
 Így <i>névtelen</i> és <i>biztonságos</i> maradsz a neten — a barátaid pedig továbbra is csodálhatják a cuki cicádat.  
 
 <i>Oszd meg bátran! 😽</i>
