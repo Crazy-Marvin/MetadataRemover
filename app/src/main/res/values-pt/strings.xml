@@ -1,3 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">Removedor de metadados</string>
+    <string name="languaje">Língua</string>
+    <string name="documents">Documentos</string>
+    <string name="pictures">Imagens</string>
+    <string name="video_audio">Vídeo/Áudio</string>
+    <string name="title_menu_item_settings">Configurações</string>
 </resources>
