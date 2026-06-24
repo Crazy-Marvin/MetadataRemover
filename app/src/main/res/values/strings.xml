@@ -32,4 +32,10 @@
     <string name="monitor_errors_with_sentry">Monitor Errors with Sentry</string>
     <string name="monitor_error">Monitor errors</string>
     <string name="monitor_information">Use Sentry to auto-report issues for faster bug fixes and improved stability. Only essential technical data is collected.</string>
+    <string name="datawiper_enable_title">Enable DataWiper</string>
+    <string name="datawiper_boot_title">Start on boot</string>
+    <string name="datawiper_folder_title">Watched folder</string>
+    <string name="datawiper_info_title">DataWiper</string>
+    <string name="datawiper_info_message">DataWiper runs as a background service that monitors your chosen folder. When a new photo, video, or file is saved there, its metadata is automatically stripped and the file is overwritten in place.\n\nThis ensures no metadata leaves your device — even if you forget to manually remove it.</string>
+    <string name="notification_permission_required">Notification permission is required for DataWiper to run</string>
 </resources>

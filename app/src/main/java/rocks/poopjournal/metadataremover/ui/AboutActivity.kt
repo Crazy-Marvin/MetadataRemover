@@ -37,6 +37,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.app.NavUtils
 import androidx.core.net.toUri
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
 import com.mikepenz.aboutlibraries.LibsBuilder
 import rocks.poopjournal.metadataremover.R
 import rocks.poopjournal.metadataremover.databinding.ActivityAboutBinding
@@ -52,7 +55,13 @@ class AboutActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityAboutBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { view, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            view.setPadding(systemBars.left, systemBars.top, systemBars.right, 0)
+            insets
+        }
+        WindowCompat.getInsetsController(window, window.decorView)
+            .isAppearanceLightStatusBars = true
         binding.header.apply {
             toolbar.setNavigationOnClickListener {
                 NavUtils.navigateUpFromSameTask(activity)
@@ -125,24 +134,6 @@ class AboutActivity : AppCompatActivity() {
                 }
                 buttonIssue.setOnClickListener {
                     launchUrl(R.string.url_button_about_contribute_issue)
-                }
-            }
-
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU){
-                val localeList = AppCompatDelegate.getApplicationLocales()
-
-                val currentLocaleName = if (!localeList.isEmpty) {
-                    AppCompatDelegate.getApplicationLocales()[0]?.displayName
-                } else {
-                    Locale.getDefault().displayName
-                }
-
-                cardLanguage.root.visibility = View.VISIBLE
-                cardLanguage.languajePicker.text = currentLocaleName
-                cardLanguage.languajePicker.setOnClickListener {
-                    val intent = Intent(Settings.ACTION_APP_LOCALE_SETTINGS)
-                    intent.data = Uri.fromParts("package", packageName, null)
-                    startActivity(intent)
                 }
             }
         }

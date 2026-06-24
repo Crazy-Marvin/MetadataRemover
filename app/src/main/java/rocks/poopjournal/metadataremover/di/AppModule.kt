@@ -19,31 +19,31 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun providesDescriptor (@ApplicationContext context: Context) : GetDescriptor{
+    fun providesDescriptor(@ApplicationContext context: Context): GetDescriptor {
         return GetDescriptor(context = context)
     }
 
     @Provides
     @Singleton
-    fun providesMetadataHandler (@ApplicationContext context: Context) : MetadataHandler{
+    fun providesMetadataHandler(@ApplicationContext context: Context): MetadataHandler {
         return MetadataHandler(context = context)
     }
 
     @Provides
     @Singleton
-    fun providesSharedImages (@ApplicationContext context: Context) : SharedFiles {
+    fun providesSharedImages(@ApplicationContext context: Context): SharedFiles {
         return SharedFiles(context = context)
     }
 
     @Provides
     @Singleton
-    fun providesFileUri(@ApplicationContext context: Context) : GetFileUri {
+    fun providesFileUri(@ApplicationContext context: Context): GetFileUri {
         return GetFileUri(context = context)
     }
 
     @Provides
     @Singleton
-    fun providesSaveImages(@ApplicationContext context: Context): SaveFiles{
+    fun providesSaveImages(@ApplicationContext context: Context): SaveFiles {
         return SaveFiles(context = context)
     }
 

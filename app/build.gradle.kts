@@ -217,6 +217,9 @@ dependencies {
     //sentry
     implementation("io.sentry:sentry-android:8.32.0")
 
+    implementation("androidx.documentfile:documentfile:1.1.0")
+
+
 }
 
 
