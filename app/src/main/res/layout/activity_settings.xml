@@ -76,6 +76,185 @@
     </com.google.android.material.card.MaterialCardView>
 
 
+    <include
+        android:id="@+id/card_language"
+        layout="@layout/activity_about_card_language"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:visibility="visible"
+        app:layout_constraintTop_toBottomOf="@id/cardSentryMonitoring"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- DataWiper Enable Card -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardDataWiper"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="4dp"
+        app:layout_constraintTop_toBottomOf="@id/card_language"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+            <ImageView
+                android:id="@+id/dataWiperInfoButton"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_info_outline"
+                android:contentDescription="@string/app_name"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:tint="@color/text_color_secondary" />
+
+            <TextView
+                android:id="@+id/tvDataWiperTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/datawiper_enable_title"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/text_color_secondary"
+                app:layout_constraintStart_toEndOf="@id/dataWiperInfoButton"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/switchDataWiper"
+                app:layout_constraintHorizontal_bias="0"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp" />
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/switchDataWiper"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- DataWiper Boot Card -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardDataWiperBoot"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="4dp"
+        app:layout_constraintTop_toBottomOf="@id/cardDataWiper"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+            <ImageView
+                android:id="@+id/bootIcon"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_auto_start"
+                android:contentDescription="@string/app_name"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:tint="@color/text_color_secondary" />
+
+            <TextView
+                android:id="@+id/tvBootTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/datawiper_boot_title"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/text_color_secondary"
+                app:layout_constraintStart_toEndOf="@id/bootIcon"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/switchBoot"
+                app:layout_constraintHorizontal_bias="0"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp" />
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/switchBoot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- DataWiper Folder Picker Card -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardDataWiperFolder"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="4dp"
+        app:layout_constraintTop_toBottomOf="@id/cardDataWiperBoot"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+            <ImageView
+                android:id="@+id/folderIcon"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/outline_folder_check_2_24"
+                android:contentDescription="@string/app_name"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:tint="@color/text_color_secondary" />
+
+            <TextView
+                android:id="@+id/tvFolderTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/datawiper_folder_title"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/text_color_secondary"
+                app:layout_constraintStart_toEndOf="@id/folderIcon"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0"
+                android:layout_marginStart="8dp" />
+
+            <TextView
+                android:id="@+id/tvFolderPath"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="13sp"
+                android:textColor="@color/text_color_secondary"
+                android:alpha="0.7"
+                app:layout_constraintStart_toEndOf="@id/folderIcon"
+                app:layout_constraintTop_toBottomOf="@id/tvFolderTitle"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="4dp" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -33,6 +33,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.Parcelable
 import android.util.Log
+import android.util.TypedValue
 import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
@@ -40,6 +41,9 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -109,6 +113,27 @@ class MainActivity : AppCompatActivity(), OnLastItemClickedListener {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        ViewCompat.setOnApplyWindowInsetsListener(binding.preview.root) { view, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            view.setPadding(systemBars.left, systemBars.top, systemBars.right, 0)
+            insets
+        }
+
+        ViewCompat.setOnApplyWindowInsetsListener(binding.bottomSheet.root) { view, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            view.setPadding(systemBars.left, 0, systemBars.right, systemBars.bottom)
+
+            val behavior = BottomSheetBehavior.from(view)
+            val actionBarSize = TypedValue().let { tv ->
+                theme.resolveAttribute(android.R.attr.actionBarSize, tv, true)
+                TypedValue.complexToDimensionPixelSize(tv.data, resources.displayMetrics)
+            }
+            behavior.peekHeight = actionBarSize + systemBars.bottom
+
+            insets
+        }
+        WindowCompat.getInsetsController(window, window.decorView)
+            .isAppearanceLightStatusBars = true
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
 
         viewPager = binding.preview.viewPager
