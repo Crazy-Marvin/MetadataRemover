@@ -9,4 +9,6 @@
     <string name="monitor_errors_with_sentry">Vigade jälgimine Sentry abil</string>
     <string name="monitor_error">Vigade jälgimine</string>
     <string name="monitor_information">Kasuta Sentry teenust tekkinud vigade automaatse teavituse ja seega parema töökindluse jaoks. Seejuures kogub rakendus vaid olulist tehnilist teavet.</string>
+    <string name="datawiper_boot_title">Käivita koos alglaadimisega</string>
+    <string name="datawiper_folder_title">Jälgitav kaust</string>
 </resources>
