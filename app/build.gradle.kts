@@ -199,8 +199,8 @@ dependencies {
     implementation("com.mikepenz:aboutlibraries:13.1.0")
 
     //Dagger-hilt
-    implementation ("com.google.dagger:hilt-android:2.57.1")
-    ksp ("com.google.dagger:hilt-android-compiler:2.57.1")
+    implementation ("com.google.dagger:hilt-android:2.58")
+    ksp ("com.google.dagger:hilt-android-compiler:2.58")
     ksp ("androidx.hilt:hilt-compiler:1.2.0")
 
     //ffmpeg
