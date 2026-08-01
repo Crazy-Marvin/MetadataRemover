@@ -215,7 +215,7 @@ dependencies {
     implementation ("com.tom-roush:pdfbox-android:2.0.27.0")
 
     //sentry
-    implementation("io.sentry:sentry-android:8.32.0")
+    implementation("io.sentry:sentry-android:8.51.0")
 
     implementation("androidx.documentfile:documentfile:1.1.0")
 
