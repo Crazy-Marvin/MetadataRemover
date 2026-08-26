@@ -122,4 +122,6 @@
     <string name="pictures">图片</string>
     <string name="documents">文档</string>
     <string name="video_audio">视频/音频</string>
+    <string name="title_menu_item_settings">设置</string>
+    <string name="datawiper_boot_title">开机时启动</string>
 </resources>
