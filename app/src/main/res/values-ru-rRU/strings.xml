@@ -126,4 +126,10 @@
     <string name="monitor_errors_with_sentry">Отслеживать ошибки с помощью Sentry</string>
     <string name="monitor_error">Отслеживать ошибки</string>
     <string name="monitor_information">Используйте Sentry для автоматической отправки отчетов об ошибках — это ускорит исправление багов и повысит стабильность. Собираются только необходимые технические данные.</string>
+    <string name="datawiper_enable_title">Включить DataWiper</string>
+    <string name="datawiper_boot_title">Запускать при загрузке системы</string>
+    <string name="datawiper_folder_title">Отслеживаемая папка</string>
+    <string name="datawiper_info_title">DataWiper</string>
+    <string name="datawiper_info_message">DataWiper работает как фоновая служба, отслеживающая выбранную вами папку. Когда в неё сохраняется новая фотография, видео или файл, метаданные автоматически удаляются, а файл перезаписывается на месте.\n\nЭто гарантирует, что никакие метаданные не покинут ваше устройство, даже если вы забудете удалить их вручную.</string>
+    <string name="notification_permission_required">Для работы DataWiper требуется разрешение на отправку уведомлений.</string>
 </resources>
