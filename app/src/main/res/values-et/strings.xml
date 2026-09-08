@@ -9,4 +9,10 @@
     <string name="monitor_errors_with_sentry">Vigade jälgimine Sentry abil</string>
     <string name="monitor_error">Vigade jälgimine</string>
     <string name="monitor_information">Kasuta Sentry teenust tekkinud vigade automaatse teavituse ja seega parema töökindluse jaoks. Seejuures kogub rakendus vaid olulist tehnilist teavet.</string>
+    <string name="datawiper_boot_title">Käivita koos alglaadimisega</string>
+    <string name="datawiper_folder_title">Jälgitav kaust</string>
+    <string name="datawiper_enable_title">Võta DataWiper kasutusele</string>
+    <string name="datawiper_info_title">DataWiper</string>
+    <string name="notification_permission_required">Et DataWiper võiks toimida, vajab rakendus õigust kuvada teavitusi</string>
+    <string name="datawiper_info_message">DataWiper töötab taustateenusena ja jälgib sinu seadistatud kausta. Kui sinna salvestub uus foto, video või muu fail, siis metateave eemaldatakse automaatselt ja fail kirjutatakse sealsamas üle.\n\nSee tagab, et metaandmetega teave ei lahku sinu seadmest - seda ka siis, kui ise peaksid unustama selle eemaldada.</string>
 </resources>

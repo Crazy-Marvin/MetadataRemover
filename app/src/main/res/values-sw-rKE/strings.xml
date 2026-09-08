@@ -118,4 +118,12 @@
     <string name="description_attribute_file_creation_location_direction_north">Kaskazini</string>
     <string name="description_attribute_file_creation_location_direction_south">Kusini</string>
     <string name="app_name">kiondoaji cha taarifa kuhusu taarifa nyingineo</string>
+    <string name="languaje">Lugha</string>
+    <string name="documents">Nyaraka</string>
+    <string name="pictures">Picha</string>
+    <string name="video_audio">Video/Sauti</string>
+    <string name="title_menu_item_settings">Mipangilio</string>
+    <string name="monitor_errors_with_sentry">Fuatilia Hitilafu ukitumia Sentry</string>
+    <string name="monitor_error">Fuatilia Hitilafu</string>
+    <string name="monitor_information">Tumia Sentry kuripoti hitilafu kiotomatiki ili kurekebisha matatizo ya programu kwa haraka zaidi na kuboresha uthabiti. Ni data muhimu tu ya kiufundi inayokusanywa.</string>
 </resources>

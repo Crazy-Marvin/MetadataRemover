@@ -122,4 +122,14 @@
     <string name="documents">Документи</string>
     <string name="pictures">Зображення</string>
     <string name="video_audio">Відео/Аудіо</string>
+    <string name="title_menu_item_settings">Налаштування</string>
+    <string name="monitor_errors_with_sentry">Відстежувати помилки за допомогою Sentry</string>
+    <string name="monitor_error">Відстежувати помилки</string>
+    <string name="monitor_information">Використовуйте Sentry для автоматичного повідомлення про проблеми, щоб прискорити виправлення помилок та поліпшити стабільність роботи. Збираються лише найнеобхідніші технічні дані.</string>
+    <string name="datawiper_enable_title">Увімкнути DataWiper</string>
+    <string name="datawiper_boot_title">Запускати під час завантаження</string>
+    <string name="datawiper_folder_title">Переглянута тека</string>
+    <string name="datawiper_info_title">DataWiper</string>
+    <string name="datawiper_info_message">DataWiper працює як фонова служба, яка відстежує вибрану вами теку. Коли туди зберігається нова світлина, відео або файл, його метадані автоматично видаляються, а сам файл перезаписується на місці.\n\nЦе гарантує, що жодні метадані не покинуть ваш пристрій — навіть якщо ви забудете видалити їх вручну.</string>
+    <string name="notification_permission_required">Для роботи програми DataWiper необхідний дозвіл на отримання сповіщень</string>
 </resources>

@@ -122,4 +122,5 @@
     <string name="documents">Dokumente</string>
     <string name="pictures">Bilder</string>
     <string name="video_audio">Video/ Audio</string>
+    <string name="title_menu_item_settings">Einstellungen</string>
 </resources>

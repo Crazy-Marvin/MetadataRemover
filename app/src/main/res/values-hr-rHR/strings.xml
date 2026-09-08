@@ -34,4 +34,8 @@
     <string name="languaje">Jezik</string>
     <string name="documents">Dokumenti</string>
     <string name="video_audio">Video/Audio</string>
+    <string name="title_menu_item_settings">Postavke</string>
+    <string name="monitor_errors_with_sentry">Prati greške pomoću Sentryja</string>
+    <string name="monitor_error">Prati greške</string>
+    <string name="monitor_information">Koristi Sentry za automatsko prijavljivanje problema radi bržeg ispravljanja grešaka i poboljšane stabilnosti. Prikupljaju se samo bitni tehnički podaci.</string>
 </resources>
