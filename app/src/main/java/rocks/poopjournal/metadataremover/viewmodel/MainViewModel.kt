@@ -43,7 +43,7 @@ class MainViewModel @Inject constructor(
 ) : ViewModel() {
 
     companion object {
-        val random = SecureRandom("75rgu86gr59ht86".toByteArray(Charsets.UTF_8))
+        val random = SecureRandom()
         const val FILE_NAME_ALPHABET = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
         const val FILE_NAME_LENGTH = 10
     }
